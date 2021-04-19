@@ -1,0 +1,22 @@
+---
+- [w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja, True, '0000', "查询成功"]
+
+get_token:
+  desc: 根据 secret 获得响应码中的 token  #secret, except_result, except_code, except_msg
+  req_headers:
+  req_params:
+    secret: w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja
+    start: 0
+    count: 10
+  req_data:
+  req_json:
+  req_file:
+  rsp_code: 200
+  rsp_body:
+    code: 0000
+    success: true
+    data:
+
+
+
+
