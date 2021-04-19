@@ -1,10 +1,10 @@
 from api.user import user
-from core.result_base import ResultBase
+from base.base_result import BaseResult
 from util.logger import logger
 
 
 def get_all_user_info():
-    result = ResultBase()
+    result = BaseResult()
     res = user.list_all_users()
     result.success = False
     if res.json()["code"] == 0:
@@ -17,7 +17,7 @@ def get_all_user_info():
 
 
 def get_one_user_info(username):
-    result = ResultBase()
+    result = BaseResult()
     res = user.list_one_user(username)
     result.success = False
     if res.json()["code"] == 0:
@@ -31,7 +31,7 @@ def get_one_user_info(username):
 
 
 def register_user(username, password, telephone, sex="", address=""):
-    result = ResultBase()
+    result = BaseResult()
     json_data = {
         "username": username,
         "password": password,
@@ -55,7 +55,7 @@ def register_user(username, password, telephone, sex="", address=""):
 
 
 def login_user(username, password):
-    result = ResultBase()
+    result = BaseResult()
     payload = {
         "username": username,
         "password": password
@@ -77,7 +77,7 @@ def login_user(username, password):
 
 
 def update_user(id, admin_user, new_password, new_telephone, token, new_sex="", new_address=""):
-    result = ResultBase()
+    result = BaseResult()
     header = {
         "Content-Type": "application/json"
     }
@@ -102,7 +102,7 @@ def update_user(id, admin_user, new_password, new_telephone, token, new_sex="", 
 
 
 def delete_user(username, admin_user, token):
-    result = ResultBase()
+    result = BaseResult()
     json_data = {
         "admin_user": admin_user,
         "token": token,

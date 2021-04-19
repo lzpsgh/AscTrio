@@ -1,13 +1,13 @@
 # coding     : utf-8
 # @Time      : 2021/4/18 上午2:29
 from api.user.user import user
-from core.result_base import ResultBase
+from base.base_result import BaseResult
 from util import auth
 
 
 # 官网注册
 def login_web(phone, user_password, t):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "phone": phone,
         "userPassword": user_password,
@@ -27,7 +27,7 @@ def login_web(phone, user_password, t):
 
 # h5落地页登录注册
 def login_h5(code, phone):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "code": code,
         "phone": phone

@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/10 下午8:56
 
-from api.account import account
-from core.result_base import ResultBase
+from api.account.account import account
+from base.base_result import BaseResult
 from util import auth
 
 
 def crm_login(account_name="zhaopeng.li@miaocode.com",
               account_password='262728293031',
               captcha=1):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "accountName": account_name,
         "accountPassword": account_password,
@@ -34,7 +34,7 @@ def crm_login(account_name="zhaopeng.li@miaocode.com",
 
 # todo 处理太粗糙
 def crm_login_with_mm():
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "accountName": "zhaopeng.li@miaocode.com",
         "accountPassword": "262728293031",

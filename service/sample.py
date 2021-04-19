@@ -3,11 +3,11 @@
 # 模版文件，仅供参考，无法执行
 
 from api.sample import sample
-from core.result_base import ResultBase
+from base.base_result import BaseResult
 
 
 def req_get_with_param(param1):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "param": param1
     }
@@ -33,7 +33,7 @@ def req_get_with_param(param1):
 
 
 def req_post():
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "accountName": "zhaopeng.li@miaocode.com",
         "accountPassword": "262728293031",

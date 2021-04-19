@@ -1,7 +1,7 @@
 # coding     : utf-8
 # @Time      : 2021/4/12 下午6:09
 from api.competition_pk.competition_enter import competiiton_enter
-from core.result_base import ResultBase
+from base.base_result import BaseResult
 from util import auth
 
 
@@ -9,7 +9,7 @@ from util import auth
 def submit_enter_name_info(
         age, countryCode, phone, fullName, gender, certificateType, idNumber,
         competitionId, competitionName):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "age": age,
         "countryCode": countryCode,

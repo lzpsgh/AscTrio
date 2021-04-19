@@ -1,5 +1,5 @@
+from base.base_request import BaseRequest
 from config import envar
-from core.base_request import BaseRequest
 
 api_root_url = envar.BASE_URL_CORE
 

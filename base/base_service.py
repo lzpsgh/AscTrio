@@ -1,5 +1,6 @@
 # coding     : utf-8
 # @Time      : 2021/4/16 下午3:52
+
 # 环境变量: prod test stage
 env_name = 'test'
 env_path = f'/Users/lensaclrtn/Project/AscTrio/{env_name}.env'

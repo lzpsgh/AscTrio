@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from service.user import login_user
+from service.zzzzz.user import login_user
 from testcases.conftest import api_data
 from util.logger import logger
 

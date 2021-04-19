@@ -1,14 +1,14 @@
 # coding     : utf-8
 # @Time      : 2021/4/12 下午6:09
 from api.competition_pk.competition_manage import competition_manage
-from core.result_base import ResultBase
+from base.base_result import BaseResult
 from util import auth
 from util.mysql_operate import db
 
 
 # 新建修改赛事
 def save_competition():
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "bannerList": [
             {

@@ -3,7 +3,7 @@
 
 
 from api.competition_pk.scoring_dimension import scoring_dimension
-from core.result_base import ResultBase
+from base.base_result import BaseResult
 from util import auth
 from util.mysql_operate import db
 
@@ -11,7 +11,7 @@ from util.mysql_operate import db
 # 删除评分维度
 def del_scoring_dimension_by_id(sd_id):
     # 记录请求头请求体 响应头响应体
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "id": sd_id
     }
@@ -37,7 +37,7 @@ def get_scoring_dimension_list(self, **kwargs):
 
 # 保存评分维度，新建时不传id
 def new_scoring_dimension(min_points, max_points, name):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         # "id": mid,
         "maxPoints": max_points,
@@ -57,7 +57,7 @@ def new_scoring_dimension(min_points, max_points, name):
 # todo 抽出来到BaseService
 # 保存评分维度，修改是要传id
 def modify_scoring_dimension(sd_id, min_points, max_points, name):
-    result = ResultBase()
+    result = BaseResult()
     req_data = {
         "id": sd_id,
         "maxPoints": max_points,

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/7 下午1:39
 
+from base.base_request import BaseRequest
 from config import envar
-from core.base_request import BaseRequest
 
 api_root_url = envar.BASE_URL_CORE
 

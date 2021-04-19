@@ -2,8 +2,8 @@
 # @Time    : 2021/4/6
 # 模版文件，仅供参考，无法执行
 
+from base.base_request import BaseRequest
 from config import envar
-from core.base_request import BaseRequest
 
 api_root_url = envar.BASE_URL_CORE
 

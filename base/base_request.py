@@ -79,6 +79,7 @@ class BaseRequest:
                 data = complexjson.dumps(json)
             inner_rsp = self.session.patch(url, data, **kwargs)
 
-        logger.info("响应体hash   ==>> " + str(inner_rsp.__hash__()))
+        # logger.info("请求体ID   ==>> " + str(inner_rsp.request.__hash__()))
+        logger.info("响应体ID   ==>> " + str(inner_rsp.__hash__()))
         logger.info("\n\n###########################################################################################\n")
         return inner_rsp
