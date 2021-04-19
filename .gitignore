@@ -137,7 +137,8 @@ testcase/report
 
 config/envar.py
 
-#
+
 .idea/
 .idea/workspace.xml
 
+/config/envar.py

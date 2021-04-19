@@ -31,10 +31,10 @@ class ReadFileData:
 
     def load_yaml(self, file_path):
         # logger.debug(f"加载文件 {file_path}")
-        print(f"加载文件 {file_path}")
+        logger.debug(f"加载文件 {file_path}")
         with open(file_path, encoding='utf-8') as f:
             tmp_data = yaml.safe_load(f)
-        print(f"读取数据 {tmp_data}")
+        logger.debug(f"读取数据 {tmp_data}")
         return tmp_data
 
     def load_json(self, file_path):
