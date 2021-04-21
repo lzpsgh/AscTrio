@@ -51,19 +51,14 @@ class BaseRequest:
         cookies = dict(**kwargs).get("params")
 
         self.request_log(method, url, data, json, params, headers, files, cookies)
-        inner_rsp = None
 
         if method == "GET":
-            inner_rsp = self.session.get(url, timeout=7, **kwargs)
-            # logger.info(f"响应头cookie ==>> " + inner_rsp.cookies.get("JSESSIONID"))
-            logger.info(f"响应体text   ==>> " + inner_rsp.text)
             # todo 为了临时解决crm和官网的cookie冲突问题，先禁用session
             # inner_rsp = requests.get(url, timeout=7, **kwargs)
+            inner_rsp = self.session.get(url, timeout=7, **kwargs)
 
         if method == "POST":
             inner_rsp = requests.post(url, data, json, timeout=7, **kwargs)
-            # logger.info(f"响应头cookie ==>> " + inner_rsp.cookies.get("JSESSIONID"))
-            logger.info(f"响应体text   ==>> " + inner_rsp.text)
 
         if method == "DELETE":
             inner_rsp = self.session.delete(url, **kwargs)
@@ -79,7 +74,8 @@ class BaseRequest:
                 data = complexjson.dumps(json)
             inner_rsp = self.session.patch(url, data, **kwargs)
 
-        # logger.info("请求体ID   ==>> " + str(inner_rsp.request.__hash__()))
+        # logger.info(f"响应头cookie ==>> " + inner_rsp.cookies.get("JSESSIONID"))
+        logger.info(f"响应体text   ==>> " + inner_rsp.text)
         logger.info("响应体ID   ==>> " + str(inner_rsp.__hash__()))
         logger.info("\n\n###########################################################################################\n")
         return inner_rsp

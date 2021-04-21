@@ -17,5 +17,10 @@ class Other(BaseRequest):
     def send_paysucmsg_fast(self, **kwargs):
         return self.request("GET", f"/wxmsg/sendPaySucMsgFast", **kwargs)
 
+    def add_sprite(self, **kwargs):
+        return self.request("POST", "/mate/addSprite", **kwargs)
+
+    def add_stage(self, **kwargs):
+        return self.request("POST", "/mate/addStage", **kwargs)
 
 other = Other(api_root_url)
