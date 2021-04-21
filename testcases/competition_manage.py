@@ -16,7 +16,7 @@ class TestPayCallbackWX():
     def test_pay_callback_wx(self):
         logger.info("\n*************** 开始执行用例 ***************")
 
-        sql_orderno = "SELECT outTradeNo FROM payrecord WHERE payStatus = 'WAITING' AND payType = 'WX'"
+        sql_orderno = f"SELECT outTradeNo FROM payrecord WHERE payStatus = 'WAITING' AND payType = 'WX'"
         sql_result = db.select_db(sql_orderno)
         logger.info(sql_result)
         if sql_result == '' or sql_result is None:

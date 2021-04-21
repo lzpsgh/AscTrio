@@ -15,15 +15,11 @@ class Sample(BaseRequest):
 
     # get请求
     def req_get(self, **kwargs):
-        return self.request("GET", f"/leadsApi/getTokennnn", **kwargs)
-
-    # get请求 带参数
-    def req_get_with_param(self, param1, **kwargs):
-        return self.request("GET", f"/leadsApi/getTokenWith/{param1}", **kwargs)
+        return self.request("GET", "/leadsApi/getTokennnn", **kwargs)
 
     # post请求
     def req_post(self, **kwargs):
-        return self.request("POST", f"/leadsApi/mypost", **kwargs)
+        return self.request("POST", "/leadsApi/mypost", **kwargs)
 
 
 sample = Sample(api_root_url)

@@ -76,5 +76,49 @@ def modify_scoring_dimension(sd_id, min_points, max_points, name):
     result.response = res
 
 
+# todo 抽出来到BaseService
+# 保存评分维度，修改是要传id
+def modify_scoring_dimension(sd_id, min_points, max_points, name):
+    result = BaseResult()
+    req_data = {
+        "id": sd_id,
+        "maxPoints": max_points,
+        "minPoints": min_points,
+        "name": name
+    }
+    req_cookies = {
+        'JSESSIONID': auth.get_cookie('crm'),
+    }
+    res = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
+    result.status = False
+    if res.status_code == 200:
+        finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
+        if finvalue == 5:
+            result.status = True
+    result.response = res  # todo 抽出来到BaseService
+
+
+# todo 实验 service层使用**kwargs
+def modify_scoring_dimension(**kwargs):
+    result = BaseResult()
+    # req_data = {
+    #     "id": sd_id,
+    #     "maxPoints": max_points,
+    #     "minPoints": min_points,
+    #     "name": name
+    # }
+    req_data = kwargs
+    req_cookies = {
+        'JSESSIONID': auth.get_cookie('crm'),
+    }
+    res = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
+    result.status = False
+    if res.status_code == 200:
+        finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
+        if finvalue == 5:
+            result.status = True
+    result.response = res
+
+
 if __name__ == '__main__':
-    modify_scoring_dimension(3, 6, 100, '样衰度')
+    modify_scoring_dimension()

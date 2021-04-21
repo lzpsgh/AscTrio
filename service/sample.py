@@ -2,6 +2,7 @@
 # @Time    : 2021/4/11 上午9:15
 # 模版文件，仅供参考，无法执行
 
+
 from api.sample import sample
 from base.base_result import BaseResult
 
@@ -62,5 +63,5 @@ def req_post():
 
 
 if __name__ == '__main__':
-    # sample.req_get("sadfasdf")
-    sample.req_post("dasf", 1)
+    # req_get("sadfasdf")
+    req_post("dasf", 1)
