@@ -19,7 +19,7 @@ if not os.path.exists(LOG_PATH):
 # DEBUG: 'DEBUG',
 # NOTSET: 'NOTSET',
 
-class Logger():
+class Logger:
 
     def __init__(self):
         self.logname = os.path.join(LOG_PATH, "{}.log".format(time.strftime("%Y%m%d")))

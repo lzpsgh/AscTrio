@@ -39,20 +39,18 @@ def save_competition():
         "synopsis": "asctrio-赛事主要是做什么\n法俄撒粉色\n结束了",
         "coOrganiser": "协办22-asctrio",
         "organizer": "主办11-asctrio",
-        "callForPapersStartTime": "2021-04-16 00:00:00",
-        "callForPapersEndTime": "2021-04-19 23:59:59",
-        "promotionStartTime": "2021-04-20 00:00:00",
-        "promotionEndTime": "2021-04-23 23:59:59",
+        "callForPapersStartTime": "2021-04-23 00:00:00",
+        "callForPapersEndTime": "2021-04-24 23:59:59",
+        "promotionStartTime": "2021-04-25 00:00:00",
+        "promotionEndTime": "2021-04-26 23:59:59",
         "themeList": [
             {
-                "subjectName": "作品和1",
+                "subjectName": "作品和2",
                 "subjectType": "0",
                 "learningVideo": "https://www.baidu.com",
                 "projectId": "935522"
             }
         ],
-        "bestWorksQuota": 1,
-        "excellentWorksQuota": 0,
         "judgesList": [
             {
                 "accountId": "182",
@@ -72,7 +70,9 @@ def save_competition():
         "ageMin": 1,
         "popularityAwardQuota": 2,
         "weekPopularityAwardQuota": 3,
-        "competitionName": "asctrio046"
+        "bestWorksQuota": 1,
+        "excellentWorksQuota": 1,
+        "competitionName": "asctrio赛事04231312"
     }
     req_cookies = {
         'JSESSIONID': auth.get_cookie('crm'),
@@ -80,7 +80,7 @@ def save_competition():
     res = competition_manage.save_competition(json=req_data, cookies=req_cookies)
     result.status = False
     if res.status_code == 200 and res.json()['success'] is True:
-        cid = db.select_db('select id FROM competition where competition_name = \'asctrio046\' ')[0][0]
+        cid = db.select_db('select id FROM competition where competition_name = \'asctrio赛事04231312\' ')[0][0]
         if cid is not None:
             print(cid)
             result.status = True

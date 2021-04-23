@@ -7,8 +7,9 @@ from util import auth
 
 # 提交报名信息
 def submit_enter_name_info(
-        age, countryCode, phone, fullName, gender, certificateType, idNumber,
-        competitionId, competitionName):
+        competitionId, age, countryCode, phone,
+        fullName, gender, certificateType, idNumber,
+):
     result = BaseResult()
     req_data = {
         "age": age,
@@ -19,7 +20,7 @@ def submit_enter_name_info(
         "certificateType": certificateType,
         "idNumber": idNumber,
         "competitionId": competitionId,
-        "competitionName": competitionName
+        # "competitionName": competitionName
     }
     req_cookies = {
         'JSESSIONID': auth.get_cookie('web'),
@@ -32,5 +33,4 @@ def submit_enter_name_info(
 
 
 if __name__ == '__main__':
-    submit_enter_name_info(6, '86', '18659107886', 'asdfa', 'M', "IDCARD", '452352345234',
-                           '46', 'asctrio046')
+    submit_enter_name_info('49', 6, '86', '18659107886', '我叫MT', 'M', "IDCARD", '452352345234')

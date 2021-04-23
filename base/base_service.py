@@ -7,9 +7,11 @@ env_path = f'/Users/lensaclrtn/Project/AscTrio/{env_name}.env'
 
 
 class BaseService:
-    def __init__(self):
-        pass
+    req_headers = {}
 
-    def __new__(cls, *args, **kwargs):
-        pass
-        # load_dotenv(dotenv_path=env_path)
+    def __init__(self):
+        self.req_headers = {
+            # "Host": "sit.miaocode.com",
+            "Cache-Control": "no-cache",
+            # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
+        }
