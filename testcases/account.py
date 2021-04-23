@@ -2,7 +2,7 @@
 # @Time    : 2021/4/10 下午10:14
 import pytest
 
-from service.account.account import account
+from service.account import account
 from util.logger import logger
 
 
@@ -13,7 +13,7 @@ class TestAccount:
     def test_pay_callback_wx(self):
         logger.info("\n*************** 开始执行用例 ***************")
 
-        result = account.crm_login()
+        result = account.crm_login_with_mm()
         # print(result.__dict__)
         assert result.response.status_code == 200
         # assert result.success == except_result, result.error

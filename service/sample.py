@@ -41,9 +41,9 @@ def req_post():
         "captcha": '1'
     }
     req_headers = {
-        "Host": "sit.miaocode.com",
+        # "Host": "sit.miaocode.com",
         "Cache-Control": "no-cache",
-        "Connection": "keep-alive",
+        # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
     }
     req_cookies = {
         'JSESSIONID': '323697D32350F26119B35809323E26EC',
