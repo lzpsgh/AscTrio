@@ -31,5 +31,9 @@ class CompetitonEnter(BaseRequest):
     def get_registration_progress(self, **kwargs):
         return self.request("GET", "/competitionEnterName/getRegistrationProgress", **kwargs)
 
+    # 作品点赞
+    def works_like(self, **kwargs):
+        return self.request("POST", "/competitionEnterName/worksLike", **kwargs)
+
 
 competiiton_enter = CompetitonEnter(api_root_url)

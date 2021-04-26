@@ -8,7 +8,8 @@ result.response = res
 
 
 class BaseResult:
-    pass
-    # status
+    status = False
+    response = {}
+
     # def __init__(self, rsp_code):
     #     self._rsp_code = rsp_code

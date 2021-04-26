@@ -4,9 +4,10 @@
 from api.account.account import account
 from base.base_result import BaseResult
 from util import auth
+from util import common
 
 
-def crm_login(self, account_name="zhaopeng.li@miaocode.com", account_password='262728293031', captcha=1):
+def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='262728293031', captcha=1):
     result = BaseResult()
     req_data = {
         "accountName": account_name,
@@ -36,7 +37,7 @@ def crm_login(self, account_name="zhaopeng.li@miaocode.com", account_password='2
 
 
 # todo 处理太粗糙
-def crm_login_with_mm(self):
+def crm_login_with_mm():
     result = BaseResult()
     req_data = {
         "accountName": "zhaopeng.li@miaocode.com",
@@ -49,6 +50,8 @@ def crm_login_with_mm(self):
         # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
     }
     res = account.login(params=req_data, headers=req_headers)
+    common.ping(res)
+
     status_code = res.status_code
     resjson = res.json()
 

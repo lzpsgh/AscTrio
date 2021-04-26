@@ -21,7 +21,7 @@ def req_get_with_param(param1):
         'JSESSIONID': '323697D32350F26119B35809323E26EC',
         'token': 'api_token_CBA4A3006A8ABC706F98A2B6F8892CC2',
     }
-    res = sample.req_get_with_param(param=req_data, headers=req_headers, cookies=req_cookies)
+    res = sample.req_get_with_param(params=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code
     resjson = res.json()
 

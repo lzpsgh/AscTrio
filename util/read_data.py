@@ -29,27 +29,37 @@ class ReadFileData:
         logger.debug(f"写入数据: {tmp_data} ")
         return tmp_data
 
-    def load_yaml(self, file_path):
-        # logger.debug(f"加载文件 {file_path}")
+    def load_yml(self, file_path):
         logger.debug(f"加载文件 {file_path}")
         with open(file_path, encoding='utf-8') as f:
             tmp_data = yaml.safe_load(f)
-        logger.debug(f"读取数据 {tmp_data}")
+        logger.debug(f"读取yml {tmp_data}")
+        return tmp_data
+
+    def load_ymlist(self, file_path):
+        logger.debug(f'加载文件 {file_path}')
+        with open(file_path, encoding='utf-8') as f:
+            tmp_data = yaml.safe_load(f)
+            # def process(**params):  # pass in variable numbers of args
+            #     for key, value in params.items():
+            #         print('%s: %s' % (key, value))
+            # process(**conf)  # pass in your keyword args
+        logger.debug(f'读取yml列表 {tmp_data}')
         return tmp_data
 
     def load_json(self, file_path):
         logger.debug("加载 {} 文件......".format(file_path))
         with open(file_path, encoding='utf-8') as f:
-            data = json.load(f)
-        logger.debug("读到数据 ==>>  {} ".format(data))
-        return data
+            tmp_data = json.load(f)
+        logger.debug(f"读取json ==>> {tmp_data} ")
+        return tmp_data
 
     def load_ini(self, file_path):
         logger.debug("加载 {} 文件......".format(file_path))
         config = MyConfigParser()
         config.read(file_path, encoding="UTF-8")
         data = dict(config._sections)
-        # print("读到数据 ==>>  {} ".format(data))
+        # print("读取ini ==>>  {} ".format(data))
         return data
 
 

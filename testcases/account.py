@@ -26,5 +26,5 @@ class TestAccount:
 
 if __name__ == '__main__':
     # pytest.main(["-q", "-s", "pay_callback_wx.py"])
-    # data.load_yaml("data/cookies.yml")
+    # data.load_yml("data/cookies.yml")
     pass

@@ -10,13 +10,13 @@ from util.read_data import data_tool
 
 # 获取现有的cookies
 def get_cookies_all():
-    cookie = data_tool.load_yaml(envar.COOKIE_YML)
+    cookie = data_tool.load_yml(envar.COOKIE_YML)
     return cookie
 
 
 # 获取现有的cookies
 def get_cookie(kw):
-    cookie = data_tool.load_yaml(envar.COOKIE_YML)
+    cookie = data_tool.load_yml(envar.COOKIE_YML)
     kw_cookie = cookie.get(kw).get('jsessionid')
     return kw_cookie
 
@@ -37,3 +37,8 @@ def set_cookie(kw, tmp_data):
 def check_auth():
     jsid = get_cookie()
     set_cookie(jsid)
+
+
+if __name__ == '__main__':
+    # mylist = data_tool.load_ymlist(envar.COOKIE_YML)
+    pass

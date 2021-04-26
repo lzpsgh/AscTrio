@@ -36,16 +36,21 @@ def save_competition():
                 "serialNum": 1
             }
         ],
-        "synopsis": "asctrio-赛事主要是做什么\n法俄撒粉色\n结束了",
-        "coOrganiser": "协办22-asctrio",
-        "organizer": "主办11-asctrio",
-        "callForPapersStartTime": "2021-04-23 00:00:00",
-        "callForPapersEndTime": "2021-04-24 23:59:59",
-        "promotionStartTime": "2021-04-25 00:00:00",
-        "promotionEndTime": "2021-04-26 23:59:59",
+        "synopsis": "赛事主要是做什么\n法俄撒粉色\n结束了",
+        "coOrganiser": "协办方，asctrio",
+        "organizer": "主办方，asctrio",
+        "callForPapersStartTime": "2021-04-22 00:00:00",
+        "callForPapersEndTime": "2021-05-16 23:59:59",
+        "promotionStartTime": "2021-05-17 00:00:00",
+        "promotionEndTime": "2021-06-06 23:59:59",
+        # 评分时间 06-07到06-11
+        "weekPopularityAwardQuota": 1,
+        "popularityAwardQuota": 10,
+        "bestWorksQuota": 8,
+        "excellentWorksQuota": 37,
         "themeList": [
             {
-                "subjectName": "作品和2",
+                "subjectName": "主题11",
                 "subjectType": "0",
                 "learningVideo": "https://www.baidu.com",
                 "projectId": "935522"
@@ -68,11 +73,7 @@ def save_competition():
         "h5Banner": "https://res.miaocode.com/competition/1618467508602",
         "ageMax": 9,
         "ageMin": 1,
-        "popularityAwardQuota": 2,
-        "weekPopularityAwardQuota": 3,
-        "bestWorksQuota": 1,
-        "excellentWorksQuota": 1,
-        "competitionName": "asctrio赛事04231312"
+        "competitionName": "临时asctrio赛事0425"
     }
     req_cookies = {
         'JSESSIONID': auth.get_cookie('crm'),
@@ -80,7 +81,7 @@ def save_competition():
     res = competition_manage.save_competition(json=req_data, cookies=req_cookies)
     result.status = False
     if res.status_code == 200 and res.json()['success'] is True:
-        cid = db.select_db('select id FROM competition where competition_name = \'asctrio赛事04231312\' ')[0][0]
+        cid = db.select_db('select id FROM competition where competition_name = \'临时asctrio赛事0425\' ')[0][0]
         if cid is not None:
             print(cid)
             result.status = True

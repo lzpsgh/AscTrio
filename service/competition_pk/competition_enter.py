@@ -20,7 +20,6 @@ def submit_enter_name_info(
         "certificateType": certificateType,
         "idNumber": idNumber,
         "competitionId": competitionId,
-        # "competitionName": competitionName
     }
     req_cookies = {
         'JSESSIONID': auth.get_cookie('web'),
@@ -32,5 +31,23 @@ def submit_enter_name_info(
     result.response = res
 
 
+# 作品点赞
+def works_like(param1):
+    result = BaseResult()
+    req_data = {
+        "id": param1,
+    }
+    req_cookies = {
+        'JSESSIONID': auth.get_cookie('crm'),
+    }
+    res = competiiton_enter.works_like(data=req_data, cookies=req_cookies)
+    result.status = False
+    if res.status_code == 200 and res.json()['success'] is True:
+        result.status = True
+    result.response = res
+
+
 if __name__ == '__main__':
-    submit_enter_name_info('49', 6, '86', '18659107886', '我叫MT', 'M', "IDCARD", '452352345234')
+    submit_enter_name_info('53', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')
+    # submit_enter_name_info('53', 9, '86', '18659107067', '羽扇大', 'M', "IDCARD", '441481199407175678')
+    # submit_enter_name_info('53', 3, '86', '18666024993', '签约客', 'M', "IDCARD", '441481199407173333')

@@ -25,8 +25,8 @@ class BaseRequest:
             logger.info("请求体 data 参数 ==>> {}".format(complexjson.dumps(data, indent=4, ensure_ascii=False)))
         if json is not None:
             logger.info("请求体 json 参数 ==>> {}".format(complexjson.dumps(json, indent=4, ensure_ascii=False)))
-        # if files is not None:
-        #     logger.info("请求体 files 参数 ==>> {}".format(files))
+        if files is not None:
+            logger.info("请求体 files 参数 ==>> {}".format(files))
 
     def get(self, url, **kwargs):
         return self.request("GET", url, **kwargs)
