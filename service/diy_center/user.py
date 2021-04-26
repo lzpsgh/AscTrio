@@ -3,7 +3,7 @@
 
 from api.diy_center.user import user
 from base.base_result import BaseResult
-from util.logger import logger
+from util import auth
 
 user_phone = 18659107886
 
@@ -14,13 +14,8 @@ def send_sms(param1):
         "phone": param1
     }
     req_headers = {
-        # "Host": "sit.miaocode.com",
         "Cache-Control": "no-cache",
         "Connection": "keep-alive",
-    }
-    req_cookies = {
-        'JSESSIONID': '323697D32350F26119B35809323E26EC',
-        'token': 'api_token_CBA4A3006A8ABC706F98A2B6F8892CC2',
     }
     res = user.send_sms(params=req_data, headers=req_headers)
     status_code = res.status_code
@@ -34,7 +29,6 @@ def send_sms(param1):
     result.response = res
 
 
-# 注册用boundary，得引入第三方库来生成
 def register(param1):
     result = BaseResult()
     req_data = {
@@ -46,10 +40,6 @@ def register(param1):
         # "Host": "sit.miaocode.com",
         # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
         "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryJ8fdxxspLpykHU8t'
-    }
-    req_cookies = {
-        'JSESSIONID': '323697D32350F26119B35809323E26EC',
-        'token': 'api_token_CBA4A3006A8ABC706F98A2B6F8892CC2',
     }
     res = user.register(params=req_data, headers=req_headers)
     status_code = res.status_code
@@ -85,7 +75,8 @@ def login(param1):
     if status_code == 200:
         if resjson["success"] is True:
             result.status = True
-            logger.info(res.cookies['token'])
+            gz_token = res.cookies['token']
+            auth.set_cookie('gz', gz_token)
     else:
         print(status_code)
     result.response = res

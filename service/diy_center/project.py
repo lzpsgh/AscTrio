@@ -4,7 +4,7 @@
 
 from api.diy_center.project import project
 from base.base_result import BaseResult
-
+from util import auth
 
 # 注册用boundary，得引入第三方库来生成
 def save_competition_project(competition_id):
@@ -22,7 +22,7 @@ def save_competition_project(competition_id):
         "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
     }
     req_cookies = {
-        'token': 'registertoken49a8cfcd-ec20-44f6-bfce-8f49c83bc374'
+        'token': auth.get_cookie('gz')
     }
     res = project.save_competition_project(params=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code

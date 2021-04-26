@@ -21,7 +21,7 @@ class User(BaseRequest):
     def register(self, **kwargs):
         return self.request("POST", "/gzuser/user/register", **kwargs)
 
-    # 登录 phone=18989750002&userPassword=262728293031
+    # 登录
     def login(self, **kwargs):
         return self.request("GET", "/gzuser/user/login", **kwargs)
 
