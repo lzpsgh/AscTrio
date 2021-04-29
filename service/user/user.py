@@ -5,6 +5,17 @@ from base.base_result import BaseResult
 from util import auth
 
 
+# 官网注册-数理思维
+# 比官网多传3个值，分别是cityDesc，channel，和grade
+def register_mathink():
+    user.register()
+
+
+# 官网注册-常规
+def register():
+    user.register()
+
+
 # h5落地页登录注册
 def login_h5(code, phone):
     result = BaseResult()
@@ -24,7 +35,7 @@ def login_h5(code, phone):
     result.response = res
 
 
-# 官网注册
+# 官网登录
 def login_web(phone, user_password, t):
     result = BaseResult()
     req_data = {
@@ -37,6 +48,7 @@ def login_web(phone, user_password, t):
     }
     res = user.login(params=req_data, cookies=req_cookies)
 
+
     if res.status_code == 200 and res.json()["success"] is True:
         result.status = True
         core_jsessionid = res.cookies["JSESSIONID"]
@@ -46,6 +58,6 @@ def login_web(phone, user_password, t):
 
 if __name__ == '__main__':
     # login_h5('123456', '18659107886')
-    login_web('18659107886', '262728293031', "1619155530916")  # 原始 7BBD47F6250C1D68129A3556921C27DF
-    # login_web('18659107067', '262728293031', "1619155530916")  #羽扇 A4FDD2752DE0E72D432D955AF9A4830E
+    # login_web('18659107886', '262728293031', "1619155530916")  # 原始 7BBD47F6250C1D68129A3556921C27DF
+    login_web('18989750002', '262728293031', "1619155510916")  # 羽扇 A4FDD2752DE0E72D432D955AF9A4830E
     # login_web('18666024993', '262728293031', "1619155530916")  #签约 6BFF58CB26FAFDF7BFFA7BC17CE02389
