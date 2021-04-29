@@ -26,7 +26,10 @@ def result_check(result):
             rsp_json = result.rsp.json()
             if rsp_json['success'] is True:
                 result.status = True  # 唯一写入
-                logger.info('响应体是: ' + str(rsp_json['data']))
+                if 'data' in rsp_json:
+                    logger.info('响应体是: ' + str(rsp_json['data']))
+                else:
+                    logger.debug('接口正常，响应体内不包含data')
             else:
                 logger.error('响应码200，但success不等于True')
         else:

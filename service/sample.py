@@ -5,6 +5,8 @@
 
 from api.sample import sample
 from base.base_result import BaseResult
+from util import auth
+from util import common
 
 
 def req_get_with_param(param1):
@@ -33,7 +35,7 @@ def req_get_with_param(param1):
     result.response = res
 
 
-def req_post():
+def req_post_old():
     result = BaseResult()
     req_data = {
         "accountName": "zhaopeng.li@miaocode.com",
@@ -62,6 +64,25 @@ def req_post():
     result.response = res
 
 
+def req_post():
+    req_data = {
+        "accountName": "zhaopeng.li@miaocode.com",
+        "accountPassword": "262728293031",
+        "captcha": '1'
+    }
+    req_headers = {
+        "Cache-Control": "no-cache",
+    }
+    result = sample.req_post(params=req_data, headers=req_headers)
+    common.result_check(result)
+
+    core_jsessionid = result.rsp.cookies["JSESSIONID"]
+    auth.set_cookie('crm', core_jsessionid)
+    print(core_jsessionid)
+
+    return result
+
+
 if __name__ == '__main__':
     # req_get("sadfasdf")
-    req_post("dasf", 1)
+    req_post()
