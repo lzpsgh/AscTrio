@@ -4,24 +4,35 @@
 import random
 import time
 
+from util.logger import logger
 
-def ping(res):
-    if res is not None:
-        response_code = res.status_code
+
+# from base.base_result import base_result
+
+
+def result_check(result):
+    # TODO 看下这两种情况能不能生效并在status等于False时生效
+    # result.status = False
+    # result.rsp_json = {}
+
+    # service case
+    origin = 'service'
+    if origin == 'case':
+        return
+    if result.rsp is not None:
+        response_code = result.rsp.status_code
+        # response_code = result.rsp['status_code']
         if response_code == 200:
-            response_data = res.json()
-            if response_data['success'] is True:
-                print(response_data['data'])
+            rsp_json = result.rsp.json()
+            if rsp_json['success'] is True:
+                result.status = True  # 唯一写入
+                logger.info('响应体是: ' + str(rsp_json['data']))
             else:
-                quit()
+                logger.error('响应码200，但success不等于True')
         else:
-            quit()
+            logger.error('异常响应码: ' + str(response_code))
     else:
-        quit()
-
-
-def pong(result):
-    pass
+        logger.error('无法成功获取res响应体对象')
 
 
 def random_test():

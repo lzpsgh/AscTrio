@@ -5,8 +5,6 @@ from api.diy_center.user import user
 from base.base_result import BaseResult
 from util import auth
 
-user_phone = 18659107886
-
 
 def send_sms(param1):
     result = BaseResult()
@@ -41,6 +39,7 @@ def register(param1):
         # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
         "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryJ8fdxxspLpykHU8t'
     }
+
     res = user.register(params=req_data, headers=req_headers)
     status_code = res.status_code
     resjson = res.json()
@@ -54,7 +53,7 @@ def register(param1):
 
 
 def login(param1):
-    result = BaseResult()
+
     req_data = {
         "phone": param1,
         'userPassword': '262728293031'
@@ -64,14 +63,11 @@ def login(param1):
         "Cache-Control": "no-cache",
         "Connection": "keep-alive",
     }
-    req_cookies = {
-        'JSESSIONID': '323697D32350F26119B35809323E26EC',
-        'token': 'api_token_CBA4A3006A8ABC706F98A2B6F8892CC2',
-    }
     res = user.login(params=req_data, headers=req_headers)
+
     status_code = res.status_code
     resjson = res.json()
-
+    result = BaseResult()
     if status_code == 200:
         if resjson["success"] is True:
             result.status = True
@@ -88,4 +84,4 @@ if __name__ == '__main__':
     # send_sms(user_phone)
     # register(user_phone)
     # 用老用户
-    login(user_phone)  # registertokenc0ef1553-df12-461d-93fe-b845fcaf00f9
+    login('18989750002')  # registertokenc0ef1553-df12-461d-93fe-b845fcaf00f9

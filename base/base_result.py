@@ -7,9 +7,9 @@ result.response = res
 """
 
 
+# 当且仅当 响应码为【200】 且 响应体中success为【True】时，status置为True
+
+
 class BaseResult:
     status = False
-    response = {}
-
-    # def __init__(self, rsp_code):
-    #     self._rsp_code = rsp_code
+    rsp = {}

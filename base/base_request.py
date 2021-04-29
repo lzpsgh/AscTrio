@@ -2,6 +2,7 @@ import json as complexjson
 
 import requests
 
+from base.base_result import BaseResult
 from util.logger import logger
 
 
@@ -74,8 +75,13 @@ class BaseRequest:
                 data = complexjson.dumps(json)
             inner_rsp = self.session.patch(url, data, **kwargs)
 
-        # logger.info(f"响应头cookie ==>> " + inner_rsp.cookies.get("JSESSIONID"))
-        logger.info(f"响应体text   ==>> " + inner_rsp.text)
+        if inner_rsp is None:
+            exit("sorry,requests库响应对象为空")
+        logger.debug("响应头cookie/JSESSIONID ==>> " + inner_rsp.cookies.get("JSESSIONID"))
+        logger.info("响应体text   ==>> " + inner_rsp.text)
         logger.info("响应体ID   ==>> " + str(inner_rsp.__hash__()))
         logger.info("\n\n###########################################################################################\n")
-        return inner_rsp
+        base_result = BaseResult()
+        base_result.rsp = inner_rsp
+
+        return base_result

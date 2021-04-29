@@ -23,4 +23,5 @@ class Other(BaseRequest):
     def add_stage(self, **kwargs):
         return self.request("POST", "/mate/addStage", **kwargs)
 
+
 other = Other(api_root_url)

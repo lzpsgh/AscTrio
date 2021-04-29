@@ -48,6 +48,6 @@ def works_like(param1):
 
 
 if __name__ == '__main__':
-    submit_enter_name_info('53', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')
-    # submit_enter_name_info('53', 9, '86', '18659107067', '羽扇大', 'M', "IDCARD", '441481199407175678')
-    # submit_enter_name_info('53', 3, '86', '18666024993', '签约客', 'M', "IDCARD", '441481199407173333')
+    # submit_enter_name_info('66', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')
+    submit_enter_name_info('66', 9, '86', '18989750002', 'z最终版', 'M', "IDCARD", '441481199407175678')
+    # submit_enter_name_info('65', 7, '86', '18666024993', '签约客', 'M', "IDCARD", '441481199407173333')

@@ -3,4 +3,4 @@
 import pytest
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-v", "service/account/account.py::Account::crm_login_with_mm"])
+    pytest.main(["-q", "-v", "service/account/test_account.py::Account::crm_login_with_mm"])

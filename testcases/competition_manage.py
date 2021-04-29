@@ -10,9 +10,8 @@ from util.mysql_operate import db
 
 class TestPayCallbackWX():
 
-    # @pytest.mark.single
-    # @pytest.mark.parametrize("outTradeNo",'202103251226456923966257')
-    # @pytest.mark.parametrize("order_no", 'O2114666550325')
+    @pytest.mark.single
+    @pytest.mark.parametrize("outTradeNo", '202103251226456923966257')
     def test_pay_callback_wx(self):
         logger.info("\n*************** 开始执行用例 ***************")
 
@@ -21,7 +20,6 @@ class TestPayCallbackWX():
         logger.info(sql_result)
         if sql_result == '' or sql_result is None:
             exit("sorry, goodbye!")
-            # pass
 
         out_trade_no = sql_result[0][0]
         logger.info("out_trade_no是 " + out_trade_no)

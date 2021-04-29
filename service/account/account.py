@@ -20,50 +20,38 @@ def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='2627282
         "Connection": "keep-alive",
     }
     res = account.login(params=req_data, headers=req_headers)
+
+    common.rsp_check()
     status_code = res.status_code
     resjson = res.json()
-
     if status_code == 200:
         if resjson["success"] is True:
             result.status = True
             print(resjson["data"]["token"])
             print(resjson["data"]["id"])
             print(res.headers['Set-Cookie'])
-            # ymlfile.persist()
+
     else:
         print(status_code)
 
-    result.response = res
 
-
-# todo 处理太粗糙
 def crm_login_with_mm():
-    result = BaseResult()
     req_data = {
         "accountName": "zhaopeng.li@miaocode.com",
         "accountPassword": "262728293031",
         "captcha": '1'
     }
     req_headers = {
-        # "Host": "sit.miaocode.com",
         "Cache-Control": "no-cache",
-        # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
     }
-    res = account.login(params=req_data, headers=req_headers)
-    common.ping(res)
+    result = account.login(params=req_data, headers=req_headers)
+    common.result_check(result)
 
-    status_code = res.status_code
-    resjson = res.json()
+    core_jsessionid = result.rsp.cookies["JSESSIONID"]
+    auth.set_cookie('crm', core_jsessionid)
+    print(core_jsessionid)
 
-    if status_code == 200:
-        if resjson["success"] is True:
-            result.status = True
-            core_jsessionid = res.cookies["JSESSIONID"]
-            auth.set_cookie('crm', core_jsessionid)
-            print(core_jsessionid)
-    else:
-        print(status_code)
-    result.response = res
+    return result
 
 
 if __name__ == '__main__':
