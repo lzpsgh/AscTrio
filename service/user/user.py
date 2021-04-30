@@ -4,12 +4,13 @@ from api.user.user import user
 from base.base_result import BaseResult
 from util import auth
 from util import common
+from util import tmtask
 
 
 # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
 def send_sms():
     req_data = {
-        "phone": "18899112667"
+        "phone": "18899112648"
     }
     req_headers = {
         "Cache-Control": "no-cache",
@@ -23,13 +24,13 @@ def send_sms():
 # 官网注册-数理思维
 # 比官网多传3个值，分别是 cityDesc，channel，和grade
 def register_mathink():
+
     req_data = {
-        "phone": "18899112667",
+        "phone": "18899112648",
         "code": "123456",
-        # "userGrade": '小学四年级',
-        "cityDesc": 'pc',
-        "channel": '',
-        "grade": ''
+        "cityDesc": '天津市,河东区',
+        "channel": 'tMathOffice',
+        "grade": '小学一年级',
     }
     req_headers = {
         "Cache-Control": "no-cache",
@@ -38,6 +39,7 @@ def register_mathink():
     common.result_check(result)
 
     return result
+
 
 # 官网注册-常规
 def register():
@@ -88,7 +90,6 @@ def login_web(phone, user_password, t):
     }
     res = user.login(params=req_data, cookies=req_cookies)
 
-
     if res.status_code == 200 and res.json()["success"] is True:
         result.status = True
         core_jsessionid = res.cookies["JSESSIONID"]
@@ -101,5 +102,8 @@ if __name__ == '__main__':
     # login_web('18659107886', '262728293031', "1619155530916")  # 原始 7BBD47F6250C1D68129A3556921C27DF
     # login_web('18989750002', '262728293031', "1619155510916")  # 羽扇 A4FDD2752DE0E72D432D955AF9A4830E
     # login_web('18666024993', '262728293031', "1619155530916")  #签约 6BFF58CB26FAFDF7BFFA7BC17CE02389
-    register()
     # send_sms()
+    # register_mathink()
+    tmtask.call_method(
+        '/mxcuser/common/callMethodByAnnotation?className=com.mxc.user.task.LeadsTask&methodName=syncLeadsSignTask'
+        )
