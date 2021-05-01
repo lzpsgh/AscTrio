@@ -7,54 +7,50 @@ from util.logger import logger
 
 
 class BaseRequest:
+    req_data = {}
+    req_headers = {}
+    req_cookies = {}
 
     def __init__(self, api_root_url):
         self.api_root_url = api_root_url
         self.session = requests.session()
+        self.req_headers = {
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",  # 在HTTP1.1规范中默认开启
+        }
 
-    def request_log(self, method, url, data=None, json=None, params=None, headers=None, files=None, cookies=None,
+    def __str__(self):
+        return f'BaseRequest object (api_root_url: {self.api_root_url})'
+
+    __repr__ = __str__
+
+    def request_log(self, url, data=None, json=None, params=None, headers=None, cookies=None, files=None,
                     **kwargs):
         # Python3中需要设置 ensure_ascii=False，避免json在做dumps操作时将中文转换成unicode字符
-        logger.info("请求URL ==>> {}".format(url))
+        logger.debug(f"请求URL     ==>> {url}")
         if headers is not None:
-            logger.info("请求头 ==>> {}".format(complexjson.dumps(headers, indent=4, ensure_ascii=False)))
+            logger.debug(f"请求header  ==>> {headers}")
         if cookies is not None:
-            logger.debug("请求头 cookies 参数 ==>> {}".format(complexjson.dumps(cookies, indent=4, ensure_ascii=False)))
+            logger.debug(f"请求cookies ==>> {cookies}")
         if params is not None:
-            logger.info("请求 params 参数 ==>> {}".format(complexjson.dumps(params, indent=4, ensure_ascii=False)))
+            logger.debug(f"请求params  ==>> {params}")
         if data is not None:
-            logger.info("请求体 data 参数 ==>> {}".format(complexjson.dumps(data, indent=4, ensure_ascii=False)))
+            logger.debug(f"请求data  ==>> {data}")
         if json is not None:
-            logger.info("请求体 json 参数 ==>> {}".format(complexjson.dumps(json, indent=4, ensure_ascii=False)))
-        if files is not None:
-            logger.info("请求体 files 参数 ==>> {}".format(files))
-
-    def get(self, url, **kwargs):
-        return self.request("GET", url, **kwargs)
-
-    def post(self, url, data=None, json=None, **kwargs):
-        return self.request("POST", url, data, json, **kwargs)
-
-    def put(self, url, data=None, **kwargs):
-        return self.request("PUT", url, data, **kwargs)
-
-    def delete(self, url, **kwargs):
-        return self.request("DELETE", url, **kwargs)
-
-    def patch(self, url, data=None, **kwargs):
-        return self.request("PATCH", url, data, **kwargs)
+            logger.debug(f"请求json  ==>> {json}")
+        # if files is not None:
+        #     logger.info("请求体 files 参数 ==>> {}".format(files))
 
     def request(self, method, url, data=None, json=None, **kwargs):
         url = self.api_root_url + url
         headers = dict(**kwargs).get("headers")
         params = dict(**kwargs).get("params")
         files = dict(**kwargs).get("params")
-        cookies = dict(**kwargs).get("params")
-
-        self.request_log(method, url, data, json, params, headers, files, cookies)
+        # todo 为什么从kwargs取出的cookies的值和params一样，但是在调qequests.get之前又被还原回去
+        cookies = dict(**kwargs).get("cookies")
+        self.request_log(url, data, json, params, headers, files, cookies)
 
         if method == "GET":
-            # inner_rsp = requests.get(url, timeout=5, **kwargs)
             inner_rsp = self.session.get(url, timeout=5, **kwargs)
 
         if method == "POST":
@@ -75,13 +71,29 @@ class BaseRequest:
             inner_rsp = self.session.patch(url, data, **kwargs)
 
         if inner_rsp is None:
-            exit("sorry,requests库响应对象为空")
+            exit(f"sorry,requests库响应对象为空")
         # if inner_rsp.cookies
         #     logger.debug("响应头cookie/JSESSIONID ==>> " + inner_rsp.cookies.get("JSESSIONID"))
-        logger.info("响应体text   ==>> " + inner_rsp.text)
-        logger.info("响应体ID   ==>> " + str(inner_rsp.__hash__()))
-        logger.info("\n\n###########################################################################################\n")
+        logger.debug(f"响应data    ==>> {inner_rsp.text}")
+        logger.debug(f"响应hash    ==>> {abs(inner_rsp.__hash__())}")
+        logger.debug(
+            f"\n\n###########################################################################################\n")
         base_result = BaseResult()
         base_result.rsp = inner_rsp
 
         return base_result
+
+    def get(self, url, **kwargs):
+        return self.request("GET", url, **kwargs)
+
+    def post(self, url, data=None, json=None, **kwargs):
+        return self.request("POST", url, data, json, **kwargs)
+
+    def put(self, url, data=None, **kwargs):
+        return self.request("PUT", url, data, **kwargs)
+
+    def delete(self, url, **kwargs):
+        return self.request("DELETE", url, **kwargs)
+
+    def patch(self, url, data=None, **kwargs):
+        return self.request("PATCH", url, data, **kwargs)

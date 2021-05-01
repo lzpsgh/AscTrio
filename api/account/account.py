@@ -7,8 +7,6 @@ from util import auth
 from util import common
 from util.logger import logger
 
-api_root_url = envar.BASE_URL_CORE
-
 
 class Account(BaseRequest):
 
@@ -16,22 +14,19 @@ class Account(BaseRequest):
         super(Account, self).__init__(root_url, **kwargs)
 
     def crm_login_with_mm(self):
-        req_data = {
+        self.req_data = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
             "captcha": '1'
         }
-        req_headers = {
-            "Cache-Control": "no-cache",
-        }
-        req_cookies = {
-            'JSESSIONID': auth.get_cookie('web'),
-        }
+        # self.req_cookies = {
+        #     'JSESSIONID': auth.get_cookie('crm'),
+        # }
         result = self.request("GET",
                               "/account/login",
-                              params=req_data,
-                              headers=req_headers,
-                              cookies=req_cookies)
+                              params=self.req_data,
+                              headers=self.req_headers,
+                              cookies=self.req_cookies)
         common.result_check(result)
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
         auth.set_cookie('crm', core_jsessionid)
@@ -39,7 +34,7 @@ class Account(BaseRequest):
         return result
 
 
-account = Account(api_root_url)
+account = Account(envar.BASE_URL_CORE)
 
 if __name__ == '__main__':
     account.crm_login_with_mm()

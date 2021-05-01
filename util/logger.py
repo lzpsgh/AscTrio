@@ -11,22 +11,12 @@ if not os.path.exists(LOG_PATH):
     os.mkdir(LOG_PATH)
 
 
-# logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',
-#                             level=logging.DEBUG)
-
-# CRITICAL: 'CRITICAL',
-# ERROR: 'ERROR',
-# WARNING: 'WARNING',
-# INFO: 'INFO',
-# DEBUG: 'DEBUG',
-# NOTSET: 'NOTSET',
-
 class Logger:
 
     def __init__(self):
         self.logname = os.path.join(LOG_PATH, "{}.log".format(time.strftime("%Y%m%d")))
         self.logger = logging.getLogger("log")
-        self.logger.setLevel(logging.INFO)
+        self.logger.setLevel(logging.DEBUG)
 
         # 设置输出的日志字符串格式
         # fmt = '[%(asctime)s][%(filename)s %(lineno)d][%(levelname)s]: %(message)s'

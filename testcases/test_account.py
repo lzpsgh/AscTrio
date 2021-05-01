@@ -2,7 +2,6 @@
 # @Time    : 2021/4/10 下午10:14
 import pytest
 
-# from service.account.account import *
 from api.account.account import account
 from util.logger import logger
 
