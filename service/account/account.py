@@ -7,6 +7,7 @@ from util import auth
 from util import common
 from util.logger import logger
 
+
 def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='262728293031', captcha=1):
     result = BaseResult()
     req_data = {

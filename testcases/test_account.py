@@ -2,7 +2,8 @@
 # @Time    : 2021/4/10 下午10:14
 import pytest
 
-from service.account.account import *
+# from service.account.account import *
+from api.account.account import account
 from util.logger import logger
 
 
@@ -13,7 +14,8 @@ class TestAccount:
     def test_crm_login_with_mm(self):
         logger.info("\n*************** 开始执行用例 ***************")
 
-        result = crm_login_with_mm()
+        # result = crm_login_with_mm()
+        result = account.crm_login_with_mm()  # load_yml()
 
         assert result.rsp.status_code == 200
         # assert result.success == except_result, result.error
