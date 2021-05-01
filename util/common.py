@@ -11,7 +11,6 @@ from util.logger import logger
 
 
 def result_check(result):
-    # TODO 看下这两种情况能不能生效并在status等于False时生效
     # result.status = False
     # result.rsp_json = {}
 

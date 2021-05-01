@@ -54,12 +54,11 @@ class BaseRequest:
         self.request_log(method, url, data, json, params, headers, files, cookies)
 
         if method == "GET":
-            # todo 为了临时解决crm和官网的cookie冲突问题，先禁用session
-            # inner_rsp = requests.get(url, timeout=7, **kwargs)
-            inner_rsp = self.session.get(url, timeout=7, **kwargs)
+            # inner_rsp = requests.get(url, timeout=5, **kwargs)
+            inner_rsp = self.session.get(url, timeout=5, **kwargs)
 
         if method == "POST":
-            inner_rsp = requests.post(url, data, json, timeout=7, **kwargs)
+            inner_rsp = requests.post(url, data, json, timeout=5, **kwargs)
 
         if method == "DELETE":
             inner_rsp = self.session.delete(url, **kwargs)

@@ -9,7 +9,6 @@ class LeadsAPI(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(LeadsAPI, self).__init__(api_root_url, **kwargs)
 
-    # todo 将api层的method和url抽到data层
     def get_token(self, **kwargs):
         return self.request("GET", "/leadsApi/getToken", **kwargs)
         # return self.request(

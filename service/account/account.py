@@ -5,7 +5,7 @@ from api.account.account import account
 from base.base_result import BaseResult
 from util import auth
 from util import common
-
+from util.logger import logger
 
 def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='262728293031', captcha=1):
     result = BaseResult()
@@ -49,8 +49,9 @@ def crm_login_with_mm():
 
     core_jsessionid = result.rsp.cookies["JSESSIONID"]
     auth.set_cookie('crm', core_jsessionid)
-    print(core_jsessionid)
-
+    logger.error(core_jsessionid)
+    logger.warning(core_jsessionid)
+    logger.info(core_jsessionid)
     return result
 
 

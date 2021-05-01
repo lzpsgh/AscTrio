@@ -54,7 +54,6 @@ def new_scoring_dimension(min_points, max_points, name):
     result.response = res
 
 
-# todo 抽出来到BaseService
 # 保存评分维度，修改是要传id
 def modify_scoring_dimension(sd_id, min_points, max_points, name):
     result = BaseResult()
@@ -76,7 +75,7 @@ def modify_scoring_dimension(sd_id, min_points, max_points, name):
     result.response = res
 
 
-# todo 抽出来到BaseService
+
 # 保存评分维度，修改是要传id
 def modify_scoring_dimension(sd_id, min_points, max_points, name):
     result = BaseResult()
@@ -95,10 +94,9 @@ def modify_scoring_dimension(sd_id, min_points, max_points, name):
         finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
         if finvalue == 5:
             result.status = True
-    result.response = res  # todo 抽出来到BaseService
+    result.response = res
 
 
-# todo 实验 service层使用**kwargs
 def modify_scoring_dimension(**kwargs):
     result = BaseResult()
     # req_data = {

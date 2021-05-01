@@ -21,6 +21,10 @@ class User(BaseRequest):
     def login(self, **kwargs):
         return self.request("GET", '/user/login', **kwargs)
 
+    # 官网登录
+    def phone_login(self, **kwargs):
+        return self.request("GET", '/user/phoneLogin', **kwargs)
+
     # 落地页注册登录
     def login_and_register(self, **kwargs):
         return self.request("GET", '/user/loginAndRegister', **kwargs)
@@ -28,6 +32,14 @@ class User(BaseRequest):
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
     def send_sms(self, **kwargs):
         return self.request("GET", '/ccbb/sendSMS', **kwargs)
+
+    # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）对国内国外支持更好也支持国家码
+    def send_sms2(self, **kwargs):
+        return self.request("GET", '/ccbb/sendSMS2', **kwargs)
+
+    # 修改用户所属cc
+    def modify_users_owner(self, **kwargs):
+        return self.request("GET", '/user/modifyUsersOwner', **kwargs)
 
 
 user = User(api_root_url)

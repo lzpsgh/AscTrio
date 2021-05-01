@@ -1,10 +1,10 @@
 # coding     : utf-8
 # @Time      : 2021/4/18 上午2:29
 from api.user.user import user
-from base.base_result import BaseResult
 from util import auth
 from util import common
 from util import tmtask
+from util.mysql_operate import db
 
 
 # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
@@ -17,14 +17,29 @@ def send_sms():
     }
     result = user.send_sms(params=req_data, headers=req_headers)
     common.result_check(result)
+    return result
 
+
+# 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
+def send_sms2():
+    req_data = {
+        "phone": "18899112648",
+        't': common.get_timestamp(),
+    }
+    req_headers = {
+        "Cache-Control": "no-cache",
+    }
+    req_cookies = {
+        'JSESSIONID': auth.get_cookie('web'),
+    }
+    result = user.send_sms2(params=req_data, headers=req_headers, cookies=req_cookies)
+    common.result_check(result)
     return result
 
 
 # 官网注册-数理思维
 # 比官网多传3个值，分别是 cityDesc，channel，和grade
-def register_mathink():
-
+def register_mathematics():
     req_data = {
         "phone": "18899112648",
         "code": "123456",
@@ -37,7 +52,6 @@ def register_mathink():
     }
     result = user.register(data=req_data, headers=req_headers)
     common.result_check(result)
-
     return result
 
 
@@ -54,13 +68,11 @@ def register():
     }
     result = user.register(data=req_data, headers=req_headers)
     common.result_check(result)
-
     return result
 
 
 # h5落地页登录注册
 def login_h5(code, phone):
-    result = BaseResult()
     req_data = {
         "code": code,
         "phone": phone
@@ -68,33 +80,59 @@ def login_h5(code, phone):
     req_cookies = {
         'JSESSIONID': auth.get_cookie('h5'),
     }
-    res = user.login_and_register(params=req_data, cookies=req_cookies)
-
-    if res.status_code == 200 and res.json()["success"] is True:
-        result.status = True
-        core_jsessionid = res.cookies["JSESSIONID"]
-        auth.set_cookie('h5', core_jsessionid)
-    result.response = res
+    result = user.login_and_register(params=req_data, cookies=req_cookies)
+    common.result_check(result)
+    return result
 
 
-# 官网登录
-def login_web(phone, user_password, t):
-    result = BaseResult()
+# 官网密码登录
+def login_web_pwd(phone, user_password, t):
     req_data = {
         "phone": phone,
         "userPassword": user_password,
-        "t": t
+        't': common.get_timestamp(),
     }
     req_cookies = {
         'JSESSIONID': auth.get_cookie('web'),
     }
-    res = user.login(params=req_data, cookies=req_cookies)
+    result = user.login(params=req_data, cookies=req_cookies)
+    common.result_check(result)
+    return result
 
-    if res.status_code == 200 and res.json()["success"] is True:
-        result.status = True
-        core_jsessionid = res.cookies["JSESSIONID"]
-        auth.set_cookie('web', core_jsessionid)
-    result.response = res
+
+# 官网验证码登录
+def login_web_vfcode(phone):
+    req_data = {
+        "phone": phone,
+        "code": 123456,
+        't': common.get_timestamp(),
+    }
+    req_cookies = {
+        'JSESSIONID': auth.get_cookie('web'),
+    }
+    result = user.phone_login(params=req_data, cookies=req_cookies)
+    common.result_check(result)
+    return result
+
+
+def modify_users_owner():
+    sql_query_userid = "select id from activityuser where phone = "
+    sql_query_tradeno = "SELECT outTradeNo FROM payrecord WHERE id = "
+    phone = '13333333333'
+    req_data = {
+        'salerIds': '889',  # cc倪旭(新)  ccxu.ni01@miaocode.com
+        'userIds': db.select_db(sql_query_userid + phone)
+        # 'userIds': 123333,
+    }
+    req_headers = {
+        "Cache-Control": "no-cache",
+    }
+    req_cookies = {
+        'JSESSIONID': auth.get_cookie('web'),
+    }
+    result = user.send_sms(params=req_data, headers=req_headers, cookies=req_cookies)
+    common.result_check(result)
+    return result
 
 
 if __name__ == '__main__':
@@ -105,5 +143,4 @@ if __name__ == '__main__':
     # send_sms()
     # register_mathink()
     tmtask.call_method(
-        '/mxcuser/common/callMethodByAnnotation?className=com.mxc.user.task.LeadsTask&methodName=syncLeadsSignTask'
-        )
+        '/mxcuser/common/callMethodByAnnotation?className=com.mxc.user.task.LeadsTask&methodName=syncLeadsSignTask')

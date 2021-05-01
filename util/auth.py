@@ -33,7 +33,6 @@ def set_cookie(kw, tmp_data):
     data_tool.save_cookie_yml(tmp_data)
 
 
-# todo 更新cookie-用于session级的fixture
 def check_auth():
     jsid = get_cookie()
     set_cookie(jsid)

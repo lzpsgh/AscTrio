@@ -1,6 +1,6 @@
 import pytest
 
-from service import goods_order
+from service.order import goods_order
 from util.logger import logger
 from util.mysql_operate import db
 
