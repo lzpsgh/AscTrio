@@ -49,8 +49,6 @@ def crm_login_with_mm():
 
     core_jsessionid = result.rsp.cookies["JSESSIONID"]
     auth.set_cookie('crm', core_jsessionid)
-    logger.error(core_jsessionid)
-    logger.warning(core_jsessionid)
     logger.info(core_jsessionid)
     return result
 

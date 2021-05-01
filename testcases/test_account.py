@@ -9,7 +9,7 @@ from util.logger import logger
 class TestAccount:
 
     @pytest.mark.single
-    @pytest.mark.parametrize("outTradeNo", '202103251226456923966257')
+    # @pytest.mark.parametrize("outTradeNo", '202103251226456923966257')
     def test_crm_login_with_mm(self):
         logger.info("\n*************** 开始执行用例 ***************")
 
@@ -24,8 +24,5 @@ class TestAccount:
         logger.info("\n*************** 结束执行用例 ***************")
 
 
-
 if __name__ == '__main__':
     pytest.main(["-q", "-s", "test_account.py"])
-    # data.load_yml("data/cookies.yml")
-    pass
