@@ -5,8 +5,10 @@ from config import envar
 from util.read_data import data_tool
 
 
+# todo 二期-鉴权-改用RequestsCookieJar
 # [https://docs.python-requests.org/zh_CN/latest/user/quickstart.html?highlight=cookie#cookie]
 
+# todo 二期-鉴权-增加token鉴权方式
 
 # 获取现有的cookies
 def get_cookies_all():

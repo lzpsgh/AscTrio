@@ -5,6 +5,8 @@
 from api.competition_pk.scoring_dimension import scoring_dimension
 from base.base_result import BaseResult
 from util import auth
+from util import common
+from util.logger import logger
 from util.mysql_operate import db
 
 
@@ -56,7 +58,6 @@ def new_scoring_dimension(min_points, max_points, name):
 
 # 保存评分维度，修改是要传id
 def modify_scoring_dimension(sd_id, min_points, max_points, name):
-    result = BaseResult()
     req_data = {
         "id": sd_id,
         "maxPoints": max_points,
@@ -66,57 +67,14 @@ def modify_scoring_dimension(sd_id, min_points, max_points, name):
     req_cookies = {
         'JSESSIONID': auth.get_cookie('crm'),
     }
-    res = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
-    result.status = False
-    if res.status_code == 200:
-        finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
-        if finvalue == 5:
-            result.status = True
-    result.response = res
+    result = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
+    common.result_check(result)
+    finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
+    if finvalue == 2:
+        logger.info(finvalue)
+    return result
 
-
-
-# 保存评分维度，修改是要传id
-def modify_scoring_dimension(sd_id, min_points, max_points, name):
-    result = BaseResult()
-    req_data = {
-        "id": sd_id,
-        "maxPoints": max_points,
-        "minPoints": min_points,
-        "name": name
-    }
-    req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
-    }
-    res = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
-    result.status = False
-    if res.status_code == 200:
-        finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
-        if finvalue == 5:
-            result.status = True
-    result.response = res
-
-
-def modify_scoring_dimension(**kwargs):
-    result = BaseResult()
-    # req_data = {
-    #     "id": sd_id,
-    #     "maxPoints": max_points,
-    #     "minPoints": min_points,
-    #     "name": name
-    # }
-    req_data = kwargs
-    req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
-    }
-    res = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
-    result.status = False
-    if res.status_code == 200:
-        finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
-        if finvalue == 5:
-            result.status = True
-    result.response = res
 
 
 if __name__ == '__main__':
-    modify_scoring_dimension()
+    modify_scoring_dimension(3, 2, 30, "aaaaa")

@@ -14,7 +14,7 @@ class Account(BaseRequest):
         super(Account, self).__init__(root_url, **kwargs)
 
     def crm_login_with_mm(self):
-        self.req_data = {
+        self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
             "captcha": '1'
@@ -24,7 +24,7 @@ class Account(BaseRequest):
         # }
         result = self.request("GET",
                               "/account/login",
-                              params=self.req_data,
+                              params=self.req_body,
                               headers=self.req_headers,
                               cookies=self.req_cookies)
         common.result_check(result)

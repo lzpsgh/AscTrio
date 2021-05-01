@@ -15,17 +15,17 @@ def result_check(result):
     # result.rsp_json = {}
 
     # service case
-    origin = 'service'
+    origin = 'api'
     if origin == 'case':
         return
     if result.rsp is not None:
         response_code = result.rsp.status_code
-        # response_code = result.rsp['status_code']
         if response_code == 200:
             rsp_json = result.rsp.json()
             if rsp_json['success'] is True:
-                result.status = True  # 唯一写入
+                result.status = True  # 写入1
                 if 'data' in rsp_json:
+                    result.sdata = rsp_json['data']  # 写入2
                     logger.info('响应体是: ' + str(rsp_json['data']))
                 else:
                     logger.debug('接口正常，响应体内不包含data')
