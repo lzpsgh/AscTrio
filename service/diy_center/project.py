@@ -7,6 +7,7 @@ from base.base_result import BaseResult
 from util import auth
 
 
+# 其Content-Type为multipart/form-data，需要使用files
 def save_competition_project(competition_id):
     result = BaseResult()
     req_data = {
@@ -24,7 +25,7 @@ def save_competition_project(competition_id):
     req_cookies = {
         'token': auth.get_cookie('gz')
     }
-    res = project.save_competition_project(params=req_data, headers=req_headers, cookies=req_cookies)
+    res = project.save_competition_project(files=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code
     resjson = res.json()
 

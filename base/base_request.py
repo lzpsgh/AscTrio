@@ -45,7 +45,7 @@ class BaseRequest:
         url = self.api_root_url + url
         headers = dict(**kwargs).get("headers")
         params = dict(**kwargs).get("params")
-        files = dict(**kwargs).get("params")
+        files = dict(**kwargs).get("files")
         # todo 为什么从kwargs取出的cookies的值和params一样，但是在调qequests.get之前又被还原回去
         cookies = dict(**kwargs).get("cookies")
         self.request_log(url, data, json, params, headers, files, cookies)
