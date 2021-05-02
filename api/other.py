@@ -33,13 +33,16 @@ class Other(BaseRequest):
         self.req_body = {
             'isCommon': False,
             'price': 8,
-            'spriteName': '环保比赛-孩子8',
+            'spriteName': '环保比赛-孩子9',
             'dataURL': 'https://res.miaocode.com/6ff0d74b-29e6-424f-8870-a08a6f58b995.png'
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            data=self.req_body
+        )
         common.result_check(result)
         return result
 
@@ -50,13 +53,16 @@ class Other(BaseRequest):
             'isCommon': False,
             'comment': 'asdf',
             'price': 0,
-            'stageName': '环保比赛-新几4',
+            'stageName': '环保比赛-新几44',
             'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            data=self.req_body
+        )
         common.result_check(result)
         return result
 
@@ -65,4 +71,4 @@ other = Other(envar.BASE_URL_CORE)
 
 if __name__ == '__main__':
     # other.send_paysucmsg_fast("18899758128")
-    other.add_stage()
+    other.add_sprite()

@@ -30,6 +30,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
+        common.result_check(result)
         return result
 
     # 官网登录
@@ -45,6 +46,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
+        common.result_check(result)
         return result
 
     # 官网登录
@@ -60,6 +62,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
+        common.result_check(result)
         return result
 
     # 落地页注册登录
@@ -75,6 +78,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
+        common.result_check(result)
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
@@ -88,6 +92,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
+        common.result_check(result)
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）对国内国外支持更好也支持国家码
@@ -102,6 +107,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
+        common.result_check(result)
         return result
 
     # 修改用户所属cc
@@ -117,7 +123,7 @@ class User(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
-
+        common.result_check(result)
         return result
 
 

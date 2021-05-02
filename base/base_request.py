@@ -26,8 +26,8 @@ class BaseRequest:
 
     __repr__ = __str__
 
-    def request_log(self, url, data=None, json=None, params=None, headers=None, cookies=None, files=None,
-                    **kwargs):
+    def request_log(self, url, data=None, json=None, params=None,
+                    headers=None, cookies=None, files=None, **kwargs):
         # Python3中需要设置 ensure_ascii=False，避免json在做dumps操作时将中文转换成unicode字符
         logger.debug(f"请求URL     ==>> {url}")
         if headers is not None:
@@ -37,18 +37,11 @@ class BaseRequest:
         if params is not None:
             logger.debug(f"请求params  ==>> {params}")
         if data is not None:
-            logger.debug(f"请求data  ==>> {data}")
+            logger.debug(f"请求data    ==>> {data}")
         if json is not None:
-            logger.debug(f"请求json  ==>> {json}")
-        # if files is not None:
-        #     logger.info("请求体 files 参数 ==>> {}".format(files))
-
-    def x_request(self):
-        return self.request(method=self.req_method,
-                            url=self.req_url,
-                            params=self.req_body,
-                            headers=self.req_headers,
-                            cookies=self.req_cookies)
+            logger.debug(f"请求json    ==>> {json}")
+        if files is not None:
+            logger.debug(f"请求files   ==>> {files}")
 
     def request(self, method, url, data=None, json=None, **kwargs):
         url = self.api_root_url + url
@@ -89,8 +82,32 @@ class BaseRequest:
             f"\n\n###########################################################################################\n")
         base_result = BaseResult()
         base_result.rsp = inner_rsp
-
         return base_result
+
+    # 【适用对象】用params参数的get请求 / 用json参数的post请求(对应的请求头是 application/json)
+    # 【不适用对象】
+    # 用 data 参数的 post 请求（建议改用原始的 request 方法 ，对应的请求头是 application/x-www-form-urlencoded）
+    # 其他 put, patch 请求（建议改用原始的 request 方法）
+    # todo 用try-except捕获异常
+    # todo 用partial优化
+    def x_request(self):
+        m_method = self.req_method.strip().upper()
+        if m_method == 'GET':
+            return self.request(
+                method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+                params=self.req_body
+            )
+        elif m_method == 'POST':
+            # 如果调用失败，出现形如' Required String parameter xxx is not present' 或 '参数缺失 '等报错
+            # 可能考虑是服务端限制了content-type为'application/x-www-form-urlencoded'
+            # 此时在外部调用request函数时，将json改为data即可
+            return self.request(
+                method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+                json=self.req_body
+            )
+        else:
+            logger.error('该方法不支持其他请求方式')
+            exit()
 
     def get(self, url, **kwargs):
         return self.request("GET", url, **kwargs)

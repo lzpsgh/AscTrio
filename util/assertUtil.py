@@ -1,4 +1,10 @@
-__author__ = 'leifen'
+# coding     : utf-8
+# @Time      : 2021/5/2 下午1:43
+
+# assert "h" in "hello"  #判断h在hello中
+# assert 5>6             #判断5>6为真
+# assert not True        #判断xx不为真
+# assert {'0', '1', '3', '8'} == {'0', '3', '5', '8'}     #判断两个字典相等
 
 
 def assertDictContainEqual(expected, result):

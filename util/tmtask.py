@@ -9,4 +9,4 @@ base_requests = BaseRequest(envar.BASE_URL_GZ)
 
 # 传入定时任务url（带相关字段）
 def call_method(url):
-    res = base_requests.request("GET", url)
+    result = base_requests.request("GET", url)

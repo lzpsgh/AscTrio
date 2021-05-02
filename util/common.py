@@ -1,40 +1,36 @@
 # coding     : utf-8
 # @Time      : 2021/4/24 上午1:43
-
 import random
 import time
 
 from util.logger import logger
 
 
-# from base.base_result import base_result
-
-
+# todo 改用try-except异常捕获
 def result_check(result):
-    # result.status = False
-    # result.rsp_json = {}
-
-    # service case
     origin = 'api'
     if origin == 'case':
         return
     if result.rsp is not None:
         response_code = result.rsp.status_code
         if response_code == 200:
-            rsp_json = result.rsp.json()
+            rsp_json = result.rsp.json()  # 响应文本如果不是合法的json文本就会报错
             if rsp_json['success'] is True:
                 result.status = True  # 写入1
                 if 'data' in rsp_json:
                     result.sdata = rsp_json['data']  # 写入2
-                    logger.info('响应体是: ' + str(rsp_json['data']))
+                    logger.debug('响应体是: ' + str(result.sdata))
                 else:
-                    logger.debug('接口正常，响应体内不包含data')
+                    logger.warning('接口正常，响应体内不包含data')
             else:
-                logger.error('响应码200，但success不等于True')
+                logger.error('响应码200，但success为False')
+                exit()
         else:
             logger.error('异常响应码: ' + str(response_code))
+            exit()
     else:
         logger.error('无法成功获取res响应体对象')
+        exit()
 
 
 def random_test():
