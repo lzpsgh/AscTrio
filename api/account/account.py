@@ -14,20 +14,16 @@ class Account(BaseRequest):
         super(Account, self).__init__(root_url, **kwargs)
 
     def crm_login_with_mm(self):
+        self.req_method = 'GET'
+        self.req_url = '/account/login'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
             "captcha": '1'
         }
-        # self.req_cookies = {
-        #     'JSESSIONID': auth.get_cookie('crm'),
-        # }
-        result = self.request("GET",
-                              "/account/login",
-                              params=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
+
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
         auth.set_cookie('crm', core_jsessionid)
         logger.info(core_jsessionid)

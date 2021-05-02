@@ -15,12 +15,8 @@ class Sample(BaseRequest):
         super(Sample, self).__init__(root_url, **kwargs)
 
     def req_get(self):
-        """
-        get请求
-        :param username: 用户名
-        :param sex: 性别
-        :return: 自定义的关键字返回结果 result
-        """
+        self.req_method = 'GET'
+        self.req_url = '/account/login'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
@@ -28,23 +24,15 @@ class Sample(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.request("GET", "/account/login",
-                              params=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
-        core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        auth.set_cookie('crm', core_jsessionid)
-        logger.info(core_jsessionid)
+        logger.info('响应体: ' + result.sdata)
+
         return result
 
     def req_post(self):
-        """
-        post请求
-        :param username: 用户名
-        :param sex: 性别
-        :return: 自定义的关键字返回结果 result
-        """
+        self.req_method = 'POST'
+        self.req_url = '/account/submit'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
@@ -52,11 +40,9 @@ class Sample(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.request("POST", "/account/submit",
-                              data=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
+        logger.info('响应体: ' + result.sdata)
         return result
 
 

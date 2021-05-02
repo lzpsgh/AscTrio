@@ -5,7 +5,6 @@ from base.base_result import BaseResult
 from util import auth
 from util.mysql_operate import db
 
-
 # 新建修改赛事
 def save_competition():
     result = BaseResult()

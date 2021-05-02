@@ -15,20 +15,21 @@ class Other(BaseRequest):
 
     # 给9.9元流量课用户 重新推送[新带新]链接
     def send_paysucmsg_fast(self, phone):
+        self.req_method = 'GET'
+        self.req_url = '/wxmsg/sendPaySucMsgFast'
         self.req_body = {
             "phone": phone
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.request("GET", "/wxmsg/sendPaySucMsgFast",
-                              params=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
         return result
 
     def add_sprite(self):
+        self.req_method = 'POST'
+        self.req_url = '/mate/addSprite'
         self.req_body = {
             'isCommon': False,
             'price': 8,
@@ -38,14 +39,13 @@ class Other(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.request("POST", "/mate/addSprite",
-                              data=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
         return result
 
     def add_stage(self):
+        self.req_method = 'POST'
+        self.req_url = '/mate/addStage'
         self.req_body = {
             'isCommon': False,
             'comment': 'asdf',
@@ -56,10 +56,7 @@ class Other(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.request("POST", "/mate/addStage",
-                              data=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
         return result
 

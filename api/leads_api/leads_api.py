@@ -10,21 +10,21 @@ class LeadsAPI(BaseRequest):
         super(LeadsAPI, self).__init__(api_root_url, **kwargs)
 
     def get_token(self):
+        self.req_method = 'GET'
+        self.req_url = '/leadsApi/getToken'
         self.req_body = {
             "secret": 'w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja'
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
         }
-        result = self.request("GET", "/leadsApi/getToken",
-                              params=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
-        # logger.info(result)
         return result
 
     def upload_info(self, token):
+        self.req_method = 'POST'
+        self.req_url = '/leadsApi/upload'
         self.req_body = {
             "username": 'aasdfa',
             "channel": 'channel666',
@@ -36,10 +36,7 @@ class LeadsAPI(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.request("POST", "/leadsApi/upload",
-                              data=self.req_body,
-                              headers=self.req_headers,
-                              cookies=self.req_cookies)
+        result = self.x_request()
         common.result_check(result)
         return result
 
@@ -47,5 +44,5 @@ class LeadsAPI(BaseRequest):
 leads_api = LeadsAPI(envar.BASE_URL_CORE)
 
 if __name__ == '__main__':
-    leads_api.get_token()
-    # leads_api.upload_info('token_9fcefa8a596b4434aac8c5ab051b5fa0')
+    # leads_api.get_token()
+    leads_api.upload_info('token_9fcefa8a596b4434aac8c5ab051b5fa0')

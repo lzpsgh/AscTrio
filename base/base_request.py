@@ -7,6 +7,8 @@ from util.logger import logger
 
 
 class BaseRequest:
+    req_method = ''
+    req_url = ''
     req_body = {}
     req_headers = {}
     req_cookies = {}
@@ -40,6 +42,13 @@ class BaseRequest:
             logger.debug(f"请求json  ==>> {json}")
         # if files is not None:
         #     logger.info("请求体 files 参数 ==>> {}".format(files))
+
+    def x_request(self):
+        return self.request(method=self.req_method,
+                            url=self.req_url,
+                            params=self.req_body,
+                            headers=self.req_headers,
+                            cookies=self.req_cookies)
 
     def request(self, method, url, data=None, json=None, **kwargs):
         url = self.api_root_url + url
