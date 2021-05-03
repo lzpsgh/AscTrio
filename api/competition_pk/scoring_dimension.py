@@ -2,7 +2,6 @@
 # @Time    : 2021/4/7 下午1:30
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 from util.logger import logger
@@ -93,7 +92,7 @@ class ScoringDimension(BaseRequest):
         return result
 
 
-scoring_dimension = ScoringDimension(envar.BASE_URL_CORE)
+scoring_dimension = ScoringDimension(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     scoring_dimension.modify_scoring_dimension(3, 2, 30, "aaaaa")

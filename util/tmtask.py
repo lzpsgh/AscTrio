@@ -2,9 +2,9 @@
 # @Time      : 2021/4/30 上午10:47
 
 from base.base_request import BaseRequest
-from config import envar
+from util import common
 
-base_requests = BaseRequest(envar.BASE_URL_GZ)
+base_requests = BaseRequest(common.env('BASE_URL_GZ'))
 
 
 # 传入定时任务url（带相关字段）

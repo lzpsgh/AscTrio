@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/10 下午8:32
 
-from config import envar
+
+from util import common
 from util.read_data import data_tool
 
 
@@ -12,13 +13,13 @@ from util.read_data import data_tool
 
 # 获取现有的cookies
 def get_cookies_all():
-    cookie = data_tool.load_yml(envar.COOKIE_YML)
+    cookie = data_tool.load_yml(common.env('COOKIE_YML'))
     return cookie
 
 
 # 获取现有的cookies
 def get_cookie(kw):
-    cookie = data_tool.load_yml(envar.COOKIE_YML)
+    cookie = data_tool.load_yml(common.env('COOKIE_YML'))
     kw_cookie = cookie.get(kw).get('jsessionid')
     return kw_cookie
 
@@ -41,5 +42,4 @@ def check_auth():
 
 
 if __name__ == '__main__':
-    # mylist = data_tool.load_ymlist(envar.COOKIE_YML)
     pass

@@ -3,8 +3,11 @@ from configparser import ConfigParser
 
 import yaml
 
-from config import envar
+from util import common
 
+
+# 由于[安全问题](https://security.openstack.org/guidelines/dg_avoid-dangerous-input-parsing-libraries.html)
+# 建议使用yaml.safe_load()而不是yaml.load()以防止代码注入。
 
 class MyConfigParser(ConfigParser):
     # 重写 configparser 中的 optionxform 函数，解决 .ini 文件中的 键option 自动转为小写的问题
@@ -21,7 +24,7 @@ class ReadFileData:
         pass
 
     def save_cookie_yml(self, yml_data):
-        file_path = envar.COOKIE_YML
+        file_path = common.env('COOKIE_YML')
         # logger.debug(f"打开文件: {file_path}")
         with open(file_path, 'w', encoding='utf-8') as f:
             tmp_data = yaml.safe_dump(yml_data, f, default_flow_style=False)  # 写入文件，不是用flow流格式

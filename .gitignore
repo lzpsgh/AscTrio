@@ -102,8 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-test.env
-prod.env
+.env
 .venv
 env/
 venv/
@@ -133,12 +132,9 @@ dmypy.json
 # 测试用例运行日志
 log/
 # 测试用例运行报告
+report/
 testcase/report
-
-config/envar.py
 
 
 .idea/
 .idea/workspace.xml
-
-/config/envar.py

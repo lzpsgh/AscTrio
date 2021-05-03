@@ -1,5 +1,4 @@
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 
@@ -84,7 +83,7 @@ class GoodsOrder(BaseRequest):
         return result
 
 
-goods_order = GoodsOrder(envar.BASE_URL_CORE)
+goods_order = GoodsOrder(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     goods_order.demolition_order()

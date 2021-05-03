@@ -3,7 +3,6 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
-from config import envar
 from util import common
 
 
@@ -61,7 +60,7 @@ class User(BaseRequest):
         return result
 
 
-user = User(envar.BASE_URL_GZ)
+user = User(common.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
     user.register('18989750002')

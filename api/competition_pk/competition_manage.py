@@ -2,7 +2,6 @@
 # @Time    : 2021/4/7 下午1:39
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 from util.mysql_operate import db
@@ -99,7 +98,7 @@ class CompetitionManage(BaseRequest):
     #     return self.request("POST", "/competitionManager/registrationReview", **kwargs)
 
 
-competition_manage = CompetitionManage(envar.BASE_URL_CORE)
+competition_manage = CompetitionManage(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     competition_manage.save_competition()

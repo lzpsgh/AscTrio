@@ -1,14 +1,14 @@
 import pymysql
 
-from config import envar
+from util import common
 from util.logger import logger
 
 DB_CONF = {
-    "host": envar.MYSQL_HOST,
-    "port": envar.MYSQL_PORT,
-    "user": envar.MYSQL_USER,
-    "password": envar.MYSQL_PASSWD,
-    "db": envar.MYSQL_DB,
+    "host": common.env('MYSQL_HOST'),
+    "port": int(common.env('MYSQL_PORT')),
+    "user": common.env('MYSQL_USER'),
+    "password": common.env('MYSQL_PASSWD'),
+    "db": common.env('MYSQL_DB'),
 }
 
 

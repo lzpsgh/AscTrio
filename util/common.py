@@ -1,9 +1,24 @@
 # coding     : utf-8
 # @Time      : 2021/4/24 上午1:43
+import os
 import random
 import time
 
-from util.logger import logger
+from dotenv import load_dotenv
+
+flag_dotenv = 0
+# todo 将生命周期延长到session
+load_dotenv()
+
+
+def auto_lode_dotenv():
+    # api层
+    load_dotenv()
+    # case层
+
+
+def env(key):
+    return os.getenv(key)
 
 
 # todo 改用try-except异常捕获
@@ -19,17 +34,17 @@ def result_check(result):
                 result.status = True  # 写入1
                 if 'data' in rsp_json:
                     result.sdata = rsp_json['data']  # 写入2
-                    logger.debug('响应体是: ' + str(result.sdata))
+                    print('响应体是: ' + str(result.sdata))
                 else:
-                    logger.warning('接口正常，响应体内不包含data')
+                    print('接口正常，响应体内不包含data')
             else:
-                logger.error('响应码200，但success为False')
+                print('响应码200，但success为False')
                 exit()
         else:
-            logger.error('异常响应码: ' + str(response_code))
+            print('异常响应码: ' + str(response_code))
             exit()
     else:
-        logger.error('无法成功获取res响应体对象')
+        print('无法成功获取res响应体对象')
         exit()
 
 

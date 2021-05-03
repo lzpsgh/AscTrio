@@ -1,5 +1,4 @@
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 
@@ -41,7 +40,7 @@ class LeadsAPI(BaseRequest):
         return result
 
 
-leads_api = LeadsAPI(envar.BASE_URL_CORE)
+leads_api = LeadsAPI(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     # leads_api.get_token()

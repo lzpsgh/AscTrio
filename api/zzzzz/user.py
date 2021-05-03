@@ -1,7 +1,5 @@
 from base.base_request import BaseRequest
-from config import envar
-
-api_root_url = envar.BASE_URL_CORE
+from util import common
 
 
 class User(BaseRequest):
@@ -28,4 +26,4 @@ class User(BaseRequest):
         return self.request("POST", "/delete/user/{}".format(name), **kwargs)
 
 
-user = User(api_root_url)
+user = User(common.env('BASE_URL_CORE'))

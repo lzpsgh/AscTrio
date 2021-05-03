@@ -2,7 +2,6 @@
 # @Time    : 2021/4/10 下午8:54
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 from util.logger import logger
@@ -30,7 +29,7 @@ class Account(BaseRequest):
         return result
 
 
-account = Account(envar.BASE_URL_CORE)
+account = Account(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     account.crm_login_with_mm()

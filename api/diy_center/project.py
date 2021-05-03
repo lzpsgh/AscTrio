@@ -2,7 +2,6 @@
 # @Time      : 2021/4/25 下午10:28
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 
@@ -38,7 +37,7 @@ class Project(BaseRequest):
         return result
 
 
-project = Project(envar.BASE_URL_GZ)
+project = Project(common.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
     project.save_competition_project('66')

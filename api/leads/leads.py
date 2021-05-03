@@ -2,7 +2,6 @@
 # @Time      : 2021/4/30 下午2:12
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 
@@ -34,7 +33,7 @@ class Leads(BaseRequest):
         return result
 
 
-leads = Leads(envar.BASE_URL_CORE)
+leads = Leads(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     leads.booking_demo()

@@ -3,7 +3,6 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 from util.mysql_operate import db
@@ -127,7 +126,7 @@ class User(BaseRequest):
         return result
 
 
-user = User(envar.BASE_URL_CORE)
+user = User(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     user.phone_login()

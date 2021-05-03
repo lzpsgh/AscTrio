@@ -1,14 +1,14 @@
 import redis  # 导入redis模块，通过python操作redis 也可以直接在redis主机的服务端操作缓存数据库
 
-import config
+from util import common
 
 
-class RedisUtil(object):
+class RedisUtil:
 
     def redis_init_pool(self):
         pool = redis.ConnectionPool(
-            host=config.redis_host,
-            port=config.redis_port,
+            host=common.env('REDIS_HOST'),
+            port=common.env('REDIS_PORT'),
             decode_responses=True)
         r = redis.Redis(connection_pool=pool)
         return r
@@ -17,13 +17,13 @@ class RedisUtil(object):
 redis_util = RedisUtil().redis_init_pool()
 
 
-def getKey(key):
+def get_key(key):
     return redis_util.get(key)
 
 
-def delKey(key):
+def del_key(key):
     return redis_util.delete(key)
 
 
-def setKey(key, data):
+def set_key(key, data):
     return redis_util.set(key, data)

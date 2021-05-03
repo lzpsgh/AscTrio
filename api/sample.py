@@ -3,7 +3,6 @@
 # 模版文件，仅供参考
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 
@@ -96,7 +95,7 @@ class Sample(BaseRequest):
         return result
 
 
-sample = Sample(envar.BASE_URL_CORE)
+sample = Sample(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     sample.req_post()

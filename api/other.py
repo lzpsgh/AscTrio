@@ -3,7 +3,6 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
-from config import envar
 from util import auth
 from util import common
 
@@ -33,7 +32,7 @@ class Other(BaseRequest):
         self.req_body = {
             'isCommon': False,
             'price': 8,
-            'spriteName': '环保比赛-孩子9',
+            'spriteName': '环保比赛-孩子99',
             'dataURL': 'https://res.miaocode.com/6ff0d74b-29e6-424f-8870-a08a6f58b995.png'
         }
         self.req_cookies = {
@@ -67,8 +66,7 @@ class Other(BaseRequest):
         return result
 
 
-other = Other(envar.BASE_URL_CORE)
+other = Other(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    # other.send_paysucmsg_fast("18899758128")
     other.add_sprite()
