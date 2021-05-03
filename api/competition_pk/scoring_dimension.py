@@ -2,6 +2,7 @@
 # @Time    : 2021/4/7 下午1:30
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 from util.logger import logger
@@ -24,7 +25,7 @@ class ScoringDimension(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     # id获取评分维度
@@ -38,7 +39,7 @@ class ScoringDimension(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     # 获取评分维度列表
@@ -51,7 +52,7 @@ class ScoringDimension(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     # 保存评分维度-修改
@@ -68,7 +69,7 @@ class ScoringDimension(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
         if finvalue == 2:
             logger.info(finvalue)
@@ -88,7 +89,7 @@ class ScoringDimension(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 

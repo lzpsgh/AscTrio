@@ -2,6 +2,7 @@
 # @Time    : 2021/4/7 下午1:39
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 from util.mysql_operate import db
@@ -84,7 +85,7 @@ class CompetitionManage(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         cid = db.select_db('select id FROM competition where competition_name = \'临时444\' ')[0][0]
         if cid is not None:
             print(cid)

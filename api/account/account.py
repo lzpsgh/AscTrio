@@ -2,6 +2,7 @@
 # @Time    : 2021/4/10 下午8:54
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 from util.logger import logger
@@ -21,7 +22,7 @@ class Account(BaseRequest):
             "captcha": '1'
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
 
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
         auth.set_cookie('crm', core_jsessionid)

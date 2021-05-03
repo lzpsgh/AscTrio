@@ -2,6 +2,7 @@
 # @Time      : 2021/4/30 下午2:12
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 
@@ -29,7 +30,7 @@ class Leads(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 

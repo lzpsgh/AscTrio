@@ -7,6 +7,33 @@
 # assert {'0', '1', '3', '8'} == {'0', '3', '5', '8'}     #判断两个字典相等
 
 
+# todo 改用try-except异常并抛捕获
+def result_check(result):
+    origin = 'api'
+    if origin == 'case':
+        return
+    if result.rsp is not None:
+        response_code = result.rsp.status_code
+        if response_code == 200:
+            rsp_json = result.rsp.json()  # 响应文本如果不是合法的json文本就会报错
+            if rsp_json['success'] is True:
+                result.status = True  # 写入1
+                if 'data' in rsp_json:
+                    result.sdata = rsp_json['data']  # 写入2
+                    print('响应体是: ' + str(result.sdata))
+                else:
+                    print('接口正常，响应体内不包含data')
+            else:
+                print('响应码200，但success为False')
+                exit()
+        else:
+            print('异常响应码: ' + str(response_code))
+            exit()
+    else:
+        print('无法成功获取res响应体对象')
+        exit()
+
+
 def assertDictContainEqual(expected, result):
     """判断字典expected包含于result"""
     expectedkey = set(expected.items())

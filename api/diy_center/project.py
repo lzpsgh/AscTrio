@@ -2,6 +2,7 @@
 # @Time      : 2021/4/25 下午10:28
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 
@@ -33,7 +34,7 @@ class Project(BaseRequest):
         }
         # todo 怎么处理files类型参数
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 

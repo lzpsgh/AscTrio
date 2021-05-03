@@ -3,6 +3,7 @@
 # 模版文件，仅供参考
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 
@@ -42,8 +43,7 @@ class Sample(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     def req_post_with_json(self):
@@ -57,7 +57,7 @@ class Sample(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     def req_post_with_data(self):
@@ -74,7 +74,7 @@ class Sample(BaseRequest):
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     def req_post_with_files(self):
@@ -91,7 +91,7 @@ class Sample(BaseRequest):
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             files=self.req_body
         )
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 

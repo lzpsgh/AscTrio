@@ -3,6 +3,7 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import common
 
 
@@ -22,7 +23,7 @@ class User(BaseRequest):
         #     'JSESSIONID': auth.get_cookie('crm'),
         # }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     # 注册
@@ -41,7 +42,7 @@ class User(BaseRequest):
         #     'JSESSIONID': auth.get_cookie('crm'),
         # }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     # 登录
@@ -56,7 +57,7 @@ class User(BaseRequest):
         #     'JSESSIONID': auth.get_cookie('crm'),
         # }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 

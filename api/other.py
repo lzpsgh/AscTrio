@@ -3,6 +3,7 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 
@@ -23,7 +24,7 @@ class Other(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     def add_sprite(self):
@@ -42,7 +43,7 @@ class Other(BaseRequest):
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     def add_stage(self):
@@ -62,7 +63,7 @@ class Other(BaseRequest):
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 

@@ -1,4 +1,5 @@
 from base.base_request import BaseRequest
+from util import asserter
 from util import auth
 from util import common
 
@@ -18,7 +19,7 @@ class LeadsAPI(BaseRequest):
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
     def upload_info(self, token):
@@ -36,7 +37,7 @@ class LeadsAPI(BaseRequest):
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
-        common.result_check(result)
+        asserter.result_check(result)
         return result
 
 
