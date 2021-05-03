@@ -42,10 +42,6 @@ class ReadFileData:
         # logger.debug(f'加载文件 {file_path}')
         with open(file_path, encoding='utf-8') as f:
             tmp_data = yaml.safe_load(f)
-            # def process(**params):  # pass in variable numbers of args
-            #     for key, value in params.items():
-            #         print('%s: %s' % (key, value))
-            # process(**conf)  # pass in your keyword args
         # logger.debug(f'读取yml列表 {tmp_data}')
         return tmp_data
 
@@ -63,6 +59,12 @@ class ReadFileData:
         data = dict(config._sections)
         # print("读取ini ==>>  {} ".format(data))
         return data
+
+    # def process(**params):  # pass in variable numbers of args
+    #     for key, value in params.items():
+    #         print('%s: %s' % (key, value))
+    # conf = data_tool.load_yml(path)
+    # process(**conf)  # pass in your keyword args
 
 
 data_tool = ReadFileData()

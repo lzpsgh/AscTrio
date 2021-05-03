@@ -77,7 +77,7 @@ class BaseRequest:
         # if inner_rsp.cookies
         #     logger.debug("响应头cookie/JSESSIONID ==>> " + inner_rsp.cookies.get("JSESSIONID"))
         logger.debug(f"响应data    ==>> {inner_rsp.text}")
-        logger.debug(f"响应hash    ==>> {abs(inner_rsp.__hash__())}")
+        logger.debug(f"响应hash    ==>> {str(id(inner_rsp))}")
         logger.debug(
             f"\n\n###########################################################################################\n")
         base_result = BaseResult()
