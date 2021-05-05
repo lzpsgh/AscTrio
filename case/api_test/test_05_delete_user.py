@@ -1,14 +1,14 @@
 import allure
 import pytest
 
-from service.zzzzz.user import update_user
-from testcases.conftest import api_data
+from case.conftest import api_data
+from service.zzzzz.user import delete_user
 from util.logger import logger
 
 
-@allure.step("步骤1 ==>> 根据ID修改用户信息")
-def step_1(id):
-    logger.info("步骤1 ==>> 修改用户ID：{}".format(id))
+@allure.step("步骤1 ==>> 根据用户名来删除用户信息")
+def step_1(username):
+    logger.info("步骤1 ==>> 删除用户：{}".format(username))
 
 
 @allure.step("前置登录步骤 ==>> 管理员登录")
@@ -18,30 +18,27 @@ def step_login(admin_user, token):
 
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("针对单个接口的测试")
-@allure.feature("用户修改模块")
-class TestUpdate():
-    """修改用户"""
+@allure.feature("用户删除模块")
+class TestUserDelete():
+    """删除用户"""
 
-    @allure.story("用例--修改用户信息")
-    @allure.description("该用例是针对获取用户修改接口的测试")
+    @allure.story("用例--删除用户信息")
+    @allure.description("该用例是针对获取用户删除接口的测试")
     @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：【 {id}，{new_password}，{new_telephone}，{new_sex}，{new_address}，{except_result}，{except_code}，{except_msg}】")
+    @allure.title("测试数据：【 {username}，{except_result}，{except_code}，{except_msg} 】")
     @pytest.mark.single
-    @pytest.mark.parametrize("id, new_password, new_telephone, new_sex, new_address, "
-                             "except_result, except_code, except_msg",
-                             api_data["test_update_user"])
-    @pytest.mark.usefixtures("update_user_telephone")
-    def test_update_user(self, login_fixture, id, new_password, new_telephone, new_sex, new_address,
-                         except_result, except_code, except_msg):
+    @pytest.mark.parametrize("username, except_result, except_code, except_msg",
+                             api_data["test_delete_user"])
+    @pytest.mark.usefixtures("insert_delete_user")
+    def test_delete_user(self, login_fixture, username, except_result, except_code, except_msg):
         logger.info("*************** 开始执行用例 ***************")
         user_info = login_fixture
         admin_user = user_info.get("login_info").get("username")
         token = user_info.get("login_info").get("token")
         step_login(admin_user, token)
-        result = update_user(id, admin_user, new_password, new_telephone, token, new_sex, new_address)
-        step_1(id)
+        result = delete_user(username, admin_user, token)
+        step_1(username)
         assert result.success == except_result, result.error
         assert result.response.status_code == 200
         assert result.success == except_result, result.error
@@ -52,4 +49,4 @@ class TestUpdate():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_04_update_user.py"])
+    pytest.main(["-q", "-s", "test_05_delete_user.py"])

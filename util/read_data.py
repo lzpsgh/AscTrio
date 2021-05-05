@@ -67,7 +67,7 @@ class ReadFileData:
     # process(**conf)  # pass in your keyword args
 
 
-data_tool = ReadFileData()
+datazoo = ReadFileData()
 
 if __name__ == '__main__':
     pass

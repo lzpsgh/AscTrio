@@ -5,3 +5,4 @@ allure-pytest==2.8.6
 requests==2.20.0
 PyYAML==5.3.1
 colorlog==5.0.1
+faker==8.1.2

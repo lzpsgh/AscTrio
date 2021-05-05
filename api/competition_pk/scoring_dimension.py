@@ -29,11 +29,11 @@ class ScoringDimension(BaseRequest):
         return result
 
     # id获取评分维度
-    def get_scoring_dimension_by_id(self):
+    def get_scoring_dimension_by_id(self, sd_id):
         self.req_method = 'GET'
         self.req_url = '/scoringDimension/getScoringDimensionById'
         self.req_body = {
-
+            "id": sd_id
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
@@ -96,4 +96,5 @@ class ScoringDimension(BaseRequest):
 scoring_dimension = ScoringDimension(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    scoring_dimension.modify_scoring_dimension(3, 2, 30, "aaaaa")
+    # scoring_dimension.modify_scoring_dimension(3, 2, 30, "aaaaa")
+    scoring_dimension.get_scoring_dimension_by_id(13)

@@ -1,7 +1,7 @@
 import pytest
 
+from case.conftest import leadsapi_data
 from service.leads_api import leads_api
-from testcases.conftest import leadsapi_data
 from util.logger import logger
 
 

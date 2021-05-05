@@ -23,14 +23,29 @@ class Account(BaseRequest):
         }
         result = self.x_request()
         asserter.result_check(result)
-
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
         auth.set_cookie('crm', core_jsessionid)
         logger.info(core_jsessionid)
         return result
+
+    # def crm_login_with_mm3(self, *args):
+    #     self.req_method = 'GET'
+    #     self.req_url = '/account/login'
+    #     self.req_body = {
+    #         "accountName": ,
+    #         "accountPassword": ,
+    #         "captcha":
+    #     }
+    #     result = self.x_request()
+    #     asserter.result_check(result)
+    #     core_jsessionid = result.rsp.cookies["JSESSIONID"]
+    #     auth.set_cookie('crm', core_jsessionid)
+    #     logger.info(core_jsessionid)
+    #     return result
 
 
 account = Account(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     account.crm_login_with_mm()
+    # print(fakerist.name())

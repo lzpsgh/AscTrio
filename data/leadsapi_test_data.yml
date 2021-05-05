@@ -2,6 +2,25 @@ test_get_token:
   # secret, except_result, except_code, except_msg
   - [w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja, True, '0000', "查询成功"]
 
+get_token:
+  desc: 根据 secret 获得响应码中的 token  #secret, except_result, except_code, except_msg
+  req_headers:
+  req_params:
+    secret: w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja
+    start: 0
+    count: 10
+  req_data:
+
+crm_login_with_mm:
+  accountName: zhaopeng.li@miaocode.com
+  accountPassword: 262728293031
+  captcha: 1
+
+crm_login_with_mm11:
+  # accountName, accountPassword, captcha, data
+  - ['zhaopeng.li@miaocode.com', '262728293031', 1, "查询成功"]
+
+
   #test_test_test:
   #  path: '/user/register'
   #  param: 'w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja'

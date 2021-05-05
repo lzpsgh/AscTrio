@@ -3,7 +3,7 @@
 
 
 from util import common
-from util.read_data import data_tool
+from util.read_data import datazoo
 
 
 # todo 二期-鉴权-改用RequestsCookieJar
@@ -13,13 +13,13 @@ from util.read_data import data_tool
 
 # 获取现有的cookies
 def get_cookies_all():
-    cookie = data_tool.load_yml(common.env('COOKIE_YML'))
+    cookie = datazoo.load_yml(common.env('COOKIE_YML'))
     return cookie
 
 
 # 获取现有的cookies
 def get_cookie(kw):
-    cookie = data_tool.load_yml(common.env('COOKIE_YML'))
+    cookie = datazoo.load_yml(common.env('COOKIE_YML'))
     kw_cookie = cookie.get(kw).get('jsessionid')
     return kw_cookie
 
@@ -33,7 +33,7 @@ def set_cookie(kw, tmp_data):
         tmp_cookies = get_cookies_all()
         tmp_cookies[kw]['jsessionid'] = tmp_data
         tmp_data = tmp_cookies
-    data_tool.save_cookie_yml(tmp_data)
+    datazoo.save_cookie_yml(tmp_data)
 
 
 def check_auth():

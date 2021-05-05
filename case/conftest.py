@@ -1,20 +1,41 @@
-import os
-
 import allure
 import pytest
 
 from api.user import user
+from util import common
 from util.logger import logger
 from util.mysql_operate import db
-from util.read_data import data_tool
+from util.read_data import datazoo
 
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+BASE_PATH = common.env('PROJECT_ROOT')
+
+
+# 是get_data的升级增强版，不带参数默认会用当前类的当前函数来跟踪定位相应的数据源，也支持指定
+def data_tracking(yml_name, yml_key):
+    # aaa = inspect.stack()
+    # print('类名是：'+aaa[1][3])  # TestScoringDimension
+    # print('函数名是：'+aaa[0][3])  # data_tracking
+    # 获取被调用函数所在模块文件名
+    # print(sys._getframe().f_code.co_filename)
+    # 获取被调用函数名称
+    # print(sys._getframe().f_code.co_name)
+    try:
+        # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
+        yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
+        yaml_data = datazoo.load_yml(yaml_file_path)
+        if yml_key is not None:
+            yaml_dict = yaml_data.get(yml_key)
+    except Exception as ex:
+        pytest.skip(str(ex))
+    else:
+        return yaml_dict
 
 
 def get_data(yaml_file_name):
     try:
-        data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
-        yaml_data = data_tool.load_yml(data_file_path)
+        # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
+        yaml_file_path = f"{BASE_PATH}/data/{yaml_file_name}"
+        yaml_data = datazoo.load_yml(yaml_file_path)
     except Exception as ex:
         pytest.skip(str(ex))
     else:
@@ -99,3 +120,9 @@ def update_user_telephone():
     step_first()
     logger.info("修改用户操作：手工修改用户的手机号，以便用例重复执行")
     logger.info("执行SQL：{}".format(update_sql))
+
+
+if __name__ == '__main__':
+    # scoring_dimension.modify_scoring_dimension(3, 2, 30, "aaaaa")
+    # print(loee)
+    pass

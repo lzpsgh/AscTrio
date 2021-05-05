@@ -6,7 +6,7 @@ from api.account.account import account
 from util.logger import logger
 
 
-class TestAccount:
+class TestScoringDimension:
 
     @pytest.mark.single
     # @pytest.mark.parametrize("outTradeNo", '202103251226456923966257')
@@ -26,4 +26,4 @@ class TestAccount:
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_account.py"])
+    pytest.main(["-q", "-s", "scoring_dimension.py"])

@@ -11,6 +11,22 @@ flag_dotenv = 0
 load_dotenv()
 
 
+# 将camel驼峰命名风格改为下划线风格
+# if 65 <= ord(x) <= 90:
+def uncamelize(zifu):
+    str = zifu[0]  # 定义一个新的字符串
+    for i in range(1, len(zifu)):  # 遍历字符串
+        if zifu[i].isupper() and not zifu[i - 1].isupper():
+            str += '_'
+            str += zifu[i]
+        elif zifu[i].isupper() and zifu[i - 1].isupper() and zifu[i + 1].islower:  # 碰到多个大写字母的情况
+            str += '_'
+            str += zifu[i]
+        else:
+            str += zifu[i]
+    return str.lower()
+
+
 def auto_lode_dotenv():
     # api层
     load_dotenv()
