@@ -12,24 +12,26 @@ class Leads(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(Leads, self).__init__(api_root_url, **kwargs)
 
-    # 新建预约试听课leads
-    def booking_demo(self):
+    # 新建预约试听课leads,官网
+    def booking_demo(self, phone):
         self.req_method = 'POST'
         self.req_url = '/course/bookingDemo'
         self.req_body = {
-            "accountName": "zhaopeng.li@miaocode.com",
-            'phone': '1888888888',
-            'childName': 'child8888',
-            'childSex': 'M',
-            'childAge': 10,
+            "isOnlyLeads": False,
+            'phone': phone,
             'countryCode': 86,
-            'address': 'addr_1234',
-            'channel': 'testtest'
+            'smsCode': '123456',
+            'childGrade': '五年级',
+            'childName': 'child8888',
+            'channel': 'official'
         }
+        # self.req_body = datajson
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
         }
-        result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, data=self.req_body
+        )
         asserter.result_check(result)
         return result
 
@@ -37,4 +39,11 @@ class Leads(BaseRequest):
 leads = Leads(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    leads.booking_demo()
+    # data = {
+    #     "phone": "18877771650",
+    #     "code": "123456",
+    #     "userGrade": '小学四年级',
+    # }
+    # leads.booking_demo(data)
+    mphone = '18888655443'
+    leads.booking_demo(mphone)

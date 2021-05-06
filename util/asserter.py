@@ -22,13 +22,16 @@ def result_check(result):
                 if 'data' in rsp_json:
                     # 写入2
                     print('响应体是: ' + str(rsp_json['data']))
+                    result.sdata = rsp_json['data']
                 else:
                     print('接口正常，响应体内不包含data')
+                    print(rsp_json)
             else:
                 print('响应码200，但success为False')
+                print('rsp_json' + str(rsp_json))
         else:
             print('异常响应码: ' + str(response_code))
-        result.sdata = rsp_json['data']
+        print(str(result.rsp.json))
     else:
         print('无法成功获取res响应体对象')
         exit()
