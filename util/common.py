@@ -11,6 +11,16 @@ flag_dotenv = 0
 load_dotenv()
 
 
+# 自动计算出手机号的默认密码（123789-262728323334）
+def calc_pwd(phone):
+    tail_six = phone[-6:]
+    trans_six = []
+    for charnum in tail_six:
+        trans_six.append(str(int(charnum) + 25))
+    final_six = ''.join(trans_six)
+    return final_six
+
+
 # 将camel驼峰命名风格改为下划线风格
 # if 65 <= ord(x) <= 90:
 def uncamelize(zifu):
