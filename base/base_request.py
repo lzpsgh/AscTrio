@@ -50,10 +50,12 @@ class BaseRequest:
         files = dict(**kwargs).get("files")
         # todo 为什么从kwargs取出的cookies的值会变成params，而在调qequests.get时又会被还原回去。但并没影响实际功能
         cookies = dict(**kwargs).get("cookies")
+        inner_rsp = {}
         self.request_log(url, data, json, params, headers, files, cookies)
 
         if method == "GET":
-            inner_rsp = self.session.get(url, timeout=5, **kwargs)
+            # inner_rsp = self.session.get(url, timeout=5, **kwargs) # 多用户场景下不能开启session会话功能
+            inner_rsp = requests.get(url, timeout=5, **kwargs)
 
         if method == "POST":
             inner_rsp = requests.post(url, data, json, timeout=5, **kwargs)
@@ -72,16 +74,19 @@ class BaseRequest:
                 data = complexjson.dumps(json)
             inner_rsp = self.session.patch(url, data, **kwargs)
 
-        if inner_rsp is None:
-            exit(f"sorry,requests库响应对象为空")
-        # if inner_rsp.cookies
-        #     logger.debug("响应头cookie/JSESSIONID ==>> " + inner_rsp.cookies.get("JSESSIONID"))
-        logger.debug(f"响应data    ==>> {inner_rsp.text}")
-        logger.debug(f"响应hash    ==>> {str(id(inner_rsp))}")
-        logger.debug(
-            f"\n\n###########################################################################################\n")
         base_result = BaseResult()
-        base_result.rsp = inner_rsp
+
+        if inner_rsp is None:
+            logger.warning(f"sorry,requests库响应对象为空")
+            base_result.rsp = {}
+        else:
+            # if inner_rsp.cookies
+            #     logger.debug("响应头cookie/JSESSIONID ==>> " + inner_rsp.cookies.get("JSESSIONID"))
+            if 'text' in inner_rsp:
+                logger.debug(f"响应data    ==>> {inner_rsp.text}")
+            logger.debug(f"响应hash    ==>> {str(id(inner_rsp))}")
+            logger.debug(f"\n\n#################################################\n")
+            base_result.rsp = inner_rsp
         return base_result
 
     # 【适用对象】用params参数的get请求 / 用json参数的post请求(对应的请求头是 application/json)
@@ -91,7 +96,7 @@ class BaseRequest:
     # todo 用try-except捕获异常
     # todo 用partial优化
     def x_request(self):
-        m_method = self.req_method.strip().upper()
+        m_method = self.req_method
         if m_method == 'GET':
             return self.request(
                 method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,

@@ -41,12 +41,12 @@ class User(BaseRequest):
         return result
 
     # 官网登录
-    def login(self, phone, user_password, t):
+    def login(self, phone):
         self.req_method = 'GET'
-        self.req_url = '/account/login'
+        self.req_url = '/user/login'
         self.req_body = {
             "phone": phone,
-            "userPassword": user_password,
+            "userPassword": common.calc_pwd(phone),
             't': common.get_timestamp(),
         }
         self.req_cookies = {
@@ -54,6 +54,22 @@ class User(BaseRequest):
         }
         result = self.x_request()
         asserter.result_check(result)
+        auth.set_cookie('web', result.rsp.cookies["JSESSIONID"])
+        return result
+
+    # 官网退出登录
+    def logout(self):
+        self.req_method = 'GET'
+        self.req_url = '/user/logout'
+        self.req_body = {
+            "t": common.get_timestamp()
+        }
+        self.req_cookies = {
+            'JSESSIONID': auth.get_cookie('web'),
+        }
+        result = self.x_request()
+        asserter.result_check(result)
+        auth.set_cookie('web', result.rsp.cookies["JSESSIONID"])
         return result
 
     # 官网登录
@@ -62,14 +78,14 @@ class User(BaseRequest):
         self.req_url = '/user/phoneLogin'
         self.req_body = {
             "phone": phone,
-            "code": 123456,
-            't': common.get_timestamp(),
+            "code": 123456
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
         }
         result = self.x_request()
         asserter.result_check(result)
+        auth.set_cookie('web', result.rsp.cookies["JSESSIONID"])
         return result
 
     # 落地页注册登录
@@ -108,7 +124,7 @@ class User(BaseRequest):
         self.req_url = '/ccbb/sendSMS2'
         self.req_body = {
             "phone": phone,
-            'countryCode': '86',
+            'countryCode': '86'
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
@@ -153,12 +169,59 @@ class User(BaseRequest):
         asserter.result_check(result)
         return result
 
+    # 重制用户密码
+    # @pytest.mark.usefixtures("delete_register_user")
+    def reset_pwd(self, user_id):
+        self.req_method = 'POST'
+        self.req_url = '/user/resetPWD'
+        self.req_body = {
+            'userId': user_id
+        }
+        self.req_cookies = {
+            'JSESSIONID': auth.get_cookie('crm'),
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
+        )
+        asserter.result_check(result)
+        return result
+
+    # 获取当前用户信息
+    def get_current_user(self):
+        self.req_method = 'GET'
+        self.req_url = '/user/getCurrentUser'
+        # self.req_cookies = {
+        #     '_gid': 'GA1.2.1610422975.1620656029',
+        #     '_ga': 'GA1.2.577664232.1620656029',
+        #     'Hm_lpvt_b9f106b09faeced1cac313c175218a63': '1620656029'
+        # }
+        result = self.x_request()
+        # asserter.result_check(result)
+        # if result.rsp.text.json()['text']['code'] == '000002':
+        print(result.rsp.text)
+        print(result.rsp.cookies['JSESSIONID'])
+        return result
+
 
 user = User(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
 
-    mphone = '18888655443'
+    # phone = '13414857367'
+    # result = requests.get('https://sit.miaocode.com/core/user/getCurrentUser')
+    # print(result.cookies['JSESSIONID'])
+
+    user.get_current_user()
+
+    # 重制指定手机号账户的用户密码
+    # 13414857367 / 264069
+    # user.reset_pwd(mxckit.get_userid(phone))
+    # user.reset_pwd('264069')
+
+    # mphone = '18877771656'
+    # user.send_sms2(mphone)
+    # user.login(mphone)
+
     # user.send_sms2(mphone)
     # user.phone_exist(mphone)
 
