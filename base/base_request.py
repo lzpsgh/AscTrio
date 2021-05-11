@@ -44,6 +44,7 @@ class BaseRequest:
             logger.debug(f"请求files   ==>> {files}")
 
     def request(self, method, url, data=None, json=None, **kwargs):
+        m_method = method.strip().upper()
         url = self.api_root_url + url
         headers = dict(**kwargs).get("headers")
         params = dict(**kwargs).get("params")
@@ -53,23 +54,23 @@ class BaseRequest:
         inner_rsp = {}
         self.request_log(url, data, json, params, headers, files, cookies)
 
-        if method == "GET":
+        if m_method == "GET":
             # inner_rsp = self.session.get(url, timeout=5, **kwargs) # 多用户场景下不能开启session会话功能
             inner_rsp = requests.get(url, timeout=5, **kwargs)
 
-        if method == "POST":
+        if m_method == "POST":
             inner_rsp = requests.post(url, data, json, timeout=5, **kwargs)
 
-        if method == "DELETE":
+        if m_method == "DELETE":
             inner_rsp = self.session.delete(url, **kwargs)
 
-        if method == "PUT":
+        if m_method == "PUT":
             if json:
                 # PUT 和 PATCH 中没有提供直接使用json参数的方法，因此需要用data来传入
                 data = complexjson.dumps(json)
             inner_rsp = self.session.put(url, data, **kwargs)
 
-        if method == "PATCH":
+        if m_method == "PATCH":
             if json:
                 data = complexjson.dumps(json)
             inner_rsp = self.session.patch(url, data, **kwargs)
@@ -97,17 +98,18 @@ class BaseRequest:
     # todo 用partial优化
     def x_request(self):
         m_method = self.req_method
-        if m_method == 'GET':
+        method = m_method.strip().upper()
+        if method == 'GET':
             return self.request(
-                method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+                method='GET', url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
                 params=self.req_body
             )
-        elif m_method == 'POST':
+        elif method == 'POST':
             # 如果调用失败，出现形如' Required String parameter xxx is not present' 或 '参数缺失 '等报错
             # 可能考虑是服务端限制了content-type为'application/x-www-form-urlencoded'
             # 此时在外部调用request函数时，将json改为data即可
             return self.request(
-                method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+                method='POST', url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
                 json=self.req_body
             )
         else:

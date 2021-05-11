@@ -14,7 +14,7 @@ class Account(BaseRequest):
         super(Account, self).__init__(root_url, **kwargs)
 
     def crm_login_with_mm(self):
-        self.req_method = 'GET'
+        self.req_method = 'get'
         self.req_url = '/account/login'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
