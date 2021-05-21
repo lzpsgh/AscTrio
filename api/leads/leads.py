@@ -22,7 +22,7 @@ class Leads(BaseRequest):
             'countryCode': 86,
             'smsCode': '123456',
             'childGrade': '五年级',
-            'childName': 'child8888',
+            'childName': 'name' + phone[-4:],
             'channel': 'official'
         }
         # self.req_body = datajson
@@ -39,11 +39,5 @@ class Leads(BaseRequest):
 leads = Leads(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    # data = {
-    #     "phone": "18877771650",
-    #     "code": "123456",
-    #     "userGrade": '小学四年级',
-    # }
-    # leads.booking_demo(data)
-    mphone = '18888655443'
+    mphone = '18888655444'
     leads.booking_demo(mphone)

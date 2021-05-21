@@ -19,6 +19,17 @@
 # res2 = leads.booking_demo(var1)
 # var2 = res2.getyyy()
 # assert var2 == 'adadf'
+
+class TestFormalUserBuy799:
+
+    def leads_cc_purchase_success(self):
+        pass
+        # yaml_data = get_yaml(yml_path, yml_func_name)
+        # phone = yaml_data.get('phone')
+        # value = yaml_data.get('value')
+        # user.send_sms2(phone)
+
+
 #
 #
 # 方案2
