@@ -32,7 +32,6 @@ class Project(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('gz'),
         }
-        # todo 怎么处理files类型参数
         result = self.x_request()
         asserter.result_check(result)
         return result
@@ -41,4 +40,4 @@ class Project(BaseRequest):
 project = Project(common.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
-    project.save_competition_project('66')
+    project.save_competition_project('67')

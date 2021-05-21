@@ -52,5 +52,5 @@ competition_enter = CompetitionEnter(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     # competition_enter.submit_enter_name_info('66', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')
-    competition_enter.submit_enter_name_info('66', 9, '86', '18989750002', 'z最终版', 'M', "IDCARD", '441481199407175678')
+    competition_enter.submit_enter_name_info('67', 9, '86', '18659107886', 'z最终版', 'M', "IDCARD", '441481199407175678')
     # competition_enter.submit_enter_name_info('65', 7, '86', '18666024993', '签约客', 'M', "IDCARD", '441481199407173333')

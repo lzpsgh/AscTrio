@@ -211,16 +211,16 @@ if __name__ == '__main__':
     # result = requests.get('https://sit.miaocode.com/core/user/getCurrentUser')
     # print(result.cookies['JSESSIONID'])
 
-    user.get_current_user()
+    # user.get_current_user()
 
     # 重制指定手机号账户的用户密码
     # 13414857367 / 264069
     # user.reset_pwd(mxckit.get_userid(phone))
     # user.reset_pwd('264069')
 
-    # mphone = '18877771656'
-    # user.send_sms2(mphone)
-    # user.login(mphone)
+    mphone = '18659107886'
+    user.send_sms2(mphone)
+    user.login(mphone)
 
     # user.send_sms2(mphone)
     # user.phone_exist(mphone)

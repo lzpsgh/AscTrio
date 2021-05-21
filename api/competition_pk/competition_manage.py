@@ -46,9 +46,9 @@ class CompetitionManage(BaseRequest):
             "synopsis": "赛事主要是做什么\n法俄撒粉色\n结束了",
             "coOrganiser": "协办方，asctrio",
             "organizer": "主办方，asctrio",
-            "callForPapersStartTime": "2021-04-22 00:00:00",
-            "callForPapersEndTime": "2021-05-16 23:59:59",
-            "promotionStartTime": "2021-05-17 00:00:00",
+            "callForPapersStartTime": "2021-05-12 00:00:00",
+            "callForPapersEndTime": "2021-05-22 23:59:59",
+            "promotionStartTime": "2021-05-23 00:00:00",
             "promotionEndTime": "2021-06-06 23:59:59",
             "weekPopularityAwardQuota": 1,
             "popularityAwardQuota": 2,
@@ -77,16 +77,16 @@ class CompetitionManage(BaseRequest):
             "scoringDimensionIds": "16,18,17",
             "officialBanner": "https://res.miaocode.com/competition/1618467493120",
             "h5Banner": "https://res.miaocode.com/competition/1618467508602",
-            "ageMax": 9,
+            "ageMax": 11,
             "ageMin": 1,
-            "competitionName": "临时444"  # asctrio赛事27
+            "competitionName": "赛事h5跳转"  # asctrio赛事27
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
         result = self.x_request()
         asserter.result_check(result)
-        cid = db.select_db('select id FROM competition where competition_name = \'临时444\' ')[0][0]
+        cid = db.select_db('select id FROM competition where competition_name = \'赛事h5跳转\' ')[0][0]
         if cid is not None:
             print(cid)
         return result

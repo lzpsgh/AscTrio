@@ -1,9 +1,7 @@
 import logging
 import os
 import time
-
 from colorlog import ColoredFormatter
-
 from util import common
 
 # BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))

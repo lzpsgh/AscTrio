@@ -1,0 +1,20 @@
+# 该文件为模版文件，使用时需重命名为.env 才能被dotenv识别
+
+# 项目通用
+PROJECT_ROOT='/Users/lensaclrtn/Project/AscTrio'
+COOKIE_YML='${PROJECT_ROOT}/data/cookies.yml'
+LOG_PATH='${PROJECT_ROOT}/log'
+
+# 服务端根路径
+BASE_URL_CORE='http://sit.miaocode.com/core'
+BASE_URL_GZ=
+
+# MySQL数据库
+MYSQL_HOST=
+MYSQL_PORT=
+MYSQL_USER=
+MYSQL_PASSWD=
+MYSQL_DB=
+# Redis数据库
+REDIS_HOST=
+REDIS_PORT=
