@@ -29,19 +29,19 @@ class BaseRequest:
     def request_log(self, url, data=None, json=None, params=None,
                     headers=None, cookies=None, files=None, **kwargs):
         # Python3中需要设置 ensure_ascii=False，避免json在做dumps操作时将中文转换成unicode字符
-        logger.debug(f"请求URL     ==>> {url}")
+        logger.info(f"请求URL     ==>> {url}")
         if headers is not None:
             logger.debug(f"请求header  ==>> {headers}")
         if cookies is not None:
-            logger.debug(f"请求cookies ==>> {cookies}")
+            logger.info(f"请求cookies ==>> {cookies}")
         if params is not None:
-            logger.debug(f"请求params  ==>> {params}")
+            logger.info(f"请求params  ==>> {params}")
         if data is not None:
-            logger.debug(f"请求data    ==>> {data}")
+            logger.info(f"请求data    ==>> {data}")
         if json is not None:
-            logger.debug(f"请求json    ==>> {json}")
+            logger.info(f"请求json    ==>> {json}")
         if files is not None:
-            logger.debug(f"请求files   ==>> {files}")
+            logger.info(f"请求files   ==>> {files}")
 
     def request(self, method, url, data=None, json=None, **kwargs):
         m_method = method.strip().upper()
@@ -86,7 +86,7 @@ class BaseRequest:
             if 'text' in inner_rsp:
                 logger.debug(f"响应data    ==>> {inner_rsp.text}")
             logger.debug(f"响应hash    ==>> {str(id(inner_rsp))}")
-            logger.debug(f"\n\n#################################################\n")
+            # logger.debug(f"\n\n#################################################\n")
             base_result.rsp = inner_rsp
         return base_result
 

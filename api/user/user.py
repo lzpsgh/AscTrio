@@ -32,7 +32,7 @@ class User(BaseRequest):
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）对国内国外支持更好也支持国家码
-    def send_sms2(self, datajson):
+    def send_sms2(self, phone):
         self.req_method = 'GET'
         self.req_url = '/ccbb/sendSMS2'
         self.req_body = {
@@ -47,27 +47,42 @@ class User(BaseRequest):
         return result
 
     # 落地页注册登录
-    def login_and_register(self, phone, user_password, t):
+    def login_and_register(self, phone):
         self.req_method = 'GET'
         self.req_url = '/user/loginAndRegister'
         self.req_body = {
             "phone": phone,
-            "userPassword": user_password,
+            "code": '123456',  # '262728293031'
             't': common.get_timestamp()
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
         }
-        result = self.x_request()
+        # result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            params=self.req_body
+        )
         asserter.result_check(result)
         return result
 
-    # 官网注册,要先获取验证码
-    def register(self, datajson):
+    # 官网注册,要先获取验证码,用户密码默认后4位
+    def register(self, param):
         self.req_method = 'POST'
         self.req_url = '/user/register'
 
-        self.req_body = datajson
+        self.req_body = {
+            'phone': param,
+            'userPassword': '262728293031',
+            'code': '123456',
+            'regChannel': 'official',
+            'channelKey': 'web',
+            'platform': 'web',
+            'origin': 'pc',
+            'position': '001',
+            'isOrg': 'false'
+        }
+
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
         }
@@ -76,9 +91,9 @@ class User(BaseRequest):
             data=self.req_body
         )
         asserter.result_check(result)
-        core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        auth.set_cookie('web', core_jsessionid)
-        logger.info(core_jsessionid)
+        # core_jsessionid = result.rsp.cookies["JSESSIONID"]  # todo有时候不返回jsessionid
+        # auth.set_cookie('web', core_jsessionid)
+        # logger.info(core_jsessionid)
         return result
 
     # 官网登录
@@ -128,7 +143,6 @@ class User(BaseRequest):
         asserter.result_check(result)
         auth.set_cookie('web', result.rsp.cookies["JSESSIONID"])
         return result
-
 
     # 判断手机号是否存在（落地页和）
     def phone_exist(self, phone):
@@ -183,7 +197,7 @@ class User(BaseRequest):
         asserter.result_check(result)
         return result
 
-    # 获取当前用户信息
+    # 获取当前用户信息，用于获取官网web的cookie
     def get_current_user(self):
         self.req_method = 'GET'
         self.req_url = '/user/getCurrentUser'
@@ -201,14 +215,11 @@ user = User(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
 
-    phone = '18844550000'
-    # user.get_current_user()
-    temp = {
-        "phone": "18844550000",
-        "code": "123456",
-        "userGrade": '小学四年级',
-    }
-    user.register(temp)
+    phone = '18844550004'
+    res1 = user.send_sms2(phone)
+    assert res1.rsp.status_code == 200
+    res2 = user.register(phone)
+    assert res2.rsp.status_code == 200
 
     # user.modify_users_owner()
 

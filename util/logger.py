@@ -19,7 +19,9 @@ class Logger:
     def __init__(self):
         self.logname = os.path.join(LOG_PATH, "{}.log".format(time.strftime("%Y%m%d")))
         self.logger = logging.getLogger("log")
+        # self.logger.setLevel(logging.DEBUG)
         self.logger.setLevel(logging.INFO)
+
 
         # 设置输出的日志字符串格式
         # fmt = '[%(asctime)s][%(filename)s %(lineno)d][%(levelname)s]: %(message)s'

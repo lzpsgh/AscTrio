@@ -25,7 +25,7 @@ class Account(BaseRequest):
         asserter.result_check(result)
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
         auth.set_cookie('crm', core_jsessionid)
-        logger.info(core_jsessionid)
+        logger.debug(core_jsessionid)
         return result
 
     # def crm_login_with_mm3(self, *args):
