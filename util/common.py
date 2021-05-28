@@ -5,9 +5,10 @@ import random
 import time
 
 from dotenv import load_dotenv
-
 flag_dotenv = 0
 load_dotenv()
+
+
 
 
 # 自动计算出手机号的默认密码（123789-262728323334）

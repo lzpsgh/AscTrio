@@ -4,6 +4,7 @@ from util.logger import logger
 
 
 # todo 改用try-except异常并抛捕获
+# todo 流程和异常判定优化
 def result_check(result):
     origin = 'api'
     if origin == 'case':
@@ -20,11 +21,11 @@ def result_check(result):
                     logger.info('响应体是: ' + str(rsp_json['data']))
                     result.sdata = rsp_json['data']
                 else:
-                    logger.debug('接口正常，响应体内不包含data')
-                    logger.debug(rsp_json)
+                    logger.info('接口正常，响应体内不包含data')
+                    logger.info(rsp_json)
             else:
-                logger.debug('响应码200，但success为False')
-                logger.debug('rsp_json' + str(rsp_json))
+                logger.info('响应码200，但success为False')
+                logger.info('rsp_json' + str(rsp_json))
         else:
             logger.error('异常响应码: ' + str(response_code))
         # logger.debug(str(result.rsp.json))

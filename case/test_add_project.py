@@ -7,6 +7,7 @@ from util.logger import logger
 from api.user.user import user
 from api.diy_center.user import gzuser
 from api.diy_center.project import project
+from util.mysql_operate import db
 
 
 class TestLeadsAddProject:
@@ -18,15 +19,11 @@ class TestLeadsAddProject:
         phone = '18844550007'
         project_name_1 = 'zuopin7'
 
-        res1 = user.send_sms2(phone)
-        assert res1.rsp.status_code == 200
-        res2 = user.register(phone)
-        assert res2.rsp.status_code == 200
-        res3 = gzuser.login(phone)
-        assert res3.status is True
+        user.send_sms2(phone)
+        user.register(phone)
+        gzuser.login(phone)
 
         res4 = project.save_scratch_project_for_user(project_name_1)
-        assert res4.status is True
         project_id_1 = res4.sdata.get('id')
         res5 = project.publish(project_name_1, project_id_1)
         assert res5.sdata.get('status') == 'P'
@@ -38,14 +35,15 @@ class TestLeadsAddProject:
         phone = '18844550007'
         project_name_1 = 'zuopin8'
 
-        res3 = gzuser.login(phone)
-        assert res3.status is True
+        gzuser.login(phone)
         res4 = project.save_scratch_project_for_user(project_name_1)
-        assert res4.status is True
         project_id_1 = res4.sdata.get('id')
         res5 = project.publish(project_name_1, project_id_1)
         assert res5.sdata.get('status') == 'P'
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_add_project.py::TestLeadsAddProject::test_user_add_project"])
+    # pytest.main(["-q", "-s", "test_add_project.py::TestLeadsAddProject::test_user_add_project"])
+    phone = '13006166591'
+    user_id = db.select_db("SELECT id FROM user WHERE phone=\'"+phone+"\'")[0][0]
+    print(user_id)

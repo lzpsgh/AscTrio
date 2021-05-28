@@ -8,6 +8,7 @@ from util import auth
 from util import common
 from util.logger import logger
 from util.mysql_operate import db
+from api.account.account import account
 
 sql_query_tradeno = "SELECT outTradeNo FROM payrecord WHERE id = "
 
@@ -215,18 +216,17 @@ user = User(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
 
-    phone = '18844550004'
-    res1 = user.send_sms2(phone)
-    assert res1.rsp.status_code == 200
-    res2 = user.register(phone)
-    assert res2.rsp.status_code == 200
+    phone = '13001861476'
+    userid = '135496'
+
+    # res1 = user.send_sms2(phone)
+    # assert res1.rsp.status_code == 200
+    # res2 = user.register(phone)
+    # assert res2.rsp.status_code == 200
 
     # user.modify_users_owner()
-
-    # 重制指定手机号账户的用户密码
-    # 13414857367 / 264069
-    # user.reset_pwd(mxckit.get_userid(phone))
-    # user.reset_pwd('264069')
+    account.crm_login_with_mm()
+    user.reset_pwd(userid)
 
     # mphone = '18659107886'
     # user.send_sms2(mphone)

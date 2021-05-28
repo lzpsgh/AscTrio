@@ -25,8 +25,6 @@ class Project(BaseRequest):
             "thumbnailURL": 'https://res.miaocode.com/07b9d0ab-6a53-4373-95a3-ac01821890d8.png'
         }
         self.req_headers = {
-            # "Host": "sit.miaocode.com",
-            # "Connection": "keep-alive", #在HTTP1.1规范中默认开启
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
@@ -43,8 +41,10 @@ class Project(BaseRequest):
         self.req_body = {
             'projectName': project_name,
             'comment': '备注',
-            'dataURL': 'https://res.miaocode.com/f4b35f3c-15b4-4a2e-a660-3d04b2ce4b1e.mxc',
-            'thumbnailURL': 'https://res.miaocode.com/24a55eed-83e4-43a3-8b4f-0d55321b8abe.png'
+            # 'dataURL': 'https://res.miaocode.com/f4b35f3c-15b4-4a2e-a660-3d04b2ce4b1e.mxc',
+            # 'thumbnailURL': 'https://res.miaocode.com/24a55eed-83e4-43a3-8b4f-0d55321b8abe.png'
+            'dataURL': 'https://res.miaocode.com/464931e4-6a74-4abb-b31f-07d800cb6066.mxc',
+            'thumbnailURL': 'https://res.miaocode.com/ca0339c4-6d3d-4d6c-978a-d5cdf0513db0.png'
         }
         self.req_headers = {
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
@@ -52,7 +52,6 @@ class Project(BaseRequest):
         self.req_cookies = {
             'token': auth.get_cookie('gz'),
         }
-        # result = self.x_request()
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             params=self.req_body
@@ -69,7 +68,7 @@ class Project(BaseRequest):
         self.req_body = {
             'projectName': project_name,
             'projectId': project_id,
-            'comment': ''
+            'comment': '作品'+project+'描述随便'
         }
         self.req_headers = {
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
@@ -77,7 +76,6 @@ class Project(BaseRequest):
         self.req_cookies = {
             'token': auth.get_cookie('gz'),
         }
-        # result = self.x_request()
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             params=self.req_body

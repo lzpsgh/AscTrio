@@ -54,6 +54,8 @@ class MysqlDb:
 
 db = MysqlDb(DB_CONF)
 
+
+
 #
 # def exec_sql(sql):
 #     """执行指定sql，限于增/删/改类型"""
