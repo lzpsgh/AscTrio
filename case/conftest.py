@@ -46,6 +46,7 @@ base_data = get_data("base_data.yml")
 api_data = get_data("api_test_data.yml")
 scenario_data = get_data("scenario_test_data.yml")
 leadsapi_data = get_data("leadsapi_test_data.yml")
+user_data = get_data("test_user.yml")
 
 
 @allure.step("前置步骤 ==>> 清理数据")

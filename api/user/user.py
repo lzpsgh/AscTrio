@@ -216,7 +216,7 @@ user = User(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
 
-    phone = '13001861476'
+    phone = '15325411111'
     userid = '135496'
 
     # res1 = user.send_sms2(phone)
@@ -225,8 +225,8 @@ if __name__ == '__main__':
     # assert res2.rsp.status_code == 200
 
     # user.modify_users_owner()
-    account.crm_login_with_mm()
-    user.reset_pwd(userid)
+    # account.crm_login_with_mm()
+    user.modify_users_owner(phone)
 
     # mphone = '18659107886'
     # user.send_sms2(mphone)

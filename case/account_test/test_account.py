@@ -1,12 +1,14 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2021/4/10 下午10:14
+# @Time    : 2021/6/3 下午9:11
+
 import pytest
 
 from api.account.account import account
 from util.logger import logger
 
 
-class TestScoringDimension:
+class TestAccount:
 
     @pytest.mark.single
     # @pytest.mark.parametrize("outTradeNo", '202103251226456923966257')

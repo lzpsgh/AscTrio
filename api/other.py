@@ -13,6 +13,31 @@ class Other(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(Other, self).__init__(api_root_url, **kwargs)
 
+    # 端午节活动
+    def dbf_accept_zong_zi(self, invite_code):
+        self.req_method = 'POST'
+        self.req_url = '/dragonBoatFestival/acceptZongzi'
+        self.req_body = {
+            "inviteCode": invite_code
+        }
+        self.req_cookies = {
+            'JSESSIONID': auth.get_cookie('web'),
+        }
+        result = self.x_request()
+        asserter.result_check(result)
+        return result
+
+    # 端午节活动
+    def dbf_leader_board(self):
+        self.req_method = 'GET'
+        self.req_url = '/dragonBoatFestival/leaderboard'
+        self.req_cookies = {
+            'JSESSIONID': auth.get_cookie('web'),
+        }
+        result = self.x_request()
+        asserter.result_check(result)
+        return result
+
     # 给9.9元流量课用户 重新推送[新带新]链接
     def send_paysucmsg_fast(self, phone):
         self.req_method = 'GET'

@@ -7,3 +7,5 @@ PyYAML==5.3.1
 colorlog==5.0.1
 faker==8.1.2
 python-dotenv==0.17.1
+pytest-sugar==0.9.4
+pytest-xdist==2.2.1
