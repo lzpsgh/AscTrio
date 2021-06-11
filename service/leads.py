@@ -17,7 +17,7 @@ def official_add_leads_1(phone):
     if res1.status is False:
         raise Exception('验证码获取失败')
 
-    res3 = leads.booking_demo(phone)
+    res3 = user.booking_demo(phone)
     if res3.status is False:
         raise Exception('leads创建失败')
     core_jsessionid = res3.rsp.cookies["JSESSIONID"]
