@@ -1,4 +1,4 @@
-from api.order.goods_order import goods_order
+from api.common.goods_order import goods_order
 from base.base_result import BaseResult
 from util import auth
 from util import common

@@ -2,8 +2,8 @@
 # @Time    : 2021/4/9 下午5:58
 
 
-from api.competition_pk.scoring_dimension import scoring_dimension
 from base.base_result import BaseResult
+from uoactivity.competition_pk import scoring_dimension
 from util import auth
 from util import common
 from util.logger import logger

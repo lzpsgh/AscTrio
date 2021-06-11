@@ -1,6 +1,6 @@
 # coding     : utf-8
 # @Time      : 2021/4/18 上午2:29
-from api.user.user import user
+from api.common.user import user
 from util import auth
 from util import common
 from util import tmtask

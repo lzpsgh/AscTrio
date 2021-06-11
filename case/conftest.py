@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from api.user import user
+from api.common import user
 from util import common
 from util.logger import logger
 from util.mysql_operate import db
@@ -47,6 +47,7 @@ api_data = get_data("api_test_data.yml")
 scenario_data = get_data("scenario_test_data.yml")
 leadsapi_data = get_data("leadsapi_test_data.yml")
 user_data = get_data("test_user.yml")
+get_add_leads_data = get_data("test_add_leads.yml")
 
 
 @allure.step("前置步骤 ==>> 清理数据")

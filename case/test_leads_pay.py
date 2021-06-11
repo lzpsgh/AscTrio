@@ -1,6 +1,6 @@
 import pytest
 
-from api.user.user import user
+from api.common.user import user
 from case import conftest
 
 

@@ -66,4 +66,4 @@ class TestPayCallbackWX():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "pay_callback_wx.py"])
+    pytest.main(["-q", "-s", "competition_manage.py"])

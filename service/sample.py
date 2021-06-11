@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/11 上午9:15
 # 模版文件，仅供参考，无法执行
-from api.sample import sample
+from api.common.sample import sample
 from util import auth
 from util import common
 
