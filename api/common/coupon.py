@@ -19,6 +19,8 @@ from util import common
 class Coupon(BaseRequest):
 
     # 新增票券批次
+    # 返回data/id '4329', data/no 'c_asdfadsfasd'
+
     def create_coupon_new_version(self):
         self.req_method = 'POST'
         self.req_url = '/core/coupon/createCouponNewVersion'

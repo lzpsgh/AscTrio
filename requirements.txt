@@ -9,3 +9,5 @@ faker==8.1.2
 python-dotenv==0.17.1
 pytest-sugar==0.9.4
 pytest-xdist==2.2.1
+pytesseract==0.3.7
+pillow==8.2.0

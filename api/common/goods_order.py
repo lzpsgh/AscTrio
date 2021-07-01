@@ -56,11 +56,15 @@ class GoodsOrder(BaseRequest):
         return result
 
     # 微信支付模拟回调成功
-    def pay_callback_suc(self):
+    SQL_ORDERNO_OUTTRADENO = '''
+        SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE go.orderNo = 'xxxx' AND pr.payStatus = 'WAITING';
+    '''
+
+    def pay_callback_suc(self, out_trade_no):
         self.req_method = 'GET'
         self.req_url = '/goodsOrder/simulationCallBack'
         self.req_body = {
-            'outTradeNo': '$sql_query_tradeno$pay_rec_id'
+            'outTradeNo': out_trade_no  # '$sql_query_tradeno$pay_rec_id'
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('web'),
@@ -87,4 +91,5 @@ class GoodsOrder(BaseRequest):
 goods_order = GoodsOrder(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    goods_order.demolition_order()
+    # goods_order.demolition_order()
+    goods_order.pay_callback_suc('202107011506220954618219')

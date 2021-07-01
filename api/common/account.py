@@ -18,8 +18,8 @@ class Account(BaseRequest):
         self.req_url = '/account/login'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
-            "accountPassword": "262728293031",
-            "captcha": '1'
+            "accountPassword": "589678262728104112",  # 对应的明文是'Qwe123!@#'   589678262728104112
+            "captcha": 'qwe123EWQ#@!'  # '262728293031'
         }
         result = self.x_request()
         asserter.result_check(result)
@@ -33,8 +33,8 @@ class Account(BaseRequest):
         self.req_url = '/account/login'
         self.req_body = {
             "accountName": account_name,
-            "accountPassword": "262728293031",
-            "captcha": '1'
+            "accountPassword": "589678262728104112",
+            "captcha": 'qwe123EWQ#@!'
         }
         result = self.x_request()
         asserter.result_check(result)
@@ -47,4 +47,5 @@ class Account(BaseRequest):
 account = Account(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
+    # account.crm_login_with_mm()
     account.crm_login("zhaopeng.li@miaocode.com")
