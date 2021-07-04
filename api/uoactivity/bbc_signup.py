@@ -89,12 +89,15 @@ class BBCSignUp(BaseRequest):
         self.req_url = '/matchManager/enableMatch'
         self.req_body = {
             'enable': '1',  # 1:启用/0:禁用
-            'id': '12',  # 赛事id
+            'id': '16',  # 赛事id
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
         }
-        result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
+            data=self.req_body
+        )
         asserter.result_check(result)
         return result
 
@@ -103,9 +106,9 @@ class BBCSignUp(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/matchManager/saveMatch'
         self.req_body = {
-            "name": "Asctrio0002",
+            "name": "Asctrio0004蓝桥杯赛事zfb",
             "expense": 300,
-            "endTime": "2021-07-11 00:00:00",
+            "endTime": "2021-08-01 00:00:00",
             "startTime": "2021-07-01 00:00:00",
             "type": "Miaocode",
             "headImg": "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG",
@@ -129,5 +132,5 @@ class BBCSignUp(BaseRequest):
 bbc_signUp = BBCSignUp(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    # goods_order.demolition_order()
     bbc_signUp.save_match()
+    # bbc_signUp.enable_match()
