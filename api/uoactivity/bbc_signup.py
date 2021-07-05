@@ -17,7 +17,6 @@ class BBCSignUp(BaseRequest):
         super(BBCSignUp, self).__init__(api_root_url, **kwargs)
 
     # 创建订单并返回支付所需参数，订单不包含课程
-    # 审核通过不通过
     def create_order(self):
         self.req_method = 'POST'
         self.req_url = '/bbcEnterName/createOrder'
@@ -84,12 +83,12 @@ class BBCSignUp(BaseRequest):
         return result
 
     # 启用禁用赛事
-    def enable_match(self):
+    def enable_match(self, is_enable, match_id):
         self.req_method = 'POST'
         self.req_url = '/matchManager/enableMatch'
         self.req_body = {
-            'enable': '1',  # 1:启用/0:禁用
-            'id': '16',  # 赛事id
+            'enable': is_enable,  # 1:启用/0:禁用
+            'id': match_id,  # 赛事id
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
@@ -106,11 +105,11 @@ class BBCSignUp(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/matchManager/saveMatch'
         self.req_body = {
-            "name": "Asctrio0004蓝桥杯赛事zfb",
+            "name": "Asctrio0006蓝桥杯赛事",
             "expense": 300,
+            "startTime": "2021-07-11 00:00:00",
             "endTime": "2021-08-01 00:00:00",
-            "startTime": "2021-07-01 00:00:00",
-            "type": "Miaocode",
+            "type": "Miaocode",  # Python
             "headImg": "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG",
             "detailImgList": [
                 "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg",
@@ -133,4 +132,4 @@ bbc_signUp = BBCSignUp(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()
-    # bbc_signUp.enable_match()
+    bbc_signUp.enable_match(1, 22)
