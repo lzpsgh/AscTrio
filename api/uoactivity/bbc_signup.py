@@ -16,25 +16,6 @@ class BBCSignUp(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(BBCSignUp, self).__init__(api_root_url, **kwargs)
 
-    # 创建订单并返回支付所需参数，订单不包含课程
-    def create_order(self):
-        self.req_method = 'POST'
-        self.req_url = '/bbcEnterName/createOrder'
-        self.req_body = {
-            "forwordUrl": "string",
-            "id": 0,
-            "payStyle": "string",
-            "payType": "string",
-            "remark": "string",
-            "userId": 0
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
-        }
-        result = self.x_request()
-        asserter.result_check(result)
-        return result
-
     # 提交报名信息
     def submit_registration_information(self):
         self.req_method = 'POST'
@@ -58,6 +39,25 @@ class BBCSignUp(BaseRequest):
             "region": "string",
             "school": "string",
             "typeOfCertificate": "string"
+        }
+        self.req_cookies = {
+            'JSESSIONID': auth.get_cookie('crm'),
+        }
+        result = self.x_request()
+        asserter.result_check(result)
+        return result
+
+    # 创建订单并返回支付所需参数，订单不包含课程
+    def create_order(self):
+        self.req_method = 'POST'
+        self.req_url = '/bbcEnterName/createOrder'
+        self.req_body = {
+            "forwordUrl": "string",
+            "id": 0,
+            "payStyle": "string",
+            "payType": "string",
+            "remark": "string",
+            "userId": 0
         }
         self.req_cookies = {
             'JSESSIONID': auth.get_cookie('crm'),
