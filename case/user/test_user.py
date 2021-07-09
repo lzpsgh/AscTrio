@@ -14,7 +14,7 @@ from util.mysql_operate import db
 class TestUser:
 
     # todo 增加日志格式可读性
-    # @pytest.mark.skip
+    @pytest.mark.skip
     @pytest.mark.single
     @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
     def test_reset_pwd(self, phone):
@@ -41,8 +41,16 @@ class TestUser:
         res = user.phone_exist(phone)
         assert res.status is True
         assert res.sdata['isLeads'] is True
-        # assert res.sdata['isUser'] is True
+
+    @pytest.mark.single
+    @pytest.mark.parametrize("phone", ['19123457283'])
+    def test_reset_pwd(self, phone):
+        # phone = 19123457283
+        userid = db.select_db(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        logger.info(f'userid是{userid}')
+        res = user.reset_pwd(userid)
+        assert res.status is True
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_user.py"])
+    pytest.main(["-q", "-s", "test_user.py::TestUser::test_reset_pwd"])

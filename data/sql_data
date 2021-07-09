@@ -1,0 +1,1 @@
+SQL_PHONE_USERID = f'SELECT id FROM user WHERE phone = \'\';'
