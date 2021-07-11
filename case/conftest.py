@@ -1,7 +1,8 @@
 import allure
 import pytest
 
-from api.common import user
+from api.common.account import account
+from api.common.user import user
 from util import common
 from util.logger import logger
 from util.mysql_operate import db
@@ -48,7 +49,7 @@ scenario_data = get_data("scenario_test_data.yml")
 leadsapi_data = get_data("leadsapi_test_data.yml")
 user_data = get_data("test_user.yml")
 get_add_leads_data = get_data("test_add_leads.yml")
-
+bbc_data = get_data("test_bbc_signup.yml")
 
 @allure.step("前置步骤 ==>> 清理数据")
 def step_first():
@@ -64,6 +65,12 @@ def step_last():
 @allure.step("前置步骤 ==>> 管理员用户登录")
 def step_login(username, password):
     logger.info("前置步骤 ==>> 管理员 {} 登录，返回信息 为：{}".format(username, password))
+
+
+@pytest.fixture(scope="session")
+def crm_login_with_mm():
+    login_info = account.crm_login_with_mm()
+    # yield login_info.json()
 
 
 @pytest.fixture(scope="session")

@@ -100,7 +100,7 @@ class BBCSignUp(BaseRequest):
         return result
 
     # 审核通过不通过
-    def enable_match(self):
+    def audit(self):
         self.req_method = 'POST'
         self.req_url = '/matchManager/audit'
         self.req_body = {
@@ -116,11 +116,29 @@ class BBCSignUp(BaseRequest):
         return result
 
     # 启用禁用赛事
-    def enable_match(self, is_enable, match_id):
+    def enable_match(self, match_id):
         self.req_method = 'POST'
         self.req_url = '/matchManager/enableMatch'
         self.req_body = {
-            'enable': is_enable,  # 1:启用/0:禁用
+            'enable': 1,
+            'id': match_id,  # 赛事id
+        }
+        self.req_cookies = {
+            'JSESSIONID': auth.get_cookie('crm'),
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
+            data=self.req_body
+        )
+        asserter.result_check(result)
+        return result
+
+    # 启用禁用赛事
+    def unable_match(self, match_id):
+        self.req_method = 'POST'
+        self.req_url = '/matchManager/enableMatch'
+        self.req_body = {
+            'enable': 0,
             'id': match_id,  # 赛事id
         }
         self.req_cookies = {
@@ -138,7 +156,7 @@ class BBCSignUp(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/matchManager/saveMatch'
         self.req_body = {
-            "name": "Asctrio791-新",
+            "name": "Asctrio-fixture4",
             "expense": 0.01,
             "startTime": "2021-07-01 15:00:00",
             "endTime": "2021-08-01 10:10:10",

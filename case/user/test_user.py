@@ -43,9 +43,9 @@ class TestUser:
         assert res.sdata['isLeads'] is True
 
     @pytest.mark.single
-    @pytest.mark.parametrize("phone", ['19123457283'])
+    # @pytest.mark.parametrize("phone", ['19123457283'])
+    @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
     def test_reset_pwd(self, phone):
-        # phone = 19123457283
         userid = db.select_db(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
         logger.info(f'userid是{userid}')
         res = user.reset_pwd(userid)
