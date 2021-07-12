@@ -8,6 +8,7 @@ from util import auth
 from util import common
 from util.mysql_operate import db
 
+
 sql_query_tradeno = "SELECT outTradeNo FROM payrecord WHERE id = "
 
 
@@ -154,15 +155,17 @@ class User(BaseRequest):
         self.req_url = '/user/login'
         self.req_body = {
             "phone": phone,
-            "userPassword": common.calc_pwd(phone),
-            't': common.get_timestamp(),
+            "userPassword": '262728293031',  # common.calc_pwd(phone),
+            # 't': common.get_timestamp(),
+            'countryCode': '86'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('web'),
+            'JSESSIONID': auth.get_cookie('h5'),
         }
         result = self.x_request()
         asserter.result_check(result)
-        auth.set_cookie('web', result.rsp.cookies["JSESSIONID"])
+        # TODO 2021/07/12 17:45:48 临时禁用
+        # auth.set_cookie('h5', result.rsp.cookies["JSESSIONID"])
         return result
 
     # 官网退出登录
@@ -265,17 +268,35 @@ class User(BaseRequest):
         asserter.result_check(result)
         return result
 
-    # 获取当前用户信息，用于获取官网web的cookie
+    # 获取当前用户信息，用于获取 web和H5 的cookie
     def get_current_user(self):
         self.req_method = 'GET'
         self.req_url = '/user/getCurrentUser'
         result = self.x_request()
         # asserter.result_check(result)
+        # code=000002, success=false message=当前用户校验不通过
         if result.rsp.status_code == 200:
             # print(result.rsp.text)
             jsession_id = result.rsp.cookies['JSESSIONID']
             print(jsession_id)
-            auth.set_cookie('crm', jsession_id)
+            auth.set_cookie('h5', jsession_id)
+        return result
+
+    # 不带cookie的请求，就是切换cookie
+    def get_current_user_nocookie(self):
+        self.req_method = 'GET'
+        self.req_url = '/user/getCurrentUser'
+        # result = self.x_request()
+        result = self.request(
+            method='GET', url=self.req_url,
+            headers=self.req_headers, params=self.req_body)
+        # asserter.result_check(result)
+        # code=000002, success=false message=当前用户校验不通过
+        if result.rsp.status_code == 200:
+            # print(result.rsp.text)
+            jsession_id = result.rsp.cookies['JSESSIONID']
+            print(jsession_id)
+            auth.set_cookie('h5', jsession_id)
         return result
 
 
@@ -286,7 +307,8 @@ if __name__ == '__main__':
     userid = '110311'
 
     # user.phone_exist(phone)
-    user.reset_pwd(userid)
+    # user.reset_pwd(userid)
+    user.get_current_user()
 
     # res1 = user.send_sms2(phone)
     # assert res1.rsp.status_code == 200

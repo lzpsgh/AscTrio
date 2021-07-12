@@ -6,37 +6,39 @@ from api.common.user import user
 from util import common
 from util.logger import logger
 from util.mysql_operate import db
-from util.read_data import datazoo
+from util.read_data import datapool
 
 BASE_PATH = common.env('PROJECT_ROOT')
 
 
 # 是get_data的升级增强版，不带参数默认会用当前类的当前函数来跟踪定位相应的数据源，也支持指定
-def data_tracking(yml_name, yml_key):
-    # aaa = inspect.stack()
-    # print('类名是：'+aaa[1][3])  # TestScoringDimension
-    # print('函数名是：'+aaa[0][3])  # data_tracking
-    # 获取被调用函数所在模块文件名
-    # print(sys._getframe().f_code.co_filename)
-    # 获取被调用函数名称
-    # print(sys._getframe().f_code.co_name)
-    try:
-        # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
-        yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
-        yaml_data = datazoo.load_yml(yaml_file_path)
-        if yml_key is not None:
-            yaml_dict = yaml_data.get(yml_key)
-    except Exception as ex:
-        pytest.skip(str(ex))
-    else:
-        return yaml_dict
+# @pytest.fixture(scope="function")
+# def supply(yml_name, yml_key):
+#     # aaa = inspect.stack()
+#     # print('类名是：'+aaa[1][3])  # TestScoringDimension
+#     # print('函数名是：'+aaa[0][3])  # supply
+#     # 获取被调用函数所在模块文件名
+#     # print(sys._getframe().f_code.co_filename)
+#     # 获取被调用函数名称
+#     # print(sys._getframe().f_code.co_name)
+#     try:
+#         # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
+#         yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
+#         yaml_data = datapool.load_yml(yaml_file_path)
+#         if yml_key is not None:
+#             yaml_dict = yaml_data.get(yml_key)
+#             return yaml_dict
+#         else:
+#             raise BaseException("yml中无此键名")
+#     except Exception as ex:
+#         pytest.skip(str(ex))
 
 
 def get_data(yaml_file_name):
     try:
         # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
         yaml_file_path = f"{BASE_PATH}/data/{yaml_file_name}"
-        yaml_data = datazoo.load_yml(yaml_file_path)
+        yaml_data = datapool.load_yml(yaml_file_path)
     except Exception as ex:
         pytest.skip(str(ex))
     else:

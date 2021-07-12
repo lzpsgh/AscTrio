@@ -47,5 +47,5 @@ class Account(BaseRequest):
 account = Account(common.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    # account.crm_login_with_mm()
-    account.crm_login("zhaopeng.li@miaocode.com")
+    account.crm_login_with_mm()
+    # account.crm_login("zhaopeng.li@miaocode.com")

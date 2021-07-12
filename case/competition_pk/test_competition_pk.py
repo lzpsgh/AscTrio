@@ -12,12 +12,12 @@ class TestScoringDimension:
 
     # 在BaseCase里面提供一个函数，将当前类对应的
     # yml中每一行用例都是一个字典
-    # conftest.data_tracking(yml_path,yml_name)
+    # conftest.supply(yml_path,yml_name)
     # 类名TestScoringDimension，转化成test_scoring_dimension，找到data下该文件
     # 方法名test_get_scoring_dimension_by_id，直接找到文件内的键名
     @pytest.mark.parametrize("datajson",
-                             conftest.data_tracking('test_scoring_dimension.yml',
-                                                    'test_get_scoring_dimension_by_id'))
+                             conftest.supply('test_scoring_dimension.yml',
+                                             'test_get_scoring_dimension_by_id'))
     def test_get_scoring_dimension_by_id(self, datajson):
         echo = cmpttn_pk.get_scoring_dimension_by_id(datajson['ssid']).sdata
         assert echo.get('minPoints') == datajson['minPoints'] and \

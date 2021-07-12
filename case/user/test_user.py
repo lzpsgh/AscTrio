@@ -42,15 +42,31 @@ class TestUser:
         assert res.status is True
         assert res.sdata['isLeads'] is True
 
-    @pytest.mark.single
-    # @pytest.mark.parametrize("phone", ['19123457283'])
-    @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
+    @pytest.mark.skip
+    # @pytest.mark.single
+    @pytest.mark.parametrize("phone", ['18502937862'])
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    # @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
     def test_reset_pwd(self, phone):
         userid = db.select_db(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
         logger.info(f'userid是{userid}')
         res = user.reset_pwd(userid)
         assert res.status is True
 
+    # @pytest.mark.skip
+    # @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
+    @pytest.mark.parametrize("phone", ['18502937862'])
+    # 宝贝作品的登录接口
+    def test_user_login(self, phone):
+        # TODO 加异常判断
+        user.get_current_user_nocookie()
+        userid = db.select_db(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        logger.info(f'用户的phone是{phone}, userid是{userid}')
+        # user.reset_pwd(userid)
+        res = user.login(phone)
+        assert res.status is True
+        assert res.sdata.get('userId') == userid
+
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_user.py::TestUser::test_reset_pwd"])
+    pytest.main(["-q", "-s", "test_user.py::TestUser"])

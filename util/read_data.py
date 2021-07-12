@@ -5,10 +5,11 @@ import yaml
 
 from util import common
 
+BASE_PATH = common.env('PROJECT_ROOT')
+
 
 # 由于[安全问题](https://security.openstack.org/guidelines/dg_avoid-dangerous-input-parsing-libraries.html)
 # 建议使用yaml.safe_load()而不是yaml.load()以防止代码注入。
-
 class MyConfigParser(ConfigParser):
     # 重写 configparser 中的 optionxform 函数，解决 .ini 文件中的 键option 自动转为小写的问题
     def __init__(self, defaults=None):
@@ -65,9 +66,27 @@ class ReadFileData:
     #         print('%s: %s' % (key, value))
     # conf = data_tool.load_yml(path)
     # process(**conf)  # pass in your keyword args
+    def supply(self, yml_name, yml_key):
+        # aaa = inspect.stack()
+        # print('类名是：'+aaa[1][3])  # TestScoringDimension
+        # print('函数名是：'+aaa[0][3])  # supply
+        # 获取被调用函数所在模块文件名
+        # print(sys._getframe().f_code.co_filename)
+        # 获取被调用函数名称
+        # print(sys._getframe().f_code.co_name)
+        try:
+            # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
+            yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
+            yaml_data = datapool.load_yml(yaml_file_path)
+            if yml_key is not None:
+                yaml_dict = yaml_data.get(yml_key)
+                return yaml_dict
+        except Exception as ex:
+            raise ex
+            # pytest.skip(str(ex))
 
 
-datazoo = ReadFileData()
+datapool = ReadFileData()
 
 if __name__ == '__main__':
     pass
