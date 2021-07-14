@@ -1,8 +1,8 @@
 # coding     : utf-8
 # @Time      : 2021/4/20 下午3:00
 
-from api.common.other import other
 from base.base_result import BaseResult
+from other import other
 from util import auth
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/10 下午8:56
 
-from api.common.account import account
+from account import account
 from base.base_result import BaseResult
 from util import auth
 from util import common

@@ -2,7 +2,7 @@
 # @Time    : 2021/4/11 上午9:15
 # 模版文件，仅供参考，无法执行
 
-from api.common.user import user
+from user import user
 from util import auth
 from util.logger import logger
 from util.mysql_operate import db

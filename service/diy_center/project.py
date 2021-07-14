@@ -2,8 +2,8 @@
 # @Time      : 2021/4/25 下午11:10
 
 
-from api.common.project import project
 from base.base_result import BaseResult
+from project import project
 from util import auth
 
 

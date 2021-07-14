@@ -1,7 +1,7 @@
 # coding     : utf-8
 # @Time      : 2021/4/12 下午6:09
 from base.base_result import BaseResult
-from uoactivity.competition_pk import competition_manage
+from competition_pk import competition_manage
 from util import auth
 from util.mysql_operate import db
 

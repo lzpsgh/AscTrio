@@ -5,7 +5,7 @@
 import allure
 import pytest
 
-from api.uoactivity.bbc_signup import bbc_signUp
+from api.blue_bridge_contest_signup import bbc_signUp
 from util.logger import logger
 from util.mysql_operate import db
 from util.read_data import datapool
@@ -28,16 +28,17 @@ class TestBlueBridgeContest:
         "req_json", datapool.supply(
             'test_bbc_signup.yml', 'save_match'))
     @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_save_match_enable(self, req_json):
-        bbc_signUp.save_match(req_json.get('name'),
-                              req_json.get('expense'),
-                              req_json.get('startTime'),
-                              req_json.get('endTime'),
-                              req_json.get('type'),
-                              req_json.get('headImg'),
-                              req_json.get('detailImgList'))
+    def test_save_match_enable(self, req_body):
+        # logger.info(type(req_json))  # dict
+        bbc_signUp.save_match(req_body.get('n  ame'),
+                              req_body.get('expense'),
+                              req_body.get('startTime'),
+                              req_body.get('endTime'),
+                              req_body.get('type'),
+                              req_body.get('headImg'),
+                              req_body.get('detailImgList'))
         # TODO 优化接口调用的字段重复
-        # bbc_signUp.save_match(self, *req_json)
+        # bbc_signUp.save_match(self, **req_json)
         match_id = db.select_db("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
         logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
         res = bbc_signUp.enable_match(match_id)

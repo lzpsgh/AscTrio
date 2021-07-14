@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from api.uoactivity.dragon_boat_festival import dbf
+from api.dragon_boat_festival import dbf
 from util.logger import logger
 
 

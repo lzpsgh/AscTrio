@@ -4,7 +4,7 @@
 
 import pytest
 
-from api.common.account import account
+from api.account import account
 
 
 class TestAccount:

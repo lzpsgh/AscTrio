@@ -1,7 +1,7 @@
 # coding     : utf-8
 # @Time      : 2021/4/12 下午6:09
 from base.base_result import BaseResult
-from uoactivity.competition_pk import competiiton_enter
+from competition_pk import competiiton_enter
 from util import auth
 
 

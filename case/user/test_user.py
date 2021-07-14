@@ -4,8 +4,8 @@
 
 import pytest
 
-from api.common.account import account
-from api.common.user import user
+from api.account import account
+from api.user import user
 from case.conftest import user_data
 from util.logger import logger
 from util.mysql_operate import db
@@ -42,7 +42,7 @@ class TestUser:
         assert res.status is True
         assert res.sdata['isLeads'] is True
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize("phone", ['18502937862'])
     @pytest.mark.usefixtures("crm_login_with_mm")
@@ -53,7 +53,7 @@ class TestUser:
         res = user.reset_pwd(userid)
         assert res.status is True
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     # @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
     @pytest.mark.parametrize("phone", ['18502937862'])
     # 宝贝作品的登录接口
@@ -64,6 +64,7 @@ class TestUser:
         logger.info(f'用户的phone是{phone}, userid是{userid}')
         # user.reset_pwd(userid)
         res = user.login(phone)
+        # 设置该用户的wxparentid为'o-12n0z07Zc6aLI9sAYouWkAojmA'
         assert res.status is True
         assert res.sdata.get('userId') == userid
 

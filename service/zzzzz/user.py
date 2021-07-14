@@ -1,4 +1,4 @@
-from api.common import user
+import user
 from base.base_result import BaseResult
 from util.logger import logger
 

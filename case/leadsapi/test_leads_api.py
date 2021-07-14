@@ -6,7 +6,7 @@
 import allure
 import pytest
 
-from api.common.leads_api import leads_api
+from api.leads_api import leads_api
 
 
 @allure.severity(allure.severity_level.NORMAL)

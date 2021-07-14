@@ -1,8 +1,8 @@
 import allure
 import pytest
 
-from api.common.account import account
-from api.common.user import user
+from account import account
+from user import user
 from util import common
 from util.logger import logger
 from util.mysql_operate import db

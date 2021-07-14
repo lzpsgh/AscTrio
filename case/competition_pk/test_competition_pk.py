@@ -3,8 +3,8 @@
 
 import pytest
 
+from api.competition_pk import cmpttn_pk
 from case import conftest
-from uoactivity.competition_pk import cmpttn_pk
 from util.logger import logger
 
 

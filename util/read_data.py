@@ -85,6 +85,11 @@ class ReadFileData:
             raise ex
             # pytest.skip(str(ex))
 
+    def supply_mongodb(self):
+        # 读取mongodb文档，返回带faker标识符的dict_tmp,
+        # fakerist先解析出动态数据，返回解析后的dict,赋值给req_body
+        pass
+
 
 datapool = ReadFileData()
 

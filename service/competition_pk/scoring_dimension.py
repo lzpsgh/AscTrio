@@ -3,7 +3,7 @@
 
 
 from base.base_result import BaseResult
-from uoactivity.competition_pk import scoring_dimension
+from competition_pk import scoring_dimension
 from util import auth
 from util import common
 from util.logger import logger

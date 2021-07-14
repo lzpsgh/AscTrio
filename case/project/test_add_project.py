@@ -4,8 +4,8 @@
 
 import pytest
 
-from api.common.project import project
-from api.common.user import user
+from api.project import project
+from user import user
 from util.mysql_operate import db
 
 

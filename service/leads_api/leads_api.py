@@ -1,4 +1,5 @@
-from api.common import leads_api, user
+import leads_api
+import user
 from base.base_result import BaseResult
 from util.logger import logger
 

@@ -1,5 +1,5 @@
-from api.common.goods_order import goods_order
 from base.base_result import BaseResult
+from goods_order import goods_order
 from util import auth
 from util import common
 from util.logger import logger
