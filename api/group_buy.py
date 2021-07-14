@@ -3,9 +3,9 @@
 # @Time    : 2021/6/15 上午10:13
 
 from base.base_request import BaseRequest
-from util import asserter
-from util import auth
-from util import common
+from util import assert_kit
+from util import auth_kit
+from util import common_kit
 
 
 class GroupBuy(BaseRequest):
@@ -32,17 +32,17 @@ class GroupBuy(BaseRequest):
             'validTime': 300000  # 20h-72000000-1200min  600000-10min
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
 
-group_buy = GroupBuy(common.env('BASE_URL_CORE'))
+group_buy = GroupBuy(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     group_buy.add_activity()

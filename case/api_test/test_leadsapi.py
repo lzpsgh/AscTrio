@@ -2,7 +2,7 @@ import pytest
 
 from case.conftest import leadsapi_data
 from service.leads_api import leads_api
-from util.logger import logger
+from util.log_kit import logger
 
 
 class TestLeadsApi:

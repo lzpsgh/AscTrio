@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from api.dragon_boat_festival import dbf
-from util.logger import logger
+from util.log_kit import logger
 
 
 @allure.severity(allure.severity_level.CRITICAL)

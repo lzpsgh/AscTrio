@@ -2,8 +2,8 @@
 # @Time      : 2021/4/12 下午6:09
 from base.base_result import BaseResult
 from competition_pk import competition_manage
-from util import auth
-from util.mysql_operate import db
+from util import auth_kit
+from util.mysql_kit import mysqler
 
 
 # 新建修改赛事
@@ -76,12 +76,12 @@ def save_competition():
         "competitionName": "临时444"  # asctrio赛事27
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = competition_manage.save_competition(json=req_data, cookies=req_cookies)
     result.status = False
     if res.status_code == 200 and res.json()['success'] is True:
-        cid = db.select_db('select id FROM competition where competition_name = \'临时444\' ')[0][0]
+        cid = mysqler.select_db('select id FROM competition where competition_name = \'临时444\' ')[0][0]
         if cid is not None:
             print(cid)
             result.status = True

@@ -2,8 +2,8 @@
 # @Time    : 2021/4/10 下午8:32
 
 
-from util import common
-from util.read_data import datapool
+from util import common_kit
+from util.data_kit import data_pool
 
 
 # todo 二期-鉴权-改用RequestsCookieJar
@@ -13,13 +13,13 @@ from util.read_data import datapool
 
 # 获取现有的cookies
 def get_cookies_all():
-    cookie = datapool.load_yml(common.env('COOKIE_YML'))
+    cookie = data_pool.load_yml(common_kit.env('COOKIE_YML'))
     return cookie
 
 
 # 获取现有的cookies
 def get_cookie(kw):
-    cookie = datapool.load_yml(common.env('COOKIE_YML'))
+    cookie = data_pool.load_yml(common_kit.env('COOKIE_YML'))
     kw_cookie = cookie.get(kw).get('jsessionid')
     return kw_cookie
 
@@ -33,7 +33,7 @@ def set_cookie(kw, tmp_data):
         tmp_cookies = get_cookies_all()
         tmp_cookies[kw]['jsessionid'] = tmp_data
         tmp_data = tmp_cookies
-    datapool.save_cookie_yml(tmp_data)
+    data_pool.save_cookie_yml(tmp_data)
 
 
 def check_auth():

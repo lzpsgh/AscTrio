@@ -1,6 +1,6 @@
 import user
 from base.base_result import BaseResult
-from util.logger import logger
+from util.log_kit import logger
 
 
 def get_all_user_info():

@@ -3,7 +3,7 @@ import pytest
 
 from case.conftest import api_data
 from service.zzzzz.user import update_user
-from util.logger import logger
+from util.log_kit import logger
 
 
 @allure.step("步骤1 ==>> 根据ID修改用户信息")

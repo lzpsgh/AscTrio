@@ -3,7 +3,7 @@
 
 from base.base_result import BaseResult
 from other import other
-from util import auth
+from util import auth_kit
 
 
 def send_paysucmsg_fast(phone):
@@ -17,7 +17,7 @@ def send_paysucmsg_fast(phone):
         "Connection": "keep-alive",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = other.send_paysucmsg_fast(params=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code
@@ -45,7 +45,7 @@ def add_sprite():
         "Connection": "keep-alive",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = other.add_sprite(data=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code
@@ -74,7 +74,7 @@ def add_stage():
         "Connection": "keep-alive",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = other.add_stage(data=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code

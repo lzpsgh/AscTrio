@@ -4,7 +4,7 @@
 
 from base.base_result import BaseResult
 from project import project
-from util import auth
+from util import auth_kit
 
 
 # 其Content-Type为multipart/form-data，需要使用files
@@ -23,7 +23,7 @@ def save_competition_project(competition_id):
         "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
     }
     req_cookies = {
-        'token': auth.get_cookie('gz')
+        'token': auth_kit.get_cookie('gz')
     }
     res = project.save_competition_project(files=req_data, headers=req_headers, cookies=req_cookies)
     status_code = res.status_code

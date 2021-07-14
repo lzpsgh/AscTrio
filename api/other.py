@@ -3,9 +3,9 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
-from util import asserter
-from util import auth
-from util import common
+from util import assert_kit
+from util import auth_kit
+from util import common_kit
 
 
 class Other(BaseRequest):
@@ -23,13 +23,13 @@ class Other(BaseRequest):
             'dataURL': 'https://res.miaocode.com/6ff0d74b-29e6-424f-8870-a08a6f58b995.png'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     def add_stage(self):
@@ -43,13 +43,13 @@ class Other(BaseRequest):
             'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     def upload_material(self, mate_path):
@@ -63,13 +63,13 @@ class Other(BaseRequest):
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             file=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 返回符合优惠券发放规则的所有学员id，在这个学员id名单中的学员才会执行跑批脚本
@@ -84,17 +84,17 @@ class Other(BaseRequest):
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             file=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
 
-other = Other(common.env('BASE_URL_CORE'))
+other = Other(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     pass

@@ -2,8 +2,9 @@
 # @Time      : 2021/4/25 下午10:34
 
 from api.diy_center.user import user
+
 from base.base_result import BaseResult
-from util import auth
+from util import auth_kit
 
 
 def send_sms(param1):
@@ -72,7 +73,7 @@ def login(param1):
         if resjson["success"] is True:
             result.status = True
             gz_token = res.cookies['token']
-            auth.set_cookie('gz', gz_token)
+            auth_kit.set_cookie('gz', gz_token)
     else:
         print(status_code)
     result.response = res

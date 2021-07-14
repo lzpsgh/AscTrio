@@ -1,18 +1,18 @@
 import pymysql
 
-from util import common
-from util.logger import logger
+from util import common_kit
+from util.log_kit import logger
 
 DB_CONF = {
-    "host": common.env('MYSQL_HOST'),
-    "port": int(common.env('MYSQL_PORT')),
-    "user": common.env('MYSQL_USER'),
-    "password": common.env('MYSQL_PASSWD'),
-    "db": common.env('MYSQL_DB'),
+    "host": common_kit.env('MYSQL_HOST'),
+    "port": int(common_kit.env('MYSQL_PORT')),
+    "user": common_kit.env('MYSQL_USER'),
+    "password": common_kit.env('MYSQL_PASSWD'),
+    "db": common_kit.env('MYSQL_DB'),
 }
 
 
-class MysqlDb:
+class Mysqler:
 
     def __init__(self, db_conf=DB_CONF):
         # 通过字典拆包传递配置信息，建立数据库连接
@@ -52,9 +52,7 @@ class MysqlDb:
             self.conn.rollback()
 
 
-db = MysqlDb(DB_CONF)
-
-
+mysqler = Mysqler(DB_CONF)
 
 #
 # def exec_sql(sql):

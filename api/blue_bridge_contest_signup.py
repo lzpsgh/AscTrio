@@ -6,9 +6,9 @@
 # Swagger： 蓝桥杯报名类接口，蓝桥杯赛事管理累接口
 
 from base.base_request import BaseRequest
-from util import asserter
-from util import auth
-from util import common
+from util import assert_kit
+from util import auth_kit
+from util import common_kit
 
 
 class BBCSignUp(BaseRequest):
@@ -45,10 +45,10 @@ class BBCSignUp(BaseRequest):
             "typeOfCertificate": "IDCARD"
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('h5'),
+            'JSESSIONID': auth_kit.get_cookie('h5'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
         # 响应
 
@@ -74,10 +74,10 @@ class BBCSignUp(BaseRequest):
             "payStyle": "WAP"
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 创建订单并返回支付所需参数，订单不包含课程
@@ -92,10 +92,10 @@ class BBCSignUp(BaseRequest):
             "id": 20
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 审核通过不通过
@@ -108,10 +108,10 @@ class BBCSignUp(BaseRequest):
             'id': '12'  # 报名记录id
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 启用赛事
@@ -123,13 +123,13 @@ class BBCSignUp(BaseRequest):
             'id': match_id,  # 赛事id
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 禁用赛事
@@ -141,13 +141,13 @@ class BBCSignUp(BaseRequest):
             'id': match_id,  # 赛事id
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 保存赛事
@@ -169,17 +169,17 @@ class BBCSignUp(BaseRequest):
             # ]
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             json=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
 
-bbc_signUp = BBCSignUp(common.env('BASE_URL_CORE'))
+bbc_signUp = BBCSignUp(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()

@@ -3,9 +3,9 @@
 # @Time    : 2021/6/11 上午10:46
 
 from base.base_request import BaseRequest
-from util import asserter
-from util import auth
-from util import common
+from util import assert_kit
+from util import auth_kit
+from util import common_kit
 
 
 # 总流程
@@ -25,7 +25,7 @@ class Coupon(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/core/coupon/createCouponNewVersion'
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         self.req_body = {
             'title': 'title',
@@ -43,7 +43,7 @@ class Coupon(BaseRequest):
             'roleList': []
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # cc推送优惠券给userid
@@ -51,7 +51,7 @@ class Coupon(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/core/coupon/sendCoupon2User'
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         self.req_body = {
             "couponId": couponid,
@@ -61,11 +61,11 @@ class Coupon(BaseRequest):
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
 
-coupon = Coupon(common.env('BASE_URL_CORE'))
+coupon = Coupon(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     coupon.create_coupon_new_version()  # 1-30  进行中

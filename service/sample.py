@@ -2,8 +2,8 @@
 # @Time    : 2021/4/11 上午9:15
 # 模版文件，仅供参考，无法执行
 from sample import sample
-from util import auth
-from util import common
+from util import auth_kit
+from util import common_kit
 
 
 def req_get(param1):
@@ -16,11 +16,11 @@ def req_get(param1):
         "Connection": "keep-alive",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('web'),
+        'JSESSIONID': auth_kit.get_cookie('web'),
     }
     # 注意get请求要用params
     result = sample.req_get(params=req_data, headers=req_headers, cookies=req_cookies)
-    common.result_check(result)
+    common_kit.result_check(result)
 
 
 def req_post():
@@ -33,14 +33,14 @@ def req_post():
         "Cache-Control": "no-cache",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     # 注意post请求要用data或者json
     result = sample.req_post(data=req_data, headers=req_headers, cookies=req_cookies)
-    common.result_check(result)
+    common_kit.result_check(result)
 
     core_jsessionid = result.rsp.cookies["JSESSIONID"]
-    auth.set_cookie('crm', core_jsessionid)
+    auth_kit.set_cookie('crm', core_jsessionid)
     print(core_jsessionid)
 
     return result

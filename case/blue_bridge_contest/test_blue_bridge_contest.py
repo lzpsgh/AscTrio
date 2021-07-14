@@ -6,9 +6,9 @@ import allure
 import pytest
 
 from api.blue_bridge_contest_signup import bbc_signUp
-from util.logger import logger
-from util.mysql_operate import db
-from util.read_data import datapool
+from util.data_kit import data_pool
+from util.log_kit import logger
+from util.mysql_kit import mysqler
 
 
 @allure.epic("针对业务场景的测试")
@@ -25,7 +25,7 @@ class TestBlueBridgeContest:
     # @pytest.mark.skip
     @pytest.mark.single
     @pytest.mark.parametrize(
-        "req_json", datapool.supply(
+        "req_json", data_pool.supply(
             'test_bbc_signup.yml', 'save_match'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_save_match_enable(self, req_body):
@@ -39,7 +39,7 @@ class TestBlueBridgeContest:
                               req_body.get('detailImgList'))
         # TODO 优化接口调用的字段重复
         # bbc_signUp.save_match(self, **req_json)
-        match_id = db.select_db("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
+        match_id = mysqler.select_db("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
         logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
         res = bbc_signUp.enable_match(match_id)
         assert res.status is True

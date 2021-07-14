@@ -1,9 +1,9 @@
 from base.base_result import BaseResult
 from goods_order import goods_order
-from util import auth
-from util import common
-from util.logger import logger
-from util.mysql_operate import db
+from util import auth_kit
+from util import common_kit
+from util.log_kit import logger
+from util.mysql_kit import mysqler
 
 sql_query_userid = "select id from activityuser where phone = "
 sql_query_tradeno = "SELECT outTradeNo FROM payrecord WHERE id = "
@@ -27,10 +27,10 @@ def demolition_order():
         "Cache-Control": "no-cache",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('web'),
+        'JSESSIONID': auth_kit.get_cookie('web'),
     }
     result = goods_order.send_sms2(params=req_data, headers=req_headers, cookies=req_cookies)
-    common.result_check(result)
+    common_kit.result_check(result)
 
     order_no = result.rsp.data
     logger.warning(order_no)
@@ -52,10 +52,10 @@ def get_pay_page():
         "Cache-Control": "no-cache",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('web'),
+        'JSESSIONID': auth_kit.get_cookie('web'),
     }
     result = goods_order.send_sms2(params=req_data, headers=req_headers, cookies=req_cookies)
-    common.result_check(result)
+    common_kit.result_check(result)
 
     par_record_id = result.rsp.data.payrecordId  # 43893
     logger.warning(par_record_id)
@@ -71,10 +71,10 @@ def pay_callback_suc(out_trade_no):
         "Cache-Control": "no-cache",
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('web'),
+        'JSESSIONID': auth_kit.get_cookie('web'),
     }
     result = goods_order.pay_callback_suc(params=req_data, headers=req_headers, cookies=req_cookies)
-    common.result_check(result)
+    common_kit.result_check(result)
     return result
 
 
@@ -104,4 +104,4 @@ def is_use_coupon(goods_order_id):
 
 if __name__ == '__main__':
     sql_orderno = "SELECT outTradeNo FROM payrecord WHERE payStatus = 'WAITING' AND payType = 'WX'"
-    pay_callback_suc(db.select_db(sql_orderno)[0][0])
+    pay_callback_suc(mysqler.select_db(sql_orderno)[0][0])

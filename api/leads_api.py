@@ -1,7 +1,7 @@
 from base.base_request import BaseRequest
-from util import asserter
-from util import auth
-from util import common
+from util import assert_kit
+from util import auth_kit
+from util import common_kit
 
 
 class LeadsAPI(BaseRequest):
@@ -16,10 +16,10 @@ class LeadsAPI(BaseRequest):
             "secret": 'w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('web'),
+            'JSESSIONID': auth_kit.get_cookie('web'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     def upload_info(self, token):
@@ -34,14 +34,14 @@ class LeadsAPI(BaseRequest):
             "token": token,
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('crm'),
+            'JSESSIONID': auth_kit.get_cookie('crm'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
 
-leads_api = LeadsAPI(common.env('BASE_URL_CORE'))
+leads_api = LeadsAPI(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     leads_api.get_token()

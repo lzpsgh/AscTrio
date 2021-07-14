@@ -2,9 +2,9 @@
 # @Time      : 2021/4/25 下午10:28
 
 from base.base_request import BaseRequest
-from util import asserter
-from util import auth
-from util import common
+from util import assert_kit
+from util import auth_kit
+from util import common_kit
 
 
 class Project(BaseRequest):
@@ -28,10 +28,10 @@ class Project(BaseRequest):
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
-            'JSESSIONID': auth.get_cookie('gz'),
+            'JSESSIONID': auth_kit.get_cookie('gz'),
         }
         result = self.x_request()
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
     # 保存作品
@@ -50,13 +50,13 @@ class Project(BaseRequest):
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
-            'token': auth.get_cookie('gz'),
+            'token': auth_kit.get_cookie('gz'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             params=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         project_id = result.sdata.get('id')
         return result
 
@@ -74,17 +74,17 @@ class Project(BaseRequest):
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
-            'token': auth.get_cookie('gz'),
+            'token': auth_kit.get_cookie('gz'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             params=self.req_body
         )
-        asserter.result_check(result)
+        assert_kit.result_check(result)
         return result
 
 
-project = Project(common.env('BASE_URL_GZ'))
+project = Project(common_kit.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
     # project.save_competition_project('67')

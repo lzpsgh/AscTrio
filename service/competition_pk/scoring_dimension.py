@@ -4,10 +4,10 @@
 
 from base.base_result import BaseResult
 from competition_pk import scoring_dimension
-from util import auth
-from util import common
-from util.logger import logger
-from util.mysql_operate import db
+from util import auth_kit
+from util import common_kit
+from util.log_kit import logger
+from util.mysql_kit import mysqler
 
 
 # 删除评分维度
@@ -18,7 +18,7 @@ def del_scoring_dimension_by_id(sd_id):
         "id": sd_id
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = scoring_dimension.del_scoring_dimension_by_id(data=req_data, cookies=req_cookies)
     result.status = False
@@ -47,7 +47,7 @@ def new_scoring_dimension(min_points, max_points, name):
         "name": name
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
     result.status = False
@@ -65,11 +65,11 @@ def modify_scoring_dimension(sd_id, min_points, max_points, name):
         "name": name
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     result = scoring_dimension.save_scoring_dimension(data=req_data, cookies=req_cookies)
-    common.result_check(result)
-    finvalue = db.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
+    common_kit.result_check(result)
+    finvalue = mysqler.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
     if finvalue == 2:
         logger.info(finvalue)
     return result

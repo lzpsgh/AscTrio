@@ -1,7 +1,7 @@
 import pytest
 
 from user import user
-from util.read_data import datapool
+from util.data_kit import data_pool
 
 
 # @allure.severity(allure.severity_level.CRITICAL)
@@ -16,7 +16,7 @@ class TestLeadsPay:
     # @allure.title("leads入库分配cc官网下单支付-预期成功")
     @pytest.mark.multiple
     # @pytest.mark.usefixtures("delete_register_user")
-    @pytest.mark.parametrize("datajson", datapool.supply('test_leads.yml', 'test_leads_cc_login'))
+    @pytest.mark.parametrize("datajson", data_pool.supply('test_leads.yml', 'test_leads_cc_login'))
     def test_leads_cc_order_pay(self, datajson):
         # sql_query_cc = "select salerid from activityuser where id = 889"
         result1 = user.send_sms2(datajson['phone'])

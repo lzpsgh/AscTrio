@@ -1,14 +1,16 @@
 import logging
 import os
 import time
+
 from colorlog import ColoredFormatter
-from util import common
+
+from util import common_kit
 
 # BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-BASE_PATH = common.env('PROJECT_ROOT')
+BASE_PATH = common_kit.env('PROJECT_ROOT')
 
 # LOG_PATH = f"{BASE_PATH}/log"
-LOG_PATH = common.env('LOG_PATH')
+LOG_PATH = common_kit.env('LOG_PATH')
 
 if not os.path.exists(LOG_PATH):
     os.mkdir(LOG_PATH)

@@ -1,8 +1,8 @@
 import pytest
 
 from service.order import goods_order
-from util.logger import logger
-from util.mysql_operate import db
+from util.log_kit import logger
+from util.mysql_kit import mysqler
 
 
 # @allure.step("步骤1 ==>> 获取所有用户信息")
@@ -22,7 +22,7 @@ class TestPayCallbackWX():
         logger.info("\n*************** 开始执行用例 ***************")
 
         sql_orderno = "SELECT outTradeNo FROM payrecord WHERE payStatus = 'WAITING' AND payType = 'WX'"
-        sql_result = db.select_db(sql_orderno)
+        sql_result = mysqler.select_db(sql_orderno)
         logger.info(sql_result)
         if sql_result == '' or sql_result is None:
             exit("sorry, goodbye!")
@@ -56,7 +56,7 @@ class TestPayCallbackWX():
         sql_orderno = "SELECT id FROM goodsorder g WHERE orderNo = '" + order_no + "'"
         # sql_orderno = "SELECT id FROM goodsorder g WHERE orderNo = 'O2163941330310' "
         logger.info(sql_orderno)
-        sql_result = db.select_db(sql_orderno)
+        sql_result = mysqler.select_db(sql_orderno)
         # sql_result = db.select_db(sql_orderno + order_no)
         logger.info(sql_result)
         if sql_result == '' or sql_result is None:

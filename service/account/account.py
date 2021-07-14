@@ -3,9 +3,9 @@
 
 from account import account
 from base.base_result import BaseResult
-from util import auth
-from util import common
-from util.logger import logger
+from util import auth_kit
+from util import common_kit
+from util.log_kit import logger
 
 
 def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='262728293031', captcha=1):
@@ -22,7 +22,7 @@ def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='2627282
     }
     res = account.login(params=req_data, headers=req_headers)
 
-    common.rsp_check()
+    common_kit.rsp_check()
     status_code = res.status_code
     resjson = res.json()
     if status_code == 200:
@@ -46,10 +46,10 @@ def crm_login_with_mm():
         "Cache-Control": "no-cache",
     }
     result = account.login(params=req_data, headers=req_headers)
-    common.result_check(result)
+    common_kit.result_check(result)
 
     core_jsessionid = result.rsp.cookies["JSESSIONID"]
-    auth.set_cookie('crm', core_jsessionid)
+    auth_kit.set_cookie('crm', core_jsessionid)
     logger.info(core_jsessionid)
     return result
 

@@ -6,7 +6,7 @@ import pytest
 
 from api.project import project
 from user import user
-from util.mysql_operate import db
+from util.mysql_kit import mysqler
 
 
 class TestLeadsAddProject:
@@ -43,5 +43,5 @@ class TestLeadsAddProject:
 if __name__ == '__main__':
     # pytest.main(["-q", "-s", "test_add_project.py::TestLeadsAddProject::test_user_add_project"])
     phone = '13006166591'
-    user_id = db.select_db("SELECT id FROM user WHERE phone=\'"+phone+"\'")[0][0]
+    user_id = mysqler.select_db("SELECT id FROM user WHERE phone=\'" + phone + "\'")[0][0]
     print(user_id)

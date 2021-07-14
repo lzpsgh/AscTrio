@@ -2,7 +2,7 @@
 # @Time      : 2021/4/12 下午6:09
 from base.base_result import BaseResult
 from competition_pk import competiiton_enter
-from util import auth
+from util import auth_kit
 
 
 # 提交报名信息
@@ -22,7 +22,7 @@ def submit_enter_name_info(
         "competitionId": competitionId,
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('web'),
+        'JSESSIONID': auth_kit.get_cookie('web'),
     }
     res = competiiton_enter.submit_enter_name_info(data=req_data, cookies=req_cookies)
     result.status = False
@@ -38,7 +38,7 @@ def works_like(param1):
         "id": param1,
     }
     req_cookies = {
-        'JSESSIONID': auth.get_cookie('crm'),
+        'JSESSIONID': auth_kit.get_cookie('crm'),
     }
     res = competiiton_enter.works_like(data=req_data, cookies=req_cookies)
     result.status = False

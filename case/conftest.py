@@ -3,12 +3,12 @@ import pytest
 
 from account import account
 from user import user
-from util import common
-from util.logger import logger
-from util.mysql_operate import db
-from util.read_data import datapool
+from util import common_kit
+from util.data_kit import data_pool
+from util.log_kit import logger
+from util.mysql_kit import mysqler
 
-BASE_PATH = common.env('PROJECT_ROOT')
+BASE_PATH = common_kit.env('PROJECT_ROOT')
 
 
 # 是get_data的升级增强版，不带参数默认会用当前类的当前函数来跟踪定位相应的数据源，也支持指定
@@ -38,7 +38,7 @@ def get_data(yaml_file_name):
     try:
         # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
         yaml_file_path = f"{BASE_PATH}/data/{yaml_file_name}"
-        yaml_data = datapool.load_yml(yaml_file_path)
+        yaml_data = data_pool.load_yml(yaml_file_path)
     except Exception as ex:
         pytest.skip(str(ex))
     else:
@@ -95,14 +95,14 @@ def login_fixture():
 def insert_delete_user():
     """删除用户前，先在数据库插入一条用户数据"""
     insert_sql = base_data["init_sql"]["insert_delete_user"][0]
-    db.execute_db(insert_sql)
+    mysqler.execute_db(insert_sql)
     step_first()
     logger.info("删除用户操作：插入新用户--准备用于删除用户")
     logger.info("执行前置SQL：{}".format(insert_sql))
     yield
     # 因为有些情况是不给删除管理员用户的，这种情况需要手动清理上面插入的数据
     del_sql = base_data["init_sql"]["insert_delete_user"][1]
-    db.execute_db(del_sql)
+    mysqler.execute_db(del_sql)
     step_last()
     logger.info("删除用户操作：手工清理处理失败的数据")
     logger.info("执行后置SQL：{}".format(del_sql))
@@ -112,12 +112,12 @@ def insert_delete_user():
 def delete_register_user():
     """注册用户前，先删除数据，用例执行之后，再次删除以清理数据"""
     del_sql = base_data["init_sql"]["delete_register_user"]
-    db.execute_db(del_sql)
+    mysqler.execute_db(del_sql)
     step_first()
     logger.info("注册用户操作：清理用户--准备注册新用户")
     logger.info("执行前置SQL：{}".format(del_sql))
     yield
-    db.execute_db(del_sql)
+    mysqler.execute_db(del_sql)
     step_last()
     logger.info("注册用户操作：删除注册的用户")
     logger.info("执行后置SQL：{}".format(del_sql))
@@ -127,7 +127,7 @@ def delete_register_user():
 def update_user_telephone():
     """修改用户前，因为手机号唯一，为了使用例重复执行，每次需要先修改手机号，再执行用例"""
     update_sql = base_data["init_sql"]["update_user_telephone"]
-    db.execute_db(update_sql)
+    mysqler.execute_db(update_sql)
     step_first()
     logger.info("修改用户操作：手工修改用户的手机号，以便用例重复执行")
     logger.info("执行SQL：{}".format(update_sql))
