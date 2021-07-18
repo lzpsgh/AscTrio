@@ -1,6 +1,6 @@
 # coding     : utf-8
 # @Time      : 2021/4/12 下午6:09
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from competition_pk import competiiton_enter
 from util import auth_kit
 
@@ -10,7 +10,7 @@ def submit_enter_name_info(
         competitionId, age, countryCode, phone,
         fullName, gender, certificateType, idNumber,
 ):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "age": age,
         "countryCode": countryCode,
@@ -33,7 +33,7 @@ def submit_enter_name_info(
 
 # 作品点赞
 def works_like(param1):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "id": param1,
     }

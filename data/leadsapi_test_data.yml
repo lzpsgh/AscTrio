@@ -10,33 +10,3 @@ get_token:
     start: 0
     count: 10
   req_data:
-
-crm_login_with_mm:
-  accountName: zhaopeng.li@miaocode.com
-  accountPassword: 262728293031
-  captcha: 1
-
-crm_login_with_mm11:
-  # accountName, accountPassword, captcha, data
-  - ['zhaopeng.li@miaocode.com', '262728293031', 1, "查询成功"]
-
-
-  #test_test_test:
-  #  path: '/user/register'
-  #  param: 'w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja'
-  #  except: [True, '0000', "查询成功"]
-
-  #test_upload:
-  # 用户名,密码,手机号,性别,联系地址,期望结果,期望返回码,期望返回信息
-  # username, password, telephone, sex, address, except_result, except_code, except_msg
-#  - ["测试test", "123456", "13599999999", "1", "深圳市宝安区", True, 0, "注册成功"]
-#  - ["测试test", "123456", "13599999999", "3", "深圳市宝安区", False, 2003, "输入的性别只能是 0(男) 或 1(女)"]
-#  - ["wintest4", "123456", "13599999999", "1", "深圳市宝安区", False, 2002, "用户名已存在"]
-
-
-#        "username": username,
-#        "channel": "ZFB_dajisuowen",
-#        "phone": 18899758131,
-#        "name": "lizhaopeng",
-#        "purchaseTime": "2021-01-04 20:09:00",
-#        "token": "token_a60a7e5714cd4e3fb300317652990184",

@@ -2,14 +2,14 @@
 # @Time      : 2021/4/25 下午11:10
 
 
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from project import project
 from util import auth_kit
 
 
 # 其Content-Type为multipart/form-data，需要使用files
 def save_competition_project(competition_id):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "competitionId": competition_id,
         "comment": "来自AscTrio",

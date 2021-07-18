@@ -7,7 +7,7 @@ result.response = res
 """
 
 
-class BaseResult:
+class BaseResponse:
     # 代表requests发起请求后返回的Response对象（未经过序列化）
     rsp = {}
 

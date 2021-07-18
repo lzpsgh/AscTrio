@@ -2,8 +2,8 @@
 # @Time    : 2021/4/9 下午5:58
 
 
-from base.base_result import BaseResult
-from competition_pk import scoring_dimension
+from base.base_response import BaseResponse
+# from competition_pk import scoring_dimension
 from util import auth_kit
 from util import common_kit
 from util.log_kit import logger
@@ -13,7 +13,7 @@ from util.mysql_kit import mysqler
 # 删除评分维度
 def del_scoring_dimension_by_id(sd_id):
     # 记录请求头请求体 响应头响应体
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "id": sd_id
     }
@@ -39,7 +39,7 @@ def get_scoring_dimension_list(self, **kwargs):
 
 # 保存评分维度，新建时不传id
 def new_scoring_dimension(min_points, max_points, name):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         # "id": mid,
         "maxPoints": max_points,

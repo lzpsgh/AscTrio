@@ -8,8 +8,6 @@ from util import auth_kit
 from util import common_kit
 from util.mysql_kit import mysqler
 
-sql_query_tradeno = "SELECT outTradeNo FROM payrecord WHERE id = "
-
 
 class User(BaseRequest):
 

@@ -1,6 +1,6 @@
 import leads_api
 import user
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from util.log_kit import logger
 
 
@@ -9,7 +9,7 @@ def get_token(secret: str):
     获取系统token
     :return: 自定义的关键字返回结果 result
     """
-    result = BaseResult()
+    result = BaseResponse()
     data = {
         "secret": secret
         # "secret": data_poster.req_params.secret
@@ -42,7 +42,7 @@ def upload_info(username, channel, phone="", name="", purchaseTime="", token="")
     :param address: 联系地址
     :return: 自定义的关键字返回结果 result
     """
-    result = BaseResult()
+    result = BaseResponse()
     json_data = {
         "username": username,
         "channel": channel,

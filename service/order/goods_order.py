@@ -1,4 +1,4 @@
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from goods_order import goods_order
 from util import auth_kit
 from util import common_kit
@@ -85,7 +85,7 @@ def is_use_coupon(goods_order_id):
         "Cookie": "JSESSIONID=7E905BAE0E302B54F4412ECFECA3C72B; acgtgt_rm=t; acgt_ae=AE73B820F68F421D67B1905E48015213ECC913578E81D4056E1BCBEB60CF5D93; acgt_an=AE73B820F68F421D67B1905E48015213ECC913578E81D4056E1BCBEB60CF5D93; acgtgt_c=5F9A66565E5023347EA5B8C8D34AB210F24DE7D1FA835926F0776F51; ddx_ye=DE51CC2B2447134982462C471C830C51; gtgt_rm=t; ddxs_cc=CBA4A3006A8ABC706F98A2B6F8892CC2; gt_pp=CBA4A3006A8ABC706F98A2B6F8892CC2; token=api_token_CBA4A3006A8ABC706F98A2B6F8892CC2; gtgt_c=8882F391ABF5CE28B8B44D9BA33621FB54E019E374678EADDECE1177"
     }
 
-    result = BaseResult()
+    result = BaseResponse()
     res = goods_order.is_use_coupon(goods_order_id, headers=headers)
     result.has_coupon = False
     if res.json()["code"] == '000001':

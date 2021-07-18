@@ -7,13 +7,6 @@ from util import auth_kit
 from util import common_kit
 from util.log_kit import logger
 
-
-class Goods(BaseRequest):
-
-    def __init__(self, root_url, **kwargs):
-        super(Goods, self).__init__(root_url, **kwargs)
-
-
 """
 courseType: RECORD
 title: 真实拼团测试_线上课程_商品标题_CJ04
@@ -42,80 +35,83 @@ recordCourseId: 92678,92692
 """
 
 
-def add_new_goods_singlecourse(self):
-    self.req_method = 'POST'
-    self.req_url = '/goods/addNewGoods'
-    self.req_body = {
-        'courseType': 'RECORD',
-        'title': '标题录播课商品001',
-        'subtitle': '标语录播课商品001',
-        'classType': 0,
-        'courseLayer': 'S5,S6',
-        'lessonQty': '96',
-        'target': '2-12',
-        'type': 'HEAD',
-        'platFormType': '1',
-        'originprice': 2233,
-        'price': 23,
-        'headthumburl': 'https://res.miaocode.com/570a8f90-332c-40f1-bfd0-db17157ca751.jpg',
-        'detailPics': 'https://res.miaocode.com/932f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg',
-        'installmentStatus': 0,
-        'installmentFee': 0,
-        'hbInstallmentStatus': 0,
-        'hbInstallmentFee': 0,
-        'codeLanguages': 1,
-        'goodsLessonQty': [{"courseLayer": "S5", "lessonQty": 48}],
-        'recordCourseId': '60709'
-    }
-    result = self.request(
-        method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
-    )
+class Goods(BaseRequest):
 
-    assert_kit.result_check(result)
-    core_jsessionid = result.rsp.cookies["JSESSIONID"]
-    auth_kit.set_cookie('crm', core_jsessionid)
-    logger.debug(core_jsessionid)
-    return result
+    def __init__(self, root_url, **kwargs):
+        super(Goods, self).__init__(root_url, **kwargs)
 
+    def add_new_goods_singlecourse(self):
+        self.req_method = 'POST'
+        self.req_url = '/goods/addNewGoods'
+        self.req_body = {
+            'courseType': 'RECORD',
+            'title': '标题录播课商品001',
+            'subtitle': '标语录播课商品001',
+            'classType': 0,
+            'courseLayer': 'S5,S6',
+            'lessonQty': '96',
+            'target': '2-12',
+            'type': 'HEAD',
+            'platFormType': '1',
+            'originprice': 2233,
+            'price': 23,
+            'headthumburl': 'https://res.miaocode.com/570a8f90-332c-40f1-bfd0-db17157ca751.jpg',
+            'detailPics': 'https://res.miaocode.com/932f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg',
+            'installmentStatus': 0,
+            'installmentFee': 0,
+            'hbInstallmentStatus': 0,
+            'hbInstallmentFee': 0,
+            'codeLanguages': 1,
+            'goodsLessonQty': [{"courseLayer": "S5", "lessonQty": 48}],
+            'recordCourseId': '60709'
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
+        )
 
-def add_new_goods_doublecourse(self):
-    self.req_method = 'POST'
-    self.req_url = '/goods/addNewGoods'
-    self.req_body = {
-        'courseType': 'RECORD',
-        'title': '标题录播课商品001',
-        'subtitle': '标语录播课商品001',
-        'classType': 0,
-        'courseLayer': 'S5,S6',
-        'lessonQty': '96',
-        'target': '2-12',
-        'type': 'HEAD',
-        'platFormType': '1',
-        'originprice': 2233,
-        'price': 23,
-        'headthumburl': 'https://res.miaocode.com/570a8f90-332c-40f1-bfd0-db17157ca751.jpg',
-        'detailPics': 'https://res.miaocode.com/932f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg',
-        'installmentStatus': 0,
-        'installmentFee': 0,
-        'hbInstallmentStatus': 0,
-        'hbInstallmentFee': 0,
-        'codeLanguages': 1,
-        'goodsLessonQty': [{"courseLayer": "S5", "lessonQty": 48}],
-        'recordCourseId': '60709'
-    }
-    result = self.request(
-        method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
-    )
+        assert_kit.result_check(result)
+        core_jsessionid = result.rsp.cookies["JSESSIONID"]
+        auth_kit.set_cookie('crm', core_jsessionid)
+        logger.debug(core_jsessionid)
+        return result
 
-    assert_kit.result_check(result)
-    core_jsessionid = result.rsp.cookies["JSESSIONID"]
-    auth_kit.set_cookie('crm', core_jsessionid)
-    logger.debug(core_jsessionid)
-    return result
+    def add_new_goods_doublecourse(self):
+        self.req_method = 'POST'
+        self.req_url = '/goods/addNewGoods'
+        self.req_body = {
+            'courseType': 'RECORD',
+            'title': '标题录播课商品001',
+            'subtitle': '标语录播课商品001',
+            'classType': 0,
+            'courseLayer': 'S5,S6',
+            'lessonQty': '96',
+            'target': '2-12',
+            'type': 'HEAD',
+            'platFormType': '1',
+            'originprice': 2233,
+            'price': 23,
+            'headthumburl': 'https://res.miaocode.com/570a8f90-332c-40f1-bfd0-db17157ca751.jpg',
+            'detailPics': 'https://res.miaocode.com/932f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg',
+            'installmentStatus': 0,
+            'installmentFee': 0,
+            'hbInstallmentStatus': 0,
+            'hbInstallmentFee': 0,
+            'codeLanguages': 1,
+            'goodsLessonQty': [{"courseLayer": "S5", "lessonQty": 48}],
+            'recordCourseId': '60709'
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
+        )
+        assert_kit.result_check(result)
+        core_jsessionid = result.rsp.cookies["JSESSIONID"]
+        auth_kit.set_cookie('crm', core_jsessionid)
+        logger.debug(core_jsessionid)
+        return result
 
 
 goods = Goods(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     # account.crm_login_with_mm()
-    goods.crm_login("zhaopeng.li@miaocode.com")
+    goods.add_new_goods_singlecourse()

@@ -2,7 +2,7 @@ import json as complexjson
 
 import requests
 
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from util.log_kit import logger
 
 
@@ -75,11 +75,11 @@ class BaseRequest:
                 data = complexjson.dumps(json)
             inner_rsp = self.session.patch(url, data, **kwargs)
 
-        base_result = BaseResult()
+        base_response = BaseResponse()
 
         if inner_rsp is None:
             logger.warning(f"sorry,requests库响应对象为空")
-            base_result.rsp = {}
+            base_response.rsp = {}
         else:
             # if inner_rsp.cookies
             #     logger.debug("响应头cookie/JSESSIONID ==>> " + inner_rsp.cookies.get("JSESSIONID"))
@@ -87,8 +87,8 @@ class BaseRequest:
                 logger.debug(f"响应data    ==>> {inner_rsp.text}")
             logger.debug(f"响应hash    ==>> {str(id(inner_rsp))}")
             # logger.debug(f"\n\n#################################################\n")
-            base_result.rsp = inner_rsp
-        return base_result
+            base_response.rsp = inner_rsp
+        return base_response
 
     # 【适用对象】用params参数的get请求 / 用json参数的post请求(对应的请求头是 application/json)
     # 【不适用对象】

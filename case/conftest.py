@@ -71,7 +71,7 @@ def step_login(username, password):
 
 @pytest.fixture(scope="session")
 def crm_login_with_mm():
-    login_info = account.crm_login_with_mm()
+    login_info = account.crm_login()
     # yield login_info.json()
 
 

@@ -1,6 +1,6 @@
 # coding     : utf-8
 # @Time      : 2021/4/12 下午6:09
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from competition_pk import competition_manage
 from util import auth_kit
 from util.mysql_kit import mysqler
@@ -8,7 +8,7 @@ from util.mysql_kit import mysqler
 
 # 新建修改赛事
 def save_competition():
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "bannerList": [
             {

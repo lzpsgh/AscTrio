@@ -2,14 +2,14 @@
 # @Time    : 2021/4/10 下午8:56
 
 from account import account
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from util import auth_kit
 from util import common_kit
 from util.log_kit import logger
 
 
 def crm_login(account_name="zhaopeng.li@miaocode.com", account_password='262728293031', captcha=1):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "accountName": account_name,
         "accountPassword": account_password,

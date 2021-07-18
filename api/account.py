@@ -13,7 +13,7 @@ class Account(BaseRequest):
     def __init__(self, root_url, **kwargs):
         super(Account, self).__init__(root_url, **kwargs)
 
-    def crm_login_with_mm(self):
+    def crm_login(self):
         self.req_method = 'get'
         self.req_url = '/account/login'
         self.req_body = {
@@ -28,7 +28,7 @@ class Account(BaseRequest):
         logger.debug(core_jsessionid)
         return result
 
-    def crm_login(self, account_name):
+    def crm_login_with(self, account_name):
         self.req_method = 'get'
         self.req_url = '/account/login'
         self.req_body = {
@@ -47,5 +47,4 @@ class Account(BaseRequest):
 account = Account(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
-    account.crm_login_with_mm()
-    # account.crm_login("zhaopeng.li@miaocode.com")
+    account.crm_login()

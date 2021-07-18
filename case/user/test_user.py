@@ -18,7 +18,7 @@ class TestUser:
     @pytest.mark.single
     @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
     def test_reset_pwd(self, phone):
-        account.crm_login_with_mm()
+        account.crm_login()
         logger.info(phone)
         user_id = mysqler.select_db("SELECT id FROM user WHERE phone=\'" + phone + "\'")[0][0]
         res1 = user.reset_pwd(user_id)
@@ -28,7 +28,7 @@ class TestUser:
     @pytest.mark.single
     @pytest.mark.parametrize("phone", user_data["test_reset_pwd"])
     def test_modify_users_owner(self, phone):
-        account.crm_login_with_mm()
+        account.crm_login()
         logger.info(phone)
         user_id = mysqler.select_db("SELECT id FROM user WHERE phone=\'" + phone + "\'")[0][0]
         res1 = user.reset_pwd(user_id)

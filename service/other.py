@@ -1,13 +1,13 @@
 # coding     : utf-8
 # @Time      : 2021/4/20 下午3:00
 
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from other import other
 from util import auth_kit
 
 
 def send_paysucmsg_fast(phone):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "phone": phone
     }
@@ -32,7 +32,7 @@ def send_paysucmsg_fast(phone):
 
 
 def add_sprite():
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         'isCommon': False,
         'price': 8,
@@ -60,7 +60,7 @@ def add_sprite():
 
 
 def add_stage():
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         'isCommon': False,
         'comment': 'asdf',

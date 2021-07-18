@@ -22,7 +22,7 @@ class TestBlueBridgeContest:
     # @allure.title("用户注册登录查看-预期成功")
 
     # 数据驱动参考模版 template-ddt
-    # @pytest.mark.skip
+    @pytest.mark.skip
     @pytest.mark.single
     @pytest.mark.parametrize(
         "req_json", data_pool.supply(
@@ -30,7 +30,7 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_save_match_enable(self, req_body):
         # logger.info(type(req_json))  # dict
-        bbc_signUp.save_match(req_body.get('n  ame'),
+        bbc_signUp.save_match(req_body.get('name'),
                               req_body.get('expense'),
                               req_body.get('startTime'),
                               req_body.get('endTime'),
@@ -55,6 +55,17 @@ class TestBlueBridgeContest:
         assert res.status is True
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
+
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('test_bbc_signup.yml', 'save_match'))
+    def test_save_match_enable(self, kwargs):
+        res = bbc_signUp.save_match_2(**kwargs)
+        assert res.status is True
+        # match_id = mysqler.select_db("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
+        # logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
+        # res1 = bbc_signUp.enable_match(match_id)
+        # assert res1.status is True
 
 
 if __name__ == '__main__':

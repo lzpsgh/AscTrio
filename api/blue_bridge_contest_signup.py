@@ -162,11 +162,6 @@ class BBCSignUp(BaseRequest):
             "type": type,  # Miaocode, Python
             "headImg": headImg,
             "detailImgList": detailImgList,
-            # "detailImgList": [
-            #     "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg",
-            #     "https://res.miaocode.com/be06f7e9-4469-4795-9aad-7a67d4ad1191.JPG",
-            #     "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
-            # ]
         }
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
@@ -178,9 +173,20 @@ class BBCSignUp(BaseRequest):
         assert_kit.result_check(result)
         return result
 
+    # 保存赛事优化版
+    def save_match_2(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/matchManager/saveMatch'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'JSESSIONID': auth_kit.get_cookie('crm'),
+        }
+        result = self.x_request()
+        assert_kit.result_check(result)
+        return result
+
 
 bbc_signUp = BBCSignUp(common_kit.env('BASE_URL_CORE'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()
-    # bbc_signUp.enable_match(1, 24)

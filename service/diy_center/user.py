@@ -3,12 +3,12 @@
 
 from api.diy_center.user import user
 
-from base.base_result import BaseResult
+from base.base_response import BaseResponse
 from util import auth_kit
 
 
 def send_sms(param1):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "phone": param1
     }
@@ -29,7 +29,7 @@ def send_sms(param1):
 
 
 def register(param1):
-    result = BaseResult()
+    result = BaseResponse()
     req_data = {
         "phone": param1,
         "userPassword": "262728293031",
@@ -68,7 +68,7 @@ def login(param1):
 
     status_code = res.status_code
     resjson = res.json()
-    result = BaseResult()
+    result = BaseResponse()
     if status_code == 200:
         if resjson["success"] is True:
             result.status = True
