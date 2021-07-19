@@ -27,7 +27,7 @@ class TestBlueBridgeContest:
     @pytest.mark.single
     @pytest.mark.parametrize(
         "req_json", data_pool.supply(
-            'bbc_signup_data.yml', 'save_match'))
+            'data_bbc_signup.yml', 'save_match'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_save_match_enable(self, req_body):
         # logger.info(type(req_json))  # dict
@@ -48,7 +48,7 @@ class TestBlueBridgeContest:
     @pytest.mark.skip
     @pytest.mark.single
     # @pytest.mark.parametrize("req_json", datapool.supply(
-    #     'bbc_signup_data.yml',
+    #     'data_bbc_signup.yml',
     #     'test_submit_registration_information'))
     # @pytest.mark.usefixtures("crm_login_with_mm")
     def test_submit_registration_information(self):
@@ -59,7 +59,7 @@ class TestBlueBridgeContest:
 
     @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('bbc_signup_data.yml', 'save_match'))
+        "kwargs", data_pool.supply('data_bbc_signup.yml', 'save_match'))
     def test_save_match_enable(self, kwargs):
         res = bbc_signUp.save_match_2(**kwargs)
         assert res.status is True

@@ -22,7 +22,7 @@ class TestBlueBridgeContest:
     @pytest.mark.skip
     @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('goods_order_data.yml', 'demolition_order_k1'))
+        "kwargs", data_pool.supply('data_goods_order.yml', 'demolition_order_k1'))
     # @pytest.mark.usefixtures("crm_login_with_mm")
     def test_demolition_order_k1(self, kwargs):
         res = goods_order.demolition_order(**kwargs)
@@ -37,7 +37,7 @@ class TestBlueBridgeContest:
     @pytest.mark.skip
     @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('goods_order_data.yml', 'demolition_order_s5'))
+        "kwargs", data_pool.supply('data_goods_order.yml', 'demolition_order_s5'))
     # @pytest.mark.usefixtures("crm_login_with_mm")
     def test_demolition_order_s5(self, kwargs):
         # kwargs['orderNo'] = pre_orderNo
@@ -51,7 +51,7 @@ class TestBlueBridgeContest:
     @pytest.mark.single
     # @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('goods_order_data.yml', 'get_pay_page_k1'))
+        "kwargs", data_pool.supply('data_goods_order.yml', 'get_pay_page_k1'))
     def test_get_pay_page_k1(self, kwargs):
         res = goods_order.getPayPage(**kwargs)
         assert res.status is True
@@ -63,7 +63,7 @@ class TestBlueBridgeContest:
     @pytest.mark.single
     # @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('goods_order_data.yml', 'get_pay_page_s5'))
+        "kwargs", data_pool.supply('data_goods_order.yml', 'get_pay_page_s5'))
     def test_get_pay_page_s5(self, kwargs):
         res = goods_order.getPayPage(**kwargs)
         assert res.status is True
@@ -76,7 +76,7 @@ class TestBlueBridgeContest:
     @pytest.mark.single
     # @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('goods_order_data.yml', 'simulation_call_back'))
+        "kwargs", data_pool.supply('data_goods_order.yml', 'simulation_call_back'))
     def test_simulation_call_back(self, kwargs):
         # sql_orderno = "SELECT outTradeNo FROM payrecord WHERE payStatus = 'WAITING' AND payType = 'WX'"
         # sql_result = mysqler.select_db(sql_orderno)
