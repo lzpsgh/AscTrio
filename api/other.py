@@ -76,10 +76,6 @@ class Other(BaseRequest):
     def is_fit_soprule_with_userid(self):
         self.req_method = 'GET'
         self.req_url = '/core/dimissionSalesStaffLeadsAllot/getSendCouponStudentId'
-        # self.req_body = {
-        #     'file': False,
-        #     'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
-        # }
         self.req_headers = {
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
@@ -99,6 +95,3 @@ other = Other(common_kit.env('BASE_URL'))
 if __name__ == '__main__':
     pass
     other.upload_material('pwd')
-    # other.dbf_set_time('1624204800000', '1625065200000')  # 21-30 未开始
-    # other.dbf_set_time('1622476800000', '1625065200000')  # 1-30  进行中
-    # other.dbf_set_time('1622476800000', '1622646000000')  # 1-2   已结束

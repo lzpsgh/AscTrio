@@ -21,27 +21,13 @@ class Coupon(BaseRequest):
     # 新增票券批次
     # 返回data/id '4329', data/no 'c_asdfadsfasd'
 
-    def create_coupon_new_version(self):
+    def create_coupon_new_version(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/coupon/createCouponNewVersion'
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
-        self.req_body = {
-            'title': 'title',
-            'couponTypeId': 25,
-            'type': 'CASH_COUPON',  # 现金 CASH_COUPON 满减 VOUCHER
-            'meetamount': 0,
-            'subamount': 2333,
-            'couponAmount': 2,  # 0 不限
-            'sendMode': 0,  # 0 手动推送
-            'sendType': 2,  # 1新签 2续费
-            'effectiveDate': "2021-06-10 15:15:00",  # 时间段-绝对
-            'expiryDate': '2021-06-10 15:30:00',  # 时间段-绝对
-            'isEnable': 0,  # 立即启用
-            'accountList': [{"accountId": 3220}, {"accountId": 3155}],
-            'roleList': []
-        }
+        self.req_body = kwargs
         result = self.x_request()
         assert_kit.result_check(result)
         return result

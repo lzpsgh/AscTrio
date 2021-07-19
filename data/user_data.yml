@@ -1,0 +1,12 @@
+booking_demo_cn:
+  -
+    isOnlyLeads:  False
+    phone:        'phone'
+    countryCode:  '86'
+    smsCode:      '123456'
+    childGrade:   '五年级'
+    childName:    'name+phone[-4:]'
+    channel:      'official'
+login_and_register_1:
+  - '188992727223'
+  - '188992727224'

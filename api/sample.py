@@ -6,6 +6,7 @@ from base.base_request import BaseRequest
 from util import assert_kit
 from util import auth_kit
 from util import common_kit
+from util.data_kit import data_pool
 
 '''
 用前须知：
@@ -22,8 +23,11 @@ result = self.request(
 result = self.request(
     method=self.req_method, url=self.req_url,headers=self.req_headers,cookies=self.req_cookies
     json=self.req_body)
-    
 详情请查阅源码base/base_request.py
+
+3. 在req_get和req_post_with_data 方法中 ,形参kwargs收到传入的n个字段，
+然后通过操作符再重新打包回dict类型，即可赋值给req_body
+
 '''
 
 
@@ -32,11 +36,22 @@ class Sample(BaseRequest):
     def __init__(self, root_url, **kwargs):
         super(Sample, self).__init__(root_url, **kwargs)
 
-    def req_get(self):
+    def req_get(self, **kwargs):
         self.req_method = 'GET'
         self.req_url = '/core/account/login'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'JSESSIONID': auth_kit.get_cookie('crm'),
+        }
+        result = self.x_request()
+        assert_kit.result_check(result)
+        return result
+
+    def req_post_with_json(self, account_name):
+        self.req_method = 'POST'
+        self.req_url = '/core/account/submit'
         self.req_body = {
-            "accountName": "zhaopeng.li@miaocode.com",
+            "accountName": account_name,
             "accountPassword": "262728293031",
         }
         self.req_cookies = {
@@ -46,27 +61,10 @@ class Sample(BaseRequest):
         assert_kit.result_check(result)
         return result
 
-    def req_post_with_json(self):
+    def req_post_with_data(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/account/submit'
-        self.req_body = {
-            "accountName": "zhaopeng.li@miaocode.com",
-            "accountPassword": "262728293031",
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
-        }
-        result = self.x_request()
-        assert_kit.result_check(result)
-        return result
-
-    def req_post_with_data(self):
-        self.req_method = 'POST'
-        self.req_url = '/core/account/submit'
-        self.req_body = {
-            "accountName": "zhaopeng.li@miaocode.com",
-            "accountPassword": "262728293031",
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
@@ -98,4 +96,5 @@ class Sample(BaseRequest):
 sample = Sample(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
-    sample.req_post_with_files()
+    kwargs = data_pool.supply('xxx.yml', 'upload_info')  # 此时kwargs是dict类型
+    sample.req_get(**kwargs)  # 通过**操作符将kwargs解包成 n个入参

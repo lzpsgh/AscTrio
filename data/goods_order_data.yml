@@ -13,37 +13,40 @@ save_match:
       - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
 demolition_order_k1:
   - # 373是K1课5280块
-    'couponIds':      '',
-    'goodsIds':       '373',
-    'payType':        'WX',
-    'payStyle':       'NATIVE',
-    'giveCourses':    '',
-    'giveOtherGifts': '',
-    'orderSource':    'GUAN_WANG'
+    couponIds:      ''
+    goodsIds:       '373'
+    payType:        'WX'
+    payStyle:       'NATIVE'
+    giveCourses:    ''
+    giveOtherGifts: ''
+    orderSource:    'GUAN_WANG'
 demolition_order_s5:
   - # 305是py的S5课6000块
-    'couponIds':      '',
-    'goodsIds':       '305',
-    'payType':        'WX',
-    'payStyle':       'NATIVE',
-    'giveCourses':    '',
-    'giveOtherGifts': '',
-    'orderSource':    'GUAN_WANG'
+    couponIds:      ''
+    goodsIds:       '305'
+    payType:        'WX'
+    payStyle:       'NATIVE'
+    giveCourses:    ''
+    giveOtherGifts: ''
+    orderSource:    'GUAN_WANG'
 get_pay_page_k1:
-  'orderNo':    'O2105207930118',
-  'payType':    'WX',
-  'payStyle':   'NATIVE',
-  'amount':     '5280',
-  'stageNum':   '',
-  'forwordUrl': 'https://sit-xuexi.miaocode.com/market/paySuccess',
-  'cancelUrl':  'https://sit-xuexi.miaocode.com/order/457'
+  -
+    orderNo:    'O2105207930118'
+    payType:    'WX'
+    payStyle:   'NATIVE'
+    amount:     '5280'
+    stageNum:   ''
+    forwordUrl: 'https://sit-xuexi.miaocode.com/market/paySuccess'
+    cancelUrl:  'https://sit-xuexi.miaocode.com/order/457'
 get_pay_page_s5:
-  'orderNo':    'O2105207930118',
-  'payType':    'WX',
-  'payStyle':   'NATIVE',
-  'amount':     '6000',
-  'stageNum':   '',
-  'forwordUrl': 'https://sit-xuexi.miaocode.com/market/paySuccess',
-  'cancelUrl':  'https://sit-xuexi.miaocode.com/order/457'
+  -
+    orderNo:    'O2105207930118'
+    payType:    'WX'
+    payStyle:   'NATIVE'
+    amount:     '6000'
+    stageNum:   ''
+    forwordUrl: 'https://sit-xuexi.miaocode.com/market/paySuccess'
+    cancelUrl:  'https://sit-xuexi.miaocode.com/order/457'
 simulation_call_back:
-  'outTradeNo': '$sql_query_tradeno$pay_rec_id'
+  -
+    outTradeNo: '$sql_query_tradeno$pay_rec_id'

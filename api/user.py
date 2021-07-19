@@ -15,18 +15,10 @@ class User(BaseRequest):
         super(User, self).__init__(api_root_url, **kwargs)
 
     # 新建预约试听课leads,官网
-    def booking_demo(self, phone):
+    def booking_demo(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/course/bookingDemo'
-        self.req_body = {
-            "isOnlyLeads": False,
-            'phone': phone,
-            'countryCode': 86,
-            'smsCode': '123456',
-            'childGrade': '五年级',
-            'childName': 'name' + phone[-4:],
-            'channel': 'official'
-        }
+        self.req_body = kwargs
         # self.req_body = datajson
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
@@ -38,11 +30,11 @@ class User(BaseRequest):
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
-    def send_sms(self):
+    def send_sms(self, phone):
         self.req_method = 'GET'
         self.req_url = '/core/ccbb/sendSMS'
         self.req_body = {
-            "phone": "18899112648"
+            "phone": phone
         }
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
@@ -67,11 +59,11 @@ class User(BaseRequest):
         return result
 
     # 微服务发送短信
-    def gz_send_sms(self, param1):
+    def gz_send_sms(self, phone):
         self.req_method = 'GET'
         self.req_url = '/gzuser/sms/sendSMS'
         self.req_body = {
-            "phone": param1
+            "phone": phone
         }
         result = self.x_request()
         assert_kit.result_check(result)
@@ -300,12 +292,12 @@ class User(BaseRequest):
 user = User(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
-    phone = '15618698971'
+    phone = '18238388579'
     userid = '110311'
 
-    # user.phone_exist(phone)
+    user.phone_exist(phone)
     # user.reset_pwd(userid)
-    user.get_current_user()
+    # user.get_current_user()
 
     # res1 = user.send_sms2(phone)
     # assert res1.rsp.status_code == 200

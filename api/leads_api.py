@@ -22,17 +22,10 @@ class LeadsAPI(BaseRequest):
         assert_kit.result_check(result)
         return result
 
-    def upload_info(self, token):
+    def upload_info(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/leadsApi/upload'
-        self.req_body = {
-            "username": 'aasdfa',
-            "channel": 'channel666',
-            "phone": '18888888879',
-            "name": 'name8877',
-            "purchaseTime": "2021-04-04 20:09:00",
-            "token": token,
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }

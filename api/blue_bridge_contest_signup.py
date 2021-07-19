@@ -16,34 +16,10 @@ class BBCSignUp(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(BBCSignUp, self).__init__(api_root_url, **kwargs)
 
-    # 提交报名信息
-    # code 000001
-    # data{
-    #     "id": 20
-    # }'''
-    def submit_registration_information(self):
+    def submit_registration_information(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/bbcEnterName/submitRegistrationInformation'
-        self.req_body = {
-            "address": "asctrio地址2",
-            "areaCode": "86",
-            "city": "",
-            "code": "12",
-            "dateOfBirth": "2011年01月01日",
-            "gender": "M",
-            "guardian": "asc爸爸姓名2",
-            "idNumber": "441481201101010014",
-            "idPhoto": "https://res.miaocode.com/competition/files/1625672893591.jpeg",
-            "mailbox": "lensaclrtn@gmail.com",
-            "matchId": "40",
-            "participants": "asc儿子姓名2",
-            "phone": "18502937862",
-            "province": "北京市",
-            "provinceAndCity": "北京市,东城区",
-            "region": "东城区",
-            "school": "asctrio学校",
-            "typeOfCertificate": "IDCARD"
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('h5'),
         }
@@ -51,8 +27,23 @@ class BBCSignUp(BaseRequest):
         assert_kit.result_check(result)
         return result
         # 响应
+        # code 000001
+        # data{
+        #     "id": 20
+        # }'''
 
     # 创建订单并返回支付所需参数，订单不包含课程
+    def create_order(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/core/bbcEnterName/createOrder'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'JSESSIONID': auth_kit.get_cookie('crm'),
+        }
+        result = self.x_request()
+        assert_kit.result_check(result)
+        return result
+
     # {
     #   "code" : "000001",
     #   "data" : {
@@ -63,15 +54,13 @@ class BBCSignUp(BaseRequest):
     #   "success" : true,
     #   "difTimeStamp" : 0
     # }
-    def create_order(self):
-        self.req_method = 'POST'
-        self.req_url = '/core/bbcEnterName/createOrder'
+
+    # 创建订单并返回支付所需参数，订单不包含课程
+    def get_order_status(self, id):
+        self.req_method = 'GET'
+        self.req_url = '/core/bbcEnterName/getOrderStatus'
         self.req_body = {
-            "id": "20",
-            "payType": "ALI",
-            "userId": "282514",
-            "forwordUrl": "https:\/\/sit.miaocode.com\/h5competition\/pay?id=20&matchId=21",
-            "payStyle": "WAP"
+            "id": id
         }
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
@@ -80,33 +69,16 @@ class BBCSignUp(BaseRequest):
         assert_kit.result_check(result)
         return result
 
-    # 创建订单并返回支付所需参数，订单不包含课程
     # code 000001
     # data{
     #     "status": "NOT_CREATED"
     # }
-    def get_order_status(self):
-        self.req_method = 'GET'
-        self.req_url = '/core/bbcEnterName/getOrderStatus'
-        self.req_body = {
-            "id": 20
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
-        }
-        result = self.x_request()
-        assert_kit.result_check(result)
-        return result
 
     # 审核通过不通过
-    def audit(self):
+    def audit(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/matchManager/audit'
-        self.req_body = {
-            'enable': '1',  # 1:通过/0:不通过
-            'failReason': '',  # 不通过原因
-            'id': '12'  # 报名记录id
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
@@ -115,13 +87,10 @@ class BBCSignUp(BaseRequest):
         return result
 
     # 启用赛事
-    def enable_match(self, match_id):
+    def enable_match(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/matchManager/enableMatch'
-        self.req_body = {
-            'enable': 1,
-            'id': match_id,  # 赛事id
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
@@ -132,25 +101,7 @@ class BBCSignUp(BaseRequest):
         assert_kit.result_check(result)
         return result
 
-    # 禁用赛事
-    def unable_match(self, match_id):
-        self.req_method = 'POST'
-        self.req_url = '/core/matchManager/enableMatch'
-        self.req_body = {
-            'enable': 0,
-            'id': match_id,  # 赛事id
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
-        }
-        result = self.request(
-            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
-            data=self.req_body
-        )
-        assert_kit.result_check(result)
-        return result
-
-    # 保存赛事
+    # 已废弃
     def save_match(self, name, expense, startTime, endTime, type, headImg, detailImgList):
         self.req_method = 'POST'
         self.req_url = '/core/matchManager/saveMatch'

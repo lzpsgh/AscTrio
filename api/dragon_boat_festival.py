@@ -27,17 +27,6 @@ class DBF(BaseRequest):
         assert_kit.result_check(result)
         return result
 
-    # 端午节活动
-    def dbf_leader_board(self):
-        self.req_method = 'GET'
-        self.req_url = '/core/dragonBoatFestival/leaderboard'
-        self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
-        }
-        result = self.x_request()
-        assert_kit.result_check(result)
-        return result
-
     # 修改活动时间
     def dbf_set_time(self, start_time, end_time):
         self.req_method = 'POST'

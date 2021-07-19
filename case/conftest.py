@@ -51,7 +51,7 @@ scenario_data = get_data("scenario_test_data.yml")
 leadsapi_data = get_data("leadsapi_test_data.yml")
 user_data = get_data("test_user.yml")
 get_add_leads_data = get_data("test_add_leads.yml")
-bbc_data = get_data("test_bbc_signup.yml")
+bbc_data = get_data("bbc_signup_data.yml")
 
 @allure.step("前置步骤 ==>> 清理数据")
 def step_first():

@@ -13,24 +13,10 @@ class GroupBuy(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(GroupBuy, self).__init__(api_root_url, **kwargs)
 
-    def add_activity(self):
+    def add_activity(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/group_buy/add_activity'
-        self.req_body = {
-            'name': 'Asctrio新的拼团名称退费',
-            'title': 'Asctrio新的拼团标题退费',
-            'startTime': '2021-06-02 07:08:00',
-            'endTime': '2021-06-29 16:48:00',
-            'userCoupon': False,
-            'channelCode': 'testtesttest',
-            'goodsId': 668,
-            'price': 1,
-            'buyChanceNumber': 1,
-            'activityType': 'GROUPPURCHASING',
-            'seatNumber': 3,
-            # 'validTime': 172799000  # 47h 59m 59s
-            'validTime': 300000  # 20h-72000000-1200min  600000-10min
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
