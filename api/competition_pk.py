@@ -18,7 +18,7 @@ class CompetitionPK(BaseRequest):
     def submit_enter_name_info(self, competitionId, age, countryCode, phone,
                                fullName, gender, certificateType, idNumber):
         self.req_method = 'POST'
-        self.req_url = '/competitionEnterName/submitEnterNameInfo'
+        self.req_url = '/core/competitionEnterName/submitEnterNameInfo'
         self.req_body = {
             "age": age,
             "countryCode": countryCode,
@@ -39,7 +39,7 @@ class CompetitionPK(BaseRequest):
     # 作品点赞
     def works_like(self, param1):
         self.req_method = 'POST'
-        self.req_url = '/competitionEnterName/worksLike'
+        self.req_url = '/core/competitionEnterName/worksLike'
         self.req_body = {
             "id": param1
         }
@@ -53,7 +53,7 @@ class CompetitionPK(BaseRequest):
     # 保存赛事
     def save_competition(self):
         self.req_method = 'POST'
-        self.req_url = '/competitionManager/saveCompetition'
+        self.req_url = '/core/competitionManager/saveCompetition'
         self.req_body = {
             "bannerList": [
                 {
@@ -139,7 +139,7 @@ class CompetitionPK(BaseRequest):
     # 删除评分维度
     def del_scoring_dimension_by_id(self, sd_id):
         self.req_method = 'POST'
-        self.req_url = '/scoringDimension/delScoringDimensionById'
+        self.req_url = '/core/scoringDimension/delScoringDimensionById'
         self.req_body = {
             "id": sd_id
         }
@@ -153,7 +153,7 @@ class CompetitionPK(BaseRequest):
     # id获取评分维度
     def get_scoring_dimension_by_id(self, sd_id):
         self.req_method = 'GET'
-        self.req_url = '/scoringDimension/getScoringDimensionById'
+        self.req_url = '/core/scoringDimension/getScoringDimensionById'
         self.req_body = {
             "id": sd_id
         }
@@ -167,7 +167,7 @@ class CompetitionPK(BaseRequest):
     # 获取评分维度列表
     def get_scoring_dimension_list(self):
         self.req_method = 'GET'
-        self.req_url = '/scoringDimension/getScoringDimensionList'
+        self.req_url = '/core/scoringDimension/getScoringDimensionList'
         self.req_body = {
         }
         self.req_cookies = {
@@ -180,7 +180,7 @@ class CompetitionPK(BaseRequest):
     # 保存评分维度-修改
     def save_scoring_dimension(self, sd_id, min_points, max_points, name):
         self.req_method = 'POST'
-        self.req_url = '/scoringDimension/saveScoringDimension'
+        self.req_url = '/core/scoringDimension/saveScoringDimension'
         self.req_body = {
             "id": sd_id,
             "maxPoints": max_points,
@@ -215,7 +215,7 @@ class CompetitionPK(BaseRequest):
     #     return result
 
 
-cmpttn_pk = CompetitionPK(common_kit.env('BASE_URL_CORE'))
+cmpttn_pk = CompetitionPK(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     # competition_enter.submit_enter_name_info('66', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')

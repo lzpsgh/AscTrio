@@ -15,7 +15,7 @@ class Other(BaseRequest):
 
     def add_sprite(self):
         self.req_method = 'POST'
-        self.req_url = '/mate/addSprite'
+        self.req_url = '/core/mate/addSprite'
         self.req_body = {
             'isCommon': False,
             'price': 8,
@@ -34,7 +34,7 @@ class Other(BaseRequest):
 
     def add_stage(self):
         self.req_method = 'POST'
-        self.req_url = '/mate/addStage'
+        self.req_url = '/core/mate/addStage'
         self.req_body = {
             'isCommon': False,
             'comment': 'asdf',
@@ -54,7 +54,7 @@ class Other(BaseRequest):
 
     def upload_material(self, mate_path):
         self.req_method = 'POST'
-        self.req_url = '/mate/uploadMaterial/'
+        self.req_url = '/core/mate/uploadMaterial/'
         self.req_body = {
             'file': False,
             'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
@@ -75,7 +75,7 @@ class Other(BaseRequest):
     # 返回符合优惠券发放规则的所有学员id，在这个学员id名单中的学员才会执行跑批脚本
     def is_fit_soprule_with_userid(self):
         self.req_method = 'GET'
-        self.req_url = '/dimissionSalesStaffLeadsAllot/getSendCouponStudentId'
+        self.req_url = '/core/dimissionSalesStaffLeadsAllot/getSendCouponStudentId'
         # self.req_body = {
         #     'file': False,
         #     'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
@@ -94,7 +94,7 @@ class Other(BaseRequest):
         return result
 
 
-other = Other(common_kit.env('BASE_URL_CORE'))
+other = Other(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     pass

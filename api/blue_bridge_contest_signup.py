@@ -23,7 +23,7 @@ class BBCSignUp(BaseRequest):
     # }'''
     def submit_registration_information(self):
         self.req_method = 'POST'
-        self.req_url = '/bbcEnterName/submitRegistrationInformation'
+        self.req_url = '/core/bbcEnterName/submitRegistrationInformation'
         self.req_body = {
             "address": "asctrio地址2",
             "areaCode": "86",
@@ -65,7 +65,7 @@ class BBCSignUp(BaseRequest):
     # }
     def create_order(self):
         self.req_method = 'POST'
-        self.req_url = '/bbcEnterName/createOrder'
+        self.req_url = '/core/bbcEnterName/createOrder'
         self.req_body = {
             "id": "20",
             "payType": "ALI",
@@ -87,7 +87,7 @@ class BBCSignUp(BaseRequest):
     # }
     def get_order_status(self):
         self.req_method = 'GET'
-        self.req_url = '/bbcEnterName/getOrderStatus'
+        self.req_url = '/core/bbcEnterName/getOrderStatus'
         self.req_body = {
             "id": 20
         }
@@ -101,7 +101,7 @@ class BBCSignUp(BaseRequest):
     # 审核通过不通过
     def audit(self):
         self.req_method = 'POST'
-        self.req_url = '/matchManager/audit'
+        self.req_url = '/core/matchManager/audit'
         self.req_body = {
             'enable': '1',  # 1:通过/0:不通过
             'failReason': '',  # 不通过原因
@@ -117,7 +117,7 @@ class BBCSignUp(BaseRequest):
     # 启用赛事
     def enable_match(self, match_id):
         self.req_method = 'POST'
-        self.req_url = '/matchManager/enableMatch'
+        self.req_url = '/core/matchManager/enableMatch'
         self.req_body = {
             'enable': 1,
             'id': match_id,  # 赛事id
@@ -135,7 +135,7 @@ class BBCSignUp(BaseRequest):
     # 禁用赛事
     def unable_match(self, match_id):
         self.req_method = 'POST'
-        self.req_url = '/matchManager/enableMatch'
+        self.req_url = '/core/matchManager/enableMatch'
         self.req_body = {
             'enable': 0,
             'id': match_id,  # 赛事id
@@ -153,7 +153,7 @@ class BBCSignUp(BaseRequest):
     # 保存赛事
     def save_match(self, name, expense, startTime, endTime, type, headImg, detailImgList):
         self.req_method = 'POST'
-        self.req_url = '/matchManager/saveMatch'
+        self.req_url = '/core/matchManager/saveMatch'
         self.req_body = {
             "name": name,
             "expense": expense,
@@ -176,7 +176,7 @@ class BBCSignUp(BaseRequest):
     # 保存赛事优化版
     def save_match_2(self, **kwargs):
         self.req_method = 'POST'
-        self.req_url = '/matchManager/saveMatch'
+        self.req_url = '/core/matchManager/saveMatch'
         self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
@@ -186,7 +186,7 @@ class BBCSignUp(BaseRequest):
         return result
 
 
-bbc_signUp = BBCSignUp(common_kit.env('BASE_URL_CORE'))
+bbc_signUp = BBCSignUp(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()

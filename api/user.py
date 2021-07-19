@@ -17,7 +17,7 @@ class User(BaseRequest):
     # 新建预约试听课leads,官网
     def booking_demo(self, phone):
         self.req_method = 'POST'
-        self.req_url = '/course/bookingDemo'
+        self.req_url = '/core/course/bookingDemo'
         self.req_body = {
             "isOnlyLeads": False,
             'phone': phone,
@@ -40,7 +40,7 @@ class User(BaseRequest):
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
     def send_sms(self):
         self.req_method = 'GET'
-        self.req_url = '/ccbb/sendSMS'
+        self.req_url = '/core/ccbb/sendSMS'
         self.req_body = {
             "phone": "18899112648"
         }
@@ -54,7 +54,7 @@ class User(BaseRequest):
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）对国内国外支持更好也支持国家码
     def send_sms2(self, phone):
         self.req_method = 'GET'
-        self.req_url = '/ccbb/sendSMS2'
+        self.req_url = '/core/ccbb/sendSMS2'
         self.req_body = {
             "phone": phone,
             'countryCode': '86'
@@ -80,7 +80,7 @@ class User(BaseRequest):
     # 落地页注册登录
     def login_and_register(self, phone):
         self.req_method = 'GET'
-        self.req_url = '/user/loginAndRegister'
+        self.req_url = '/core/user/loginAndRegister'
         self.req_body = {
             "phone": phone,
             "code": '123456',  # '262728293031'
@@ -100,7 +100,7 @@ class User(BaseRequest):
     # 官网注册,要先获取验证码,用户密码默认后4位
     def register(self, param):
         self.req_method = 'POST'
-        self.req_url = '/user/register'
+        self.req_url = '/core/user/register'
 
         self.req_body = {
             'phone': param,
@@ -149,7 +149,7 @@ class User(BaseRequest):
     # 官网登录
     def login(self, phone):
         self.req_method = 'GET'
-        self.req_url = '/user/login'
+        self.req_url = '/core/user/login'
         self.req_body = {
             "phone": phone,
             "userPassword": '262728293031',  # common.calc_pwd(phone),
@@ -168,7 +168,7 @@ class User(BaseRequest):
     # 官网退出登录
     def logout(self):
         self.req_method = 'GET'
-        self.req_url = '/user/logout'
+        self.req_url = '/core/user/logout'
         self.req_body = {
             "t": common_kit.get_timestamp()
         }
@@ -183,7 +183,7 @@ class User(BaseRequest):
     # 官网登录
     def phone_login(self, phone):
         self.req_method = 'GET'
-        self.req_url = '/user/phoneLogin'
+        self.req_url = '/core/user/phoneLogin'
         self.req_body = {
             "phone": phone,
             "code": 123456
@@ -218,7 +218,7 @@ class User(BaseRequest):
     def phone_exist(self, phone):
         # application/x-www-form-urlencoded
         self.req_method = 'POST'
-        self.req_url = '/goodsOrder/phoneExist'
+        self.req_url = '/core/goodsOrder/phoneExist'
         self.req_body = {
             "phone": phone,
         }
@@ -236,7 +236,7 @@ class User(BaseRequest):
         sql_query_userid = "select id from activityuser where phone = "
         # phone = '13333333333'
         self.req_method = 'GET'
-        self.req_url = '/user/modifyUsersOwner'
+        self.req_url = '/core/user/modifyUsersOwner'
         self.req_body = {
             'salerIds': '889',  # cc倪旭(新)  ccxu.ni01@miaocode.com
             'userIds': mysqler.select_db(sql_query_userid + phone)
@@ -252,7 +252,7 @@ class User(BaseRequest):
     # @pytest.mark.usefixtures("delete_register_user")
     def reset_pwd(self, user_id):
         self.req_method = 'POST'
-        self.req_url = '/user/resetPWD'
+        self.req_url = '/core/user/resetPWD'
         self.req_body = {
             'userId': user_id
         }
@@ -268,7 +268,7 @@ class User(BaseRequest):
     # 获取当前用户信息，用于获取 web和H5 的cookie
     def get_current_user(self):
         self.req_method = 'GET'
-        self.req_url = '/user/getCurrentUser'
+        self.req_url = '/core/user/getCurrentUser'
         result = self.x_request()
         # asserter.result_check(result)
         # code=000002, success=false message=当前用户校验不通过
@@ -282,7 +282,7 @@ class User(BaseRequest):
     # 不带cookie的请求，就是切换cookie
     def get_current_user_nocookie(self):
         self.req_method = 'GET'
-        self.req_url = '/user/getCurrentUser'
+        self.req_url = '/core/user/getCurrentUser'
         # result = self.x_request()
         result = self.request(
             method='GET', url=self.req_url,
@@ -297,7 +297,7 @@ class User(BaseRequest):
         return result
 
 
-user = User(common_kit.env('BASE_URL_CORE'))
+user = User(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     phone = '15618698971'

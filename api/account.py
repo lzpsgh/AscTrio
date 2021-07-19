@@ -15,7 +15,7 @@ class Account(BaseRequest):
 
     def crm_login(self):
         self.req_method = 'get'
-        self.req_url = '/account/login'
+        self.req_url = '/core/account/login'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "589678262728104112",  # 对应的明文是'Qwe123!@#'   589678262728104112
@@ -30,7 +30,7 @@ class Account(BaseRequest):
 
     def crm_login_with(self, account_name):
         self.req_method = 'get'
-        self.req_url = '/account/login'
+        self.req_url = '/core/account/login'
         self.req_body = {
             "accountName": account_name,
             "accountPassword": "589678262728104112",
@@ -44,7 +44,7 @@ class Account(BaseRequest):
         return result
 
 
-account = Account(common_kit.env('BASE_URL_CORE'))
+account = Account(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     account.crm_login()

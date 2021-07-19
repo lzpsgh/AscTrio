@@ -11,7 +11,7 @@ class LeadsAPI(BaseRequest):
 
     def get_token(self):
         self.req_method = 'GET'
-        self.req_url = '/leadsApi/getToken'
+        self.req_url = '/core/leadsApi/getToken'
         self.req_body = {
             "secret": 'w@qB^qxXHhYkLdEJOTEeWigR4rbpm8Ja'
         }
@@ -24,7 +24,7 @@ class LeadsAPI(BaseRequest):
 
     def upload_info(self, token):
         self.req_method = 'POST'
-        self.req_url = '/leadsApi/upload'
+        self.req_url = '/core/leadsApi/upload'
         self.req_body = {
             "username": 'aasdfa',
             "channel": 'channel666',
@@ -41,7 +41,7 @@ class LeadsAPI(BaseRequest):
         return result
 
 
-leads_api = LeadsAPI(common_kit.env('BASE_URL_CORE'))
+leads_api = LeadsAPI(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     leads_api.get_token()

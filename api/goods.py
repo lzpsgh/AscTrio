@@ -42,7 +42,7 @@ class Goods(BaseRequest):
 
     def add_new_goods_singlecourse(self):
         self.req_method = 'POST'
-        self.req_url = '/goods/addNewGoods'
+        self.req_url = '/core/goods/addNewGoods'
         self.req_body = {
             'courseType': 'RECORD',
             'title': '标题录播课商品001',
@@ -77,7 +77,7 @@ class Goods(BaseRequest):
 
     def add_new_goods_doublecourse(self):
         self.req_method = 'POST'
-        self.req_url = '/goods/addNewGoods'
+        self.req_url = '/core/goods/addNewGoods'
         self.req_body = {
             'courseType': 'RECORD',
             'title': '标题录播课商品001',
@@ -110,7 +110,7 @@ class Goods(BaseRequest):
         return result
 
 
-goods = Goods(common_kit.env('BASE_URL_CORE'))
+goods = Goods(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     # account.crm_login_with_mm()

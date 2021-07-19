@@ -15,7 +15,7 @@ class GroupBuy(BaseRequest):
 
     def add_activity(self):
         self.req_method = 'POST'
-        self.req_url = '/group_buy/add_activity'
+        self.req_url = '/core/group_buy/add_activity'
         self.req_body = {
             'name': 'Asctrio新的拼团名称退费',
             'title': 'Asctrio新的拼团标题退费',
@@ -42,7 +42,7 @@ class GroupBuy(BaseRequest):
         return result
 
 
-group_buy = GroupBuy(common_kit.env('BASE_URL_CORE'))
+group_buy = GroupBuy(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     group_buy.add_activity()

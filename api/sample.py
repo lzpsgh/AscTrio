@@ -34,7 +34,7 @@ class Sample(BaseRequest):
 
     def req_get(self):
         self.req_method = 'GET'
-        self.req_url = '/account/login'
+        self.req_url = '/core/account/login'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
@@ -48,7 +48,7 @@ class Sample(BaseRequest):
 
     def req_post_with_json(self):
         self.req_method = 'POST'
-        self.req_url = '/account/submit'
+        self.req_url = '/core/account/submit'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
@@ -62,7 +62,7 @@ class Sample(BaseRequest):
 
     def req_post_with_data(self):
         self.req_method = 'POST'
-        self.req_url = '/account/submit'
+        self.req_url = '/core/account/submit'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
@@ -79,7 +79,7 @@ class Sample(BaseRequest):
 
     def req_post_with_files(self):
         self.req_method = 'POST'
-        self.req_url = '/account/submit'
+        self.req_url = '/core/account/submit'
         self.req_body = {
             "accountName": "zhaopeng.li@miaocode.com",
             "accountPassword": "262728293031",
@@ -95,7 +95,7 @@ class Sample(BaseRequest):
         return result
 
 
-sample = Sample(common_kit.env('BASE_URL_CORE'))
+sample = Sample(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     sample.req_post_with_files()

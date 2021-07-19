@@ -65,7 +65,7 @@ class Coupon(BaseRequest):
         return result
 
 
-coupon = Coupon(common_kit.env('BASE_URL_CORE'))
+coupon = Coupon(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     coupon.create_coupon_new_version()  # 1-30  进行中

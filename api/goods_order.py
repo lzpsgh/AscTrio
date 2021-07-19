@@ -18,7 +18,7 @@ class GoodsOrder(BaseRequest):
     # 官网-创建订单-微信支付
     def demolition_order(self):
         self.req_method = 'POST'
-        self.req_url = '/goodsOrder/demolitionOrder'
+        self.req_url = '/core/goodsOrder/demolitionOrder'
         self.req_body = {
             'couponIds': '',
             'goodsIds': '373',
@@ -38,7 +38,7 @@ class GoodsOrder(BaseRequest):
     # 进入微信支付页下单
     def get_pay_page(self):
         self.req_method = 'POST'
-        self.req_url = '/goodsOrder/getPayPage'
+        self.req_url = '/core/goodsOrder/getPayPage'
         self.req_body = {
             'orderNo': 'O2105207930118',
             'payType': 'WX',
@@ -62,7 +62,7 @@ class GoodsOrder(BaseRequest):
 
     def pay_callback_suc(self, out_trade_no):
         self.req_method = 'GET'
-        self.req_url = '/goodsOrder/simulationCallBack'
+        self.req_url = '/core/goodsOrder/simulationCallBack'
         self.req_body = {
             'outTradeNo': out_trade_no  # '$sql_query_tradeno$pay_rec_id'
         }
@@ -76,7 +76,7 @@ class GoodsOrder(BaseRequest):
     # 忘了嘻嘻
     def is_use_coupon(self):
         self.req_method = 'GET'
-        self.req_url = '/goodsOrder/orderDetailForKK'
+        self.req_url = '/core/goodsOrder/orderDetailForKK'
         self.req_body = {
             "goodsIds": "373",
         }
@@ -88,7 +88,7 @@ class GoodsOrder(BaseRequest):
         return result
 
 
-goods_order = GoodsOrder(common_kit.env('BASE_URL_CORE'))
+goods_order = GoodsOrder(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     # goods_order.demolition_order()

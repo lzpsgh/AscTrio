@@ -16,7 +16,7 @@ class DBF(BaseRequest):
     # 端午节活动
     def dbf_accept_zong_zi(self, invite_code):
         self.req_method = 'POST'
-        self.req_url = '/dragonBoatFestival/acceptZongzi'
+        self.req_url = '/core/dragonBoatFestival/acceptZongzi'
         self.req_body = {
             "inviteCode": invite_code
         }
@@ -30,7 +30,7 @@ class DBF(BaseRequest):
     # 端午节活动
     def dbf_leader_board(self):
         self.req_method = 'GET'
-        self.req_url = '/dragonBoatFestival/leaderboard'
+        self.req_url = '/core/dragonBoatFestival/leaderboard'
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
         }
@@ -41,7 +41,7 @@ class DBF(BaseRequest):
     # 修改活动时间
     def dbf_set_time(self, start_time, end_time):
         self.req_method = 'POST'
-        self.req_url = '/dragonBoatFestival/setTime'
+        self.req_url = '/core/dragonBoatFestival/setTime'
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
@@ -57,7 +57,7 @@ class DBF(BaseRequest):
         return result
 
 
-dbf = DBF(common_kit.env('BASE_URL_CORE'))
+dbf = DBF(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     # dbf.dbf_set_time('1624204800000', '1625065200000')  # 21-30 未开始
