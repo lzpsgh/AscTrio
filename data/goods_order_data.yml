@@ -1,0 +1,49 @@
+---
+save_match:
+  -
+    name:      'Asctrio-ddt-pro5'
+    expense:   '0.11'
+    startTime: "2021-07-17 11:11:11"
+    endTime:   "2021-08-01 00:00:00"
+    type:      "Miaocode"
+    headImg:   "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
+    detailImgList:
+      - "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg"
+      - "https://res.miaocode.com/be06f7e9-4469-4795-9aad-7a67d4ad1191.JPG"
+      - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
+demolition_order_k1:
+  - # 373是K1课5280块
+    'couponIds':      '',
+    'goodsIds':       '373',
+    'payType':        'WX',
+    'payStyle':       'NATIVE',
+    'giveCourses':    '',
+    'giveOtherGifts': '',
+    'orderSource':    'GUAN_WANG'
+demolition_order_s5:
+  - # 305是py的S5课6000块
+    'couponIds':      '',
+    'goodsIds':       '305',
+    'payType':        'WX',
+    'payStyle':       'NATIVE',
+    'giveCourses':    '',
+    'giveOtherGifts': '',
+    'orderSource':    'GUAN_WANG'
+get_pay_page_k1:
+  'orderNo':    'O2105207930118',
+  'payType':    'WX',
+  'payStyle':   'NATIVE',
+  'amount':     '5280',
+  'stageNum':   '',
+  'forwordUrl': 'https://sit-xuexi.miaocode.com/market/paySuccess',
+  'cancelUrl':  'https://sit-xuexi.miaocode.com/order/457'
+get_pay_page_s5:
+  'orderNo':    'O2105207930118',
+  'payType':    'WX',
+  'payStyle':   'NATIVE',
+  'amount':     '6000',
+  'stageNum':   '',
+  'forwordUrl': 'https://sit-xuexi.miaocode.com/market/paySuccess',
+  'cancelUrl':  'https://sit-xuexi.miaocode.com/order/457'
+simulation_call_back:
+  'outTradeNo': '$sql_query_tradeno$pay_rec_id'

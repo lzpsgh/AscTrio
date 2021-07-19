@@ -16,18 +16,10 @@ class GoodsOrder(BaseRequest):
         super(GoodsOrder, self).__init__(api_root_url, **kwargs)
 
     # 官网-创建订单-微信支付
-    def demolition_order(self):
+    def demolition_order(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/goodsOrder/demolitionOrder'
-        self.req_body = {
-            'couponIds': '',
-            'goodsIds': '373',
-            'payType': 'WX',
-            'payStyle': 'NATIVE',
-            'giveCourses': '',
-            'giveOtherGifts': '',
-            'orderSource': 'GUAN_WANG',
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
         }
@@ -36,18 +28,10 @@ class GoodsOrder(BaseRequest):
         return result
 
     # 进入微信支付页下单
-    def get_pay_page(self):
+    def get_pay_page(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/goodsOrder/getPayPage'
-        self.req_body = {
-            'orderNo': 'O2105207930118',
-            'payType': 'WX',
-            'payStyle': 'NATIVE',
-            'amount': '5280',
-            'stageNum': '',
-            'forwordUrl': 'https://sit-xuexi.miaocode.com/market/paySuccess',
-            'cancelUrl': 'https://sit-xuexi.miaocode.com/order/457',
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
         }
@@ -60,12 +44,10 @@ class GoodsOrder(BaseRequest):
         SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE go.orderNo = 'xxxx' AND pr.payStatus = 'WAITING';
     '''
 
-    def pay_callback_suc(self, out_trade_no):
+    def pay_callback_suc(self, **kwargs):
         self.req_method = 'GET'
         self.req_url = '/core/goodsOrder/simulationCallBack'
-        self.req_body = {
-            'outTradeNo': out_trade_no  # '$sql_query_tradeno$pay_rec_id'
-        }
+        self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
         }
