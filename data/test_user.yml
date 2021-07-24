@@ -6,7 +6,7 @@ test_reset_pwd:
   - '18844550048'
 upload_info:
   -
-    username:     'aasdfa'
+    username:     {{faker.name}}
     channel:      'channel666'
     phone:        '18238388579'
     name:         'name8877'

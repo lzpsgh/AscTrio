@@ -1,24 +1,24 @@
 ---
 submit_registration_information_senior:
-#  -
-#    "address": "asctrio地址2",
-#    "areaCode": "86",
-#    "city": "",
-#    "code": "12",
-#    "dateOfBirth": "2011年01月01日",
-#    "gender": "M",
-#    "guardian": "asc爸爸姓名2",
-#    "idNumber": "441481201101010014",
-#    "idPhoto": "https://res.miaocode.com/competition/files/1625672893591.jpeg",
-#    "mailbox": "lensaclrtn@gmail.com",
-#    "matchId": "40",
-#    "participants": "asc儿子姓名2",
-#    "phone": "18502937862",
-#    "province": "北京市",
-#    "provinceAndCity": "北京市,东城区",
-#    "region": "东城区",
-#    "school": "asctrio学校",
-#    "typeOfCertificate": "IDCARD"
+  -
+    "address":           "asctrio地址2",
+    "areaCode":          "86",
+    "city":              "",
+    "code":              "12",
+    "dateOfBirth":       "2011年01月01日",
+    "gender":            "M",
+    "guardian":          "asc爸爸姓名2",
+    "idNumber":          "441481201101010014",
+    "idPhoto":           "https://res.miaocode.com/competition/files/1625672893591.jpeg",
+    "mailbox":           "lensaclrtn@gmail.com",
+    "matchId":           "40",
+    "participants":      "asc儿子姓名2",
+    "phone":             "18502937862",
+    "province":          "北京市",
+    "provinceAndCity":   "北京市,东城区",
+    "region":            "东城区",
+    "school":            "asctrio学校",
+    "typeOfCertificate": "IDCARD"
 #create_order_ali:
 #  -
 #    "id":         "20",

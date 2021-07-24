@@ -47,12 +47,11 @@ class TestBlueBridgeContest:
 
     @pytest.mark.skip
     @pytest.mark.single
-    # @pytest.mark.parametrize("req_json", datapool.supply(
-    #     'data_bbc_signup.yml',
-    #     'test_submit_registration_information'))
-    # @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_submit_registration_information(self):
-        res = bbc_signUp.submit_registration_information()
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_submit_registration_information(self, kwargs):
+        res = bbc_signUp.submit_registration_information(**kwargs)
         assert res.status is True
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
@@ -70,5 +69,4 @@ class TestBlueBridgeContest:
 
 
 if __name__ == '__main__':
-    pytest.main(
-        ["-q", "-s", "test_blue_bridge_contest.py::TestBlueBridgeContest"])
+    pytest.main(["-q", "-s", "test_blue_bridge_contest.py::TestBlueBridgeContest"])
