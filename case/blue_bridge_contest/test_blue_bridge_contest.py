@@ -10,7 +10,6 @@ from api.goods_order import goods_order
 from api.user import user
 from util.data_kit import data_pool
 from util.log_kit import logger
-from util.mysql_kit import mysqler
 
 
 @allure.epic("针对业务场景的测试")
@@ -25,10 +24,11 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('data_bbc_signup.yml', 'save_match_1'))
-    def test_save_match_enable(self, kwargs):
+    def test_save_match_enable(self, kwargs, sql_matchid):
         res = bbc_signUp.save_match(**kwargs)
         assert res.status is True
-        match_id = mysqler.query("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
+        # match_id = mysqler.query("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
+        match_id = sql_matchid()
         logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
         res1 = bbc_signUp.enable(1, match_id)
         assert res1.status is True
@@ -38,9 +38,10 @@ class TestBlueBridgeContest:
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
-    def test_submit_registration_information(self, kwargs):
+    def test_submit_registration_information(self, kwargs, sql_phone_to_userid, sql_fix_openid):
         phone = kwargs['phone']
-        userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        # userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        userid = sql_phone_to_userid(phone)
         user.reset_pwd(userid)
         user.login(phone)
         res = bbc_signUp.submit_registration_information(**kwargs)
@@ -48,17 +49,18 @@ class TestBlueBridgeContest:
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
         # 将用户的openid设置为iphone12mini上的
-        mysqler.execute(
-            f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = \'{signin_id}\' ")
+        sql_fix_openid(signin_id)
+        # mysqler.execute(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = '{signin_id}'")
 
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
-    def test_submit_pay_audit(self, kwargs):
+    def test_submit_pay_audit(self, kwargs, sql_phone_to_userid, sql_payrecordid_to_outtradeno):
         phone = kwargs['phone']
-        userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        # userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        userid = sql_phone_to_userid(phone)
         user.reset_pwd(userid)
         user.login(phone)
         res = bbc_signUp.submit_registration_information(**kwargs)
@@ -77,11 +79,11 @@ class TestBlueBridgeContest:
 
         if pay_record_id is None:
             raise Exception("aaaa")
-
         # 模拟支付回调
+        out_trade_no = sql_payrecordid_to_outtradeno(pay_record_id)
         # mysqler.execute(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = 58 ")
-        SQL_ORDERNO_OUTTRADENO = f"SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{pay_record_id}'; "
-        out_trade_no = mysqler.query(SQL_ORDERNO_OUTTRADENO)[0][0]
+        # SQL_ORDERNO_OUTTRADENO = f"SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{pay_record_id}'; "
+        # out_trade_no = mysqler.query(SQL_ORDERNO_OUTTRADENO)[0][0]
         goods_order.pay_callback_suc(out_trade_no)
 
         # 审核通过
