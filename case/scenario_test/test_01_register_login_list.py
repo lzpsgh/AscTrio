@@ -1,7 +1,7 @@
 import allure
 import pytest
+from service.zzzzz.user import login_user, get_one_user_info
 
-from service.zzzzz.user import register_user, login_user, get_one_user_info
 from util.log_kit import logger
 
 
@@ -42,7 +42,7 @@ class TestRegLogList():
         except_code = testcase_data["except_code"]
         except_msg = testcase_data["except_msg"]
         logger.info("*************** 开始执行用例 ***************")
-        result = register_user(username, password, telephone, sex, address)
+        result = (username, password, telephone, sex, address)
         step_1(username, password, telephone, sex, address)
         assert result.success is True, result.error
         result = login_user(username, password)

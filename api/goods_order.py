@@ -39,15 +39,18 @@ class GoodsOrder(BaseRequest):
         assert_kit.result_check(result)
         return result
 
-    # 微信支付模拟回调成功
+    # 支付模拟回调成功
     SQL_ORDERNO_OUTTRADENO = '''
-        SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE go.orderNo = 'xxxx' AND pr.payStatus = 'WAITING';
+        SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{}';
     '''
 
-    def pay_callback_suc(self, **kwargs):
+    def pay_callback_suc(self, out_trade_no):
         self.req_method = 'GET'
         self.req_url = '/core/goodsOrder/simulationCallBack'
-        self.req_body = kwargs
+        self.req_body = {
+            'outTradeNo': out_trade_no
+        }
+
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
         }
@@ -73,5 +76,4 @@ class GoodsOrder(BaseRequest):
 goods_order = GoodsOrder(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
-    # goods_order.demolition_order()
-    goods_order.pay_callback_suc('202107011506220954618219')
+    goods_order.pay_callback_suc('202107261637453362639157')

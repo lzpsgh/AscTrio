@@ -124,7 +124,7 @@ class CompetitionPK(BaseRequest):
         }
         result = self.x_request()
         assert_kit.result_check(result)
-        cid = mysqler.select_db('select id FROM competition where competition_name = \'赛事h5跳转\' ')[0][0]
+        cid = mysqler.query('select id FROM competition where competition_name = \'赛事h5跳转\' ')[0][0]
         if cid is not None:
             print(cid)
         return result
@@ -192,7 +192,7 @@ class CompetitionPK(BaseRequest):
         }
         result = self.x_request()
         assert_kit.result_check(result)
-        finvalue = mysqler.select_db('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
+        finvalue = mysqler.query('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
         if finvalue == 2:
             logger.info(finvalue)
         return result

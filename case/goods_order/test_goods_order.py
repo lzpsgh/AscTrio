@@ -79,7 +79,7 @@ class TestBlueBridgeContest:
         "kwargs", data_pool.supply('data_goods_order.yml', 'simulation_call_back'))
     def test_simulation_call_back(self, kwargs):
         # sql_orderno = "SELECT outTradeNo FROM payrecord WHERE payStatus = 'WAITING' AND payType = 'WX'"
-        # sql_result = mysqler.select_db(sql_orderno)
+        # sql_result = mysqler.query(sql_orderno)
         # logger.info(sql_result)
         # if sql_result == '' or sql_result is None:
         #     exit("sorry, goodbye!")

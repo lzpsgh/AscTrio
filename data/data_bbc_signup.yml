@@ -1,54 +1,9 @@
 ---
-submit_registration_information_senior:
+save_match_1:
   -
-    "address":           "asctrio地址2",
-    "areaCode":          "86",
-    "city":              "",
-    "code":              "12",
-    "dateOfBirth":       "2011年01月01日",
-    "gender":            "M",
-    "guardian":          "asc爸爸姓名2",
-    "idNumber":          "441481201101010014",
-    "idPhoto":           "https://res.miaocode.com/competition/files/1625672893591.jpeg",
-    "mailbox":           "lensaclrtn@gmail.com",
-    "matchId":           "40",
-    "participants":      "asc儿子姓名2",
-    "phone":             "18502937862",
-    "province":          "北京市",
-    "provinceAndCity":   "北京市,东城区",
-    "region":            "东城区",
-    "school":            "asctrio学校",
-    "typeOfCertificate": "IDCARD"
-#create_order_ali:
-#  -
-#    "id":         "20",
-#    "payType":    "ALI",
-#    "userId":     "282514",
-#    "forwordUrl": "https:\/\/sit.miaocode.com\/h5competition\/pay?id=20&matchId=21",
-#    "payStyle":   "WAP"
-#audit_pass:
-#  -
-#    'enable':     '1',  # 1:通过
-#    'failReason': '',  # 不通过原因
-#    'id':         '12'  # 报名记录id
-#audit_fail:
-#  -
-#    'enable':     '0',  #0:不通过
-#    'failReason': 'why',  # 不通过原因
-#    'id':         '13'  # 报名记录id
-#enable_match_true:
-#  -
-#    'enable': 1,
-#    'id':     match_id,  # 赛事id
-#enable_match_false:
-#  -
-#    'enable': 0,
-#    'id':     match_id,  # 赛事id
-save_match_2:
-  -
-    name:      'Asctrio-ddt-pro5'
+    name:      'Asctrio-ddt-pro9'
     expense:   '0.11'
-    startTime: "2021-07-17 11:11:11"
+    startTime: "2021-07-24 11:11:11"
     endTime:   "2021-08-01 00:00:00"
     type:      "Miaocode"
     headImg:   "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
@@ -56,3 +11,47 @@ save_match_2:
       - "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg"
       - "https://res.miaocode.com/be06f7e9-4469-4795-9aad-7a67d4ad1191.JPG"
       - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
+submit_registration_information_senior:
+  -
+    address:           "asctrio地址"
+    areaCode:          "86"
+    phone:             "18877771657"
+    city:              ""
+    code:              "12"
+    dateOfBirth:       "2011年02月02日"
+    gender:            "M"
+    guardian:          "asc爸爸-18877771657"
+    participants:      "asc儿子-18877771657"
+    idNumber:          "441481201101010020"
+    idPhoto:           "https://res.miaocode.com/competition/files/1625672893591.jpeg"
+    mailbox:           "lensaclrtn@gmail.com"
+    matchId:           "51"
+    province:          "北京市"
+    provinceAndCity:   "北京市,东城区"
+    region:            "东城区"
+    school:            "asctrio学校"
+    typeOfCertificate: "IDCARD"
+audit_pass:
+  -
+    enable:     1  # 1:通过 0拒绝
+    failReason: ''  # 不通过原因
+    id:         '57'  # 报名记录id
+audit_fail:
+  -
+    enable:     0  # 1:通过 0拒绝
+    failReason: 'jpkzzidshx'  # 不通过原因
+    id:         '56'  # 报名记录id
+create_order_ali:
+  -
+    id:         59
+    userId:     "399653"
+    payType:    "ALI"
+    forwordUrl: "https://sit.miaocode.com/h5competition/paySuccess"
+    payStyle:   "WAP"
+create_order_wx:
+  -
+    id:         59
+    payType:    "ALI"
+    userId:     "282514"
+    forwordUrl: "https:\/\/sit.miaocode.com\/h5competition\/pay?id=20&matchId=21"
+    payStyle:   "WAP"

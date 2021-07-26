@@ -1,16 +1,14 @@
 ---
 save_match_2:
   -
-    name:      'Asctrio-ddt-pro5'
-    expense:   '0.11'
-    startTime: "2021-07-17 11:11:11"
-    endTime:   "2021-08-01 00:00:00"
-    type:      "Miaocode"
-    headImg:   "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
-    detailImgList:
-      - "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg"
-      - "https://res.miaocode.com/be06f7e9-4469-4795-9aad-7a67d4ad1191.JPG"
-      - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
+    examName:    "接口自测"
+    startTime:   "2021-07-23 00:00:00"
+    endTime:     "2021-07-25 00:00:00"
+    testpaperId: 1
+    groupType:   1
+    matchType:   1
+    matchStage:  1
+    matchId:     "41,42"
   -
     name:      'Asctrio-ddt-pro5'
     expense:   '0.11'

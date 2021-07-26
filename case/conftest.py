@@ -4,6 +4,7 @@ import pytest
 from account import account
 from user import user
 from util.log_kit import logger
+from util.mysql_kit import mysqler
 
 
 # 在crm后台登录，获取cookies
@@ -41,10 +42,13 @@ def get_user_cookie():
     user.login()
 
 
-# 获取n个leads
-def get_old_leads(number):
-    pass
+# 获取1个leads
+def get_old_leads(phone):
+    mysqler.query("SELECT * FROM activityuser AS au WHERE au.phone = " + phone)
     # 执行数据库，从leads表里取n个leads
+
+
+# INNER JOIN saler AS s ON s.id=au.salerid
 
 
 # 获取n个正课学员
@@ -53,6 +57,7 @@ def get_old_student(number):
     # 执行数据库，从student_schedule表里取n个正课学员
 
 
+#
 # BASE_PATH = common_kit.env('PROJECT_ROOT')
 # def get_data(yaml_file_name):
 #     try:

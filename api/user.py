@@ -231,7 +231,7 @@ class User(BaseRequest):
         self.req_url = '/core/user/modifyUsersOwner'
         self.req_body = {
             'salerIds': '889',  # cc倪旭(新)  ccxu.ni01@miaocode.com
-            'userIds': mysqler.select_db(sql_query_userid + phone)
+            'userIds': mysqler.query(sql_query_userid + phone)
         }
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('web'),
@@ -292,12 +292,12 @@ class User(BaseRequest):
 user = User(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
-    phone = '18238388579'
+    phone = '13242816613'
     userid = '110311'
 
-    # user.phone_exist(phone)
+    user.phone_exist(phone)
     # user.reset_pwd(userid)
-    user.get_current_user()
+    # user.get_current_user()
 
     # res1 = user.send_sms2(phone)
     # assert res1.rsp.status_code == 200
