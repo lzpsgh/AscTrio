@@ -8,6 +8,7 @@ import pytest
 from api.blue_bridge_contest_signup import bbc_signUp
 from api.goods_order import goods_order
 from api.user import user
+from util import sql_kit
 from util.data_kit import data_pool
 from util.log_kit import logger
 
@@ -24,11 +25,10 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('data_bbc_signup.yml', 'save_match_1'))
-    def test_save_match_enable(self, kwargs, sql_matchid):
+    def test_save_match_enable(self, kwargs):
         res = bbc_signUp.save_match(**kwargs)
         assert res.status is True
-        # match_id = mysqler.query("SELECT id FROM bbc_match ORDER BY create_time DESC LIMIT 1")[0][0]
-        match_id = sql_matchid()
+        match_id = sql_kit.sql_matchid()
         logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
         res1 = bbc_signUp.enable(1, match_id)
         assert res1.status is True
@@ -38,10 +38,9 @@ class TestBlueBridgeContest:
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
-    def test_submit_registration_information(self, kwargs, sql_phone_to_userid, sql_fix_openid):
+    def test_submit_registration_information(self, kwargs):
         phone = kwargs['phone']
-        # userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
-        userid = sql_phone_to_userid(phone)
+        userid = sql_kit.sql_phone_to_userid(phone)
         user.reset_pwd(userid)
         user.login(phone)
         res = bbc_signUp.submit_registration_information(**kwargs)
@@ -49,26 +48,22 @@ class TestBlueBridgeContest:
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
         # 将用户的openid设置为iphone12mini上的
-        sql_fix_openid(signin_id)
-        # mysqler.execute(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = '{signin_id}'")
+        sql_kit.sql_fix_openid(signin_id)
 
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
-    def test_submit_pay_audit(self, kwargs, sql_phone_to_userid, sql_payrecordid_to_outtradeno):
+    def test_submit_pay_audit(self, kwargs):
         phone = kwargs['phone']
-        # userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
-        userid = sql_phone_to_userid(phone)
+        userid = sql_kit.sql_phone_to_userid(phone)
         user.reset_pwd(userid)
         user.login(phone)
         res = bbc_signUp.submit_registration_information(**kwargs)
         assert res.status is True
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
-        # 将用户的openid设置为iphone12mini上的
-        # mysqler.query(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = \'{signin_id}\' ")
 
         # 创建订单获取 payrecordId
         kwargs2 = data_pool.supply('data_bbc_signup.yml', 'create_order_ali')[0]
@@ -76,14 +71,11 @@ class TestBlueBridgeContest:
         kwargs2['userId'] = userid
         res2 = bbc_signUp.create_order(**kwargs2)
         pay_record_id = res2.sdata.get("payrecordId")
-
         if pay_record_id is None:
             raise Exception("aaaa")
+
         # 模拟支付回调
-        out_trade_no = sql_payrecordid_to_outtradeno(pay_record_id)
-        # mysqler.execute(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = 58 ")
-        # SQL_ORDERNO_OUTTRADENO = f"SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{pay_record_id}'; "
-        # out_trade_no = mysqler.query(SQL_ORDERNO_OUTTRADENO)[0][0]
+        out_trade_no = sql_kit.sql_payrecordid_to_outtradeno(pay_record_id)
         goods_order.pay_callback_suc(out_trade_no)
 
         # 审核通过

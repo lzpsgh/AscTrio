@@ -3,7 +3,7 @@
 # @Time    : 2021/7/1 下午4:22
 
 # 模块名称：蓝桥杯编程比赛-报名系统
-# Swagger： 蓝桥杯报名类接口，蓝桥杯赛事管理累接口
+# Swagger： 蓝桥杯报名类接口，蓝桥杯赛事管理类接口
 
 from base.base_request import BaseRequest
 from util import assert_kit
@@ -116,12 +116,12 @@ class BBCSignUp(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth_kit.get_cookie('crm'),
         }
-        result = self.x_request()
-        assert_kit.result_check(result)
-        return result
+        res = self.x_request()
+        assert_kit.result_check(res)
+        return res
 
 
-bbc_signUp = BBCSignUp(common_kit.env('BASE_URL'))
+bbc_sigUp = BBCSignUp(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()

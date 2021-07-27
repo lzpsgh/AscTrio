@@ -48,32 +48,11 @@ def get_old_leads(phone):
     # 执行数据库，从leads表里取n个leads
 
 
-# INNER JOIN saler AS s ON s.id=au.salerid
-
-
 # 获取n个正课学员
 def get_old_student(number):
     pass
     # 执行数据库，从student_schedule表里取n个正课学员
 
-
-# 查询数据库：手机号对应的userid
-@pytest.fixture(scope="function")
-def sql_phone_to_userid(phone):
-    user_id = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
-    return user_id
-
-
-# 查询数据库：payRecordId对应的outTradeNo
-@pytest.fixture(scope="function")
-def sql_payrecordid_to_outtradeno(prid):
-    out_trade_no = mysqler.query(
-        f"SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{prid}';")[
-        0][0]
-    return out_trade_no
-
-
-#
 # BASE_PATH = common_kit.env('PROJECT_ROOT')
 # def get_data(yaml_file_name):
 #     try:
