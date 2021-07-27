@@ -1,7 +1,7 @@
 import allure
 import pytest
+from serv.zzzzz.user import register_user, login_user, delete_user
 
-from service.zzzzz.user import register_user, login_user, delete_user
 from util.log_kit import logger
 
 

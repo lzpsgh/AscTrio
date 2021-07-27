@@ -1,8 +1,8 @@
 import allure
 import pytest
+from serv.zzzzz.user import get_all_user_info, get_one_user_info
 
 from case.conftest import api_data
-from service.zzzzz.user import get_all_user_info, get_one_user_info
 from util.log_kit import logger
 
 

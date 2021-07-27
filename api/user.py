@@ -268,7 +268,7 @@ class User(BaseRequest):
             # print(result.rsp.text)
             jsession_id = result.rsp.cookies['JSESSIONID']
             print(jsession_id)
-            auth_kit.set_cookie('h5', jsession_id)
+            auth_kit.set_cookie('web', jsession_id)
         return result
 
     # 不带cookie的请求，就是切换cookie
@@ -285,7 +285,7 @@ class User(BaseRequest):
             # print(result.rsp.text)
             jsession_id = result.rsp.cookies['JSESSIONID']
             print(jsession_id)
-            auth_kit.set_cookie('h5', jsession_id)
+            auth_kit.set_cookie('web', jsession_id)
         return result
 
 

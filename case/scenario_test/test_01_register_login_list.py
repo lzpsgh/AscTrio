@@ -1,6 +1,6 @@
 import allure
 import pytest
-from service.zzzzz.user import login_user, get_one_user_info
+from serv.zzzzz.user import login_user, get_one_user_info
 
 from util.log_kit import logger
 

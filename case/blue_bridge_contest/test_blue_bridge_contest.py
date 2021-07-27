@@ -6,8 +6,8 @@ import allure
 import pytest
 
 from api.blue_bridge_contest_signup import bbc_signUp
-from api.goods_order import goods_order
 from api.user import user
+from serv import bbc_order_serv
 from util import sql_kit
 from util.data_kit import data_pool
 from util.log_kit import logger
@@ -65,24 +65,31 @@ class TestBlueBridgeContest:
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
 
+        # 方案1，纯api层
         # 创建订单获取 payrecordId
-        kwargs2 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
-        kwargs2['id'] = int(signin_id)
-        kwargs2['userId'] = userid
-        res2 = bbc_signUp.create_order(**kwargs2)
-        pay_record_id = res2.sdata.get("payrecordId")
-        if pay_record_id is None:
-            raise Exception("aaaa")
+        # kwargs2 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
+        # kwargs2['id'] = int(signin_id)
+        # kwargs2['userId'] = userid
+        # res2 = bbc_signUp.create_order(**kwargs2)
+        # pay_record_id = res2.sdata.get("payrecordId")
+        # if pay_record_id is None:
+        #     raise Exception("aaaa")
+        # # 模拟支付回调
+        # out_trade_no = sql_kit.sql_payrecordid_to_outtradeno(pay_record_id)
+        # goods_order.pay_callback_suc(out_trade_no)
 
-        # 模拟支付回调
-        out_trade_no = sql_kit.sql_payrecordid_to_outtradeno(pay_record_id)
-        goods_order.pay_callback_suc(out_trade_no)
+        # 方案2，使用serv层
+        kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
+        kwargs3['id'] = int(signin_id)
+        kwargs3['userId'] = userid
+        kwargs3['payType'] = "ALI"
+        bbc_order_serv.pay_regfee_ali(kwargs3)
 
         # 审核通过
-        kwargs3 = data_pool.supply('bbc_signup_data.yml', 'audit_pass')[0]
-        kwargs3['enable'] = 1
-        kwargs3['id'] = signin_id
-        res4 = bbc_signUp.audit(**kwargs3)
+        kwargs4 = data_pool.supply('bbc_signup_data.yml', 'audit_pass')[0]
+        kwargs4['enable'] = 1
+        kwargs4['id'] = signin_id
+        res4 = bbc_signUp.audit(**kwargs4)
         assert res4.status is True
 
     # @pytest.mark.skip

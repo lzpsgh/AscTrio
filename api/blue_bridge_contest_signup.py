@@ -121,7 +121,7 @@ class BBCSignUp(BaseRequest):
         return res
 
 
-bbc_sigUp = BBCSignUp(common_kit.env('BASE_URL'))
+bbc_signUp = BBCSignUp(common_kit.env('BASE_URL'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()
