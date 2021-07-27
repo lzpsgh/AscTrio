@@ -5,6 +5,7 @@
 import allure
 import pytest
 
+from api.blue_bridge_contest_match import bbc_match
 from api.blue_bridge_contest_signup import bbc_signUp
 from api.user import user
 from serv import bbc_order_serv
@@ -108,6 +109,15 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_audit_pass(self, kwargs):
         res = bbc_signUp.audit(**kwargs)
+        assert res.status is True
+
+    @pytest.mark.single
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_single'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    # 创建单选题题目
+    def test_new_subject_single(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
         assert res.status is True
 
 

@@ -23,8 +23,16 @@ class Account(BaseRequest):
         }
         result = self.x_request()
         assert_util.result_check(result)
+
+        # 保存jsessionid，在core项目中用到
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
         auth_util.set_cookie('crm', core_jsessionid)
+
+        # 保存api_account_token，在蓝桥杯项目中用到
+        api_account_token = result.rsp.cookies["api_account_token"]
+        auth_util.set_bbc_token('crm', api_account_token)
+        # logger.info(api_account_token)
+
         logger.debug(core_jsessionid)
         return result
 

@@ -19,7 +19,9 @@ class BaseRequest:
         self.req_headers = {
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",  # 在HTTP1.1规范中默认开启
+            "Accept": "application/json, text/plain, */*"
         }
+        # requests.packages.urllib3.disable_warnings()
 
     def __str__(self):
         return f'BaseRequest object (api_root_url: {self.api_root_url})'
@@ -56,24 +58,24 @@ class BaseRequest:
 
         if m_method == "GET":
             # inner_rsp = self.session.get(url, timeout=5, **kwargs) # 多用户场景下不能开启session会话功能
-            inner_rsp = requests.get(url, timeout=5, **kwargs)
+            inner_rsp = requests.get(url, timeout=5, verify=False, **kwargs)
 
         if m_method == "POST":
-            inner_rsp = requests.post(url, data, json, timeout=5, **kwargs)
+            inner_rsp = requests.post(url, data, json, timeout=5, verify=False, **kwargs)
 
         if m_method == "DELETE":
-            inner_rsp = self.session.delete(url, **kwargs)
+            inner_rsp = self.session.delete(url, verify=False, **kwargs)
 
         if m_method == "PUT":
             if json:
                 # PUT 和 PATCH 中没有提供直接使用json参数的方法，因此需要用data来传入
                 data = complexjson.dumps(json)
-            inner_rsp = self.session.put(url, data, **kwargs)
+            inner_rsp = self.session.put(url, data, verify=False, **kwargs)
 
         if m_method == "PATCH":
             if json:
                 data = complexjson.dumps(json)
-            inner_rsp = self.session.patch(url, data, **kwargs)
+            inner_rsp = self.session.patch(url, data, verify=False, **kwargs)
 
         base_response = BaseResponse()
 

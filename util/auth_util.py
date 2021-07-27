@@ -24,14 +24,31 @@ def get_cookie(kw):
     return kw_cookie
 
 
+# 获取api_account_token
+def get_bbc_token(kw):
+    cookie = data_pool.load_yml(common_util.env('COOKIE_YML'))
+    kw_cookie = cookie.get(kw).get('api_account_token')
+    return kw_cookie
+
+
 # 更新cookie-用于手动调用
-# 判断是str(先组装再dump)还是dict(不组装直接dump)
 def set_cookie(kw, tmp_data):
     if type(tmp_data) != str and type(tmp_data) != dict:
         raise TypeError
     if type(tmp_data) == str:
         tmp_cookies = get_cookies_all()
         tmp_cookies[kw]['jsessionid'] = tmp_data
+        tmp_data = tmp_cookies
+    data_pool.save_cookie_yml(tmp_data)
+
+
+# 更新api_account_token-用于蓝桥杯项目
+def set_bbc_token(kw, tmp_data):
+    if type(tmp_data) != str and type(tmp_data) != dict:
+        raise TypeError
+    if type(tmp_data) == str:
+        tmp_cookies = get_cookies_all()
+        tmp_cookies[kw]['api_account_token'] = tmp_data
         tmp_data = tmp_cookies
     data_pool.save_cookie_yml(tmp_data)
 
