@@ -149,7 +149,7 @@ class User(BaseRequest):
             'countryCode': '86'
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('h5'),
+            'JSESSIONID': auth_kit.get_cookie('web'),
         }
         result = self.x_request()
         assert_kit.result_check(result)

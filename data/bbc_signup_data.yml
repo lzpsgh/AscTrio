@@ -51,7 +51,7 @@ create_order_ali:
 create_order_wx:
   -
     id:         59
-    payType:    "ALI"
+    payType:    "WX"
     userId:     "282514"
     forwordUrl: "https:\/\/sit.miaocode.com\/h5competition\/pay?id=20&matchId=21"
     payStyle:   "WAP"

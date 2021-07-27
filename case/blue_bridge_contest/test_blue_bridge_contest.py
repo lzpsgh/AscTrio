@@ -24,7 +24,7 @@ class TestBlueBridgeContest:
     # @allure.title("用户注册登录查看-预期成功")
     @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('data_bbc_signup.yml', 'save_match_1'))
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'save_match_1'))
     def test_save_match_enable(self, kwargs):
         res = bbc_signUp.save_match(**kwargs)
         assert res.status is True
@@ -36,7 +36,7 @@ class TestBlueBridgeContest:
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_registration_information(self, kwargs):
         phone = kwargs['phone']
@@ -53,7 +53,7 @@ class TestBlueBridgeContest:
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('data_bbc_signup.yml', 'submit_registration_information_senior'))
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_pay_audit(self, kwargs):
         phone = kwargs['phone']
@@ -66,7 +66,7 @@ class TestBlueBridgeContest:
         logger.info(f"报名ID是{signin_id}")
 
         # 创建订单获取 payrecordId
-        kwargs2 = data_pool.supply('data_bbc_signup.yml', 'create_order_ali')[0]
+        kwargs2 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
         kwargs2['id'] = int(signin_id)
         kwargs2['userId'] = userid
         res2 = bbc_signUp.create_order(**kwargs2)
@@ -79,7 +79,7 @@ class TestBlueBridgeContest:
         goods_order.pay_callback_suc(out_trade_no)
 
         # 审核通过
-        kwargs3 = data_pool.supply('data_bbc_signup.yml', 'audit_pass')[0]
+        kwargs3 = data_pool.supply('bbc_signup_data.yml', 'audit_pass')[0]
         kwargs3['enable'] = 1
         kwargs3['id'] = signin_id
         res4 = bbc_signUp.audit(**kwargs3)
@@ -88,7 +88,7 @@ class TestBlueBridgeContest:
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('data_bbc_signup.yml', 'audit_fail'))
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'audit_fail'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_audit_fail(self, kwargs):
         res = bbc_signUp.audit(**kwargs)
@@ -97,7 +97,7 @@ class TestBlueBridgeContest:
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('data_bbc_signup.yml', 'audit_pass'))
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'audit_pass'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_audit_pass(self, kwargs):
         res = bbc_signUp.audit(**kwargs)

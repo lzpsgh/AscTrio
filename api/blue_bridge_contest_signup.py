@@ -21,7 +21,7 @@ class BBCSignUp(BaseRequest):
         self.req_url = '/core/bbcEnterName/submitRegistrationInformation'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('h5'),
+            'JSESSIONID': auth_kit.get_cookie('web'),
         }
         result = self.x_request()
         assert_kit.result_check(result)
