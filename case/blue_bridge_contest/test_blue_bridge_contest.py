@@ -8,9 +8,9 @@ import pytest
 from api.blue_bridge_contest_signup import bbc_signUp
 from api.user import user
 from serv import bbc_order_serv
-from util import sql_kit
-from util.data_kit import data_pool
-from util.log_kit import logger
+from util import sql_util
+from util.data_util import data_pool
+from util.log_util import logger
 
 
 @allure.epic("针对业务场景的测试")
@@ -28,7 +28,7 @@ class TestBlueBridgeContest:
     def test_save_match_enable(self, kwargs):
         res = bbc_signUp.save_match(**kwargs)
         assert res.status is True
-        match_id = sql_kit.sql_matchid()
+        match_id = sql_util.sql_matchid()
         logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
         res1 = bbc_signUp.enable(1, match_id)
         assert res1.status is True
@@ -40,7 +40,7 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_registration_information(self, kwargs):
         phone = kwargs['phone']
-        userid = sql_kit.sql_phone_to_userid(phone)
+        userid = sql_util.sql_phone_to_userid(phone)
         user.reset_pwd(userid)
         user.login(phone)
         res = bbc_signUp.submit_registration_information(**kwargs)
@@ -48,7 +48,7 @@ class TestBlueBridgeContest:
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
         # 将用户的openid设置为iphone12mini上的
-        sql_kit.sql_fix_openid(signin_id)
+        sql_util.sql_fix_openid(signin_id)
 
     # @pytest.mark.skip
     # @pytest.mark.single
@@ -57,7 +57,7 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_pay_audit(self, kwargs):
         phone = kwargs['phone']
-        userid = sql_kit.sql_phone_to_userid(phone)
+        userid = sql_util.sql_phone_to_userid(phone)
         user.reset_pwd(userid)
         user.login(phone)
         res = bbc_signUp.submit_registration_information(**kwargs)

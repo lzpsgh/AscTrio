@@ -3,7 +3,7 @@ import json as complexjson
 import requests
 
 from base.base_response import BaseResponse
-from util.log_kit import logger
+from util.log_util import logger
 
 
 class BaseRequest:

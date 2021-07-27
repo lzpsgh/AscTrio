@@ -1,7 +1,7 @@
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
+from util import assert_util
+from util import auth_util
+from util import common_util
 
 sql_query_userid = "select id from activityuser where phone = "
 sql_query_tradeno = "SELECT outTradeNo FROM payrecord WHERE id = "
@@ -21,10 +21,10 @@ class GoodsOrder(BaseRequest):
         self.req_url = '/core/goodsOrder/demolitionOrder'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 进入微信支付页下单
@@ -33,10 +33,10 @@ class GoodsOrder(BaseRequest):
         self.req_url = '/core/goodsOrder/getPayPage'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 支付模拟回调成功
@@ -52,10 +52,10 @@ class GoodsOrder(BaseRequest):
         }
 
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 忘了嘻嘻
@@ -66,14 +66,14 @@ class GoodsOrder(BaseRequest):
             "goodsIds": "373",
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
 
-goods_order = GoodsOrder(common_kit.env('BASE_URL'))
+goods_order = GoodsOrder(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     goods_order.pay_callback_suc('202107261637453362639157')

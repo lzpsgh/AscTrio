@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/7/27 上午11:01
 
-from util.mysql_kit import mysqler
+from util.mysql_util import mysqler
 
 
 # 查询数据库：手机号对应的userid

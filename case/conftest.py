@@ -3,8 +3,8 @@ import pytest
 
 from account import account
 from user import user
-from util.log_kit import logger
-from util.mysql_kit import mysqler
+from util.log_util import logger
+from util.mysql_util import mysqler
 
 
 # 在crm后台登录，获取cookies

@@ -5,7 +5,7 @@
 import pytest
 
 from api.sample import sample
-from util.data_kit import data_pool
+from util.data_util import data_pool
 
 
 # @allure.severity(allure.severity_level.NORMAL)

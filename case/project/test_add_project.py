@@ -6,7 +6,7 @@ import pytest
 
 from api.project import project
 from user import user
-from util.mysql_kit import mysqler
+from util.mysql_util import mysqler
 
 
 class TestLeadsAddProject:

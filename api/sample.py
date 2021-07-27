@@ -3,10 +3,10 @@
 # 模版文件，仅供参考
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
-from util.data_kit import data_pool
+from util import assert_util
+from util import auth_util
+from util import common_util
+from util.data_util import data_pool
 
 '''
 用前须知：
@@ -41,10 +41,10 @@ class Sample(BaseRequest):
         self.req_url = '/core/account/login'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     def req_post_with_json(self, account_name):
@@ -55,10 +55,10 @@ class Sample(BaseRequest):
             "accountPassword": "262728293031",
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     def req_post_with_data(self, **kwargs):
@@ -66,13 +66,13 @@ class Sample(BaseRequest):
         self.req_url = '/core/account/submit'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     def req_post_with_files(self):
@@ -83,17 +83,17 @@ class Sample(BaseRequest):
             "accountPassword": "262728293031",
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             files=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
 
-sample = Sample(common_kit.env('BASE_URL'))
+sample = Sample(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     kwargs = data_pool.supply('xxx.yml', 'upload_info')  # 此时kwargs是dict类型

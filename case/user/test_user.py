@@ -6,9 +6,9 @@ import pytest
 
 from api.account import account
 from api.user import user
-from util.data_kit import data_pool
-from util.log_kit import logger
-from util.mysql_kit import mysqler
+from util.data_util import data_pool
+from util.log_util import logger
+from util.mysql_util import mysqler
 
 
 class TestUser:

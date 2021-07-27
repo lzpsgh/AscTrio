@@ -2,10 +2,10 @@
 # @Time    : 2021/4/10 下午8:54
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
-from util.log_kit import logger
+from util import assert_util
+from util import auth_util
+from util import common_util
+from util.log_util import logger
 
 
 class Account(BaseRequest):
@@ -22,9 +22,9 @@ class Account(BaseRequest):
             "captcha": 'qwe123EWQ#@!'  # '262728293031'
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        auth_kit.set_cookie('crm', core_jsessionid)
+        auth_util.set_cookie('crm', core_jsessionid)
         logger.debug(core_jsessionid)
         return result
 
@@ -37,14 +37,14 @@ class Account(BaseRequest):
             "captcha": 'qwe123EWQ#@!'
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        auth_kit.set_cookie('crm', core_jsessionid)
+        auth_util.set_cookie('crm', core_jsessionid)
         logger.debug(core_jsessionid)
         return result
 
 
-account = Account(common_kit.env('BASE_URL'))
+account = Account(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     account.crm_login()

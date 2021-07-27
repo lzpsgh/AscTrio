@@ -3,11 +3,11 @@
 # @Time    : 2021/6/11 下午1:52
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
-from util.log_kit import logger
-from util.mysql_kit import mysqler
+from util import assert_util
+from util import auth_util
+from util import common_util
+from util.log_util import logger
+from util.mysql_util import mysqler
 
 
 class CompetitionPK(BaseRequest):
@@ -30,10 +30,10 @@ class CompetitionPK(BaseRequest):
             "competitionId": competitionId,
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 作品点赞
@@ -44,10 +44,10 @@ class CompetitionPK(BaseRequest):
             "id": param1
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 保存赛事
@@ -120,10 +120,10 @@ class CompetitionPK(BaseRequest):
             "competitionName": "赛事h5跳转"  # asctrio赛事27
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         cid = mysqler.query('select id FROM competition where competition_name = \'赛事h5跳转\' ')[0][0]
         if cid is not None:
             print(cid)
@@ -144,10 +144,10 @@ class CompetitionPK(BaseRequest):
             "id": sd_id
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # id获取评分维度
@@ -158,10 +158,10 @@ class CompetitionPK(BaseRequest):
             "id": sd_id
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 获取评分维度列表
@@ -171,10 +171,10 @@ class CompetitionPK(BaseRequest):
         self.req_body = {
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 保存评分维度-修改
@@ -188,10 +188,10 @@ class CompetitionPK(BaseRequest):
             "name": name
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         finvalue = mysqler.query('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
         if finvalue == 2:
             logger.info(finvalue)
@@ -215,7 +215,7 @@ class CompetitionPK(BaseRequest):
     #     return result
 
 
-cmpttn_pk = CompetitionPK(common_kit.env('BASE_URL'))
+cmpttn_pk = CompetitionPK(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     # competition_enter.submit_enter_name_info('66', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')

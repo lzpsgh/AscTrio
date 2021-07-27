@@ -1,7 +1,7 @@
 import pytest
 
 from user import user
-from util.data_kit import data_pool
+from util.data_util import data_pool
 
 
 # @allure.severity(allure.severity_level.CRITICAL)

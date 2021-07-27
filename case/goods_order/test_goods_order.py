@@ -5,7 +5,7 @@
 import pytest
 
 from api.goods_order import goods_order
-from util.data_kit import data_pool
+from util.data_util import data_pool
 
 
 class TestBlueBridgeContest:

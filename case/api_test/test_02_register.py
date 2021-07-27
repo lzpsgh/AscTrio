@@ -3,7 +3,7 @@ import pytest
 from serv.zzzzz.user import register_user
 
 from case.conftest import api_data
-from util.log_kit import logger
+from util.log_util import logger
 
 
 @allure.step("步骤1 ==>> 注册用户")

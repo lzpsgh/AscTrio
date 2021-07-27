@@ -6,8 +6,8 @@
 import pytest
 
 from api.leads_api import leads_api
-from util.data_kit import data_pool
-from util.log_kit import logger
+from util.data_util import data_pool
+from util.log_util import logger
 
 
 # @allure.severity(allure.severity_level.NORMAL)

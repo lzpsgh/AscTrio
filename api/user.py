@@ -3,10 +3,10 @@
 # 模版文件，仅供参考，无法执行
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
-from util.mysql_kit import mysqler
+from util import assert_util
+from util import auth_util
+from util import common_util
+from util.mysql_util import mysqler
 
 
 class User(BaseRequest):
@@ -21,12 +21,12 @@ class User(BaseRequest):
         self.req_body = kwargs
         # self.req_body = datajson
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, data=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
@@ -37,10 +37,10 @@ class User(BaseRequest):
             "phone": phone
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）对国内国外支持更好也支持国家码
@@ -52,10 +52,10 @@ class User(BaseRequest):
             'countryCode': '86'
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 微服务发送短信
@@ -66,7 +66,7 @@ class User(BaseRequest):
             "phone": phone
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 落地页注册登录
@@ -76,17 +76,17 @@ class User(BaseRequest):
         self.req_body = {
             "phone": phone,
             "code": '123456',  # '262728293031'
-            't': common_kit.get_timestamp()
+            't': common_util.get_timestamp()
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         # result = self.x_request()
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             params=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 官网注册,要先获取验证码,用户密码默认后4位
@@ -107,13 +107,13 @@ class User(BaseRequest):
         }
 
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         # core_jsessionid = result.rsp.cookies["JSESSIONID"]  # todo有时候不返回jsessionid
         # auth.set_cookie('web', core_jsessionid)
         # logger.info(core_jsessionid)
@@ -135,7 +135,7 @@ class User(BaseRequest):
         #     'JSESSIONID': auth.set_cookie('web'),
         # }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 官网登录
@@ -149,10 +149,10 @@ class User(BaseRequest):
             'countryCode': '86'
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         # TODO 2021/07/12 17:45:48 临时禁用
         # auth.set_cookie('h5', result.rsp.cookies["JSESSIONID"])
         return result
@@ -162,14 +162,14 @@ class User(BaseRequest):
         self.req_method = 'GET'
         self.req_url = '/core/user/logout'
         self.req_body = {
-            "t": common_kit.get_timestamp()
+            "t": common_util.get_timestamp()
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
-        auth_kit.set_cookie('web', result.rsp.cookies["JSESSIONID"])
+        assert_util.result_check(result)
+        auth_util.set_cookie('web', result.rsp.cookies["JSESSIONID"])
         return result
 
     # 官网登录
@@ -181,11 +181,11 @@ class User(BaseRequest):
             "code": 123456
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
-        auth_kit.set_cookie('web', result.rsp.cookies["JSESSIONID"])
+        assert_util.result_check(result)
+        auth_util.set_cookie('web', result.rsp.cookies["JSESSIONID"])
         return result
 
     # 微服务登录
@@ -202,8 +202,8 @@ class User(BaseRequest):
             params=self.req_body
         )
         token = result.rsp.cookies['token']
-        auth_kit.set_cookie('gz', token)
-        assert_kit.result_check(result)
+        auth_util.set_cookie('gz', token)
+        assert_util.result_check(result)
         return result
 
     # 判断手机号是否存在（落地页和）
@@ -215,12 +215,12 @@ class User(BaseRequest):
             "phone": phone,
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, data=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 修改用户所属cc
@@ -234,10 +234,10 @@ class User(BaseRequest):
             'userIds': mysqler.query(sql_query_userid + phone)
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 重制用户密码
@@ -249,12 +249,12 @@ class User(BaseRequest):
             'userId': user_id
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 获取当前用户信息，用于获取 web和H5 的cookie
@@ -268,7 +268,7 @@ class User(BaseRequest):
             # print(result.rsp.text)
             jsession_id = result.rsp.cookies['JSESSIONID']
             print(jsession_id)
-            auth_kit.set_cookie('web', jsession_id)
+            auth_util.set_cookie('web', jsession_id)
         return result
 
     # 不带cookie的请求，就是切换cookie
@@ -285,11 +285,11 @@ class User(BaseRequest):
             # print(result.rsp.text)
             jsession_id = result.rsp.cookies['JSESSIONID']
             print(jsession_id)
-            auth_kit.set_cookie('web', jsession_id)
+            auth_util.set_cookie('web', jsession_id)
         return result
 
 
-user = User(common_kit.env('BASE_URL'))
+user = User(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     phone = '13242816613'

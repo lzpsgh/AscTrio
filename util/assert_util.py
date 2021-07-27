@@ -1,6 +1,6 @@
 # coding     : utf-8
 # @Time      : 2021/5/2 下午1:43
-from util.log_kit import logger
+from util.log_util import logger
 
 
 # todo 改用try-except异常并抛捕获
