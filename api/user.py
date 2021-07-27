@@ -153,7 +153,6 @@ class User(BaseRequest):
         }
         result = self.x_request()
         assert_util.result_check(result)
-        # TODO 2021/07/12 17:45:48 临时禁用
         # auth.set_cookie('h5', result.rsp.cookies["JSESSIONID"])
         return result
 

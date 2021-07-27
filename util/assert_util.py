@@ -4,7 +4,6 @@ from util.log_util import logger
 
 
 # todo 改用try-except异常并抛捕获
-# todo 流程和异常判定优化
 def result_check(result):
     origin = 'api'
     if origin == 'case':

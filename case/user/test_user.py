@@ -48,7 +48,6 @@ class TestUser:
     @pytest.mark.usefixtures('crm_login_with_mm', 'h5_login')
     # 宝贝作品的登录接口
     def test_user_login(self, phone):
-        # TODO 加异常判断
         # user.get_current_user_nocookie()
         userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
         logger.info(f'用户的phone是{phone}, userid是{userid}')

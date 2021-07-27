@@ -51,7 +51,6 @@ class BaseRequest:
         headers = dict(**kwargs).get("headers")
         params = dict(**kwargs).get("params")
         files = dict(**kwargs).get("files")
-        # todo 为什么从kwargs取出的cookies的值会变成params，而在调qequests.get时又会被还原回去。但并没影响实际功能
         cookies = dict(**kwargs).get("cookies")
         inner_rsp = {}
         self.request_log(url, data, json, params, headers, files, cookies)
@@ -97,7 +96,6 @@ class BaseRequest:
     # 用 data 参数的 post 请求（建议改用原始的 request 方法 ，对应的请求头是 application/x-www-form-urlencoded）
     # 其他 put, patch 请求（建议改用原始的 request 方法）
     # todo 用try-except捕获异常
-    # todo 用partial优化
     def x_request(self):
         m_method = self.req_method
         method = m_method.strip().upper()

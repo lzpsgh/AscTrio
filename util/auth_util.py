@@ -6,11 +6,6 @@ from util import common_util
 from util.data_util import data_pool
 
 
-# todo 二期-鉴权-改用RequestsCookieJar
-# [https://docs.python-requests.org/zh_CN/latest/user/quickstart.html?highlight=cookie#cookie]
-
-# todo 二期-鉴权-增加token鉴权方式
-
 # 获取现有的cookies
 def get_cookies_all():
     cookie = data_pool.load_yml(common_util.env('COOKIE_YML'))
