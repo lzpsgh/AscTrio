@@ -1,14 +1,14 @@
 import pymysql
 
-from util import common_kit
-from util.log_kit import logger
+from util import common_util
+from util.log_util import logger
 
 DB_CONF = {
-    "host": common_kit.env('MYSQL_HOST'),
-    "port": int(common_kit.env('MYSQL_PORT')),
-    "user": common_kit.env('MYSQL_USER'),
-    "password": common_kit.env('MYSQL_PASSWD'),
-    "db": common_kit.env('MYSQL_DB'),
+    "host": common_util.env('MYSQL_HOST'),
+    "port": int(common_util.env('MYSQL_PORT')),
+    "user": common_util.env('MYSQL_USER'),
+    "password": common_util.env('MYSQL_PASSWD'),
+    "db": common_util.env('MYSQL_DB'),
 }
 
 
@@ -27,7 +27,7 @@ class Mysqler:
         # 关闭数据库连接
         self.conn.close()
 
-    def select_db(self, sql):
+    def query(self, sql):
         """查询"""
         # 检查连接是否断开，如果断开就进行重连
         self.conn.ping(reconnect=True)
@@ -37,7 +37,7 @@ class Mysqler:
         data = self.cur.fetchall()
         return data
 
-    def execute_db(self, sql):
+    def execute(self, sql):
         """更新/新增/删除"""
         try:
             # 检查连接是否断开，如果断开就进行重连
@@ -53,6 +53,15 @@ class Mysqler:
 
 
 mysqler = Mysqler(DB_CONF)
+
+if __name__ == '__main__':
+    # 数据库读操作
+    pay_record_id = '33344'
+    key = mysqler.query(
+        f"SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{pay_record_id}'; ")[
+        0][0]
+    # 数据库写操作
+    mysqler.execute(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = 58 ")
 
 #
 # def exec_sql(sql):

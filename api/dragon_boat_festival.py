@@ -3,9 +3,9 @@
 # @Time    : 2021/6/7 下午6:12
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
+from util import assert_util
+from util import auth_util
+from util import common_util
 
 
 class DBF(BaseRequest):
@@ -21,10 +21,10 @@ class DBF(BaseRequest):
             "inviteCode": invite_code
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 修改活动时间
@@ -32,7 +32,7 @@ class DBF(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/core/dragonBoatFestival/setTime'
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         self.req_body = {
             "startTime": start_time,
@@ -42,11 +42,11 @@ class DBF(BaseRequest):
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
 
-dbf = DBF(common_kit.env('BASE_URL'))
+dbf = DBF(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     # dbf.dbf_set_time('1624204800000', '1625065200000')  # 21-30 未开始

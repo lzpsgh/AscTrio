@@ -5,7 +5,7 @@ import pytest
 
 from api.competition_pk import cmpttn_pk
 from case import conftest
-from util.log_kit import logger
+from util.log_util import logger
 
 
 class TestScoringDimension:

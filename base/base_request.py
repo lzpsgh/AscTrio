@@ -3,7 +3,7 @@ import json as complexjson
 import requests
 
 from base.base_response import BaseResponse
-from util.log_kit import logger
+from util.log_util import logger
 
 
 class BaseRequest:
@@ -19,7 +19,9 @@ class BaseRequest:
         self.req_headers = {
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",  # 在HTTP1.1规范中默认开启
+            "Accept": "application/json, text/plain, */*"
         }
+        # requests.packages.urllib3.disable_warnings()
 
     def __str__(self):
         return f'BaseRequest object (api_root_url: {self.api_root_url})'
@@ -49,31 +51,30 @@ class BaseRequest:
         headers = dict(**kwargs).get("headers")
         params = dict(**kwargs).get("params")
         files = dict(**kwargs).get("files")
-        # todo 为什么从kwargs取出的cookies的值会变成params，而在调qequests.get时又会被还原回去。但并没影响实际功能
         cookies = dict(**kwargs).get("cookies")
         inner_rsp = {}
         self.request_log(url, data, json, params, headers, files, cookies)
 
         if m_method == "GET":
             # inner_rsp = self.session.get(url, timeout=5, **kwargs) # 多用户场景下不能开启session会话功能
-            inner_rsp = requests.get(url, timeout=5, **kwargs)
+            inner_rsp = requests.get(url, timeout=5, verify=False, **kwargs)
 
         if m_method == "POST":
-            inner_rsp = requests.post(url, data, json, timeout=5, **kwargs)
+            inner_rsp = requests.post(url, data, json, timeout=5, verify=False, **kwargs)
 
         if m_method == "DELETE":
-            inner_rsp = self.session.delete(url, **kwargs)
+            inner_rsp = self.session.delete(url, verify=False, **kwargs)
 
         if m_method == "PUT":
             if json:
                 # PUT 和 PATCH 中没有提供直接使用json参数的方法，因此需要用data来传入
                 data = complexjson.dumps(json)
-            inner_rsp = self.session.put(url, data, **kwargs)
+            inner_rsp = self.session.put(url, data, verify=False, **kwargs)
 
         if m_method == "PATCH":
             if json:
                 data = complexjson.dumps(json)
-            inner_rsp = self.session.patch(url, data, **kwargs)
+            inner_rsp = self.session.patch(url, data, verify=False, **kwargs)
 
         base_response = BaseResponse()
 
@@ -95,7 +96,6 @@ class BaseRequest:
     # 用 data 参数的 post 请求（建议改用原始的 request 方法 ，对应的请求头是 application/x-www-form-urlencoded）
     # 其他 put, patch 请求（建议改用原始的 request 方法）
     # todo 用try-except捕获异常
-    # todo 用partial优化
     def x_request(self):
         m_method = self.req_method
         method = m_method.strip().upper()

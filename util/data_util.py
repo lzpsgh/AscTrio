@@ -3,9 +3,9 @@ from configparser import ConfigParser
 
 import yaml
 
-from util import common_kit
+from util import common_util
 
-BASE_PATH = common_kit.env('PROJECT_ROOT')
+BASE_PATH = common_util.env('PROJECT_ROOT')
 
 
 # 由于[安全问题](https://security.openstack.org/guidelines/dg_avoid-dangerous-input-parsing-libraries.html)
@@ -25,7 +25,7 @@ class DataPool:
         pass
 
     def save_cookie_yml(self, yml_data):
-        file_path = common_kit.env('COOKIE_YML')
+        file_path = common_util.env('COOKIE_YML')
         # logger.debug(f"打开文件: {file_path}")
         with open(file_path, 'w', encoding='utf-8') as f:
             tmp_data = yaml.safe_dump(yml_data, f, default_flow_style=False)  # 写入文件，不是用flow流格式

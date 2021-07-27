@@ -3,12 +3,12 @@
 # @Time    : 2021/7/1 下午4:22
 
 # 模块名称：蓝桥杯编程比赛-报名系统
-# Swagger： 蓝桥杯报名类接口，蓝桥杯赛事管理累接口
+# Swagger： 蓝桥杯报名类接口，蓝桥杯赛事管理类接口
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
+from util import assert_util
+from util import auth_util
+from util import common_util
 
 
 class BBCSignUp(BaseRequest):
@@ -21,10 +21,10 @@ class BBCSignUp(BaseRequest):
         self.req_url = '/core/bbcEnterName/submitRegistrationInformation'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('h5'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
         # 响应
         # code 000001
@@ -32,16 +32,16 @@ class BBCSignUp(BaseRequest):
         #     "id": 20
         # }'''
 
-    # 创建订单并返回支付所需参数，订单不包含课程
+    # 创建订单并返回支付所需参数，订单不包含课程, 微信的用以前的支付回调，支付宝的
     def create_order(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/bbcEnterName/createOrder'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # {
@@ -63,10 +63,10 @@ class BBCSignUp(BaseRequest):
             "id": id
         }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # code 000001
@@ -80,64 +80,48 @@ class BBCSignUp(BaseRequest):
         self.req_url = '/core/matchManager/audit'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
-        result = self.x_request()
-        assert_kit.result_check(result)
+        # result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
+            data=self.req_body
+        )
+        assert_util.result_check(result)
         return result
 
-    # 启用赛事
-    def enable_match(self, **kwargs):
+    # 启用禁用赛事
+    def enable(self, is_enable, match_id):
         self.req_method = 'POST'
         self.req_url = '/core/matchManager/enableMatch'
-        self.req_body = kwargs
+        self.req_body = {
+            "enable": is_enable,  # 1启用 0禁用
+            "id": match_id
+        }
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
         )
-        assert_kit.result_check(result)
-        return result
-
-    # 已废弃
-    def save_match(self, name, expense, startTime, endTime, type, headImg, detailImgList):
-        self.req_method = 'POST'
-        self.req_url = '/core/matchManager/saveMatch'
-        self.req_body = {
-            "name": name,
-            "expense": expense,
-            "startTime": startTime,
-            "endTime": endTime,
-            "type": type,  # Miaocode, Python
-            "headImg": headImg,
-            "detailImgList": detailImgList,
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
-        }
-        result = self.request(
-            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
-            json=self.req_body
-        )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         return result
 
     # 保存赛事优化版
-    def save_match_2(self, **kwargs):
+    def save_match(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/matchManager/saveMatch'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_kit.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
-        result = self.x_request()
-        assert_kit.result_check(result)
-        return result
+        res = self.x_request()
+        assert_util.result_check(res)
+        return res
 
 
-bbc_signUp = BBCSignUp(common_kit.env('BASE_URL'))
+bbc_signUp = BBCSignUp(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()

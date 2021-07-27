@@ -2,10 +2,10 @@
 # @Time    : 2021/4/10 下午8:54
 
 from base.base_request import BaseRequest
-from util import assert_kit
-from util import auth_kit
-from util import common_kit
-from util.log_kit import logger
+from util import assert_util
+from util import auth_util
+from util import common_util
+from util.log_util import logger
 
 """
 courseType: RECORD
@@ -47,14 +47,14 @@ class Goods(BaseRequest):
         result = self.request(
             method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
         )
-        assert_kit.result_check(result)
+        assert_util.result_check(result)
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        auth_kit.set_cookie('crm', core_jsessionid)
+        auth_util.set_cookie('crm', core_jsessionid)
         logger.debug(core_jsessionid)
         return result
 
 
-goods = Goods(common_kit.env('BASE_URL'))
+goods = Goods(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
     pass

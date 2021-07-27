@@ -6,8 +6,8 @@
 import pytest
 
 from api.leads_api import leads_api
-from util.data_kit import data_pool
-from util.log_kit import logger
+from util.data_util import data_pool
+from util.log_util import logger
 
 
 # @allure.severity(allure.severity_level.NORMAL)
@@ -22,7 +22,7 @@ class TestLeadsApi:
     # @allure.title("标题：leadsapi获取token后提交入库")
     @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('data_leads_api.yml', 'upload_info'))
+        "kwargs", data_pool.supply('leads_api_data.yml', 'upload_info'))
     # @pytest.mark.usefixtures("crm_login_with_mm")
     def test_upload_info(self, kwargs):
         result = leads_api.get_token()

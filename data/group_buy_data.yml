@@ -1,0 +1,15 @@
+---
+add_activity_1:
+  -
+    name:            'Asctrio新的拼团名称退费'
+    title:           'Asctrio新的拼团标题退费'
+    startTime:       '2021-06-02 07:08:00'
+    endTime:         '2021-06-29 16:48:00'
+    userCoupon:      False
+    channelCode:     'testtesttest'
+    goodsId:         668
+    price:           1
+    buyChanceNumber: 1
+    activityType:    'GROUPPURCHASING'
+    seatNumber:      3
+    validTime:       300000  # 20h-72000000-1200min  600000-10mi

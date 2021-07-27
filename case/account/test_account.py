@@ -10,12 +10,6 @@ from api.account import account
 class TestAccount:
     # @pytest.mark.skip
     # @pytest.mark.single
-    kwargs = {
-        "accountName": "zhaopeng.li@miaocode.com",
-        "accountPassword": "589678262728104112",  # 对应的明文是'Qwe123!@#'   589678262728104112
-        "captcha": 'qwe123EWQ#@!'  # '262728293031'
-    }
-
     def test_crm_login(self):
         result = account.crm_login()
         assert result.rsp.status_code == 200
