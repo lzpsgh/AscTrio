@@ -80,6 +80,7 @@ class TestBlueBridgeContest:
         # goods_order.pay_callback_suc(out_trade_no)
 
         # 方案2，使用serv层
+        # 下单支付
         kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
         kwargs3['id'] = int(signin_id)
         kwargs3['userId'] = userid
@@ -111,11 +112,22 @@ class TestBlueBridgeContest:
         res = bbc_signUp.audit(**kwargs)
         assert res.status is True
 
+    # 创建单选题题目
+    # @pytest.mark.skip
     @pytest.mark.single
     @pytest.mark.parametrize(
         'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_single'))
     @pytest.mark.usefixtures("crm_login_with_mm")
-    # 创建单选题题目
+    def test_new_subject_single(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建试卷
+    # @pytest.mark.skip
+    @pytest.mark.single
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_single'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
     def test_new_subject_single(self, kwargs):
         res = bbc_match.new_subject(**kwargs)
         assert res.status is True

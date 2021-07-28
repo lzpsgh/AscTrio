@@ -6,7 +6,7 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-
+from util.data_util import data_pool
 
 class BBCMatch(BaseRequest):
 
@@ -40,5 +40,5 @@ class BBCMatch(BaseRequest):
 bbc_match = BBCMatch(common_util.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
-    pass
-    # bbc_match.new_subject()
+    kwargs = data_pool.supply('bbc_contest_data.yml', 'new_subject_single')[0]
+    bbc_match.new_subject(**kwargs)

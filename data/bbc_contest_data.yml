@@ -5,7 +5,7 @@ new_subject_single:
     degree:           1       # 0简单1普通2困难
     knowledgePointId: 571
     scope:            2        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
-    subDescribe:      "<p>2题干文本内容</p>"
+    subDescribe:      "<p>关联试卷文本内容</p>"
     options:
       -
         iscorrect:     2
