@@ -36,6 +36,18 @@ class BBCMatch(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 新建试卷
+    def add_paper(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/gzlqb/scienceart/paper/add'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'api_account_token': auth_util.get_bbc_token('crm'),
+        }
+        result = self.x_request()
+        assert_util.result_check(result)
+        return result
+
 
 bbc_match = BBCMatch(common_util.env('BASE_URL_GZ'))
 

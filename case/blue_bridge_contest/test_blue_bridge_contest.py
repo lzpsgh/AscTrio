@@ -114,7 +114,6 @@ class TestBlueBridgeContest:
 
     # 创建单选题题目
     # @pytest.mark.skip
-    @pytest.mark.single
     @pytest.mark.parametrize(
         'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_single'))
     @pytest.mark.usefixtures("crm_login_with_mm")
@@ -122,14 +121,28 @@ class TestBlueBridgeContest:
         res = bbc_match.new_subject(**kwargs)
         assert res.status is True
 
-    # 创建试卷
-    # @pytest.mark.skip
-    @pytest.mark.single
+    # 创建判断题题目
     @pytest.mark.parametrize(
-        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_single'))
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_judge'))
     @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_new_subject_single(self, kwargs):
+    def test_new_subject_judge(self, kwargs):
         res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建填空题题目
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_blank'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_new_subject_blank(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建编程题题目
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'add_paper'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_add_paper(self, kwargs):
+        res = bbc_match.add_paper(**kwargs)
         assert res.status is True
 
 

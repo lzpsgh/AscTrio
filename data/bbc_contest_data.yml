@@ -1,25 +1,436 @@
 ---
 new_subject_single:
   -
-    subjectType:      0  # 0选择题1多选题2判断题3填空题4编程题5编程开放题
-    degree:           1       # 0简单1普通2困难
+    subjectType:      1  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           2       # 0简单1普通2困难
     knowledgePointId: 571
-    scope:            2        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
-    subDescribe:      "<p>关联试卷文本内容</p>"
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>多选4选2ab-1</p>"
     options:
       -
-        iscorrect:     2
-        optioncontent: "A选项"
-      -
-        iscorrect:     2
-        optioncontent: "B选项"
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png"
       -
         iscorrect:     1
-        optioncontent: "C选项"
+        optioncontent: "https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg"
       -
         iscorrect:     2
-        optioncontent: "D选项"
+        optioncontent: "https://res.miaocode.com/a8af136f-3553-4de1-85b2-0e38d205accd.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/5c1e6766-29f5-4e93-908b-a714ec9369a3.jpg"
     answerAnalysis:   "<p>2解析文本内容</p>"
+  -
+    subjectType:      1  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           1       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>多选4选2ab-2</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png"
+      -
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/a8af136f-3553-4de1-85b2-0e38d205accd.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/5c1e6766-29f5-4e93-908b-a714ec9369a3.jpg"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+  -
+    subjectType:      1  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           1       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>多选4选2ab-3</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png"
+      -
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/a8af136f-3553-4de1-85b2-0e38d205accd.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/5c1e6766-29f5-4e93-908b-a714ec9369a3.jpg"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+  -
+    subjectType:      1  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           1       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>多选4选2ab-4</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png"
+      -
+        iscorrect:     1
+        optioncontent: "https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/a8af136f-3553-4de1-85b2-0e38d205accd.jpg"
+      -
+        iscorrect:     2
+        optioncontent: "https://res.miaocode.com/5c1e6766-29f5-4e93-908b-a714ec9369a3.jpg"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+
+new_subject_judge:
+  -
+    subjectType:      2  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>判断a-1</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "正确"
+      -
+        iscorrect:     2
+        optioncontent: "错误"
+  -
+    subjectType:      2  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>判断a-2</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "正确"
+      -
+        iscorrect:     2
+        optioncontent: "错误"
+  -
+    subjectType:      2  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>判断a-3</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "正确"
+      -
+        iscorrect:     2
+        optioncontent: "错误"
+  -
+    subjectType:      2  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>判断a-4</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "正确"
+      -
+        iscorrect:     2
+        optioncontent: "错误"
+
+new_subject_blank:
+  -
+    subjectType:      3  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>填空1</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "这是answer"
+      -
+        iscorrect:     1
+        optioncontent: "这是第二个"
+  -
+    subjectType:      3  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>填空2</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "这是answer"
+      -
+        iscorrect:     1
+        optioncontent: "这是第二个"
+  -
+    subjectType:      3  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>填空3</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "这是answer"
+      -
+        iscorrect:     1
+        optioncontent: "这是第二个"
+  -
+    subjectType:      3  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           0       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>填空4</p>"
+    answerAnalysis:   "<p>2解析文本内容</p>"
+    options:
+      -
+        iscorrect:     1
+        optioncontent: "这是answer"
+      -
+        iscorrect:     1
+        optioncontent: "这是第二个"
+
+new_subject_code:
+  -
+    subjectType:      4  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           1       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>编程1</p>"
+    answerAnalysis:   "<p>解析文本内容</p>"
+    options:
+      -
+        optioncontent: "https://scratch.miaocode.com/?#1246160"
+  -
+    subjectType:      4  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           2       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>编程2</p>"
+    answerAnalysis:   "<p>解析文本内容</p>"
+    options:
+      -
+        optioncontent: "https://scratch.miaocode.com/?#1246160"
+  -
+    subjectType:      4  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           2       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>编程3</p>"
+    answerAnalysis:   "<p>解析文本内容</p>"
+    options:
+      -
+        optioncontent: "https://scratch.miaocode.com/?#1246160"
+  -
+    subjectType:      4  # 0单选题1多选题2判断题3填空题4编程题5编程开放题
+    degree:           1       # 0简单1普通2困难
+    knowledgePointId: 571
+    scope:            1        # 1:STEMA初 2:省初 3:国初 4:STEMA高 5:省高 6:国高 7:模拟
+    subDescribe:      "<p>编程4</p>"
+    answerAnalysis:   "<p>解析文本内容</p>"
+    options:
+      -
+        optioncontent: "https://scratch.miaocode.com/?#1246160"
+
+add_paper:
+  -
+    name:   完整测试试卷1
+    type:   1
+    weight: 0
+    paperSubjectList:
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   955
+        subjectType: 0
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   954
+        subjectType: 0
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   953
+        subjectType: 0
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   952
+        subjectType: 0
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   967
+        subjectType: 1
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   966
+        subjectType: 1
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   965
+        subjectType: 1
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   964
+        subjectType: 1
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   974
+        subjectType: 2
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   973
+        subjectType: 2
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   972
+        subjectType: 2
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   971
+        subjectType: 2
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   979
+        subjectType: 3
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   978
+        subjectType: 3
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   977
+        subjectType: 3
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   944
+        subjectType: 3
+      -
+        orderWeight: 0
+        score:       15
+        subjectId:   984
+        subjectType: 4
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   983
+        subjectType: 4
+  -
+    name:   完整测试试卷2
+    type:   1
+    weight: 0
+    paperSubjectList:
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   955
+        subjectType: 0
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   954
+        subjectType: 0
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   953
+        subjectType: 0
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   952
+        subjectType: 0
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   967
+        subjectType: 1
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   966
+        subjectType: 1
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   965
+        subjectType: 1
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   964
+        subjectType: 1
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   974
+        subjectType: 2
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   973
+        subjectType: 2
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   972
+        subjectType: 2
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   971
+        subjectType: 2
+      -
+        orderWeight: 0
+        score:       5
+        subjectId:   979
+        subjectType: 3
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   978
+        subjectType: 3
+      -
+        orderWeight: 2
+        score:       5
+        subjectId:   977
+        subjectType: 3
+      -
+        orderWeight: 3
+        score:       5
+        subjectId:   944
+        subjectType: 3
+      -
+        orderWeight: 0
+        score:       15
+        subjectId:   984
+        subjectType: 4
+      -
+        orderWeight: 1
+        score:       5
+        subjectId:   983
+        subjectType: 4
+
 save_match_2:
   -
     examName:    "接口自测"
