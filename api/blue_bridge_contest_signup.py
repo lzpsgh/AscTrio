@@ -26,11 +26,6 @@ class BBCSignUp(BaseRequest):
         result = self.x_request()
         assert_util.result_check(result)
         return result
-        # 响应
-        # code 000001
-        # data{
-        #     "id": 20
-        # }'''
 
     # 创建订单并返回支付所需参数，订单不包含课程, 微信的用以前的支付回调，支付宝的
     def create_order(self, **kwargs):
@@ -43,17 +38,6 @@ class BBCSignUp(BaseRequest):
         result = self.x_request()
         assert_util.result_check(result)
         return result
-
-    # {
-    #   "code" : "000001",
-    #   "data" : {
-    #     "payPage" : "<form name=\"punchout_form\" method=\"post\" action=\"https:\/\/openapi.alipaydev.com\/gateway.do?charset=utf-8&method=alipay.trade.wap.pay&sign=HhM2KTXaLorCdop3VvhXwHsOKdbMQj6HSoWo5EpEthM2HQ2CVa6cag6xWJk0cI0Of3WqYmycgExSX24ocAaqvee3IB5Gyq0Hd1jjL2LimHAaeShpYGNe2RXNY4yLv%2BDyHDaDPSJhOwgUwq91BMhUu4RCJkCxM%2FljzpveJInsJ3vtFuQ1BHNbg0ca0NvWQgU72bDj4vI2KVSZw4tIlmwQeRxcHav6a%2BC9s17Hm15MESUo0YRpC025JJeJ8ne47Cd3Zu%2BpUBfibZj4KIyy2yNRpBlBqz9u27AvsBvegW4R01Yk6n0YKTGIOKxdFBiZcpNzXZBO%2FsTYzKmpGlHAW4dvAA%3D%3D&return_url=https%3A%2F%2Fsit.miaocode.com%2Fh5competition%2Fpay%3Fid%3D20%26matchId%3D21&notify_url=http%3A%2F%2Fsit.miaocode.com%3A80%2Fcore%2Falipay%2FnotifyCallback&version=1.0&app_id=2016110300790491&sign_type=RSA2&timestamp=2021-07-06+14%3A45%3A00&alipay_sdk=alipay-sdk-java-3.0.52.ALL&format=json\">\n<input type=\"hidden\" name=\"biz_content\" value=\"{&quot;body&quot;:&quot;妙小程-蓝桥杯报名费&quot;,&quot;out_trade_no&quot;:&quot;202107061445009866774686&quot;,&quot;product_code&quot;:&quot;QUICK_WAP_WAY&quot;,&quot;subject&quot;:&quot;蓝桥杯报名费&quot;,&quot;timeout_express&quot;:&quot;2h&quot;,&quot;total_amount&quot;:&quot;0.50&quot;}\">\n<input type=\"submit\" value=\"立即支付\" style=\"display:none\" >\n<\/form>\n<script>document.forms[0].submit();<\/script>",
-    #     "payrecordId" : 45507
-    #   },
-    #   "message" : "操作成功",
-    #   "success" : true,
-    #   "difTimeStamp" : 0
-    # }
 
     # 创建订单并返回支付所需参数，订单不包含课程
     def get_order_status(self, id):

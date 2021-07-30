@@ -11,12 +11,135 @@ from api.user import user
 from serv import bbc_order_serv
 from util import sql_util
 from util.data_util import data_pool
+from util.faker_util import fakerist
 from util.log_util import logger
 
 
 @allure.epic("针对业务场景的测试")
 @allure.feature("场景：用户注册-用户登录-查看用户")
 class TestBlueBridgeContest:
+
+    # @pytest.mark.skip
+    # @pytest.mark.single
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_add_exam_enable(self, kwargs):
+        res = bbc_match.add_exam(**kwargs)
+        assert res.status is True
+        # TODO
+        exam_id = res.sdata.get("id")
+        bbc_match.enable_exam(self, exam_id)
+
+    # 完整流程
+    # @pytest.mark.skip
+    # @pytest.mark.single
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'submit_registration_information_senior'))
+    @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
+    def test_submit_pay_audit(self, kwargs):
+        phone = kwargs['phone']
+        userid = sql_util.sql_phone_to_userid(phone)
+        user.reset_pwd(userid)
+        user.login(phone)
+        kid_name = fakerist.name()
+        kwargs['participants'] = kid_name
+        kwargs['guardian'] = kid_name + '的男妈妈'
+        kwargs['city'] = fakerist.city()
+        kwargs['mailbox'] = fakerist.email()
+        kwargs['address'] = fakerist.street_address()
+        kwargs['areaCode'] = "86"
+        kwargs['gender'] = "M"
+        kwargs['code'] = "123456"
+        kwargs['idPhoto'] = "https://res.miaocode.com/competition/files/1625672893591.jpeg"
+        kwargs['province'] = "北京市1"
+        kwargs['region'] = "东城区1"
+        kwargs['provinceAndCity'] = "北京市,东城区1"
+        kwargs['school'] = "asctrio学校1"
+        kwargs['typeOfCertificate'] = 'IDCARD'
+        res = bbc_signUp.submit_registration_information(**kwargs)
+        assert res.status is True
+        signin_id = res.sdata.get('id')
+        logger.info(f"报名ID是{signin_id}")
+
+        # 方案1，纯api层
+        # 创建订单获取 payrecordId
+        # kwargs2 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
+        # kwargs2['id'] = int(signin_id)
+        # kwargs2['userId'] = userid
+        # res2 = bbc_signUp.create_order(**kwargs2)
+        # pay_record_id = res2.sdata.get("payrecordId")
+        # if pay_record_id is None:
+        #     raise Exception("aaaa")
+        # # 模拟支付回调
+        # out_trade_no = sql_kit.sql_payrecordid_to_outtradeno(pay_record_id)
+        # goods_order.pay_callback_suc(out_trade_no)
+
+        # 方案2，使用serv层
+        # 下单支付
+        kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order')[0]
+        kwargs3['id'] = int(signin_id)
+        kwargs3['userId'] = userid
+        kwargs3['payType'] = "ALI"
+        bbc_order_serv.pay_regfee_ali(kwargs3)
+
+        # 审核通过
+        kwargs4 = data_pool.supply('bbc_signup_data.yml', 'audit_pass')[0]
+        kwargs4['enable'] = 1
+        kwargs4['id'] = signin_id
+        res4 = bbc_signUp.audit(**kwargs4)
+        assert res4.status is True
+
+    # @pytest.mark.skip
+    # @pytest.mark.single
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'audit_fail'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_audit_fail(self, kwargs):
+        res = bbc_signUp.audit(**kwargs)
+        assert res.status is True
+
+    # @pytest.mark.skip
+    # @pytest.mark.single
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_signup_data.yml', 'audit_pass'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_audit_pass(self, kwargs):
+        res = bbc_signUp.audit(**kwargs)
+        assert res.status is True
+
+    # 创建多选题题目
+    # @pytest.mark.skip
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_multi'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_new_subject_multi(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建判断题题目
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_judge'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_new_subject_judge(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建填空题题目
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_blank'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_new_subject_blank(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建编程题题目
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'add_paper'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_add_paper(self, kwargs):
+        res = bbc_match.add_paper(**kwargs)
+        assert res.status is True
 
     # @allure.story("用例--注册/登录/查看--预期成功")
     # @allure.description("该用例是针对 注册-登录-查看 场景的测试")
@@ -50,100 +173,6 @@ class TestBlueBridgeContest:
         logger.info(f"报名ID是{signin_id}")
         # 将用户的openid设置为iphone12mini上的
         sql_util.sql_fix_openid(signin_id)
-
-    # @pytest.mark.skip
-    # @pytest.mark.single
-    @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('bbc_signup_data.yml', 'submit_registration_information_senior'))
-    @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
-    def test_submit_pay_audit(self, kwargs):
-        phone = kwargs['phone']
-        userid = sql_util.sql_phone_to_userid(phone)
-        user.reset_pwd(userid)
-        user.login(phone)
-        res = bbc_signUp.submit_registration_information(**kwargs)
-        assert res.status is True
-        signin_id = res.sdata.get('id')
-        logger.info(f"报名ID是{signin_id}")
-
-        # 方案1，纯api层
-        # 创建订单获取 payrecordId
-        # kwargs2 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
-        # kwargs2['id'] = int(signin_id)
-        # kwargs2['userId'] = userid
-        # res2 = bbc_signUp.create_order(**kwargs2)
-        # pay_record_id = res2.sdata.get("payrecordId")
-        # if pay_record_id is None:
-        #     raise Exception("aaaa")
-        # # 模拟支付回调
-        # out_trade_no = sql_kit.sql_payrecordid_to_outtradeno(pay_record_id)
-        # goods_order.pay_callback_suc(out_trade_no)
-
-        # 方案2，使用serv层
-        # 下单支付
-        kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order_ali')[0]
-        kwargs3['id'] = int(signin_id)
-        kwargs3['userId'] = userid
-        kwargs3['payType'] = "ALI"
-        bbc_order_serv.pay_regfee_ali(kwargs3)
-
-        # 审核通过
-        kwargs4 = data_pool.supply('bbc_signup_data.yml', 'audit_pass')[0]
-        kwargs4['enable'] = 1
-        kwargs4['id'] = signin_id
-        res4 = bbc_signUp.audit(**kwargs4)
-        assert res4.status is True
-
-    # @pytest.mark.skip
-    # @pytest.mark.single
-    @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('bbc_signup_data.yml', 'audit_fail'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_audit_fail(self, kwargs):
-        res = bbc_signUp.audit(**kwargs)
-        assert res.status is True
-
-    # @pytest.mark.skip
-    # @pytest.mark.single
-    @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('bbc_signup_data.yml', 'audit_pass'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_audit_pass(self, kwargs):
-        res = bbc_signUp.audit(**kwargs)
-        assert res.status is True
-
-    # 创建单选题题目
-    # @pytest.mark.skip
-    @pytest.mark.parametrize(
-        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_single'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_new_subject_single(self, kwargs):
-        res = bbc_match.new_subject(**kwargs)
-        assert res.status is True
-
-    # 创建判断题题目
-    @pytest.mark.parametrize(
-        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_judge'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_new_subject_judge(self, kwargs):
-        res = bbc_match.new_subject(**kwargs)
-        assert res.status is True
-
-    # 创建填空题题目
-    @pytest.mark.parametrize(
-        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_blank'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_new_subject_blank(self, kwargs):
-        res = bbc_match.new_subject(**kwargs)
-        assert res.status is True
-
-    # 创建编程题题目
-    @pytest.mark.parametrize(
-        'kwargs', data_pool.supply('bbc_contest_data.yml', 'add_paper'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_add_paper(self, kwargs):
-        res = bbc_match.add_paper(**kwargs)
-        assert res.status is True
 
 
 if __name__ == '__main__':

@@ -6,9 +6,12 @@ from faker import Faker
 # 语言环境
 # fake = Faker(['zh_CN', 'en_US', 'ja_JP'])
 
-faker_kit = Faker(locale='zh_CN')
+fakerist = Faker(locale='zh_CN')
 # print(fakerist.address())#海南省成市丰都深圳路p座 425541
 
 
 if __name__ == '__main__':
-    print(faker_kit.name())
+    print(fakerist.name())
+    print(fakerist.city())
+    print(fakerist.email())
+    print(fakerist.street_address())
