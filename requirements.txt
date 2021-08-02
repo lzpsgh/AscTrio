@@ -11,3 +11,4 @@ pytest-sugar==0.9.4
 pytest-xdist==2.2.1
 pytesseract==0.3.7
 pillow==8.2.0
+pytest-repeat==0.9.1

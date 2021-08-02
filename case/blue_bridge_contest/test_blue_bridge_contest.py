@@ -22,14 +22,37 @@ class TestBlueBridgeContest:
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam'))
+        "kwargs", data_pool.supply('bbc_contest_data.yml', 'exam_login'))
+    # @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_exam_login(self, kwargs):
+        res = bbc_match.exam_login(**kwargs)
+        assert res.status is True
+
+    # 新增正式考试
+    # @pytest.mark.skip
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_formal'))
     @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_add_exam_enable(self, kwargs):
+    def test_add_exam_formal_enable(self, kwargs):
         res = bbc_match.add_exam(**kwargs)
         assert res.status is True
         # TODO
-        exam_id = res.sdata.get("id")
-        bbc_match.enable_exam(self, exam_id)
+        # exam_id = res.sdata.get("id")
+        # bbc_match.enable_exam(self, exam_id)
+
+    # 新增模拟考试
+    # @pytest.mark.skip
+    @pytest.mark.repeat(3)
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_simu'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_add_exam_simu_enable(self, kwargs):
+        kwargs['examName'] = fakerist.name() + '考试'
+        res = bbc_match.add_exam(**kwargs)
+        assert res.status is True
+        # TODO
+        # exam_id = res.sdata.get("id")
+        # bbc_match.enable_exam(self, exam_id)
 
     # 完整流程
     # @pytest.mark.skip
