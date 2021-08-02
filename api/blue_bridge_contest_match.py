@@ -16,17 +16,11 @@ class BBCMatch(BaseRequest):
 
     # 登录答题页面-正式考试
     def exam_login(self, **kwargs):
-        self.req_method = 'POST'
+        self.req_method = 'GET'
         self.req_url = '/gzlqb/scienceart/user/login'
         self.req_body = kwargs
-        self.req_cookies = {
-            'exam_token': auth_util.get_bbc_token('crm'),
-        }
-        result = self.request(
-            method='POST', url=self.req_url, headers=self.req_headers,
-            data=self.req_body)
+        result = self.x_request()
         assert_util.result_check(result)
-        # auth_util.set_cookie('bbc', result.rsp.cookies["exam_token"])
         auth_util.set_token('bbc', 'exam_token', result.rsp.cookies["exam_token"])
         return result
 
@@ -42,7 +36,7 @@ class BBCMatch(BaseRequest):
             'api_account_token': auth_util.get_bbc_token('crm'),
         }
         result = self.request(
-            method='POST', url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body)
         assert_util.result_check(result)
         return result

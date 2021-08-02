@@ -28,8 +28,8 @@ def get_bbc_token(kw):
 
 
 # 通用get
-# usage： 'exam_token': auth_util.get_bbc_token('bbc', 'exam_token'),
-def get_bbc_token(kw, kwson):
+# usage： 'exam_token': auth_util.get_token('bbc', 'exam_token'),
+def get_token(kw, kwson):
     cookie = data_pool.load_yml(common_util.env('COOKIE_YML'))
     kw_cookie = cookie.get(kw).get(kwson)
     return kw_cookie

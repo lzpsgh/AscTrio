@@ -1,5 +1,4 @@
 ---
-
 exam_login:
   -
     examId:       'da8f08be-190d-48cb-a4b7-e1f16ef79c96'
@@ -10,18 +9,25 @@ enable_exam:
   -
     id:     33
     enable: 1
-add_exam:
+add_exam_formal:
   -
-    examName:    冒烟考试1
+    examName:    Asctrio08021150
     matchId:     '56'
     testpaperId: 50
-    startTime:   '2021-07-30 11:30:00'
-    endTime:     '2021-07-30 12:30:00'
-    matchType:   1
-    matchStage:  1
-    groupType:   1
-    examType:    1
-
+    startTime:   '2021-08-03 11:30:00'
+    endTime:     '2021-08-30 12:30:00'
+    matchType:   1 # 赛事类型
+    matchStage:  1 # 赛事阶段
+    groupType:   1 # 年龄分组
+    examType:    1 # 考试类型 1正式0模拟
+add_exam_simu:
+  -
+    examType:    0 # 考试类型 1正式0模拟
+    examName:    "moni2"
+    startTime:   "2021-08-03 00:00:00"
+    endTime:     "2021-08-05 00:00:00"
+    testpaperId: 49 #考试试卷id
+    sortWeight:  1 #排序权重
 add_paper:
   -
     name:   完整测试试卷1
