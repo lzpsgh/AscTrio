@@ -7,19 +7,31 @@ exam_login:
     phone:        '18666023001'
 enable_exam:
   -
-    id:     33
-    enable: 1
-add_exam_formal:
+    id:     33  # 考试id
+    enable: 1   # 1启用
+add_exam_formal_primary:
   -
-    examName:    Asctrio08021150
-    matchId:     '56'
-    testpaperId: 50
-    startTime:   '2021-08-03 11:30:00'
-    endTime:     '2021-08-30 12:30:00'
-    matchType:   1 # 赛事类型
-    matchStage:  1 # 赛事阶段
-    groupType:   1 # 年龄分组
+    examName:    Asc有编程题正式考-初级组
+    matchId:     '58'
+    testpaperId: '50'
+    startTime:   '2021-08-04 19:30:00'
+    endTime:     '2021-08-06 12:30:00'
+    matchType:   1 # 赛事类型 1Miaocode 2Python
+    matchStage:  1 # 赛事阶段 1Stema-miaocode 2
     examType:    1 # 考试类型 1正式0模拟
+    groupType:   1 # 年龄分组 1初级组2高级组
+add_exam_formal_senior:
+  -
+    examName:    Asc有编程题正式考-高级组
+    matchId:     '58'
+    testpaperId: '50'
+    startTime:   '2021-08-04 19:30:00'
+    endTime:     '2021-08-06 12:30:00'
+    matchType:   1 # 赛事类型 1Miaocode 2Python
+    matchStage:  1 # 赛事阶段 1Stema-miaocode 2
+    examType:    1 # 考试类型 1正式0模拟
+    groupType:   2 # 年龄分组 1初级组2高级组
+
 add_exam_simu:
   -
     examType:    0 # 考试类型 1正式0模拟
@@ -28,9 +40,9 @@ add_exam_simu:
     endTime:     "2021-08-05 00:00:00"
     testpaperId: 49 #考试试卷id
     sortWeight:  1 #排序权重
-add_paper:
+add_paper_withoutcode:
   -
-    name:   完整测试试卷1
+    name:   完整测试试卷-无编程题
     type:   1
     weight: 0
     paperSubjectList:
@@ -114,18 +126,9 @@ add_paper:
         score:       5
         subjectId:   944
         subjectType: 3
-      -
-        orderWeight: 0
-        score:       15
-        subjectId:   984
-        subjectType: 4
-      -
-        orderWeight: 1
-        score:       5
-        subjectId:   983
-        subjectType: 4
+add_paper_withcode:
   -
-    name:   完整测试试卷2
+    name:   完整测试试卷-无编程题
     type:   1
     weight: 0
     paperSubjectList:
@@ -481,13 +484,3 @@ save_match_2:
       - "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg"
       - "https://res.miaocode.com/be06f7e9-4469-4795-9aad-7a67d4ad1191.JPG"
       - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
-test_reset_pwd2:
-  - '13242819910'
-  - '18502937862'
-  - '18955523661'
-  - '18844550048'
-test_reset_pwd:
-  - '13242819910'
-  - '18502937862'
-  - '18955523661'
-  - '18844550048'

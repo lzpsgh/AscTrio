@@ -1,10 +1,10 @@
 ---
 save_match_1:
   -
-    name:      'Asctrio冒烟1'
+    name:      'Asc无编程题8月报名活动'
     expense:   '300'
-    startTime: "2021-07-24 11:11:11"
-    endTime:   "2021-08-02 00:00:00"
+    startTime: "2021-08-03 01:01:01"
+    endTime:   "2021-08-29 02:02:02"
     type:      "Miaocode"
     headImg:   "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
     detailImgList:
@@ -13,34 +13,21 @@ save_match_1:
       - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
 submit_registration_information_senior:
   -
-    matchId:           "56"
-    dateOfBirth:       "2011年02月03日"
     phone:             "18666021118"
     idNumber:          "441400201111110008"
+    dateOfBirth:       "2014年09月01日"
   -
-    matchId:           "56"
-    dateOfBirth:       "2011年11月03日"
     phone:             "13530019915"
     idNumber:          "441400201111110009"
+    dateOfBirth:       "2011年09月21日"
   -
-    matchId:           "56"
-    dateOfBirth:       "2014年02月03日"
     phone:             "13530019912"
     idNumber:          "441400201111110010"
-#    guardian:          "asc爸爸"
-#    participants:      "asc儿子"
-#    city:              ""
-#    areaCode:          "86"
-#    gender:            "M"
-#    code:              "123456"
-#    idPhoto:           "https://res.miaocode.com/competition/files/1625672893591.jpeg"
-#    mailbox:           "lensaclrtn@gmail.com"
-#    province:          "北京市"
-#    region:            "东城区"
-#    provinceAndCity:   "北京市,东城区"
-#    address:           "asctrio地址"
-#    school:            "asctrio学校"
-#    typeOfCertificate: "IDCARD"
+    dateOfBirth:       "2011年03月02日"
+  -
+    phone:             "18666024859"
+    idNumber:          "441400201111110011"
+    dateOfBirth:       "2007年10月01日"
 
 audit_pass:
   -

@@ -19,6 +19,7 @@ from util.log_util import logger
 @allure.feature("场景：用户注册-用户登录-查看用户")
 class TestBlueBridgeContest:
 
+    # 登录考试系统
     # @pytest.mark.skip
     # @pytest.mark.single
     @pytest.mark.parametrize(
@@ -31,14 +32,13 @@ class TestBlueBridgeContest:
     # 新增正式考试
     # @pytest.mark.skip
     @pytest.mark.parametrize(
-        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_formal'))
+        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_formal_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_add_exam_formal_enable(self, kwargs):
         res = bbc_match.add_exam(**kwargs)
         assert res.status is True
-        # TODO
-        # exam_id = res.sdata.get("id")
-        # bbc_match.enable_exam(self, exam_id)
+        exam_id = res.sdata
+        bbc_match.enable_exam(exam_id)
 
     # 新增模拟考试
     # @pytest.mark.skip
@@ -50,9 +50,8 @@ class TestBlueBridgeContest:
         kwargs['examName'] = fakerist.name() + '考试'
         res = bbc_match.add_exam(**kwargs)
         assert res.status is True
-        # TODO
-        # exam_id = res.sdata.get("id")
-        # bbc_match.enable_exam(self, exam_id)
+        exam_id = res.sdata
+        bbc_match.enable_exam(self, exam_id)
 
     # 完整流程
     # @pytest.mark.skip
@@ -66,19 +65,22 @@ class TestBlueBridgeContest:
         user.reset_pwd(userid)
         user.login(phone)
         kid_name = fakerist.name()
+
+        kwargs['matchId'] = '58'  # 报名活动ID
+
         kwargs['participants'] = kid_name
         kwargs['guardian'] = kid_name + '的男妈妈'
         kwargs['city'] = fakerist.city()
         kwargs['mailbox'] = fakerist.email()
         kwargs['address'] = fakerist.street_address()
-        kwargs['areaCode'] = "86"
-        kwargs['gender'] = "M"
         kwargs['code'] = "123456"
+        kwargs['areaCode'] = "86"
         kwargs['idPhoto'] = "https://res.miaocode.com/competition/files/1625672893591.jpeg"
-        kwargs['province'] = "北京市1"
-        kwargs['region'] = "东城区1"
-        kwargs['provinceAndCity'] = "北京市,东城区1"
-        kwargs['school'] = "asctrio学校1"
+        kwargs['gender'] = fakerist.sex()
+        kwargs['province'] = fakerist.province()  # 注意在非中文语种下会报错
+        kwargs['region'] = fakerist.district()
+        kwargs['provinceAndCity'] = f"{kwargs['province']}，{kwargs['region']}"
+        kwargs['school'] = fakerist.word()
         kwargs['typeOfCertificate'] = 'IDCARD'
         res = bbc_signUp.submit_registration_information(**kwargs)
         assert res.status is True
@@ -158,7 +160,15 @@ class TestBlueBridgeContest:
 
     # 创建编程题题目
     @pytest.mark.parametrize(
-        'kwargs', data_pool.supply('bbc_contest_data.yml', 'add_paper'))
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'new_subject_code'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_new_subject_blank(self, kwargs):
+        res = bbc_match.new_subject(**kwargs)
+        assert res.status is True
+
+    # 创建试卷-无编程题
+    @pytest.mark.parametrize(
+        'kwargs', data_pool.supply('bbc_contest_data.yml', 'add_paper_withoutcode'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_add_paper(self, kwargs):
         res = bbc_match.add_paper(**kwargs)
@@ -176,6 +186,7 @@ class TestBlueBridgeContest:
         res = bbc_signUp.save_match(**kwargs)
         assert res.status is True
         match_id = sql_util.sql_matchid()
+        # match_id = res.sdata
         logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
         res1 = bbc_signUp.enable(1, match_id)
         assert res1.status is True
@@ -186,6 +197,7 @@ class TestBlueBridgeContest:
         "kwargs", data_pool.supply('bbc_signup_data.yml', 'submit_registration_information_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_registration_information(self, kwargs):
+        kwargs['matchId'] = '58'
         phone = kwargs['phone']
         userid = sql_util.sql_phone_to_userid(phone)
         user.reset_pwd(userid)
