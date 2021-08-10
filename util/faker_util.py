@@ -19,7 +19,8 @@ fakerist = Faker(locale='zh_CN')
 fakerist.add_provider(MySex)
 
 if __name__ == '__main__':
-    print(fakerist.name())
-    print(fakerist.city())
-    print(fakerist.email())
-    print(fakerist.street_address())
+    # print(fakerist.name())
+    # print(fakerist.city())
+    # print(fakerist.email())
+    # print(fakerist.street_address())
+    print(fakerist.ssn())

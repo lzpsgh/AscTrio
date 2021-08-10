@@ -14,6 +14,27 @@ class BBCMatch(BaseRequest):
     def __init__(self, root_url, **kwargs):
         super(BBCMatch, self).__init__(root_url, **kwargs)
 
+    # 提交用户正式考试答卷
+    def submit_official_paper(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/enterExam/submitOfficialPaper'
+        self.req_body = kwargs
+        result = self.x_request()
+        assert_util.result_check(result)
+        return result
+
+    # 提前生成评阅记录
+    def manual_mark(self, examId):
+        self.req_method = 'GET'
+        self.req_url = '/enterExam/manualMark'
+        self.req_body = {
+            'examId': examId
+        }
+        result = self.x_request()
+        assert_util.result_check(result)
+        # auth_util.set_token('bbc', 'exam_token', result.rsp.cookies["exam_token"])
+        return result
+
     # 登录答题页面-正式考试
     def exam_login(self, **kwargs):
         self.req_method = 'GET'
