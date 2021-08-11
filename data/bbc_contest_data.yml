@@ -1,10 +1,4 @@
 ---
-exam_login:
-  -
-    examId:       'da8f08be-190d-48cb-a4b7-e1f16ef79c96'
-    identityType: 'IDCARD'
-    identityNo:   '441400201111110005'
-    phone:        '18666023001'
 enable_exam:
   -
     id:     33  # 考试id

@@ -1,0 +1,216 @@
+---
+submit_official_paper:
+  -
+    userId:         '666666'
+    examinationId:  '70'
+    testPaperId:    65
+    optionList:
+      -
+        id:            13555
+        iscorrect:     1
+        subjectId:     543
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13559
+        iscorrect:     1
+        subjectId:     544
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13563
+        iscorrect:     1
+        subjectId:     545
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13567
+        iscorrect:     1
+        subjectId:     546
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13571
+        iscorrect:     1
+        subjectId:     547
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13572
+        iscorrect:     1
+        subjectId:     547
+        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13575
+        iscorrect:     1
+        subjectId:     548
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13576
+        iscorrect:     1
+        subjectId:     548
+        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13579
+        iscorrect:     1
+        subjectId:     549
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13580
+        iscorrect:     1
+        subjectId:     549
+        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13583
+        iscorrect:     1
+        subjectId:     550
+        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13584
+        iscorrect:     1
+        subjectId:     550
+        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        userChoice:    1
+        isRight:       null
+        isValue:       true
+      -
+        id:            13587
+        iscorrect:     1
+        subjectId:     551
+        optioncontent: 正确
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13589
+        iscorrect:     1
+        subjectId:     552
+        optioncontent: 正确
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13591
+        iscorrect:     1
+        subjectId:     553
+        optioncontent: 正确
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13593
+        iscorrect:     1
+        subjectId:     554
+        optioncontent: 正确
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13595
+        iscorrect:     1
+        subjectId:     555
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13596
+        iscorrect:     1
+        subjectId:     556
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13597
+        iscorrect:     1
+        subjectId:     557
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13598
+        iscorrect:     1
+        subjectId:     557
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13599
+        iscorrect:     1
+        subjectId:     558
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13600
+        iscorrect:     1
+        subjectId:     558
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13601
+        iscorrect:     1
+        subjectId:     559
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13602
+        iscorrect:     1
+        subjectId:     559
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13603
+        iscorrect:     1
+        subjectId:     559
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13604
+        iscorrect:     1
+        subjectId:     559
+        optioncontent: 填空题答案
+        userChoice:    1
+        isRight:       null
+      -
+        id:            13605
+        iscorrect:     null
+        subjectId:     560
+        optioncontent: 'https://scratch.miaocode.com/?#65724'
+        userChoice:    0
+        isRight:       null
+save_project_43:
+  -
+    examinationId: "70"
+    projectName:   "让你心态爆炸的游戏（真的）2.0"
+    subjectId:     "560"
+    type:          0
+    userId:        "98"
+    dataURL:       "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
+exam_login:
+  -
+    identityNo:   '441400201111110005'
+    phone:        '18666023001'

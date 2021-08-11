@@ -6,7 +6,6 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-from util.data_util import data_pool
 
 
 class BBCMatch(BaseRequest):
@@ -14,25 +13,41 @@ class BBCMatch(BaseRequest):
     def __init__(self, root_url, **kwargs):
         super(BBCMatch, self).__init__(root_url, **kwargs)
 
-    # 提交用户正式考试答卷
-    def submit_official_paper(self, **kwargs):
-        self.req_method = 'POST'
-        self.req_url = '/enterExam/submitOfficialPaper'
-        self.req_body = kwargs
-        result = self.x_request()
-        assert_util.result_check(result)
-        return result
-
     # 提前生成评阅记录
     def manual_mark(self, examId):
         self.req_method = 'GET'
-        self.req_url = '/enterExam/manualMark'
+        self.req_url = '/gzlqb/scienceart/enterExam/manualMark'
         self.req_body = {
             'examId': examId
         }
         result = self.x_request()
         assert_util.result_check(result)
         # auth_util.set_token('bbc', 'exam_token', result.rsp.cookies["exam_token"])
+        return result
+
+    # 提交用户正式考试答卷
+    def submit_official_paper(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/gzlqb/scienceart/enterExam/submitOfficialPaper'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'exam_token': auth_util.get_token('bbc', 'exam_token'),
+        }
+        result = self.x_request()
+        assert_util.result_check(result)
+        return result
+
+    # 保存作品
+    def save_project(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/gzlqb/scienceart/project/saveProject'
+        self.req_body = kwargs
+        self.req_cookies = {
+            # 'JSESSIONID': auth_util.get_cookie('web'),
+            'exam_token': auth_util.get_token('bbc', 'exam_token'),
+        }
+        result = self.x_request()
+        assert_util.result_check(result)
         return result
 
     # 登录答题页面-正式考试
@@ -102,5 +117,6 @@ class BBCMatch(BaseRequest):
 bbc_match = BBCMatch(common_util.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
-    kwargs = data_pool.supply('bbc_contest_data.yml', 'new_subject_single')[0]
-    bbc_match.new_subject(**kwargs)
+    pass
+    # kwargs = data_pool.supply('bbc_contest_data.yml', 'new_subject_single')[0]
+    # bbc_match.new_subject(**kwargs)

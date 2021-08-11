@@ -1,10 +1,10 @@
 ---
 save_match_1:
   -
-    name:      '8月10日报名活动2'
+    name:      'test8月11日报名活动'
     expense:   0.01
-    startTime: "2021-08-10 11:30:01"
-    endTime:   "2021-08-11 02:02:02"
+    startTime: "2021-08-11 10:50:01"
+    endTime:   "2021-08-12 00:00:00"
     type:      "Miaocode"
     headImg:   "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
     detailImgList:
@@ -13,13 +13,12 @@ save_match_1:
       - "https://res.miaocode.com/ea0f4a33-756e-4bec-b600-e8fd331be652.jpg"
 submit_registration_information_senior:
   -
-    phone:             "19855755888"
-    idNumber:          "441400201111110015"
-    dateOfBirth:       "2014年09月01日"
+    phone:             "18666024883"
   -
-    phone:             "18566742421"
-    idNumber:          "441400201111110016"
-    dateOfBirth:       "2011年09月21日"
+    phone:             "15477445523"
+  -
+    phone:             "12354978964"
+
 audit_pass:
   -
     enable:     1  # 1:通过 0拒绝

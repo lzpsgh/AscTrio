@@ -23,4 +23,5 @@ if __name__ == '__main__':
     # print(fakerist.city())
     # print(fakerist.email())
     # print(fakerist.street_address())
+    # for i in range(1, 101):
     print(fakerist.ssn())

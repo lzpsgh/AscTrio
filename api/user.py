@@ -291,12 +291,12 @@ class User(BaseRequest):
 user = User(common_util.env('BASE_URL'))
 
 if __name__ == '__main__':
-    phone = '13242816613'
+    phone = '18666024999'
     userid = '110311'
 
-    user.phone_exist(phone)
+    # user.phone_exist(phone)
     # user.reset_pwd(userid)
-    # user.get_current_user()
+    user.get_current_user()
 
     # res1 = user.send_sms2(phone)
     # assert res1.rsp.status_code == 200

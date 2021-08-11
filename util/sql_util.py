@@ -5,6 +5,13 @@
 from util.mysql_util import mysqler
 
 
+# 查询数据库：考试id对应的考试uuid 75对应dda7de8c-b5ae-4b21-8582-3c5aad76d2c2
+def sql_examid_to_uuid(exam_id):
+    uuid = mysqler.query(f"SELECT uuid FROM bbc_examination be WHERE be.id = \'{exam_id}\'")[0][0]
+    print(uuid)
+    return uuid
+
+
 # 查询数据库：手机号对应的userid
 def sql_phone_to_userid(phone):
     user_id = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
@@ -31,4 +38,5 @@ def sql_fix_openid(signin_id):
 
 
 if __name__ == '__main__':
-    pass
+    exam_id = '75'
+    sql_examid_to_uuid(exam_id)
