@@ -19,6 +19,22 @@ from util.log_util import logger
 @allure.feature("场景：用户注册-用户登录-查看用户")
 class TestBlueBridgeContest:
 
+    @pytest.mark.parametrize("kwargs", data_pool.supply('bbc_user_batch.yml', 'h5_query'))
+    # @pytest.mark.parametrize("kwargs", None)
+    def test_result_inquiry(self, kwargs):
+        kwargs_query = dict(identityNo='111', phone='222')
+        kwargs_query['identityNo'] = kwargs['identityNo']
+        kwargs_query['phone'] = kwargs['phone']
+        kwargs_query['identityType'] = 'IDCARD'
+        res = bbc_match.result_inquiry(**kwargs_query)
+
+        prom = res.sdata.get('resultInquiryList')[0].get('promotionResult')
+        logger.info(f'晋级情况={prom}')
+        assert prom == kwargs['prom']
+        # award = res.sdata.get('resultInquiryList')[0].get('winningResults')
+        # logger.info(f'获奖情况={award}')
+        # assert award == kwargs['award']
+
     def test_manual_mark(self):
         res = bbc_match.manual_mark(70)
         assert res.status is True
@@ -29,8 +45,10 @@ class TestBlueBridgeContest:
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_pay_audit(self, kwargs):
         # 注意修改成对应的报名活动ID 和 考试ID
-        match_id = '66'
-        exam_id = '76'
+
+        match_id = '69'
+        paper_id = '65'
+        exam_id = '84'
 
         id_number = kwargs['identityNo']
         kwargs['idNumber'] = id_number
@@ -92,27 +110,29 @@ class TestBlueBridgeContest:
         res5 = bbc_match.exam_login(**kwargs5)
         assert res5.status is True
 
-        # 保存作品 编程题4
-        kwargs6 = data_pool.supply('bbc_submit_paper.yml', 'save_project_43')[0]
-        kwargs6['userId'] = userid
-        kwargs6['subjectId'] = '560'
-        kwargs6['examinationId'] = exam_id
-        kwargs6['dataURL'] = "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
-        res6 = bbc_match.save_project(**kwargs6)
-        assert res6.status is True
-        # 保存作品 编程题3
-        kwargs7 = kwargs6
-        kwargs6['userId'] = userid
-        kwargs7['subjectId'] = '561'
-        kwargs6['examinationId'] = exam_id
-        kwargs7['dataURL'] = "https://res.miaocode.com/e0519ef5-fdc9-4ecf-8129-b8bddcfb3d41.mxc"
-        res7 = bbc_match.save_project(**kwargs7)
-        assert res7.status is True
+        # # 保存作品 编程题4
+        # kwargs6 = data_pool.supply('bbc_submit_paper.yml', 'save_project_43')[0]
+        # kwargs6['userId'] = userid
+        # kwargs6['subjectId'] = '560'
+        # kwargs6['examinationId'] = exam_id
+        # kwargs6['dataURL'] = "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
+        # res6 = bbc_match.save_project(**kwargs6)
+        # assert res6.status is True
+        # # 保存作品 编程题3
+        # kwargs7 = kwargs6
+        # kwargs6['userId'] = userid
+        # kwargs7['subjectId'] = '561'
+        # kwargs6['examinationId'] = exam_id
+        # kwargs7['dataURL'] = "https://res.miaocode.com/e0519ef5-fdc9-4ecf-8129-b8bddcfb3d41.mxc"
+        # res7 = bbc_match.save_project(**kwargs7)
+        # assert res7.status is True
 
         # 提交试卷(非编程题部分)
         kwargs8 = data_pool.supply('bbc_submit_paper.yml', 'submit_official_paper')[0]
         # 实际上不是传userid，而是传 报名活动下的该用户自己的报名id
         kwargs8['userId'] = str(signin_id)
+        kwargs8['examinationId'] = str(exam_id)
+        kwargs8['testPaperId'] = int(paper_id)
         res8 = bbc_match.submit_official_paper(**kwargs8)
         # assert res8.status is True f返回false
 
@@ -258,6 +278,11 @@ class TestBlueBridgeContest:
         logger.info(f"报名ID是{signin_id}")
         # 将用户的openid设置为iphone12mini上的
         sql_util.sql_fix_openid(signin_id)
+
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_new_knowpoint(self):
+        res = bbc_match.new_knowpoint("abbb")
+        assert res.status is True
 
 
 if __name__ == '__main__':

@@ -13,6 +13,15 @@ class BBCMatch(BaseRequest):
     def __init__(self, root_url, **kwargs):
         super(BBCMatch, self).__init__(root_url, **kwargs)
 
+    # H5考试成绩查询
+    def result_inquiry(self, **kwargs):
+        self.req_method = 'GET'
+        self.req_url = '/gzlqb/scienceart/enterExam/resultInquiry'
+        self.req_body = kwargs
+        result = self.x_request()
+        assert_util.result_check(result)
+        return result
+
     # 提前生成评阅记录
     def manual_mark(self, examId):
         self.req_method = 'GET'
@@ -113,10 +122,28 @@ class BBCMatch(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 新建知识点
+    def new_knowpoint(self, name):
+        self.req_method = 'POST'
+        self.req_url = '/gzlqb/scienceart/exam/knowLedgePoint/insert'
+        self.req_body = {
+            'name': name
+        }
+        self.req_cookies = {
+            'api_account_token': auth_util.get_bbc_token('crm'),
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            data=self.req_body
+        )
+        assert_util.result_check(result)
+        return result
+
 
 bbc_match = BBCMatch(common_util.env('BASE_URL_GZ'))
 
 if __name__ == '__main__':
     pass
+    # bbc_match.new_knowpoint("asccc")
     # kwargs = data_pool.supply('bbc_contest_data.yml', 'new_subject_single')[0]
     # bbc_match.new_subject(**kwargs)

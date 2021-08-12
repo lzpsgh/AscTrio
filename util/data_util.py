@@ -61,29 +61,19 @@ class DataPool:
         # print("读取ini ==>>  {} ".format(data))
         return data
 
-    # def process(**params):  # pass in variable numbers of args
-    #     for key, value in params.items():
-    #         print('%s: %s' % (key, value))
-    # conf = data_tool.load_yml(path)
-    # process(**conf)  # pass in your keyword args
+    # TODO
     def supply(self, yml_name, yml_key):
-        # aaa = inspect.stack()
-        # print('类名是：'+aaa[1][3])  # TestScoringDimension
-        # print('函数名是：'+aaa[0][3])  # supply
-        # 获取被调用函数所在模块文件名
-        # print(sys._getframe().f_code.co_filename)
-        # 获取被调用函数名称
-        # print(sys._getframe().f_code.co_name)
         try:
-            # data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
             yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
             yaml_data = data_pool.load_yml(yaml_file_path)
             if yml_key is not None:
                 yaml_dict = yaml_data.get(yml_key)
                 return yaml_dict
-        except Exception as ex:
-            raise ex
-            # pytest.skip(str(ex))
+            else:
+                raise KeyError
+        except Exception as excep:
+            print(excep)
+            raise
 
     def supply_mongodb(self):
         # 读取mongodb文档，返回带faker标识符的dict_tmp,

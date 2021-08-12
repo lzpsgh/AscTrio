@@ -1,4 +1,20 @@
 ---
+h5_query:
+  -
+    identityNo: '211401198812283574'
+    phone:      '18666024883'
+    prom:       '未晋级'
+    award:      '二等奖'
+  -
+    identityNo: '610125198401219795'
+    phone:      '18666024990'
+    prom:       '未晋级'
+    award:      '三等奖'
+  -
+    identityNo: '430822198212272699'
+    phone:      '18666024999'
+    prom:       '未晋级'
+    award:      '优秀奖'
 user_submit_and_login1:
   -
     identityNo: '210100194809059246'
@@ -18,7 +34,6 @@ user_submit_and_login1:
   -
     identityNo: '150727197812177665'
     phone:      '18899666267'
-user_submit_and_login:
   -
     identityNo: '65402619900529612X'
     phone:      '18899666266'
