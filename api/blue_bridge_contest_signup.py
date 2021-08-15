@@ -53,11 +53,6 @@ class BBCSignUp(BaseRequest):
         assert_util.result_check(result)
         return result
 
-    # code 000001
-    # data{
-    #     "status": "NOT_CREATED"
-    # }
-
     # 审核通过不通过
     def audit(self, **kwargs):
         self.req_method = 'POST'
@@ -66,7 +61,6 @@ class BBCSignUp(BaseRequest):
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('crm'),
         }
-        # result = self.x_request()
         result = self.request(
             method=self.req_method, url=self.req_url, cookies=self.req_cookies,
             data=self.req_body
