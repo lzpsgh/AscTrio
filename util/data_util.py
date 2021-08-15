@@ -61,19 +61,15 @@ class DataPool:
         # print("读取ini ==>>  {} ".format(data))
         return data
 
-    # TODO
     def supply(self, yml_name, yml_key):
+        yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
         try:
-            yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
             yaml_data = data_pool.load_yml(yaml_file_path)
-            if yml_key is not None:
-                yaml_dict = yaml_data.get(yml_key)
+            yaml_dict = yaml_data.get(yml_key)
+            if yaml_dict is not None:
                 return yaml_dict
-            else:
-                raise KeyError
-        except Exception as excep:
-            print(excep)
-            raise
+        except KeyError:
+            print(f'未在yml中找到字段：{yml_key}')
 
     def supply_mongodb(self):
         # 读取mongodb文档，返回带faker标识符的dict_tmp,

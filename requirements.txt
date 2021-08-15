@@ -1,13 +1,10 @@
-redis==3.5.3
 pytest==4.5.0
-PyMySQL==0.9.3
-allure-pytest==2.8.6
 requests==2.20.0
 PyYAML==5.3.1
+PyMySQL==0.9.3
+redis==3.5.3
+allure-pytest==2.8.6
 colorlog==5.0.1
 faker==8.1.2
 python-dotenv==0.17.1
-pytest-xdist==2.2.1
-pytesseract==0.3.7
-pillow==8.2.0
 pytest-repeat==0.9.1

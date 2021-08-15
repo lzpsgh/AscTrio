@@ -56,11 +56,12 @@ class BaseRequest:
         self.request_log(url, data, json, params, headers, files, cookies)
 
         if m_method == "GET":
-            # inner_rsp = self.session.get(url, timeout=5, **kwargs) # 多用户场景下不能开启session会话功能
-            inner_rsp = requests.get(url, timeout=8, verify=False, **kwargs)
+            inner_rsp = self.session.get(url, timeout=8, **kwargs)  # 多用户场景下不能开启session会话功能
+            # inner_rsp = requests.get(url, timeout=8, verify=False, **kwargs)
 
         if m_method == "POST":
-            inner_rsp = requests.post(url, data, json, timeout=8, verify=False, **kwargs)
+            inner_rsp = self.session.post(url, data, json, timeout=8, verify=False, **kwargs)
+            # inner_rsp = requests.post(url, data, json, timeout=8, verify=False, **kwargs)
 
         if m_method == "DELETE":
             inner_rsp = self.session.delete(url, verify=False, **kwargs)
