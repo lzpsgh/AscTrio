@@ -80,7 +80,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order')[0]
     kwargs3['id'] = int(signin_id)
     kwargs3['userId'] = userid
-    kwargs3['payType'] = "WX"  # TODO
+    kwargs3['payType'] = fakerist.pay_type()
     # bbc_serv.pay_regfee_ali(kwargs3)
     res3 = bbc_signUp.create_order(**kwargs3)
     # 模拟支付回调成功
