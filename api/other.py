@@ -2,16 +2,36 @@
 # @Time    : 2021/4/6
 # 模版文件，仅供参考，无法执行
 
+from functools import wraps
+
 from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
 
 
+def decorater(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f'位置参数:{args}')
+        print(f'关键字参数:{kwargs}')
+        res = func(*args, **kwargs)
+        print(f'装饰器内函数名: {func.__name__}')
+        # print(f'返回值: {res}')
+        print(f'函数func所属的类: {func.__qualname__}')
+        return res
+
+    return wrapper
+
+
 class Other(BaseRequest):
 
     def __init__(self, api_root_url, **kwargs):
         super(Other, self).__init__(api_root_url, **kwargs)
+
+    @decorater
+    def func2(self, *args, **kwargs):
+        return 'return'
 
     def add_sprite(self):
         self.req_method = 'POST'
@@ -90,8 +110,10 @@ class Other(BaseRequest):
         return result
 
 
-other = Other(common_util.env('BASE_URL'))
+other = Other(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
-    pass
-    other.upload_material('pwd')
+    other.func2(1, 2, a=3, b=4)
+    print(f'装饰外模块名:{other.__module__.__}')
+    print(f'装饰外函数名:{other.func2.__name__}')
+    # other.upload_material('pwd')

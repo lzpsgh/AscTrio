@@ -6,7 +6,7 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-
+from util.data_util import data_pool
 
 class GroupBuy(BaseRequest):
 
@@ -28,7 +28,10 @@ class GroupBuy(BaseRequest):
         return result
 
 
-group_buy = GroupBuy(common_util.env('BASE_URL'))
+group_buy = GroupBuy(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
-    group_buy.add_activity()
+    kwargs = data_pool.supply(
+        'group_buy_data.yml', 'add_activity_2'
+    )[0]
+    group_buy.add_activity(**kwargs)

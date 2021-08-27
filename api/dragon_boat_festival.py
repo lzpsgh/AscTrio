@@ -46,7 +46,7 @@ class DBF(BaseRequest):
         return result
 
 
-dbf = DBF(common_util.env('BASE_URL'))
+dbf = DBF(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     # dbf.dbf_set_time('1624204800000', '1625065200000')  # 21-30 未开始

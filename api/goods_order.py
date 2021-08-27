@@ -73,7 +73,7 @@ class GoodsOrder(BaseRequest):
         return result
 
 
-goods_order = GoodsOrder(common_util.env('BASE_URL'))
+goods_order = GoodsOrder(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     goods_order.pay_callback_suc('202108091528475016932566')

@@ -67,7 +67,7 @@ class Project(BaseRequest):
         return result
 
 
-project = Project(common_util.env('BASE_URL_GZ'))
+project = Project(common_util.env('DOMAIN_GZ'))
 
 if __name__ == '__main__':
     # project.save_competition_project('67')

@@ -6,8 +6,8 @@ COOKIE_YML='${PROJECT_ROOT}/data/cookies.yml'
 LOG_PATH='${PROJECT_ROOT}/log'
 
 # 服务端根路径
-BASE_URL='http://sit.miaocode.com'
-BASE_URL_GZ=
+DOMAIN_CORE='http://sit.miaocode.com'
+DOMAIN_GZ=
 
 # MySQL数据库
 MYSQL_HOST=

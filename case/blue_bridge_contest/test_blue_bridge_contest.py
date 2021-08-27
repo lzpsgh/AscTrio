@@ -19,7 +19,7 @@ from util.log_util import logger
 class TestBlueBridgeContest:
 
     @pytest.mark.repeat(5)
-    @pytest.mark.parametrize("kwargs", data_pool.supply('bbc_user_batch.yml', 'h5_query'))
+    @pytest.mark.parametrize("kwargs", data_pool.supply('bbc_user_batch.yml', 'h5_query444'))
     # @pytest.mark.parametrize("kwargs", None)
     def test_result_inquiry(self, kwargs):
         kwargs_query = dict(identityNo='111', phone='222')
@@ -235,7 +235,6 @@ class TestBlueBridgeContest:
         assert res.status is True
 
     @pytest.mark.skip
-    # @pytest.mark.single
     @pytest.mark.parametrize("kwargs", data_pool.supply('bbc_signup_data.yml', 'submit_reg_info'))
     @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
     def test_submit_registration_information(self, kwargs):
@@ -270,3 +269,4 @@ if __name__ == '__main__':
     # assert res.status is True
     # bbc_signUp.test_submit_pay_audit() "-n auto",
     # pytest.main(["-q", "-s", "-n", "auto", "test_blue_bridge_contest.py::TestBlueBridgeContest::test_result_inquiry"])
+

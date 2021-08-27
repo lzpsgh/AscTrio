@@ -13,3 +13,20 @@ add_activity_1:
     activityType:    'GROUPPURCHASING'
     seatNumber:      3
     validTime:       300000  # 20h-72000000-1200min  600000-10mi
+add_activity_2:
+  -
+    imgUrl:          'https://res.miaocode.com/318f4502-885f-495e-a7ce-15cae01a9803.png'
+    name:            '你行不行2'
+    title:           '你行不行2'
+    startTime:       '2021-08-19 00:00:00'
+    endTime:         '2021-08-21 00:00:00'
+    userCoupon:      False
+    channelCode:     'testtesttest'
+    goodsId:         663
+    price:           0.01
+    buyChanceNumber: 1
+    activityType:    GROUPPURCHASING
+    seatNumber:      3
+    remindType:      0
+    diffTime:        1
+    validTime:       10800000

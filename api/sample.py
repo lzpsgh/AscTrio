@@ -67,11 +67,13 @@ class Sample(BaseRequest):
         self.req_body = kwargs
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('crm'),
+            'exam_token': auth_util.get_token('bbc', 'exam_token'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             data=self.req_body
         )
+        auth_util.set_token('bbc', 'exam_token', result.rsp.cookies["exam_token"])
         assert_util.result_check(result)
         return result
 
@@ -93,7 +95,7 @@ class Sample(BaseRequest):
         return result
 
 
-sample = Sample(common_util.env('BASE_URL'))
+sample = Sample(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     kwargs = data_pool.supply('xxx.yml', 'upload_info')  # 此时kwargs是dict类型

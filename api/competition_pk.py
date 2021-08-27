@@ -215,7 +215,7 @@ class CompetitionPK(BaseRequest):
     #     return result
 
 
-cmpttn_pk = CompetitionPK(common_util.env('BASE_URL'))
+cmpttn_pk = CompetitionPK(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     # competition_enter.submit_enter_name_info('66', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')

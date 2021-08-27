@@ -4,7 +4,7 @@
 from base.base_request import BaseRequest
 from util import common_util
 
-base_requests = BaseRequest(common_util.env('BASE_URL_GZ'))
+base_requests = BaseRequest(common_util.env('DOMAIN_GZ'))
 
 # 转介绍
 # https://sit.miaocode.com/core/sfsaferwefvcxv3r34342/CallMethodByAnotation?className=com.gz.mxc.service.timer.ReportTimerTask&methodName=referralData

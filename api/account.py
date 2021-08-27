@@ -52,7 +52,7 @@ class Account(BaseRequest):
         return result
 
 
-account = Account(common_util.env('BASE_URL'))
+account = Account(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     account.crm_login()

@@ -233,7 +233,7 @@ class User(BaseRequest):
             'userIds': mysqler.query(sql_query_userid + phone)
         }
         self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -288,22 +288,22 @@ class User(BaseRequest):
         return result
 
 
-user = User(common_util.env('BASE_URL'))
+user = User(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
-    phone = '18666024999'
-    userid = '110311'
+    phone = '18999000002'
+    # userid = '110311'
 
-    # user.phone_exist(phone)
+    user.phone_exist(phone)
     # user.reset_pwd(userid)
-    user.get_current_user()
+    # user.get_current_user()
 
     # res1 = user.send_sms2(phone)
     # assert res1.rsp.status_code == 200
     # res2 = user.register(phone)
     # assert res2.rsp.status_code == 200
 
-    # user.modify_users_owner()
+    # user.modify_users_owner(phone)
     # account.crm_login_with_mm()
     # user.modify_users_owner(phone)
 

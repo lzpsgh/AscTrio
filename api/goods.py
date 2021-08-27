@@ -54,7 +54,7 @@ class Goods(BaseRequest):
         return result
 
 
-goods = Goods(common_util.env('BASE_URL'))
+goods = Goods(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     pass

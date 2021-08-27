@@ -140,7 +140,7 @@ class BBCMatch(BaseRequest):
         return result
 
 
-bbc_match = BBCMatch(common_util.env('BASE_URL_GZ'))
+bbc_match = BBCMatch(common_util.env('DOMAIN_GZ'))
 
 if __name__ == '__main__':
     pass

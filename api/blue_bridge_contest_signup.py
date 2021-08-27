@@ -99,7 +99,7 @@ class BBCSignUp(BaseRequest):
         return res
 
 
-bbc_signUp = BBCSignUp(common_util.env('BASE_URL'))
+bbc_signUp = BBCSignUp(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     bbc_signUp.save_match()

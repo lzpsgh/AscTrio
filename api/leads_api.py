@@ -34,7 +34,7 @@ class LeadsAPI(BaseRequest):
         return result
 
 
-leads_api = LeadsAPI(common_util.env('BASE_URL'))
+leads_api = LeadsAPI(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     leads_api.get_token()

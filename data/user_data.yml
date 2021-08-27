@@ -10,3 +10,6 @@ booking_demo_cn:
 login_and_register_1:
   - '188992727223'
   - '188992727224'
+reset_pwd:
+  -
+    phone: '15987796686'
