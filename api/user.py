@@ -6,6 +6,7 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
+from util import sql_util
 from util.mysql_util import mysqler
 
 
@@ -274,14 +275,13 @@ class User(BaseRequest):
     def get_current_user_nocookie(self):
         self.req_method = 'GET'
         self.req_url = '/core/user/getCurrentUser'
-        # result = self.x_request()
         result = self.request(
             method='GET', url=self.req_url,
             headers=self.req_headers, params=self.req_body)
         # asserter.result_check(result)
-        # code=000002, success=false message=当前用户校验不通过
+        # 响应码=200，code=000002, success=false message=当前用户校验不通过
+        print(result.sdata)
         if result.rsp.status_code == 200:
-            # print(result.rsp.text)
             jsession_id = result.rsp.cookies['JSESSIONID']
             print(jsession_id)
             auth_util.set_cookie('web', jsession_id)
@@ -293,10 +293,13 @@ user = User(common_util.env('DOMAIN_CORE'))
 if __name__ == '__main__':
     phone = '18999000002'
     # userid = '110311'
+    # user.phone_exist(phone)
 
-    user.phone_exist(phone)
-    # user.reset_pwd(userid)
     # user.get_current_user()
+    user.get_current_user_nocookie()  # 为什么加上这行以后再执行reset_pwd就会提示用户未登录的200400错误码，不加就正常
+    userid = sql_util.sql_phone_to_userid(phone)
+    res = user.reset_pwd(userid)
+    print(res)
 
     # res1 = user.send_sms2(phone)
     # assert res1.rsp.status_code == 200

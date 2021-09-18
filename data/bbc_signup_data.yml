@@ -1,12 +1,13 @@
 ---
 save_match_1:
   -
-    name:      'test8月12日报名活动'
-    expense:   0.01
-    startTime: "2021-08-13 10:50:01"
-    endTime:   "2021-08-14 00:00:00"
-    type:      "Miaocode"
-    headImg:   "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
+    name:       '9测试9月17日报名'
+    expense:    0.01
+    startTime:  "2021-09-17 10:50:01"
+    endTime:    "2021-09-19 00:00:00"
+    type:       "Miaocode"
+    sortWeight: 9999
+    headImg:    "https://res.miaocode.com/cd589a1b-9ea9-4d53-8b85-ab9fe1488a31.JPG"
     detailImgList:
       - "https://res.miaocode.com/ad940da1-479e-419e-a783-05a59fb117b1.jpg"
       - "https://res.miaocode.com/be06f7e9-4469-4795-9aad-7a67d4ad1191.JPG"
@@ -31,8 +32,20 @@ audit_fail:
     id:         '56'  # 报名记录id
 create_order:
   -
+    id:         187
+    forwordUrl: "https://sit.miaocode.com/h5competition/xxxxxxxxx"
+    payType:    "WX"
+    payStyle:   "JSAPI"
+create_order_wx:
+  -
+    id:         187
+    payType:    "WX"
+    payStyle:   "JSAPI"
+    forwordUrl: "https://sit.miaocode.com/h5competition/pay?id=187&matchId=90&userId=4001801&expense=0.01"
+create_order_ali:
+  -
     id:         73
     userId:     "30830"
-    payType:    "ALI" #WX
-    forwordUrl: "https://sit.miaocode.com/h5competition/paySuccess"
+    payType:    "ALI"
     payStyle:   "WAP"
+    forwordUrl: "https://sit.miaocode.com/h5competition/paySuccess"

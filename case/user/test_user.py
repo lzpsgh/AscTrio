@@ -68,13 +68,12 @@ class TestUser:
         assert res.sdata.get('userId') == userid
 
     @pytest.mark.usefixtures('crm_login_with_mm')
-    @pytest.mark.parametrize('kwargs', data_pool.supply(
-        'user_data.yml', 'reset_pwd'
-    ))
+    @pytest.mark.parametrize('kwargs', data_pool.supply('bbc_user_batch.yml', 'user_submit_and_login3'))
     def test_batch_reset_pwd(self, kwargs):
-        userid = sql_util.sql_phone_to_userid(kwargs['phone'])
+        phone = kwargs['phone']
+        userid = sql_util.sql_phone_to_userid(phone)
         res = user.reset_pwd(userid)
-        # assert res.status is None
+        assert res.status is True
 
     @pytest.mark.usefixtures('h5_login')
     @pytest.mark.parametrize('kwargs', ['13612345677'])

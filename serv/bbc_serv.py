@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time    : 2021/7/27 下午1:42
-from api.blue_bridge_contest_match import bbc_match
 from api.blue_bridge_contest_signup import bbc_signUp
 from api.goods_order import goods_order
 from api.user import user
@@ -29,7 +28,7 @@ def save_match_enable(kwargs):
     # match_id = res.sdata  # TODO 等开发改好接口后要换成这个
     logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
     res1 = bbc_signUp.enable(1, match_id)
-    assert res1.status is True
+    # assert res1.status is True
 
 
 # 考生登录并提交答卷,调用前请确保考生已审核通过
@@ -48,7 +47,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
 
     phone = kwargs['phone']
     userid = sql_util.sql_phone_to_userid(phone)
-    user.reset_pwd(userid)
+    # user.reset_pwd(userid)
     user.login(phone)
     # id_number = kwargs['identityNo']
     id_number = fakerist.ssn()
@@ -76,13 +75,13 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     signin_id = res.sdata.get('id')
     logger.info(f"报名手机号是{phone}, 报名身份证是{id_number}, 报名ID是{signin_id}")
 
-    # 下单支付
+    # 下单支付-微信
     kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order')[0]
     kwargs3['id'] = int(signin_id)
-    kwargs3['userId'] = userid
-    kwargs3['payType'] = fakerist.pay_type()
-    # bbc_serv.pay_regfee_ali(kwargs3)
+    # kwargs3['userId'] = userid
+    # kwargs3['payType'] = 'ALI'  # fakerist.pay_type()
     res3 = bbc_signUp.create_order(**kwargs3)
+
     # 模拟支付回调成功
     pay_record_id = res3.sdata.get("payrecordId")
     out_trade_no = sql_util.sql_payrecordid_to_outtradeno(pay_record_id)
@@ -96,13 +95,13 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
 
     # 用户登录: 身份证-考试id为70
     # 将查到的userid保存到 临时的kwargs['userId'] 中用于后续的作品保存和答卷提交
-    kwargs5 = data_pool.supply('bbc_submit_paper.yml', 'exam_login')[0]
-    exam_uuid = sql_util.sql_examid_to_uuid(exam_id)
-    kwargs5['examId'] = exam_uuid  # 考试uuid
-    kwargs5['identityType'] = 'IDCARD'  # TODO
-    kwargs5['identityNo'] = id_number
-    kwargs5['phone'] = phone
-    res5 = bbc_match.exam_login(**kwargs5)
+    # kwargs5 = data_pool.supply('bbc_submit_paper.yml', 'exam_login')[0]
+    # exam_uuid = sql_util.sql_examid_to_uuid(exam_id)
+    # kwargs5['examId'] = exam_uuid  # 考试uuid
+    # kwargs5['identityType'] = 'IDCARD'  # TODO
+    # kwargs5['identityNo'] = id_number
+    # kwargs5['phone'] = phone
+    # res5 = bbc_match.exam_login(**kwargs5)
 
     # # 保存作品 提交试卷的编程题4
     # 需要提前修改 subjectId
@@ -122,15 +121,15 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     # res7 = bbc_match.save_project(**kwargs7)
     # assert res7.status is True
 
-    # 提交试卷(非编程题部分)
-    kwargs8 = data_pool.supply('bbc_submit_paper.yml', 'submit_official_paper')[0]
-    # 实际上不是传userid，而是传 报名活动下的该用户自己的报名id
-    kwargs8['userId'] = str(signin_id)
-    kwargs8['examinationId'] = str(exam_id)
-    kwargs8['testPaperId'] = int(paper_id)
-    res8 = bbc_match.submit_official_paper(**kwargs8)
-    # assert res8.status is True f返回false  # TODO 找开发改接口，返回data
-    return res8
+    # # 提交试卷(非编程题部分)
+    # kwargs8 = data_pool.supply('bbc_submit_paper.yml', 'submit_official_paper')[0]
+    # # 实际上不是传userid，而是传 报名活动下的该用户自己的报名id
+    # kwargs8['userId'] = str(signin_id)
+    # kwargs8['examinationId'] = str(exam_id)
+    # kwargs8['testPaperId'] = int(paper_id)
+    # res8 = bbc_match.submit_official_paper(**kwargs8)
+    # # assert res8.status is True f返回false  # TODO 找开发改接口，返回data
+    # return res8
 
 
 if __name__ == '__main__':
