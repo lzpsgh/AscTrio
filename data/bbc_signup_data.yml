@@ -36,6 +36,7 @@ create_order:
     forwordUrl: "https://sit.miaocode.com/h5competition/xxxxxxxxx"
     payType:    "WX"
     payStyle:   "JSAPI"
+    userId:     "30830" # payType=ALI时才用到
 create_order_wx:
   -
     id:         187

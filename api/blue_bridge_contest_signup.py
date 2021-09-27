@@ -33,7 +33,7 @@ class BBCSignUp(BaseRequest):
         self.req_url = '/core/bbcEnterName/createOrder'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_cookie('web'),
         }
         result = self.x_request()
         assert_util.result_check(result)

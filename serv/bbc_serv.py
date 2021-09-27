@@ -81,6 +81,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     # kwargs3['userId'] = userid
     # kwargs3['payType'] = 'ALI'  # fakerist.pay_type()
     res3 = bbc_signUp.create_order(**kwargs3)
+    # TODO 会导致'prepay_id=null'
 
     # 模拟支付回调成功
     pay_record_id = res3.sdata.get("payrecordId")
@@ -91,7 +92,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     kwargs4 = data_pool.supply('bbc_signup_data.yml', 'audit_pass')[0]
     kwargs4['enable'] = 1
     kwargs4['id'] = signin_id
-    res4 = bbc_signUp.audit(**kwargs4)
+    bbc_signUp.audit(**kwargs4)
 
     # 用户登录: 身份证-考试id为70
     # 将查到的userid保存到 临时的kwargs['userId'] 中用于后续的作品保存和答卷提交
