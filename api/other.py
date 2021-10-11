@@ -109,11 +109,39 @@ class Other(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 创建作品列表banner
+    def save_banner(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/gzactivity/projectSharingActivity/saveBanner'
+        # self.req_headers = {
+        #     "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
+        # }
+        self.req_cookies = {
+            'JSESSIONID': auth_util.get_cookie('crm'),
+        }
+        self.req_body = kwargs
+        result = self.request(
+            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
+            json=self.req_body
+        )
+        assert_util.result_check(result)
+        return result
 
-other = Other(common_util.env('DOMAIN_CORE'))
+
+other = Other(common_util.env('DOMAIN_GZ'))
 
 if __name__ == '__main__':
-    other.func2(1, 2, a=3, b=4)
-    print(f'装饰外模块名:{other.__module__.__}')
-    print(f'装饰外函数名:{other.func2.__name__}')
+    test_data = {
+        "bannerName": "asctrio-7",
+        "bannerUrl": "https://res.miaocode.com/aec680d1-4e8f-41ca-b486-b67d42cfda0f.png",
+        "jumpUrl": "https://www.taobao.com",
+        "sortWeight": 100,
+        "takeEffectStartTime": "2021-09-29 00:00:00",
+        "takeEffectEndTime": "2021-09-30 23:59:59"
+    }
+    other.save_banner(**test_data)
+
+    # other.func2(1, 2, a=3, b=4)
+    # print(f'装饰外模块名:{other.__module__.__}')
+    # print(f'装饰外函数名:{other.func2.__name__}')
     # other.upload_material('pwd')

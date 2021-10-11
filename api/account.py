@@ -53,6 +53,8 @@ class Account(BaseRequest):
 
 
 account = Account(common_util.env('DOMAIN_CORE'))
+account2 = Account(common_util.env("DOMAIN_MOCK") + '/' + common_util.env("YAPI_PROJ_CORE"))
 
 if __name__ == '__main__':
     account.crm_login()
+    # account2.crm_login()

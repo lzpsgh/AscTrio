@@ -8,6 +8,10 @@ LOG_PATH='${PROJECT_ROOT}/log'
 # 服务端根路径
 DOMAIN_CORE='http://sit.miaocode.com'
 DOMAIN_GZ=
+DOMAIN_MOCK=
+
+# YAPI的项目ID
+YAPI_PROJ_CORE=32
 
 # MySQL数据库
 MYSQL_HOST=
