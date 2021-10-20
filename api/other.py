@@ -127,6 +127,26 @@ class Other(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 作品排名活动优化
+    def save_activity(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/gzactivity/projectActivityManage/saveActivity'
+        # self.req_headers = {
+        #     "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
+        # }
+        self.req_cookies = {
+            "token": "accoundPhonetoken0f77f84d-e07f-4004-af15-33018be469a1",
+            "api_account_token": "api_account_token_AE73B820F68F421D67B1905E48015213ECC913578E81D4056E1BCBEB60CF5D93",
+        }
+        #
+        self.req_body = kwargs
+        result = self.request(
+            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
+            json=self.req_body
+        )
+        assert_util.result_check(result)
+        return result
+
 
 other = Other(common_util.env('DOMAIN_GZ'))
 
@@ -139,7 +159,38 @@ if __name__ == '__main__':
         "takeEffectStartTime": "2021-09-29 00:00:00",
         "takeEffectEndTime": "2021-09-30 23:59:59"
     }
-    other.save_banner(**test_data)
+    test_data1 = {
+        "activityName": "冒烟64",
+        "activeObject": 1,
+        "participationAward": 64,
+        "channelCode": "test222",
+        "startTime": "2021-10-14 00:00:01",
+        "endTime": "2021-10-26 00:01:00",
+        "chooseStartTime": "2020-09-09 00:00:00",
+        "chooseEndTime": "2021-10-10 00:00:00",
+        "headImg": "https://res.miaocode.com/f776b2b4-b2c9-4e9f-ba50-4bb6d79d89ce.jpeg",
+        "howToPlay": 1,
+        "invitationButtonColor": "#f8da73",
+        "leaderboardColor": "#f8da73",
+        "shareDesc": "测试活动作品分享描述文案常常吃",
+        "shareIcon": "https://res.miaocode.com/e7b1abf7-8819-40cc-9b28-cf9410146170.png",
+        "shareTitle": "测试活动作品分享标题",
+        "frontShareDesc": "测试活动首页分享描述文案常常吃",
+        "frontShareIcon": "https://res.miaocode.com/49d91132-0de2-475c-ba09-52b7c4697877.jpeg",
+        "frontShareTitle": "测试活动首页分享标题",
+        "posterImgList": ["https://res.miaocode.com/3026ddcf-b327-4c9a-b43f-f026f2152cdd.jpeg"],
+        "detailImgList": ["https://res.miaocode.com/cf3cf6ec-8150-4f6a-ba28-f41bf9922499.jpeg"],
+        "rewardList": [
+            {
+                "rankingAbove": 1,
+                "pointsReward": 10,
+                "gradient": 1,
+                "isActive": False
+            }
+        ]
+    }
+
+    other.save_activity(**test_data1)
 
     # other.func2(1, 2, a=3, b=4)
     # print(f'装饰外模块名:{other.__module__.__}')

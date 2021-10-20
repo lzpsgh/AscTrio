@@ -41,16 +41,6 @@ class TestUser:
         assert res.status is True
         assert res.sdata['isLeads'] is True
 
-    @pytest.mark.skip
-    @pytest.mark.single
-    # @pytest.mark.parametrize("phone", data_pool.supply('user_data.yml', 'test_reset_pwd'))
-    @pytest.mark.usefixtures("crm_login_with_mm")
-    def test_reset_pwd(self, phone):
-        userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
-        logger.info(f'userid是{userid}')
-        res = user.reset_pwd(userid)
-        assert res.status is True
-
     # @pytest.mark.skip
     @pytest.mark.single
     # @pytest.mark.parametrize("phone", data_pool.supply('.yml', ''))
@@ -67,13 +57,23 @@ class TestUser:
         assert res.status is True
         assert res.sdata.get('userId') == userid
 
-    @pytest.mark.usefixtures('crm_login_with_mm')
-    @pytest.mark.parametrize('kwargs', data_pool.supply('bbc_user_batch.yml', 'user_submit_and_login3'))
-    def test_batch_reset_pwd(self, kwargs):
-        phone = kwargs['phone']
-        userid = sql_util.sql_phone_to_userid(phone)
+    @pytest.mark.skip
+    @pytest.mark.single
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_reset_pwd(self, phone):
+        userid = mysqler.query(f"SELECT id FROM user WHERE user.phone = \'{phone}\'")[0][0]
+        logger.info(f'userid是{userid}')
         res = user.reset_pwd(userid)
         assert res.status is True
+
+    # 根据手机号重置登录密码
+    @pytest.mark.usefixtures('crm_login_with_mm')
+    @pytest.mark.parametrize('kwargs', data_pool.supply('user_data.yml', 'reset_pwd'))
+    def test_batch_reset_pwd(self, kwargs):
+        phone = kwargs['phone']
+        user_id = sql_util.sql_phone_to_userid(phone)
+        res3 = user.reset_pwd(user_id)
+        assert res3.status is True
 
     @pytest.mark.usefixtures('h5_login')
     @pytest.mark.parametrize('kwargs', ['13612345677'])

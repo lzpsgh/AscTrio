@@ -47,13 +47,17 @@ class Account(BaseRequest):
         result = self.x_request()
         assert_util.result_check(result)
         core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        auth_util.set_cookie('crm', core_jsessionid)
+        api_account_token = result.rsp.cookies["api_account_token"]
+        # auth_util.set_cookie('crm', core_jsessionid)
+        auth_util.set_token('crm', 'jsessionid', core_jsessionid)
+        auth_util.set_token('crm', 'api_account_token', api_account_token)
+
         logger.debug(core_jsessionid)
         return result
 
 
 account = Account(common_util.env('DOMAIN_CORE'))
-account2 = Account(common_util.env("DOMAIN_MOCK") + '/' + common_util.env("YAPI_PROJ_CORE"))
+# account2 = Account(common_util.env("DOMAIN_MOCK") + '/' + common_util.env("YAPI_PROJ_CORE"))
 
 if __name__ == '__main__':
     account.crm_login()

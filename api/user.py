@@ -6,7 +6,6 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-from util import sql_util
 from util.mysql_util import mysqler
 
 
@@ -249,7 +248,8 @@ class User(BaseRequest):
             'userId': user_id
         }
         self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('crm'),
+            'JSESSIONID': auth_util.get_token('crm', 'jsessionid'),
+            'api_account_token': auth_util.get_token('crm', 'api_account_token'),  # 这个才是关键
         }
         result = self.request(
             method=self.req_method, url=self.req_url, data=self.req_body, cookies=self.req_cookies
@@ -291,14 +291,16 @@ class User(BaseRequest):
 user = User(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
-    phone = '18999000002'
+    # phone = '13705795076'
     # userid = '110311'
     # user.phone_exist(phone)
 
     # user.get_current_user()
-    user.get_current_user_nocookie()  # 为什么加上这行以后再执行reset_pwd就会提示用户未登录的200400错误码，不加就正常
-    userid = sql_util.sql_phone_to_userid(phone)
-    res = user.reset_pwd(userid)
+
+    # user.get_current_user_nocookie()
+    # userid = sql_util.sql_phone_to_userid(phone)
+    # res = user.reset_pwd(userid)
+    res = user.reset_pwd('4002070')
     print(res)
 
     # res1 = user.send_sms2(phone)
