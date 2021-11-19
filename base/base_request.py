@@ -19,9 +19,10 @@ class BaseRequest:
         self.req_headers = {
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",  # 在HTTP1.1规范中默认开启
-            "Accept": "application/json, text/plain, */*"
+            "Accept": "application/json, text/plain, */*",
+            # "Content-Type": "application/x-www-form-urlencoded"
         }
-        # requests.packages.urllib3.disable_warnings()
+        requests.packages.urllib3.disable_warnings()
 
     def __str__(self):
         return f'BaseRequest object (api_root_url: {self.api_root_url})'

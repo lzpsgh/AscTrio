@@ -28,11 +28,11 @@ add_exam_formal_senior:
 add_exam_simu:
   -
     examType:    0 # 考试类型 1正式0模拟
-    examName:    "moni2"
-    startTime:   "2021-08-03 00:00:00"
-    endTime:     "2021-08-05 00:00:00"
-    testpaperId: 49 #考试试卷id
-    sortWeight:  1 #排序权重
+    examName:    "moni1"
+    startTime:   "2021-11-03 00:00:00"
+    endTime:     "2021-11-25 00:00:00"
+    testpaperId: 2 #考试试卷id
+    sortWeight:  32 #排序权重
 new_subject_single:
   -
     subjectType:      0  # 0单选题1多选题2判断题3填空题4编程题5编程开放题

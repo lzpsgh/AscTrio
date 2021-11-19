@@ -1,0 +1,17 @@
+add_exam:
+  -
+    examType:        1
+    examName:        '中文S1考试'
+    englishExamName: 'eng—exam'
+    status:          1
+    lessonCount:     1
+    testPaperIdList:
+      - 140
+    totalTime:       5
+    timeInterval:
+      - '2021-11-19 00:00:00'
+      - '2021-11-20 23:59:59'
+    courseLayer:     S1
+    matchType:       1
+    courseType:      0
+

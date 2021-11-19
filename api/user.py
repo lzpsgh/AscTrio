@@ -30,6 +30,7 @@ class User(BaseRequest):
         return result
 
     # 获取手机验证码（量多应该抽出来放到/user/ccbb文件夹）
+    # 废弃了不再使用
     def send_sms(self, phone):
         self.req_method = 'GET'
         self.req_url = '/core/ccbb/sendSMS'
@@ -138,7 +139,7 @@ class User(BaseRequest):
         assert_util.result_check(result)
         return result
 
-    # 官网登录
+    # 官网登录-密码登录
     def login(self, phone):
         self.req_method = 'GET'
         self.req_url = '/core/user/login'
@@ -153,7 +154,25 @@ class User(BaseRequest):
         }
         result = self.x_request()
         assert_util.result_check(result)
-        # auth.set_cookie('h5', result.rsp.cookies["JSESSIONID"])
+        auth_util.set_token('web', 'gz_token', result.rsp.cookies["token"])
+        return result
+
+    # 官网登录-验证码登录
+    # 如果提示验证码过期，需要先调用/core/ccbb/sendSMS2?phone=13937164617&t=1635750493444
+    def phone_login(self, phone):
+        self.req_method = 'GET'
+        self.req_url = '/core/user/phoneLogin'
+        self.req_body = {
+            "phone": phone,
+            "code": 123456
+        }
+        self.req_cookies = {
+            'JSESSIONID': auth_util.get_cookie('web'),
+        }
+        result = self.x_request()
+        assert_util.result_check(result)
+        # auth_util.set_cookie('web', result.rsp.cookies["JSESSIONID"])
+        auth_util.set_token('web', 'gz_token', result.rsp.cookies["token"])
         return result
 
     # 官网退出登录
@@ -162,22 +181,6 @@ class User(BaseRequest):
         self.req_url = '/core/user/logout'
         self.req_body = {
             "t": common_util.get_timestamp()
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('web'),
-        }
-        result = self.x_request()
-        assert_util.result_check(result)
-        auth_util.set_cookie('web', result.rsp.cookies["JSESSIONID"])
-        return result
-
-    # 官网登录
-    def phone_login(self, phone):
-        self.req_method = 'GET'
-        self.req_url = '/core/user/phoneLogin'
-        self.req_body = {
-            "phone": phone,
-            "code": 123456
         }
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('web'),

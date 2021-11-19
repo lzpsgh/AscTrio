@@ -1,16 +1,15 @@
 # coding     : utf-8
 # @Time      : 2021/4/30 上午10:47
 
-from base.base_request import BaseRequest
-from util import common_util
+import requests
 
-base_requests = BaseRequest(common_util.env('DOMAIN_GZ'))
+from util.log_util import logger
+
 
 # 转介绍
 # https://sit.miaocode.com/core/sfsaferwefvcxv3r34342/CallMethodByAnotation?className=com.gz.mxc.service.timer.ReportTimerTask&methodName=referralData
 
-
-# 传入定时任务url（带相关字段）
 def call_method(url):
-    result = base_requests.request("GET", url)
-
+    # result = base_requests.request("GET", url)
+    res = requests.get(url)
+    logger.info(res.text)

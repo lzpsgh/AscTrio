@@ -11,6 +11,7 @@ from api.user import user
 from serv import bbc_serv
 from util import sql_util
 from util.data_util import data_pool
+from util.faker_util import fakerist
 from util.log_util import logger
 
 
@@ -83,7 +84,21 @@ class TestBlueBridgeContest:
         "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_formal_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm")
     def test_add_exam_formal_enable(self, kwargs):
-        res = bbc_match.add_exam(**kwargs)
+        res = bbc_match.new_exam(**kwargs)
+        assert res.status is True
+        exam_id = res.sdata
+        bbc_match.enable_exam(exam_id)
+
+    # 新增模拟考试
+    @pytest.mark.parametrize(
+        "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_simu'))
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_add_exam_formal_enable(self, kwargs):
+        kwargs['examName'] = fakerist.word() + fakerist.numerify()
+        kwargs['startTime'] = "2021-11-03 11:32:00"
+        kwargs['testpaperId'] = 79
+        kwargs['sortWeight'] = 32
+        res = bbc_match.new_exam(**kwargs)
         assert res.status is True
         exam_id = res.sdata
         bbc_match.enable_exam(exam_id)
