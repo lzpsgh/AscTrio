@@ -43,7 +43,6 @@ class ClkClockAudit(BaseRequest):
         self.req_body = kwargs
         self.req_cookies = {
             'token': auth_util.get_token('web', 'gz_token'),  # api_token_1553151F52226FFBF1AF1343FBD8F4E5
-            # 'exam_token': auth_util.get_token('bbc', 'exam_token'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,

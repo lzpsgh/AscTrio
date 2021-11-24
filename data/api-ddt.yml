@@ -1,0 +1,15 @@
+---
+Channel:
+  common:
+    base_url:   'https://api-sit.miaocode.com/api'
+    middle_url: '/gzactivity'
+  add_channel:
+    method:       'POST'
+    url:          '/core/channel/addChannel'
+    cookie:
+      'JSESSIONID': auth_util.get_cookie('crm'),
+      'exam_token': auth_util.get_token('bbc', 'exam_token'),
+    header:
+    content_type: json # json/data
+    body:         kwargs
+    result:       self.request(data=self.req_body)

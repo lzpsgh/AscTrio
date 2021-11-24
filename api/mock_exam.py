@@ -19,7 +19,7 @@ class MockExam(BaseRequest):
         self.req_url = '/exam/knowLedgePoint/insert'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
@@ -34,7 +34,7 @@ class MockExam(BaseRequest):
         self.req_url = '/subject/newSubject'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -46,7 +46,7 @@ class MockExam(BaseRequest):
         self.req_url = '/paper/add'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -58,7 +58,7 @@ class MockExam(BaseRequest):
         self.req_url = '/examination/examinationAdd'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
@@ -73,7 +73,7 @@ class MockExam(BaseRequest):
         self.req_url = '/examination/enable'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
@@ -83,8 +83,6 @@ class MockExam(BaseRequest):
 
 
 mock_exam = MockExam(common_util.env('DOMAIN_GZ') + '/gzactivity')
-# 'https://api-sit.miaocode.com/api'
-# https://api-sit.miaocode.com/api/gzactivity/exam/knowledgePoint/page
 
 if __name__ == '__main__':
     pass

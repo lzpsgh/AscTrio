@@ -4,7 +4,7 @@ bbc:
 crm:
   api_account_token: api_account_token_AE73B820F68F421D67B1905E48015213ECC913578E81D4056E1BCBEB60CF5D93
   gz_token:          api_token_CBA4A3006A8ABC706F98A2B6F8892CC2
-  jsessionid:        8627DDC3DC4451DD431097C833444F02
+  jsessionid:        2122D12993AD23A9AB2DF3C67F6FC704
 gz:
   jsessionid: registertokence95b00a-3291-40c8-a30b-61a087f49811
 web:

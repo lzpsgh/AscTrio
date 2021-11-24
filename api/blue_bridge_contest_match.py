@@ -31,7 +31,6 @@ class BBCMatch(BaseRequest):
         }
         result = self.x_request()
         assert_util.result_check(result)
-        # auth_util.set_token('bbc', 'exam_token', result.rsp.cookies["exam_token"])
         return result
 
     # 提交用户正式考试答卷
@@ -78,7 +77,7 @@ class BBCMatch(BaseRequest):
             "enable": 1
         }
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
@@ -92,7 +91,7 @@ class BBCMatch(BaseRequest):
         self.req_url = '/gzlqb/scienceart/examination/examinationAdd'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -104,7 +103,7 @@ class BBCMatch(BaseRequest):
         self.req_url = '/gzlqb/scienceart/paper/add'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -116,7 +115,7 @@ class BBCMatch(BaseRequest):
         self.req_url = '/gzlqb/scienceart/subject/newSubject'
         self.req_body = kwargs
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -130,7 +129,7 @@ class BBCMatch(BaseRequest):
             'name': name
         }
         self.req_cookies = {
-            'api_account_token': auth_util.get_bbc_token('crm'),
+            'api_account_token': auth_util.get_gz_token('crm'),
         }
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
