@@ -25,7 +25,7 @@ class TestProjectRanking:
         kwargs = data_pool.supply('project_ranking_data.yml', 'save_activity')[0]
         kwargs['channelCode'] = channel_code
         kwargs['activityName'] = fakerist.word()
-        kwargs['howToPlay'] = 1  # 1点赞 2注册
+        kwargs['howToPlay'] = 2  # 1点赞 2注册
         kwargs['chooseStartTime'] = '2020-01-22 00:00:00'
         kwargs['chooseEndTime'] = '2021-11-22 00:00:00'
         kwargs['startTime'] = '2021-11-20 00:00:00'
@@ -34,6 +34,7 @@ class TestProjectRanking:
         assert res1.status is True
 
         # 活动启用 需确保没有其他在进行的活动
+        # 生产环境要注释
         query_latest_id = 'SELECT pa.id FROM mxc_activity.project_activity pa WHERE 1=1 ORDER BY id DESC limit 1'
         latest_id = mysqler.query(query_latest_id)[0][0]
         kwargs2 = data_pool.supply("project_ranking_data.yml", 'update_status')[0]

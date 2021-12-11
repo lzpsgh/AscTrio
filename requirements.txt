@@ -8,3 +8,4 @@ colorlog==5.0.1
 faker==8.1.2
 python-dotenv==0.17.1
 pytest-repeat==0.9.1
+pika==1.2.0

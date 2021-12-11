@@ -72,8 +72,28 @@ class GoodsOrder(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 校区工作台
+    # 订金流水可直接调此接口退款
+    # 尾款流水的type改成订金流水，然后调此接口也可
+    def cancel_order(self, goid):
+        self.req_method = 'POST'
+        self.req_url = '/core/goodsOrder/cancelOrder'
+        self.req_body = {
+            'goodsOrderId': goid
+        }
+        self.req_headers = {
+            'mxc-token': auth_util.get_token('mxc', 'mxc-token')
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers,
+            data=self.req_body
+        )
+        assert_util.result_check(result)
+        return result
+
 
 goods_order = GoodsOrder(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
-    goods_order.pay_callback_suc('202108091528475016932566')
+    # goods_order.pay_callback_suc('202112101213017854754781')
+    goods_order.cancel_order('51796')
