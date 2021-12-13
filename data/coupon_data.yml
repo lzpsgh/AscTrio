@@ -1,16 +1,32 @@
 ---
-create_coupon_:
+create_coupon:
   -
-    title:         'asctrio-coupon-a'
-    couponTypeId:  25
-    type:          'CASH_COUPON'  # 现金 CASH_COUPON 满减 VOUCHER
-    meetamount:    0
-    subamount:     2333
-    couponAmount:  2  # 0 不限
-    sendMode:      0  # 0 手动推送
-    sendType:      2  # 1新签 2续费
-    effectiveDate: "2021-06-10 15:15:00"  # 时间段-绝对
-    expiryDate:    '2021-06-10 15:30:00'  # 时间段-绝对
-    isEnable:      0  # 立即启用
-    accountList: [{"accountId": 3220}, {"accountId": 3155}]
-    roleList: []
+    title:        '减免x元'
+    type:         'CASH_COUPON' # 现金 CASH_COUPON 满减 VOUCHER
+    meetamount:   "0"
+    subamount:    "x"
+
+    channelIds: []
+    couponAmount: "100" # 0 不限
+    sendMode:     "0"   # 0 手动推送
+    sendType:     "1"   # 1新签 2续费
+    isEnable:     0     # 0立即启用 推送有效期
+    couponTypeId: 25
+    effectAmount: 30    # 使用有效期
+    effectUnit:   'DAY'   # 天 / 时
+    accountList:
+      -
+        accountId: 315676
+    roleList: # B端只认角色 不认cc用户
+      -
+        id: 12
+      -
+        id: 13
+      -
+        id: 14
+      -
+        id: 28
+      -
+        id: 46
+      -
+        id: 81

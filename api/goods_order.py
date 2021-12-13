@@ -1,4 +1,6 @@
 from base.base_request import BaseRequest
+from data_util import data_pool
+from mysql_util import mysqler
 from util import assert_util
 from util import auth_util
 from util import common_util
@@ -21,9 +23,12 @@ class GoodsOrder(BaseRequest):
         self.req_url = '/core/goodsOrder/demolitionOrder'
         self.req_body = kwargs
         self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('web'),
+            'JSESSIONID': auth_util.get_cookie('crm'),
         }
-        result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers,
+            data=self.req_body
+        )
         assert_util.result_check(result)
         return result
 
@@ -91,9 +96,45 @@ class GoodsOrder(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    def update_coupon(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/core/goodsOrder/update'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'JSESSIONID': auth_util.get_cookie('crm'),
+            # 'exam_token': auth_util.get_token('bbc', 'exam_token'),
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            data=self.req_body
+        )
+        assert_util.result_check(result)
+        return result
+
 
 goods_order = GoodsOrder(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
+    # 微信支付回调
     # goods_order.pay_callback_suc('202112101213017854754781')
-    goods_order.cancel_order('51796')
+    # 取消订单
+    # goods_order.cancel_order('51796')
+
+    # 创建订单
+    kwargs0 = data_pool.supply('goods_order_data.yml', 'demolition_order_omo')[0]
+    kwargs0['userId'] = '155863'  # 用户的userid
+    kwargs0['goodsIds'] = '765'  # 2元的K2D
+    kwargs0['orderSource'] = 'SCHOOL_ORDER'
+    res0 = goods_order.demolition_order(**kwargs0)
+    assert res0.status is True
+
+    sql = 'SELECT id FROM usercoupon uc WHERE userId = {userId} AND couponRule = {couponId};'
+    couponIds = mysqler.query(sql)
+    # 更新订单:绑定优惠券
+    kwargs = data_pool.supply('goods_order_data.yml', 'update_coupon')[0]
+    kwargs['couponIds'] = '155863'  # usercoupon表的id
+    kwargs['orderId'] = '51895'  #
+    kwargs['payStyle'] = 'NATIVE'
+    kwargs['payType'] = 'WX'
+    res1 = goods_order.update_coupon()
+    assert res1.status is True
