@@ -30,4 +30,4 @@ def save_match_enable(kwargs):
 
 
 if __name__ == '__main__':
-    reset_pwd()
+    save_match_enable()

@@ -42,6 +42,14 @@ def sql_matchid():
 # 更新：将对应报名ID用户的openid改成自己的
 def sql_fix_openid(signin_id):
     res = mysqler.query(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = \'{signin_id}\'")
+    return res
+
+
+# 查询单张票券的票券id
+def sql_usercouponid(user_id, coupon_id):
+    tmp = f"SELECT id FROM usercoupon uc WHERE userId = '{user_id}' AND couponRule = '{coupon_id}';"
+    res = mysqler.query(tmp)
+    return res
 
 
 if __name__ == '__main__':

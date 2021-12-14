@@ -1,6 +1,6 @@
+import sql_util
 from base.base_request import BaseRequest
 from data_util import data_pool
-from mysql_util import mysqler
 from util import assert_util
 from util import auth_util
 from util import common_util
@@ -128,8 +128,7 @@ if __name__ == '__main__':
     res0 = goods_order.demolition_order(**kwargs0)
     assert res0.status is True
 
-    sql = 'SELECT id FROM usercoupon uc WHERE userId = {userId} AND couponRule = {couponId};'
-    couponIds = mysqler.query(sql)
+    couponIds = sql_util.sql_usercouponid('155863', goods_id)
     # 更新订单:绑定优惠券
     kwargs = data_pool.supply('goods_order_data.yml', 'update_coupon')[0]
     kwargs['couponIds'] = '155863'  # usercoupon表的id

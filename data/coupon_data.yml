@@ -5,7 +5,6 @@ create_coupon:
     type:         'CASH_COUPON' # 现金 CASH_COUPON 满减 VOUCHER
     meetamount:   "0"
     subamount:    "x"
-
     channelIds: []
     couponAmount: "100" # 0 不限
     sendMode:     "0"   # 0 手动推送

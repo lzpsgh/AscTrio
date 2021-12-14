@@ -7,8 +7,8 @@ update_coupon:
     payType:   'WX'
 demolition_order_omo:
   -
-    userId:      4003926
-    goodsIds:    765 # 2元的K2D
+    userId:      '4003926'
+    goodsIds:    '765' # 2元的K2D
     payType:     WX
     payStyle:    NATIVE
     orderSource: SCHOOL_ORDER
