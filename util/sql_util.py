@@ -52,8 +52,15 @@ def sql_usercouponid(user_id, coupon_id):
     return res
 
 
+# OMO修改订金金额
+def modify_sub_amount(amount):
+    tmp = f"UPDATE mxc_uat.dictionary SET remark = '{amount}' WHERE code = 'DEPOSIT_AMOUNT' "
+    res = mysqler.execute(tmp)
+    return res
+
+
 if __name__ == '__main__':
     # exam_id = '75'
     # sql_examid_to_uuid(exam_id)
-    res1 = sql_phone_to_userid('13612345677')
+    res1 = modify_sub_amount('0.01')
     print(res1)

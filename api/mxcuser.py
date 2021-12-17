@@ -38,7 +38,7 @@ mxc_user = MxcUser(common_util.env('DOMAIN_GZ') + '/mxcuser')
 if __name__ == '__main__':
     kwargs = data_pool.supply('mxcuser_data.yml', 'add_visit_leads')[0]
     kwargs['childName'] = 'Asc' + fakerist.word()
-    kwargs['phone'] = '18899708135'
+    kwargs['phone'] = '18899708138'
     res1 = mxc_user.add_visit_leads(**kwargs)
     userid = res1.sdata.get('userId')  # 4003926
     childName = res1.sdata.get('childName')  # Asc以及
