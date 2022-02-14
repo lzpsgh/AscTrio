@@ -3,12 +3,9 @@
 # @Time    : 2021/6/11 上午10:46
 
 from base.base_request import BaseRequest
-from data_util import data_pool
-from log_util import logger
 from util import assert_util
 from util import auth_util
 from util import common_util
-
 
 # 总流程
 # 1. 新增票圈批次
@@ -22,7 +19,6 @@ class Coupon(BaseRequest):
 
     # 新增票券批次
     # 返回data/id '4329', data/no 'c_asdfadsfasd'
-
     def create_coupon(self, **kwargs):
         self.req_method = 'POST'
         self.req_url = '/core/coupon/createCouponNewVersion'
@@ -56,11 +52,12 @@ class Coupon(BaseRequest):
 coupon = Coupon(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
+    pass
     # 运营推给CC
-    kwargs = data_pool.supply('coupon_data.yml', 'create_coupon')[0]
-    kwargs['title'] = '减免8元'
-    kwargs['subamount'] = '8'
-    kwargs['sendType'] = '1'  # 1新签 2续费
-    res1 = coupon.create_coupon(**kwargs)
-    couponId = logger.log(res1.sdata.get('id'))  # 返回优惠券批次id 即yml里的 couponId=4393
-    assert res1.status is True
+    # kwargs = data_pool.supply('coupon_data.yml', 'create_coupon_school')[0]
+    # meet_amount = kwargs['meetamount']
+    # sub_amount = kwargs['subamount']
+    # kwargs['title'] = f'校区-{meet_amount}-{sub_amount}-{fakerist.word()}'
+    # res1 = coupon.create_coupon(**kwargs)
+    # couponId = logger.log(res1.sdata.get('id'))  # 返回优惠券批次id 即yml里的 couponId=4393
+    # assert res1.status is True
