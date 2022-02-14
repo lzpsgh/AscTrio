@@ -3,26 +3,12 @@
 
 import pytest
 
+import competition_pk_serv
 from api.competition_pk import cmpttn_pk
-from case import conftest
 from util.log_util import logger
 
 
 class TestScoringDimension:
-
-    # 在BaseCase里面提供一个函数，将当前类对应的
-    # yml中每一行用例都是一个字典
-    # conftest.supply(yml_path,yml_name)
-    # 类名TestScoringDimension，转化成test_scoring_dimension，找到data下该文件
-    # 方法名test_get_scoring_dimension_by_id，直接找到文件内的键名
-    @pytest.mark.parametrize("datajson",
-                             conftest.supply('test_scoring_dimension.yml',
-                                             'test_get_scoring_dimension_by_id'))
-    def test_get_scoring_dimension_by_id(self, datajson):
-        echo = cmpttn_pk.get_scoring_dimension_by_id(datajson['ssid']).sdata
-        assert echo.get('minPoints') == datajson['minPoints'] and \
-               echo.get('maxPoints') == datajson['maxPoints'] and \
-               echo.get('name') == datajson['name']
 
     # 查询评分维度列表-所有
     @pytest.mark.skip
@@ -35,16 +21,22 @@ class TestScoringDimension:
         logger.info(f"评分维度总数 ==>> 期望大于0个， 实际结果：{dimension_len}")
         # logger.info("\n*************** 结束执行用例 ***************")
 
-    # 查询评分维度列表-单个赛事id
-    # @pytest.mark.parametrize("xid,xname,xmin,xmax",
-    #                          [[6, '体脂率', 2, 27],
-    #                           [13, '舔度222', 4, 8]])
-    # def test_get_scoring_dimension_by_id(self, xid, xname, xmin, xmax):
-    #     echo = scoring_dimension.get_scoring_dimension_by_id(xid).sdata
-    #     assert echo.get('minPoints') == xmin and \
-    #            echo.get('maxPoints') == xmax and \
-    #            echo.get("name") == xname
+    # 新建赛事
+    # @pytest.mark.skip
+    @pytest.mark.single
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_save_competition(self):
+        cmp_id = competition_pk_serv.save_cmp_nonreg_1()
+        # cmp_id = competition_pk_serv.save_cmp_nonreg_13()
+        # cmp_id = competition_pk_serv.save_cmp_nonreg_17()
+        # cmp_id = competition_pk_serv.save_cmp_reg_1()
+        assert cmp_id
+        logger.info(f"赛事ID：{cmp_id}")
+
+        # user.login(phone)
+        # project.save_scratch_project_for_user()
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_competition_pk.py"])
+    # pytest.main(["-q", "-s", "test_competition_pk.py"])
+    pass

@@ -1,49 +1,53 @@
 ---
-submit_enter_name_info:
-  -
-works_like:
-  -
 save_competition:
   -
-    competitionName:          赛事111
-    callForPapersStartTime:   2021-12-03 00:00:00
-    callForPapersEndTime:     2021-12-16 23:59:59
-    promotionStartTime:       2021-12-17 00:00:00
-    promotionEndTime:         2021-12-30 23:59:59
+    competitionName:          '赛事主题测'
+    openRegistry:             0
+    callForPapersStartTime:   '2021-12-20 00:00:00'
+    callForPapersEndTime:     '2021-12-22 23:59:59'
+    promotionStartTime:       '2021-12-23 00:00:00'
+    promotionEndTime:         '2021-12-28 23:59:59'
+    bestWorksQuota:           "1"
+    excellentWorksQuota:      "1"
+    popularityAwardQuota:     "1"
+    weekPopularityAwardQuota: "0"
     themeList:
       -
-        subjectName:   "123"
+        subjectName:   '图形化主题1'
         subjectType:   "0"
-        learningVideo: "123"
-        projectId:     "1"
-    weekPopularityAwardQuota: 0
-    popularityAwardQuota:     3
-    bestWorksQuota:           2
-    excellentWorksQuota:      0
+        learningVideo: 'https'
+        projectId:     "20"
+        subjectDesc:   '这个主题是1111111111'
+      -
+        subjectName:   '图形化主题2'
+        subjectType:   "0"
+        learningVideo: 'https'
+        projectId:     "20"
+        subjectDesc:   '这是主题222222'
     judgesList:
       -
         accountId:     "3301"
-        realName:      李兆鹏
+        realName:      '李兆鹏'
         competitionId: ""
     scoringDimensionIds:      16,17
-    ageMin:                   3
-    ageMax:                   10
-    organizer:                主办单位1
-    coOrganiser:              协办单位1
-    synopsis:                 赛事简介111111
-    officialBanner:           https://res.miaocode.com/competition/1638414644539
-    h5Banner:                 https://res.miaocode.com/competition/1638414673138
+    officialBanner:           'https://res.miaocode.com/competition/1640056126390'
+    h5Banner:                 'https://res.miaocode.com/competition/1640056131576'
     bannerList:
       -
         competitionId: ""
         type:          2
-        url:           https://res.miaocode.com/competition/1638414664766
+        url:           'https://res.miaocode.com/competition/1640056151085'
         serialNum:     1
       -
         competitionId: ""
         type:          1
-        url:           https://res.miaocode.com/competition/1638414676036
+        url:           'https://res.miaocode.com/competition/1640056154972'
         serialNum:     1
+    ageMax:                   9
+    ageMin:                   2
+    coOrganiser:              '测试协办单位'
+    organizer:                '测试主办单位'
+    synopsis:                 '测试赛事简介很长很长很长很长很长很长很长，很长。'
 del_scoring_dimension_by_id:
   -
 get_scoring_dimension_by_id:
@@ -61,38 +65,11 @@ add_scoring_dimension:
     maxPoints: 1
     minPoints: 10
     name:      123
-save_activity:
+save_scratch_project_for_user:
   -
-    activityName:          '阿赛阿赛发'
-    channelCode:           'testtesttest'
-    startTime:             '2021-11-22 00:00:00'
-    endTime:               '2021-11-30 00:00:00'
-    chooseStartTime:       '2020-11-22 00:00:00'
-    chooseEndTime:         '2021-11-30 00:00:00'
-    headImg:               'https://res.miaocode.com/7f77e4de-001b-4099-9a34-1502e4f17fc9.jpeg'
-    howToPlay:             2  # 1点赞2注册
-    activeObject:          1
-    invitationButtonColor: '#fd5d33'
-    leaderboardColor:      '#ffc126'
-    shareDesc:             '注册排名-真棒！孩子亲手做的作品，成就感满满的！'
-    shareIcon:             'https://res.miaocode.com/01e07129-6507-4ec4-bd59-7aff9bed7fc7.png'
-    shareTitle:            '注册排名-宝贝的编程作品被夸啦！'
-    frontShareDesc:        '注册排名-快来看看您能领多少礼品？'
-    frontShareIcon:        'https://res.miaocode.com/9c4b3bf7-1e33-40a8-8c12-21094aa92d78.png'
-    frontShareTitle:       '注册排名-参与作品分享活动，最高领5重豪礼！'
-    posterImgList:
-      - 'https://res.miaocode.com/53e4146c-8f41-4fde-b8dd-49f30626911f.jpeg'
-    detailImgList:
-      - 'https://res.miaocode.com/b199d160-a913-4269-ba56-0cf25275dc5d.jpeg'
-    participationAward:    5
-    rewardList:
-      -
-        rankingAbove: 1
-        pointsReward: 100
-        gradient:     1
-        isActive:     false
-      -
-        rankingAbove: 3
-        pointsReward: 300
-        gradient:     2
-        isActive:     false
+    projectName:        23日1
+    comment:            增加了分数计数，关于bug还是有待研究。。。
+    competitionId:      116
+    competitionThemeId: 137
+    dataURL:            https://res.miaocode.com/6b76a980-d911-4af6-ab90-b0eb622efa6b.mxc
+    thumbnailURL:       https://res.miaocode.com/0ee46f2d-061a-4985-abf2-0aededc83a51.png

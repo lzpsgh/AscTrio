@@ -37,8 +37,9 @@ class Project(BaseRequest):
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'
         }
         self.req_cookies = {
-            'token': auth_util.get_cookie('gz'),
+            'token': auth_util.get_token('web', 'gz_token'),
         }
+
         result = self.request(
             method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
             params=self.req_body

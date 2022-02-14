@@ -14,28 +14,6 @@ class CompetitionPK(BaseRequest):
     def __init__(self, api_root_url, **kwargs):
         super(CompetitionPK, self).__init__(api_root_url, **kwargs)
 
-    # 提交报名信息
-    def submit_enter_name_info(self, competitionId, age, countryCode, phone,
-                               fullName, gender, certificateType, idNumber):
-        self.req_method = 'POST'
-        self.req_url = '/core/competitionEnterName/submitEnterNameInfo'
-        self.req_body = {
-            "age": age,
-            "countryCode": countryCode,
-            "phone": phone,
-            "fullName": fullName,
-            "gender": gender,
-            "certificateType": certificateType,
-            "idNumber": idNumber,
-            "competitionId": competitionId,
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('web'),
-        }
-        result = self.x_request()
-        assert_util.result_check(result)
-        return result
-
     # 作品点赞
     def works_like(self, param1):
         self.req_method = 'POST'
@@ -50,84 +28,6 @@ class CompetitionPK(BaseRequest):
         assert_util.result_check(result)
         return result
 
-    # 保存赛事
-    def save_competition(self):
-        self.req_method = 'POST'
-        self.req_url = '/core/competitionManager/saveCompetition'
-        self.req_body = {
-            "bannerList": [
-                {
-                    "competitionId": "",
-                    "type": 2,
-                    "url": "https://res.miaocode.com/competition/1618467496618",
-                    "serialNum": 1
-                },
-                {
-                    "competitionId": "",
-                    "type": 2,
-                    "url": "https://res.miaocode.com/competition/1618467500999",
-                    "serialNum": 2
-                },
-                {
-                    "competitionId": "",
-                    "type": 2,
-                    "url": "https://res.miaocode.com/competition/1618467503896",
-                    "serialNum": 3
-                },
-                {
-                    "competitionId": "",
-                    "type": 1,
-                    "url": "https://res.miaocode.com/competition/1618467516939",
-                    "serialNum": 1
-                }
-            ],
-            "synopsis": "赛事主要是做什么\n法俄撒粉色\n结束了",
-            "coOrganiser": "协办方，asctrio",
-            "organizer": "主办方，asctrio",
-            "callForPapersStartTime": "2021-05-12 00:00:00",
-            "callForPapersEndTime": "2021-05-22 23:59:59",
-            "promotionStartTime": "2021-05-23 00:00:00",
-            "promotionEndTime": "2021-06-06 23:59:59",
-            "weekPopularityAwardQuota": 1,
-            "popularityAwardQuota": 2,
-            "bestWorksQuota": 8,
-            "excellentWorksQuota": 37,
-            "themeList": [
-                {
-                    "subjectName": "主题11",
-                    "subjectType": "0",
-                    "learningVideo": "www.bing.com",
-                    "projectId": "935522"
-                }
-            ],
-            "judgesList": [
-                {
-                    "accountId": "182",
-                    "realName": "胡晶晶",
-                    "competitionId": ""
-                },
-                {
-                    "accountId": "3301",
-                    "realName": "李兆鹏",
-                    "competitionId": ""
-                }
-            ],
-            "scoringDimensionIds": "16,18,17",
-            "officialBanner": "https://res.miaocode.com/competition/1618467493120",
-            "h5Banner": "https://res.miaocode.com/competition/1618467508602",
-            "ageMax": 11,
-            "ageMin": 1,
-            "competitionName": "赛事h5跳转"  # asctrio赛事27
-        }
-        self.req_cookies = {
-            'JSESSIONID': auth_util.get_cookie('crm'),
-        }
-        result = self.x_request()
-        assert_util.result_check(result)
-        cid = mysqler.query('select id FROM competition where competition_name = \'赛事h5跳转\' ')[0][0]
-        if cid is not None:
-            print(cid)
-        return result
 
     # 启用/禁用
     # def enabled_state(self, **kwargs):
@@ -197,27 +97,38 @@ class CompetitionPK(BaseRequest):
             logger.info(finvalue)
         return result
 
-    # 保存评分维度-新增
-    # def save_scoring_dimension(self, min_points, max_points, name):
-    #     self.req_method = 'POST'
-    #     self.req_url = '/scoringDimension/saveScoringDimension'
-    #     self.req_body = {
-    #         # "id": sd_id,
-    #         "maxPoints": max_points,
-    #         "minPoints": min_points,
-    #         "name": name
-    #     }
-    #     self.req_cookies = {
-    #         'JSESSIONID': auth.get_cookie('crm'),
-    #     }
-    #     result = self.x_request()
-    #     asserter.result_check(result)
-    #     return result
+    # 保存赛事
+    def save_competition(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/core/competitionManager/saveCompetition'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'JSESSIONID': auth_util.get_cookie('crm'),
+        }
+        result = self.x_request()
+        assert_util.result_check(result)
+        return result
+
+    # 提交报名信息
+    def submit_enter_name_info(self, **kwargs):
+        self.req_method = 'POST'
+        self.req_url = '/core/competitionEnterName/submitEnterNameInfo'
+        self.req_body = kwargs
+        self.req_cookies = {
+            'JSESSIONID': auth_util.get_cookie('web'),
+        }
+        result = self.request(
+            method=self.req_method, url=self.req_url, headers=self.req_headers, cookies=self.req_cookies,
+            json=self.req_body
+        )
+        assert_util.result_check(result)
+        return result
 
 
 cmpttn_pk = CompetitionPK(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
     # competition_enter.submit_enter_name_info('66', 8, '86', '18659107886', '随便用', 'M', "IDCARD", '441481199407171234')
-    cmpttn_pk.submit_enter_name_info('67', 9, '86', '18659107886', 'z最终版', 'M', "IDCARD", '441481199407175678')
+    # cmpttn_pk.submit_enter_name_info('67', 9, '86', '18659107886', 'z最终版', 'M', "IDCARD", '441481199407175678')
     # competition_enter.submit_enter_name_info('65', 7, '86', '18666024993', '签约客', 'M', "IDCARD", '441481199407173333')
+    pass

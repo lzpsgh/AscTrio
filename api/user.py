@@ -147,7 +147,7 @@ class User(BaseRequest):
             "phone": phone,
             "userPassword": '262728293031',  # common.calc_pwd(phone),
             # 't': common.get_timestamp(),
-            'countryCode': '86'
+            # 'countryCode': '86'
         }
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('web'),
@@ -294,7 +294,7 @@ class User(BaseRequest):
 user = User(common_util.env('DOMAIN_CORE'))
 
 if __name__ == '__main__':
-    phone = '18899758127'
+    phone = '9758137'
     # userid = '110311'
     user.phone_exist(phone)
 
