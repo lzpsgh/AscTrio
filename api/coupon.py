@@ -26,7 +26,10 @@ class Coupon(BaseRequest):
             'JSESSIONID': auth_util.get_cookie('crm'),
         }
         self.req_body = kwargs
-        result = self.x_request()
+        result = self.request(
+            method=self.req_method, url=self.req_url, cookies=self.req_cookies,
+            json=self.req_body
+        )
         assert_util.result_check(result)
         return result
 

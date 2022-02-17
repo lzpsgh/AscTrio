@@ -24,21 +24,13 @@ def create_coupon_campus():
     kwargs = data_pool.supply('coupon_data.yml', 'create_coupon_school')[0]
     meet_amount = kwargs['meetamount']
     sub_amount = kwargs['subamount']
-    kwargs['title'] = f'校区-{meet_amount}-{sub_amount}-{fakerist.word()}'
-    kwargs['issuedChannelType'] = 1  # 下发渠道为现场报读特惠
+    kwargs['sendType'] = 2
+    kwargs['title'] = f'续费校区-{meet_amount}-{sub_amount}-{fakerist.word()}'
     res1 = coupon.create_coupon(**kwargs)
     couponId = res1.sdata.get('id')
     logger.info(f'第一张的id是{couponId}')
-
-    kwargs['issuedChannelType'] = 2  # 下发渠道为现场报读特惠
-    res2 = coupon.create_coupon(**kwargs)
-
-    kwargs['issuedChannelType'] = 3  # 下发渠道为现场报读特惠
-    res3 = coupon.create_coupon(**kwargs)
-
     assert res1.status is True
 
 
 if __name__ == '__main__':
-    # create_coupon_cash_new()
     create_coupon_campus()
