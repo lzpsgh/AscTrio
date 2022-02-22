@@ -24,13 +24,12 @@ class DataPool:
     def __init__(self):
         pass
 
-    def save_cookie_yml(self, yml_data):
-        file_path = common_util.env('COOKIE_YML')
-        # logger.debug(f"打开文件: {file_path}")
-        with open(file_path, 'w', encoding='utf-8') as f:
-            tmp_data = yaml.safe_dump(yml_data, f, default_flow_style=False)  # 写入文件，不是用flow流格式
-        # logger.debug(f"写入数据: {tmp_data} ")
-        return tmp_data
+    # def safe_yml(self, file_path, yml_data):
+    #     # logger.debug(f"加载文件 {file_path}")
+    #     with open(file_path, 'w', encoding='utf-8') as f:
+    #         tmp_data = yaml.safe_dump(yml_data, f, default_flow_style=False)  # 写入文件，不是用flow流格式
+    #     # logger.debug(f"写入数据: {tmp_data} ")
+    #     return tmp_data
 
     def load_yml(self, file_path):
         # logger.debug(f"加载文件 {file_path}")
@@ -44,6 +43,14 @@ class DataPool:
         with open(file_path, encoding='utf-8') as f:
             tmp_data = yaml.safe_load(f)
         # logger.debug(f'读取yml列表 {tmp_data}')
+        return tmp_data
+
+    def save_cookie_yml(self, yml_data):
+        file_path = common_util.env('COOKIE_YML')
+        # logger.debug(f"打开文件: {file_path}")
+        with open(file_path, 'w', encoding='utf-8') as f:
+            tmp_data = yaml.safe_dump(yml_data, f, default_flow_style=False)  # 写入文件，不是用flow流格式
+        # logger.debug(f"写入数据: {tmp_data} ")
         return tmp_data
 
     def load_json(self, file_path):
@@ -71,10 +78,15 @@ class DataPool:
         except KeyError:
             print(f'未在yml中找到字段：{yml_key}')
 
-    def supply_mongodb(self):
-        # 读取mongodb文档，返回带faker标识符的dict_tmp,
-        # fakerist先解析出动态数据，返回解析后的dict,赋值给req_body
-        pass
+    def supply_one(self, yml_name, yml_key):
+        yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
+        try:
+            yaml_data = data_pool.load_yml(yaml_file_path)
+            yaml_dict = yaml_data.get(yml_key)
+            if yaml_dict is not None:
+                return yaml_dict[0]
+        except KeyError:
+            print(f'未在yml中找到字段：{yml_key}')
 
 
 data_pool = DataPool()
