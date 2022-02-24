@@ -6,7 +6,7 @@ COOKIE_YML='${PROJECT_ROOT}/data/cookies.yml'
 LOG_PATH='${PROJECT_ROOT}/log'
 
 # 服务端根路径
-DOMAIN_CORE='http://sit.miaocode.com'
+DOMAIN_CORE=
 DOMAIN_GZ=
 DOMAIN_MOCK=
 
