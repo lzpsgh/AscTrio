@@ -1,0 +1,66 @@
+save_normal:
+  -
+    activityName:     asc-随机
+    startTime:        '2022-03-14 00:00:00'
+    endTime:          '2022-03-18 00:00:00'
+    userIdentity:     1 #用户身份所有人
+    lotteryCondition: 1 #抽奖条件：1：消耗金币
+    consumeCoin:      1 #单次消耗金币数量
+    lotteryLimit:     3 #抽奖次数限制
+    firstImgUrl:      https://res.miaocode.com/270741da-71b4-4269-973b-81950908182f.jpeg?imageView2/2/h/80
+    turntableBgUrl:   https://res.miaocode.com/c2342eed-d514-4787-b0fe-81370a8b0513.jpeg?imageView2/2/h/80
+    winningBgUrl:     https://res.miaocode.com/782a93fc-a2ca-4e8e-b288-840c799c064b.png?imageView2/2/h/80
+    channelCode:      testtesttest
+    activityDetailsUrlList:
+      -
+        url: https://res.miaocode.com/40096a2d-df7c-4081-9fba-3f5ee01f81f5.jpeg?imageView2/2/h/80
+    #        uid:    1647309011326
+    #        status: success
+    prizeList:
+      -
+        prizeType:      1
+        probability:    '99.9'
+        prizeName:      冰墩墩
+        stock:          '100'
+        singleWinLimit: '90'
+        prizeImgUrl:    https://res.miaocode.com/01142f52-11dc-4c79-a1dd-63ef9d3cf5be.png?imageView2/2/h/80
+      -
+        prizeType:      2
+        probability:    '0.1'
+        prizeName:      100积分
+        stock:          '101'
+        singleWinLimit: '91'
+        prizeImgUrl:    https://res.miaocode.com/f543e7a2-b166-4f2a-9aa4-501caebce9a5.jpeg?imageView2/2/h/80
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+saveAddress:
+  -
+    consignee:       王阳明
+    consigneePhone:  17788992345
+    province:        广东省
+    city:            广州市
+    region:          海珠区
+    deliveryAddress: 琶洲
+    recordId:         # 中奖记录id

@@ -24,6 +24,14 @@ class BaseRequest:
         }
         requests.packages.urllib3.disable_warnings()
 
+        # todo 请求失败重试3次
+        # max_retry_times = requests.adapatrs.HTTPAdapaters(max_retries=3)
+        # self.session.mount('https://', max_retry_times)
+        # self.session.mount('http://', max_retry_times)
+
+        # todo 取消重定向
+        # self.session.post(url, data, allow_redirects=False)
+
     def __str__(self):
         return f'BaseRequest object (api_root_url: {self.api_root_url})'
 
