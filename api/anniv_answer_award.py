@@ -21,7 +21,7 @@ class AnnivAnswerAward(BaseRequest):
         self.req_body = kwargs
         self.req_cookies = {
             # 'api_account_token': auth_util.get_token('crm', 'api_account_token'),
-            'api_account_token': 'api_account_token_AE73B820F68F421D67B1905E48015213ECC913578E81D4056E1BCBEB60CF5D93'
+            'token': auth_util.get_token('gz', 'token')
         }
         result = self.x_request()
         assert_util.result_check(result)
@@ -175,6 +175,6 @@ class AnnivAnswerAward(BaseRequest):
 anniv_answer_award = AnnivAnswerAward(common_util.env('DOMAIN_GZ') + '/gzactivity')
 
 if __name__ == '__main__':
-    kwargs = data_pool.supply('anniv_answer_award_data.yml', 'save_normal')[0]
+    kwargs = data_pool.supply('anniv_answer_award_data.yml', 'save_8thank')[0]
     res1 = anniv_answer_award.save(**kwargs)
     assert res1.status is True

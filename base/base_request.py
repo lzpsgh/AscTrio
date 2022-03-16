@@ -97,6 +97,7 @@ class BaseRequest:
             if 'text' in inner_rsp:
                 logger.debug(f"响应data    ==>> {inner_rsp.text}")
             logger.debug(f"响应hash    ==>> {str(id(inner_rsp))}")
+            logger.debug(f"接口耗时 ==>> {inner_rsp.elapsed.total_seconds()} ")
             # logger.debug(f"\n\n#################################################\n")
             base_response.rsp = inner_rsp
         return base_response

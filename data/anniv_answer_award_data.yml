@@ -1,21 +1,16 @@
 save_normal:
   -
-    activityName:     asc-随机
+    activityName:     asc3161
     startTime:        '2022-03-14 00:00:00'
     endTime:          '2022-03-18 00:00:00'
     userIdentity:     1 #用户身份所有人
     lotteryCondition: 1 #抽奖条件：1：消耗金币
-    consumeCoin:      1 #单次消耗金币数量
-    lotteryLimit:     3 #抽奖次数限制
-    firstImgUrl:      https://res.miaocode.com/270741da-71b4-4269-973b-81950908182f.jpeg?imageView2/2/h/80
-    turntableBgUrl:   https://res.miaocode.com/c2342eed-d514-4787-b0fe-81370a8b0513.jpeg?imageView2/2/h/80
-    winningBgUrl:     https://res.miaocode.com/782a93fc-a2ca-4e8e-b288-840c799c064b.png?imageView2/2/h/80
+    consumeCoin:      2 #单次消耗金币数量
+    lotteryLimit:     33 #抽奖次数限制
+    firstImgUrl:      https://res.miaocode.com/2ff95379-4b44-4d76-bc11-07d13669a991.png
+    turntableBgUrl:   https://res.miaocode.com/53de1108-c42c-4688-a0f1-e60c91d81d67.png
+    winningBgUrl:     https://res.miaocode.com/1503e25d-182e-4d8d-9055-81f76f4a0397.png
     channelCode:      testtesttest
-    activityDetailsUrlList:
-      -
-        url: https://res.miaocode.com/40096a2d-df7c-4081-9fba-3f5ee01f81f5.jpeg?imageView2/2/h/80
-    #        uid:    1647309011326
-    #        status: success
     prizeList:
       -
         prizeType:      1
@@ -23,14 +18,14 @@ save_normal:
         prizeName:      冰墩墩
         stock:          '100'
         singleWinLimit: '90'
-        prizeImgUrl:    https://res.miaocode.com/01142f52-11dc-4c79-a1dd-63ef9d3cf5be.png?imageView2/2/h/80
+        prizeImgUrl:    https://res.miaocode.com/cf68ae22-1e72-42c2-b580-cedb22ef5025.png
       -
         prizeType:      2
         probability:    '0.1'
         prizeName:      100积分
         stock:          '101'
         singleWinLimit: '91'
-        prizeImgUrl:    https://res.miaocode.com/f543e7a2-b166-4f2a-9aa4-501caebce9a5.jpeg?imageView2/2/h/80
+        prizeImgUrl:    https://res.miaocode.com/d6b60be0-246d-4c6c-8569-3f7b4c7dcf52.png
       -
         prizeType:   3
         probability: '0'
@@ -55,7 +50,71 @@ save_normal:
         prizeType:   3
         probability: '0'
         prizeName:   谢谢惠顾
-saveAddress:
+    activityDetailsUrlList:
+      -
+        url:    "https://res.miaocode.com/02ea2f19-e6f9-4d14-90ac-5620232a2309.jpeg"
+        uid:    1647341125965
+        status: "success"
+      -
+        url:    "https://res.miaocode.com/100a33c5-08bb-437b-82cb-33c766e1d719.jpeg"
+        uid:    1647341143819
+        status: "success"
+save_8thank:
+  -
+    activityName:     8个谢谢
+    startTime:        '2022-03-14 00:00:00'
+    endTime:          '2022-03-18 00:00:00'
+    userIdentity:     1 #用户身份所有人
+    lotteryCondition: 1 #抽奖条件：1：消耗金币
+    consumeCoin:      2 #单次消耗金币数量
+    lotteryLimit:     33 #抽奖次数限制
+    firstImgUrl:      https://res.miaocode.com/2ff95379-4b44-4d76-bc11-07d13669a991.png
+    turntableBgUrl:   https://res.miaocode.com/53de1108-c42c-4688-a0f1-e60c91d81d67.png
+    winningBgUrl:     https://res.miaocode.com/1503e25d-182e-4d8d-9055-81f76f4a0397.png
+    channelCode:      testtesttest
+    prizeList:
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '0'
+        prizeName:   谢谢惠顾
+      -
+        prizeType:   3
+        probability: '100'
+        prizeName:   谢谢惠顾
+    activityDetailsUrlList:
+      -
+        url:    "https://res.miaocode.com/02ea2f19-e6f9-4d14-90ac-5620232a2309.jpeg"
+        uid:    1647341125965
+        status: "success"
+      -
+        url:    "https://res.miaocode.com/100a33c5-08bb-437b-82cb-33c766e1d719.jpeg"
+        uid:    1647341143819
+        status: "success"
+save_address:
   -
     consignee:       王阳明
     consigneePhone:  17788992345
