@@ -64,6 +64,7 @@ class BaseRequest:
         inner_rsp = {}
         self.request_log(url, data, json, params, headers, files, cookies)
 
+        # timeout只针对TTFB，不包括下载内容的时间
         if m_method == "GET":
             inner_rsp = self.session.get(url, timeout=8, **kwargs)  # 多用户场景下不能开启session会话功能
             # inner_rsp = requests.get(url, timeout=8, verify=False, **kwargs)

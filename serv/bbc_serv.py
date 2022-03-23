@@ -96,41 +96,41 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
 
     # 用户登录: 身份证-考试id为70
     # 将查到的userid保存到 临时的kwargs['userId'] 中用于后续的作品保存和答卷提交
-    # kwargs5 = data_pool.supply('bbc_submit_paper.yml', 'exam_login')[0]
-    # exam_uuid = sql_util.sql_examid_to_uuid(exam_id)
-    # kwargs5['examId'] = exam_uuid  # 考试uuid
-    # kwargs5['identityType'] = 'IDCARD'  # TODO
-    # kwargs5['identityNo'] = id_number
-    # kwargs5['phone'] = phone
-    # res5 = bbc_match.exam_login(**kwargs5)
+    kwargs5 = data_pool.supply('bbc_submit_paper.yml', 'exam_login')[0]
+    exam_uuid = sql_util.sql_examid_to_uuid(exam_id)
+    kwargs5['examId'] = exam_uuid  # 考试uuid
+    kwargs5['identityType'] = 'IDCARD'  # TODO
+    kwargs5['identityNo'] = id_number
+    kwargs5['phone'] = phone
+    res5 = bbc_match.exam_login(**kwargs5)
 
     # # 保存作品 提交试卷的编程题4
     # 需要提前修改 subjectId
-    # kwargs6 = data_pool.supply('bbc_submit_paper.yml', 'save_project_43')[0]
-    # kwargs6['userId'] = userid
-    # kwargs6['subjectId'] = '560'
-    # kwargs6['examinationId'] = exam_id
-    # kwargs6['dataURL'] = "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
-    # res6 = bbc_match.save_project(**kwargs6)
-    # assert res6.status is True
+    kwargs6 = data_pool.supply('bbc_submit_paper.yml', 'save_project_43')[0]
+    kwargs6['userId'] = userid
+    kwargs6['subjectId'] = '560'
+    kwargs6['examinationId'] = exam_id
+    kwargs6['dataURL'] = "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
+    res6 = bbc_match.save_project(**kwargs6)
+    assert res6.status is True
     # # 保存作品 提交试卷的编程题3
-    # kwargs7 = kwargs6
-    # kwargs6['userId'] = userid
-    # kwargs7['subjectId'] = '561'
-    # kwargs6['examinationId'] = exam_id
-    # kwargs7['dataURL'] = "https://res.miaocode.com/e0519ef5-fdc9-4ecf-8129-b8bddcfb3d41.mxc"
-    # res7 = bbc_match.save_project(**kwargs7)
-    # assert res7.status is True
+    kwargs7 = kwargs6
+    kwargs6['userId'] = userid
+    kwargs7['subjectId'] = '561'
+    kwargs6['examinationId'] = exam_id
+    kwargs7['dataURL'] = "https://res.miaocode.com/e0519ef5-fdc9-4ecf-8129-b8bddcfb3d41.mxc"
+    res7 = bbc_match.save_project(**kwargs7)
+    assert res7.status is True
 
-    # # 提交试卷(非编程题部分)
-    # kwargs8 = data_pool.supply('bbc_submit_paper.yml', 'submit_official_paper')[0]
-    # # 实际上不是传userid，而是传 报名活动下的该用户自己的报名id
-    # kwargs8['userId'] = str(signin_id)
-    # kwargs8['examinationId'] = str(exam_id)
-    # kwargs8['testPaperId'] = int(paper_id)
-    # res8 = bbc_match.submit_official_paper(**kwargs8)
-    # # assert res8.status is True f返回false  # TODO 找开发改接口，返回data
-    # return res8
+    # 提交试卷(非编程题部分)
+    kwargs8 = data_pool.supply('bbc_submit_paper.yml', 'submit_official_paper')[0]
+    # 实际上不是传userid，而是传 报名活动下的该用户自己的报名id
+    kwargs8['userId'] = str(signin_id)
+    kwargs8['examinationId'] = str(exam_id)
+    kwargs8['testPaperId'] = int(paper_id)
+    res8 = bbc_match.submit_official_paper(**kwargs8)
+    # assert res8.status is True f返回false  # TODO 找开发改接口，返回data
+    return res8
 
 
 if __name__ == '__main__':

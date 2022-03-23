@@ -22,7 +22,7 @@ save_normal:
       -
         prizeType:      2
         probability:    '0.1'
-        prizeName:      100积分
+        prizeName: 100
         stock:          '101'
         singleWinLimit: '91'
         prizeImgUrl:    https://res.miaocode.com/d6b60be0-246d-4c6c-8569-3f7b4c7dcf52.png
@@ -61,22 +61,32 @@ save_normal:
         status: "success"
 save_8thank:
   -
-    activityName:     8个谢谢
-    startTime:        '2022-03-14 00:00:00'
-    endTime:          '2022-03-18 00:00:00'
+    activityName:     asc次数不够2
+    startTime:        '2022-03-17 00:00:00'
+    endTime:          '2022-03-29 00:00:00'
     userIdentity:     1 #用户身份所有人
     lotteryCondition: 1 #抽奖条件：1：消耗金币
-    consumeCoin:      2 #单次消耗金币数量
-    lotteryLimit:     33 #抽奖次数限制
+    consumeCoin:      1 #单次消耗金币数量
+    lotteryLimit:     100 #抽奖次数限制
     firstImgUrl:      https://res.miaocode.com/2ff95379-4b44-4d76-bc11-07d13669a991.png
     turntableBgUrl:   https://res.miaocode.com/53de1108-c42c-4688-a0f1-e60c91d81d67.png
     winningBgUrl:     https://res.miaocode.com/1503e25d-182e-4d8d-9055-81f76f4a0397.png
     channelCode:      testtesttest
     prizeList:
       -
-        prizeType:   3
-        probability: '0'
-        prizeName:   谢谢惠顾
+        prizeType:      1
+        probability:    '1.00'
+        prizeName:      冰墩墩
+        stock:          '100'
+        singleWinLimit: '90'
+        prizeImgUrl:    https://res.miaocode.com/cf68ae22-1e72-42c2-b580-cedb22ef5025.png
+      -
+        prizeType:      2
+        probability:    '99.00'
+        prizeName:      200
+        stock:          '200'
+        singleWinLimit: '2'
+        prizeImgUrl:    https://res.miaocode.com/d6b60be0-246d-4c6c-8569-3f7b4c7dcf52.png
       -
         prizeType:   3
         probability: '0'
@@ -100,10 +110,6 @@ save_8thank:
       -
         prizeType:   3
         probability: '0'
-        prizeName:   谢谢惠顾
-      -
-        prizeType:   3
-        probability: '100'
         prizeName:   谢谢惠顾
     activityDetailsUrlList:
       -

@@ -6,8 +6,9 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-from util.log_util import logger
-from util.mysql_util import mysqler
+
+
+# from util.mysql_util import mysqler
 
 
 class CompetitionPK(BaseRequest):
@@ -82,19 +83,19 @@ class CompetitionPK(BaseRequest):
         self.req_method = 'POST'
         self.req_url = '/core/scoringDimension/saveScoringDimension'
         self.req_body = {
-            "id": sd_id,
+            "id"       : sd_id,
             "maxPoints": max_points,
             "minPoints": min_points,
-            "name": name
+            "name"     : name
         }
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('crm'),
         }
         result = self.x_request()
         assert_util.result_check(result)
-        finvalue = mysqler.query('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
-        if finvalue == 2:
-            logger.info(finvalue)
+        # finvalue = mysqler.query('SELECT min_points FROM scoring_dimension where id = 3')[0][0]
+        # if finvalue == 2:
+        #     logger.info(finvalue)
         return result
 
     # 保存赛事

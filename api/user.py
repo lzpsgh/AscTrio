@@ -6,7 +6,6 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-from util.mysql_util import mysqler
 
 
 class User(BaseRequest):
@@ -226,15 +225,16 @@ class User(BaseRequest):
         return result
 
     # 修改用户所属cc
-    def modify_users_owner(self, phone):
+    def modify_users_owner(self, **kwargs):
         sql_query_userid = "select id from activityuser where phone = "
         # phone = '13333333333'
         self.req_method = 'GET'
         self.req_url = '/core/user/modifyUsersOwner'
-        self.req_body = {
-            'salerIds': '889',  # cc倪旭(新)  ccxu.ni01@miaocode.com
-            'userIds': mysqler.query(sql_query_userid + phone)
-        }
+        self.req_body = kwargs
+        # self.req_body = {
+        #     'salerIds': '889',  # cc倪旭(新)  ccxu.ni01@miaocode.com
+        #     'userIds': mysqler.query(sql_query_userid + phone)
+        # }
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('crm'),
         }

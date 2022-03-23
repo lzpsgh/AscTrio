@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time    : 2022/3/9 下午6:36
-
 from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
@@ -20,8 +19,8 @@ class AnnivAnswerAward(BaseRequest):
         self.req_url = '/lottery/save'
         self.req_body = kwargs
         self.req_cookies = {
-            # 'api_account_token': auth_util.get_token('crm', 'api_account_token'),
-            'token': auth_util.get_token('gz', 'token')
+            'api_account_token': auth_util.get_token('crm', 'api_account_token'),
+            # 'token': auth_util.get_token('gz', 'token')
         }
         result = self.x_request()
         assert_util.result_check(result)

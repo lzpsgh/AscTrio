@@ -4,7 +4,9 @@ import pytest
 from api.account import account
 from api.user import user
 from util.log_util import logger
-from util.mysql_util import mysqler
+
+
+# from util.mysql_util import mysqler
 
 
 # 在crm后台登录，获取cookies
@@ -19,6 +21,13 @@ def crm_login_with_mm():
 def h5_login():
     login_info = user.get_current_user_nocookie()
     # yield login_info.json()
+
+
+@pytest.fixture(scope="function")
+def test_one_punch():
+    print('ssss')
+    list_a = [x ** 2 for x in range(101) if x % 10 == 0]
+    return list_a
 
 
 # 注册1个leads
@@ -43,15 +52,16 @@ def get_user_cookie():
 
 
 # 获取1个leads
-def get_old_leads(phone):
-    mysqler.query("SELECT * FROM activityuser AS au WHERE au.phone = " + phone)
-    # 执行数据库，从leads表里取n个leads
+# def get_old_leads(phone):
+#     mysqler.query("SELECT * FROM activityuser AS au WHERE au.phone = " + phone)
+# 执行数据库，从leads表里取n个leads
 
 
 # 获取n个正课学员
 def get_old_student(number):
     pass
     # 执行数据库，从student_schedule表里取n个正课学员
+
 
 @allure.step("前置步骤 ==>> 清理数据")
 def step_first():
