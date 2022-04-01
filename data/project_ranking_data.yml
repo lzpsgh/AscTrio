@@ -6,21 +6,21 @@ save_activity:
     endTime:               '2021-11-30 00:00:00'
     chooseStartTime:       '2020-11-22 00:00:00'
     chooseEndTime:         '2021-11-30 00:00:00'
-    headImg:               'https://res.miaocode.com/7f77e4de-001b-4099-9a34-1502e4f17fc9.jpeg'
+    headImg:        'e4fde-001b-4099-9a34-1502e4f17fc9.jpeg'
     howToPlay:             2  # 1点赞2注册
     activeObject:          1
     invitationButtonColor: '#fd5d33'
     leaderboardColor:      '#ffc126'
     shareDesc:             '注册排名-真棒！孩子亲手做的作品，成就感满满的！'
-    shareIcon:             'https://res.miaocode.com/01e07129-6507-4ec4-bd59-7aff9bed7fc7.png'
+    shareIcon:      'e07129-6507-4ec4-bd59-7aff9bed7fc7.png'
     shareTitle:            '注册排名-宝贝的编程作品被夸啦！'
     frontShareDesc:        '注册排名-快来看看您能领多少礼品？'
-    frontShareIcon:        'https://res.miaocode.com/9c4b3bf7-1e33-40a8-8c12-21094aa92d78.png'
+    frontShareIcon: 'bf3bf7-1e33-40a8-8c12-21094aa92d78.png'
     frontShareTitle:       '注册排名-参与作品分享活动，最高领5重豪礼！'
     posterImgList:
-      - 'https://res.miaocode.com/53e4146c-8f41-4fde-b8dd-49f30626911f.jpeg'
+      - 'e4146c-8f41-4fde-b8dd-49f30626911f.jpeg'
     detailImgList:
-      - 'https://res.miaocode.com/b199d160-a913-4269-ba56-0cf25275dc5d.jpeg'
+      - 'ffd160-a913-4269-ba56-0cf25275dc5d.jpeg'
     participationAward:    5
     rewardList:
       -

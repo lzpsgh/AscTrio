@@ -63,7 +63,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     kwargs['address'] = fakerist.street_address()
     kwargs['code'] = "123456"  # TODO
     kwargs['areaCode'] = "86"  # TODO
-    kwargs['idPhoto'] = "https://res.miaocode.com/competition/files/1625672893591.jpeg"
+    kwargs['idPhoto'] = "https://competition/files/1625672893591.jpeg"
     kwargs['gender'] = fakerist.sex()
     kwargs['province'] = fakerist.province()  # 注意在非中文语种下会报错
     kwargs['region'] = fakerist.district()
@@ -110,7 +110,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     kwargs6['userId'] = userid
     kwargs6['subjectId'] = '560'
     kwargs6['examinationId'] = exam_id
-    kwargs6['dataURL'] = "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
+    kwargs6['dataURL'] = "https://9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
     res6 = bbc_match.save_project(**kwargs6)
     assert res6.status is True
     # # 保存作品 提交试卷的编程题3
@@ -118,7 +118,7 @@ def sub_pay_audit_login_answer(kwargs, m_match_id, m_paper_id, m_exam_id):
     kwargs6['userId'] = userid
     kwargs7['subjectId'] = '561'
     kwargs6['examinationId'] = exam_id
-    kwargs7['dataURL'] = "https://res.miaocode.com/e0519ef5-fdc9-4ecf-8129-b8bddcfb3d41.mxc"
+    kwargs7['dataURL'] = "https://e0519ef5-fdc9-4ecf-8129-b8bddcfb3d41.mxc"
     res7 = bbc_match.save_project(**kwargs7)
     assert res7.status is True
 

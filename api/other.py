@@ -43,7 +43,7 @@ class Other(BaseRequest):
             'isCommon': False,
             'price': 8,
             'spriteName': '环保比赛-孩子99',
-            'dataURL': 'https://res.miaocode.com/6ff0d74b-29e6-424f-8870-a08a6f58b995.png'
+            'dataURL': 'https:///6ff0d74b-29e6-424f-8870-a08a6f58b995.png'
         }
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('crm'),
@@ -63,7 +63,7 @@ class Other(BaseRequest):
             'comment': 'asdf',
             'price': 0,
             'stageName': '环保比赛-新几44',
-            'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
+            'dataURL': 'https:///29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
         }
         self.req_cookies = {
             'JSESSIONID': auth_util.get_cookie('crm'),
@@ -80,7 +80,7 @@ class Other(BaseRequest):
         self.req_url = '/core/mate/uploadMaterial/'
         self.req_body = {
             'file': False,
-            'dataURL': 'https://res.miaocode.com/29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
+            'dataURL': 'https:///29fd099f-286d-42cc-99e7-44dcb330e4e6.jpg'
         }
         self.req_headers = {
             "Content-Type": 'multipart/form-data; boundary=----WebKitFormBoundaryAoRHItbAqq1AUjaW'

@@ -9,35 +9,35 @@ submit_official_paper:
         id:            13555
         iscorrect:     1
         subjectId:     543
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
       -
         id:            13559
         iscorrect:     1
         subjectId:     544
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
       -
         id:            13563
         iscorrect:     1
         subjectId:     545
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
       -
         id:            13567
         iscorrect:     1
         subjectId:     546
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
       -
         id:            13571
         iscorrect:     1
         subjectId:     547
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -45,7 +45,7 @@ submit_official_paper:
         id:            13572
         iscorrect:     1
         subjectId:     547
-        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        optioncontent: 'asdfasfdasdf/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -53,7 +53,7 @@ submit_official_paper:
         id:            13575
         iscorrect:     1
         subjectId:     548
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -61,7 +61,7 @@ submit_official_paper:
         id:            13576
         iscorrect:     1
         subjectId:     548
-        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        optioncontent: 'asdfasfdasdf/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -69,7 +69,7 @@ submit_official_paper:
         id:            13579
         iscorrect:     1
         subjectId:     549
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -77,7 +77,7 @@ submit_official_paper:
         id:            13580
         iscorrect:     1
         subjectId:     549
-        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        optioncontent: 'asdfasfdasdf/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -85,7 +85,7 @@ submit_official_paper:
         id:            13583
         iscorrect:     1
         subjectId:     550
-        optioncontent: 'https://res.miaocode.com/af21415d-9094-4b7d-b415-6827a267a0c0.png'
+        optioncontent: 'asdfasfdasdf/af21415d-9094-4b7d-b415-6827a267a0c0.png'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -93,7 +93,7 @@ submit_official_paper:
         id:            13584
         iscorrect:     1
         subjectId:     550
-        optioncontent: 'https://res.miaocode.com/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
+        optioncontent: 'asdfasfdasdf/ed50f16f-4b8d-4732-b79f-4c5b21dc8fff.jpg'
         userChoice:    1
         isRight:       null
         isValue:       true
@@ -209,7 +209,7 @@ save_project_43:
     subjectId:     "560"
     type:          0
     userId:        "98"
-    dataURL:       "https://res.miaocode.com/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
+    dataURL: "asdfasfdasdf/9c011017-e2a0-4cd8-86be-4982660c4e85.mxc"
 exam_login:
   -
     identityNo:   '441400201111110005'

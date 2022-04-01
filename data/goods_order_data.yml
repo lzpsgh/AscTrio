@@ -38,8 +38,8 @@ get_pay_page_k1:
     payStyle:   'NATIVE'
     amount:     '5280'
     stageNum:   ''
-    forwordUrl: 'https://sit-xuexi.miaocode.com/market/paySuccess'
-    cancelUrl:  'https://sit-xuexi.miaocode.com/order/457'
+    forwordUrl: 'ket/paySuccess'
+    cancelUrl:  'rder/457'
 get_pay_page_s5:
   -
     orderNo:    'O2105207930118'
@@ -47,8 +47,8 @@ get_pay_page_s5:
     payStyle:   'NATIVE'
     amount:     '6000'
     stageNum:   ''
-    forwordUrl: 'https://sit-xuexi.miaocode.com/market/paySuccess'
-    cancelUrl:  'https://sit-xuexi.miaocode.com/order/457'
+    forwordUrl: 'ket/paySuccess'
+    cancelUrl:  'der/457'
 simulation_call_back:
   -
     outTradeNo: '$sql_query_tradeno$pay_rec_id'

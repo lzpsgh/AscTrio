@@ -12,14 +12,14 @@ add_new_goods_singlecourse:
     platFormType:        '1'
     originprice:         2233
     price:               23
-    headthumburl:        'https://res.miaocode.com/570a8f90-332c-40f1-bfd0-db17157ca751.jpg'
-    detailPics:          'https://res.miaocode.com/932f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg'
+    headthumburl:        '70a8f90-332c-40f1-bfd0-db17157ca751.jpg'
+    detailPics:          'f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg'
     installmentStatus:   0
     installmentFee:      0
     hbInstallmentStatus: 0
     hbInstallmentFee:    0
     codeLanguages:       1
-    goodsLessonQty:      [{"courseLayer": "S5", "lessonQty": 48}]
+    goodsLessonQty: [ { "courseLayer": "S5", "lessonQty": 48 } ]
     recordCourseId:      '60709'
 add_new_goods_doublecourse:
   -
@@ -34,12 +34,12 @@ add_new_goods_doublecourse:
     platFormType:        '1'
     originprice:         2233
     price:               23
-    headthumburl:        'https://res.miaocode.com/570a8f90-332c-40f1-bfd0-db17157ca751.jpg'
-    detailPics:          'https://res.miaocode.com/932f25ce-a82b-4585-a215-8ba2ca52a4dd.jpg'
+    headthumburl:        'c-40f1-bfd0-db17157ca751.jpg'
+    detailPics:          '-a82b-4585-a215-8ba2ca52a4dd.jpg'
     installmentStatus:   0
     installmentFee:      0
     hbInstallmentStatus: 0
     hbInstallmentFee:    0
     codeLanguages:       1
-    goodsLessonQty:      [{"courseLayer": "S5", "lessonQty": 48}]
+    goodsLessonQty: [ { "courseLayer": "S5", "lessonQty": 48 } ]
     recordCourseId:      '60709'
