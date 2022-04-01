@@ -27,8 +27,7 @@ def pay_regfee_ali(kwargs):
 # 创建报名活动并开启
 def save_match_enable(kwargs):
     res = bbc_signUp.save_match(**kwargs)
-    match_id = sql_util.sql_matchid()
-    # match_id = res.sdata  # TODO 等开发改好接口后要换成这个
+    match_id = res.sdata
     logger.info(f"创建的蓝桥杯赛事活动ID是{match_id}")
     res1 = bbc_signUp.enable(1, match_id)
     assert res1.status is True

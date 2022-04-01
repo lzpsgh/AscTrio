@@ -44,4 +44,5 @@ class TestSample:
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "-n", "auto", "test_blue_bridge_contest.py::TestBlueBridgeContest::test_result_inquiry"])
+    # pytest.main(["-q", "-s", "-n", "auto", "test_blue_bridge_contest.py::TestBlueBridgeContest::test_result_inquiry"])
+    pass
