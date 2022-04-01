@@ -69,10 +69,5 @@ def set_token(kw, kwson, tmp_data):
     data_pool.save_cookie_yml(tmp_data)
 
 
-def check_auth():
-    jsid = get_cookie()
-    set_cookie(jsid)
-
-
 if __name__ == '__main__':
     pass

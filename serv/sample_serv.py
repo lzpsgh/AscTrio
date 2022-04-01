@@ -6,10 +6,16 @@ from api.goods_order import goods_order
 from util import sql_util
 from util.log_util import logger
 
+''' 
+serv层就是 对多个api的有序组合
+serv层和api层的唯一区别就是没有定义class
+对case层来说，serv层和api层没有区别
+'''
+
 
 # 已弃用 提交报名记录
 def pay_regfee_ali(kwargs):
-    res2 = bbc_signUp.create_order(**kwargs)
+    res2 = bbc_signUp.create_order(kwargs)
     pay_record_id = res2.sdata.get("payrecordId")
     if pay_record_id is None:
         raise Exception("aaaa")
