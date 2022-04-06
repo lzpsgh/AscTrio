@@ -14,9 +14,9 @@ class TestLeadsPay:
     # @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
     # @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
     # @allure.title("leads入库分配cc官网下单支付-预期成功")
-    @pytest.mark.multiple
+    @pytest.mark.skip
     # @pytest.mark.usefixtures("delete_register_user")
-    @pytest.mark.parametrize("datajson", data_pool.supply('test_leads.yml', 'test_leads_cc_login'))
+    @pytest.mark.parametrize("datajson", data_pool.supply('sample_data.yml', 'test_reset_pwd2'))
     def test_leads_cc_order_pay(self, datajson):
         # sql_query_cc = "select salerid from activityuser where id = 889"
         result1 = user.send_sms2(datajson['phone'])
@@ -27,5 +27,7 @@ class TestLeadsPay:
         assert result3.status is True
         # print(db.select_db(sql_query_cc)[0])
 
+
 if __name__ == '__main__':
     pytest.main(["-q", "-s", "test_leads_pay.py"])
+    # pytest.__version__

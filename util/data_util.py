@@ -1,3 +1,4 @@
+import inspect
 import json
 from configparser import ConfigParser
 
@@ -87,6 +88,18 @@ class DataPool:
                 return yaml_dict[0]
         except KeyError:
             print(f'未在yml中找到字段：{yml_key}')
+
+    # 使用 inspect
+    # 模块名 'test_zeus_mongo'  [inspect.stack()[0][1].split('/')[-1][:-3]]
+    # 类名   'TestZeusMongo'    [inspect.currentframe().f_code.co_name]  / [inspect.stack()[0][3]]
+    # 函数名
+    def auto_supply_with_inspect(self):
+        print(inspect.stack())
+        print(inspect.currentframe())
+        zeus_list = [
+            [inspect.stack()[0][1].split('/')[-1][:-3]], [inspect.currentframe().f_code.co_name],
+        ]
+        return zeus_list
 
 
 data_pool = DataPool()

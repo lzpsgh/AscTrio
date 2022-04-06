@@ -5,18 +5,21 @@
 import allure
 import pytest
 
+from conftest import lzp
 from util.data_util import data_pool
+from util.log_util import logger
 
 
-@allure.epic("针对业务场景的测试")
-@allure.feature("场景：用户注册-用户登录-查看用户")
-# @pytest.mark.usefixtures
+@allure.feature("")
 class TestZeusMongo:
+
+	# 用hook函数来参数化, 未调试过和parametrize和fixture共同使用的场景
+	def test_auto_supply(self, __kwargs):
+		print(__kwargs)
 
 	# 叠加parametrize. case层可以直接调用api层
 	@pytest.mark.parametrize('api_id', ['10023'])
-	@pytest.mark.parametrize('kwargs',
-							 data_pool.supply('bbc_user_batch.yml', 'user_submit_and_login3'))
+	@pytest.mark.parametrize('kwargs', data_pool.supply('bbc_user_batch.yml', 'user_submit_and_login3'))
 	def test_double_parametrize(self, api_id, kwargs):
 		# res = base_api(sapidata, kwargs)
 		# return res
@@ -24,8 +27,7 @@ class TestZeusMongo:
 
 	# 叠加parametrize. case层接受参数，调用server层
 	@pytest.mark.parametrize('api_id', ['10023'])
-	@pytest.mark.parametrize('kwargs',
-							 data_pool.supply('bbc_user_batch.yml', 'user_submit_and_login3'))
+	@pytest.mark.parametrize('kwargs', data_pool.supply('bbc_user_batch.yml', 'user_submit_and_login3'))
 	def test_double_parametrize(self, api_id, kwargs):
 		# res = base_api(apidata, kwargs)
 		# return res
@@ -75,6 +77,27 @@ class TestZeusMongo:
 		exam_id = '89'
 		pass
 
+	@pytest.mark.parametrize('kwargs', [lzp])
+	def test_pytest_collect_file(self, kwargs):
+		# print("hello", path)
+		# sun_sign_ret = lzp
+		# print(sun_sign_ret)
+		logger.info(kwargs)
+# logger.info('')  # function node class
+# func_sign_1 = str(lzp.function).split(' ')
+# logger.info(func_sign_1)
+# logger.info('方法名：' +func_sign_1[2].split('.')[-1])
+# logger.info('类名：' +func_sign_1[2].split('.')[-2])
+# logger.info('模块名：' +func_sign_1[4].split('.')[-2])
+
 
 if __name__ == '__main__':
 	pass
+
+# [2022-04-05 01:17:21,128] [test_leads_pay.py 32][INFO ] <Function test_pytest_collect_file>
+# [2022-04-05 01:17:21,129] [test_leads_pay.py 33][INFO ] <bound method TestLeadsPay.test_pytest_collect_file of <case.user.test_leads_pay.TestLeadsPay object at 0x7fb2c855c5c0>>
+# [2022-04-05 01:17:21,129] [test_leads_pay.py 34][INFO ] <class 'case.user.test_leads_pay.TestLeadsPay'>
+
+# [2022-04-05 01:26:33,778] [test_leads_pay.py 32][INFO ] <class '_pytest.python.Function'>
+# [2022-04-05 01:26:33,778] [test_leads_pay.py 33][INFO ] <class 'method'>
+# [2022-04-05 01:26:33,779] [test_leads_pay.py 34][INFO ] <class 'type'>

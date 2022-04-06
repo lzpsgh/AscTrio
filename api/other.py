@@ -4,10 +4,7 @@
 
 from functools import wraps
 
-import task_util
 from base.base_request import BaseRequest
-from data_util import data_pool
-from faker_util import fakerist
 from util import assert_util
 from util import auth_util
 from util import common_util
@@ -151,16 +148,8 @@ class Other(BaseRequest):
 other = Other(common_util.env('DOMAIN_GZ'))
 
 if __name__ == '__main__':
-    kwargs = data_pool.supply('other.yml', 'add_exam')[0]
-    kwargs['examName'] = '中文' + fakerist.word()
-    kwargs['englishExamName'] = 'eng_' + fakerist.numerify()
-    kwargs['timeInterval'][0] = '2020-12-09 00:00:00'
-    kwargs['timeInterval'][1] = '2021-05-25 22:00:00'
-    other.add_exam(**kwargs)
-    task_date = '2020-12-10'
-    task_util.call_method('https://api-sit.miaocode.com/api/gzexam/teacherexam/notice?sendMsg=false&date=' + task_date)
 
-    # other.func2(1, 2, a=3, b=4)
+    other.func2(1, 2, a=3, b=4)
     # print(f'装饰外模块名:{other.__module__.__}')
     # print(f'装饰外函数名:{other.func2.__name__}')
     # other.upload_material('pwd')

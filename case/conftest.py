@@ -3,10 +3,61 @@ import pytest
 
 from api.account import account
 from api.user import user
+from data_util import data_pool
 from util.log_util import logger
 
+test_data = [
+    {"test_input": "3+5",
+     "expected"  : 8
+     },
+    # {"test_input": "2+4",
+    #  "expected": 6
+    # },
+    # {"test_input": "6 * 9",
+    #  "expected": 54
+    # }
+]
 
-# from util.mysql_util import mysqler
+
+# pytest hook函数
+def pytest_generate_tests(metafunc):
+    tmp_func = str(metafunc.definition)
+    cur_func = tmp_func.split(' ')[1][:-2]
+
+    tmp_module_cls = str(metafunc.cls)
+    cur_module = 'data_' + tmp_module_cls.split('.')[-2] + '.yml'
+    cur_cls = tmp_module_cls.split('.')[-1][:-2]
+
+    harry = data_pool.supply(cur_module, cur_func)
+
+    if "__kwargs" in metafunc.fixturenames:
+        metafunc.parametrize("__kwargs", harry, scope="function")
+
+
+@pytest.fixture(scope="function")
+def lzp(request):
+    func_sign_1 = str(request.function).split(' ')
+    logger.info(func_sign_1)
+    sun_sign = []
+
+    # name_module = func_sign_1[4].split('.')[-2]
+    name_module_tmp = 'sample_data'
+    name_module = name_module_tmp + '.yml'
+    logger.info('模块名：' + name_module)
+    sun_sign.append(name_module)
+
+    # name_cls = func_sign_1[2].split('.')[-2]
+    name_cls = 'TestZeusMongo'
+    logger.info('类名：' + name_cls)
+    sun_sign.append(name_cls)
+
+    # name_func = func_sign_1[2].split('.')[-1]
+    name_func = 'test_reset_pwd2'
+    logger.info('方法名：' + name_func)
+    sun_sign.append(name_func)
+
+    kwargs = data_pool.supply(sun_sign[0], sun_sign[2])
+    return kwargs
 
 
 # 在crm后台登录，获取cookies

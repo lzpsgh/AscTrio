@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time    : 2022/3/9 下午6:36
+
 from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
