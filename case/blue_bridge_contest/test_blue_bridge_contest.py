@@ -80,6 +80,16 @@ class TestBlueBridgeContest:
 
     # 新增正式考试
     @pytest.mark.skip
+    # @pytest_autoparam
+    @pytest.mark.usefixtures("crm_login_with_mm")
+    def test_add_exam_formal_enable(self, kwargs):
+        res = bbc_match.new_exam(**kwargs)
+        assert res.status is True
+        exam_id = res.sdata
+        bbc_match.enable_exam(exam_id)
+
+    # 新增正式考试
+    @pytest.mark.skip
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('bbc_contest_data.yml', 'add_exam_formal_senior'))
     @pytest.mark.usefixtures("crm_login_with_mm")

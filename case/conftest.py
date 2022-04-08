@@ -1,37 +1,52 @@
 import allure
 import pytest
+import yaml
 
+import common_util
 from api.account import account
 from api.user import user
 from data_util import data_pool
 from util.log_util import logger
 
-test_data = [
-    {"test_input": "3+5",
-     "expected"  : 8
-     },
-    # {"test_input": "2+4",
-    #  "expected": 6
-    # },
-    # {"test_input": "6 * 9",
-    #  "expected": 54
-    # }
-]
+
+def _auto_supply(file_name, key_name):
+    # TODO 能从配置中读取 DATA_PATH
+    DATA_PATH = common_util.env('DATA_PATH')
+
+    yaml_file_path = f"{DATA_PATH}/{file_name}"
+    try:
+        with open(yaml_file_path, encoding='utf-8') as f:
+            yaml_data = yaml.safe_load(f)
+        yaml_dict = yaml_data.get(key_name)
+        if yaml_dict is not None:
+            return yaml_dict
+    except KeyError:
+        raise f'未在yml中找到字段：{key_name}'
+    except Exception:
+        raise '''This call couldn't work.
+            "Please consider raising an issue with your usage.")'''
 
 
 # pytest hook函数
 def pytest_generate_tests(metafunc):
-    tmp_func = str(metafunc.definition)
-    cur_func = tmp_func.split(' ')[1][:-2]
+    param_name = 'auto_kwargs'
+    # tmp_func = str(metafunc.definition)
+    cur_func = str(metafunc.definition).split(' ')[1][:-1]
+    # tmp_module_cls = str(metafunc.cls)
+    cur_module = f"{str(metafunc.cls).split('.')[-2]}.yml"
+    # cur_cls = tmp_module_cls.split('.')[-1][:-2]
 
-    tmp_module_cls = str(metafunc.cls)
-    cur_module = 'data_' + tmp_module_cls.split('.')[-2] + '.yml'
-    cur_cls = tmp_module_cls.split('.')[-1][:-2]
+    # harry = data_pool.supply(cur_module, cur_func)
+    harry = _auto_supply(cur_module, cur_func)
 
-    harry = data_pool.supply(cur_module, cur_func)
+    # 1通过mark标记来匹配，不需要固定函数入参名
+    name_list = (make.name for make in metafunc.definition.own_markers)
+    if param_name in name_list and 'parametrize' not in name_list:
+        metafunc.parametrize(param_name, harry, scope="function")
 
-    if "__kwargs" in metafunc.fixturenames:
-        metafunc.parametrize("__kwargs", harry, scope="function")
+    # 2通过函数入参来匹配
+    # if "_kwargs" in metafunc.fixturenames:
+    #     metafunc.parametrize("_kwargs", harry, scope="function")
 
 
 @pytest.fixture(scope="function")

@@ -1,0 +1,11 @@
+---
+test_hook_supply_dict:
+  -
+    name: 'fasd'
+    age:  13
+  -
+    name: 'zzz'
+    age:  99
+test_single:
+  - '111'
+  - '222'

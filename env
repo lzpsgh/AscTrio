@@ -1,24 +1,32 @@
-# 该文件为模版文件，使用时需重命名为.env 才能被dotenv识别
+################ 环境模版 ###############
 
-# 项目通用
-PROJECT_ROOT='/Users/lensaclrtn/Project/AscTrio'
-COOKIE_YML='${PROJECT_ROOT}/data/cookies.yml'
+# 通用-目录
+PROJECT_ROOT=''
 LOG_PATH='${PROJECT_ROOT}/log'
+DATA_PATH='${PROJECT_ROOT}/data'
+COOKIE_YML='${DATA_PATH}/cookies.yml'
 
 # 服务端根路径
-DOMAIN_CORE=
-DOMAIN_GZ=
-DOMAIN_MOCK=
+DOMAIN_CORE=''
+DOMAIN_GZ=''
+DOMAIN_MOCK=''
 
 # YAPI的项目ID
-YAPI_PROJ_CORE=32
+YAPI_PROJ_CORE=''
 
-# MySQL数据库，改用阿里云rds只读实例
-MYSQL_HOST=
-MYSQL_PORT=
-MYSQL_USER=
-MYSQL_PASSWD=
-MYSQL_DB=
+# MySQL数据库
+MYSQL_HOST=''
+MYSQL_PORT=''
+MYSQL_USER=''
+MYSQL_PASSWD=''
+MYSQL_DB=''
 # Redis数据库
-REDIS_HOST=
-REDIS_PORT=
+REDIS_HOST=''
+REDIS_PORT=''
+# MongoDB数据库
+MONGODB_HOST=''
+MONGODB_PORT=''
+MONGODB_USER=''
+MONGODB_PASSWD=''
+MONGODB_AUTH=''
+MONGODB_DB=''

@@ -4,10 +4,10 @@ import os
 import random
 import time
 
-from dotenv import load_dotenv
+import dotenv
 
-flag_dotenv = 0
-load_dotenv()
+env_name = 'test.env'
+dotenv.load_dotenv(dotenv.find_dotenv(env_name))
 
 
 # 自动计算出手机号的默认密码（123789-262728323334）
@@ -36,15 +36,8 @@ def uncamelize(zifu):
     return str.lower()
 
 
-def auto_lode_dotenv():
-    # api层
-    load_dotenv()
-    # case层
-
-
 def env(key):
     return os.getenv(key)
-
 
 
 def random_test():
@@ -166,3 +159,10 @@ def get_random(length):
 
 def get_timestamp():
     return int(round(time.time() * 1000))  # 13位 1609923362699
+
+
+if __name__ == '__main__':
+    cfg_file = dotenv.find_dotenv('test.env')
+    dotenv.load_dotenv(cfg_file)
+    # cfg = dotenv.dotenv_values(cfg_file)
+    # print(cfg)

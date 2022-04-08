@@ -6,7 +6,8 @@ import yaml
 
 from util import common_util
 
-BASE_PATH = common_util.env('PROJECT_ROOT')
+# BASE_PATH = common_util.env('PROJECT_ROOT')
+DATA_PATH = common_util.env('DATA_PATH')
 
 
 # 由于[安全问题](https://security.openstack.org/guidelines/dg_avoid-dangerous-input-parsing-libraries.html)
@@ -70,7 +71,7 @@ class DataPool:
         return data
 
     def supply(self, yml_name, yml_key):
-        yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
+        yaml_file_path = f"{DATA_PATH}/{yml_name}"
         try:
             yaml_data = data_pool.load_yml(yaml_file_path)
             yaml_dict = yaml_data.get(yml_key)
@@ -80,7 +81,7 @@ class DataPool:
             print(f'未在yml中找到字段：{yml_key}')
 
     def supply_one(self, yml_name, yml_key):
-        yaml_file_path = f"{BASE_PATH}/data/{yml_name}"
+        yaml_file_path = f"{DATA_PATH}/{yml_name}"
         try:
             yaml_data = data_pool.load_yml(yaml_file_path)
             yaml_dict = yaml_data.get(yml_key)
