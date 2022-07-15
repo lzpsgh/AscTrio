@@ -5,6 +5,7 @@ import requests
 from base.base_response import BaseResponse
 from util.log_util import logger
 
+requests.packages.urllib3.disable_warnings()
 
 class BaseRequest:
     req_method = ''
@@ -18,11 +19,14 @@ class BaseRequest:
         self.session = requests.session()
         self.req_headers = {
             "Cache-Control": "no-cache",
-            "Connection": "keep-alive",  # 在HTTP1.1规范中默认开启
-            "Accept": "application/json, text/plain, */*",
-            # "Content-Type": "application/x-www-form-urlencoded"
+            "Connection"   : "keep-alive",  # 在HTTP1.1规范中默认开启
+            "Accept"       : "application/json, text/plain, */*",
+            # "userName": "%E9%99%88%E5%BF%97%E6%B5%A9",
+            "userId"       : '433',
+            # "email": 'chenzhihao@aulton.com',
+            "companyId"    : '1',
+            "token"        : "111"
         }
-        requests.packages.urllib3.disable_warnings()
 
         # todo 请求失败重试3次
         # max_retry_times = requests.adapatrs.HTTPAdapaters(max_retries=3)

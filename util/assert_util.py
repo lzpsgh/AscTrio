@@ -13,7 +13,7 @@ def result_check(result):
         response_code = result.rsp.status_code
         if response_code == 200:
             rsp_json = result.rsp.json()  # 响应文本如果不是合法的json文本就会报错
-            if rsp_json['success'] is True:
+            if rsp_json['message'] == '成功':
                 result.status = True  # 写入1
                 if 'data' in rsp_json:
                     # 写入2

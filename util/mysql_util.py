@@ -4,11 +4,11 @@ from util import common_util
 from util.log_util import logger
 
 DB_CONF = {
-    "host": common_util.env('MYSQL_HOST'),
-    "port": int(common_util.env('MYSQL_PORT')),
-    "user": common_util.env('MYSQL_USER'),
-    "password": common_util.env('MYSQL_PASSWD'),
-    "db": common_util.env('MYSQL_DB'),
+    "host"    : common_util.env('MYSQL_HOST'),
+    "port"    : int(common_util.env('MYSQL_PORT')),
+    "user"    : common_util.env('MYSQL_USER'),
+    "password": common_util.env('MYSQL_PASSWD')
+    # "db": common_util.env('MYSQL_DB'),
 }
 
 
