@@ -30,23 +30,13 @@ def _auto_supply(file_name, key_name):
 # pytest hook函数
 def pytest_generate_tests(metafunc):
     param_name = 'auto_kwargs'
-    # tmp_func = str(metafunc.definition)
     cur_func = str(metafunc.definition).split(' ')[1][:-1]
-    # tmp_module_cls = str(metafunc.cls)
     cur_module = f"{str(metafunc.cls).split('.')[-2]}.yml"
-    # cur_cls = tmp_module_cls.split('.')[-1][:-2]
-
-    # harry = data_pool.supply(cur_module, cur_func)
     harry = _auto_supply(cur_module, cur_func)
 
-    # 1通过mark标记来匹配，不需要固定函数入参名
     name_list = (make.name for make in metafunc.definition.own_markers)
     if param_name in name_list and 'parametrize' not in name_list:
         metafunc.parametrize(param_name, harry, scope="function")
-
-    # 2通过函数入参来匹配
-    # if "_kwargs" in metafunc.fixturenames:
-    #     metafunc.parametrize("_kwargs", harry, scope="function")
 
 
 @pytest.fixture(scope="function")
@@ -55,7 +45,7 @@ def lzp(request):
     logger.info(func_sign_1)
     sun_sign = []
 
-    # name_module = func_sign_1[4].split('.')[-2]
+    name_module = func_sign_1[4].split('.')[-2]
     name_module_tmp = 'sample_data'
     name_module = name_module_tmp + '.yml'
     logger.info('模块名：' + name_module)
@@ -72,8 +62,15 @@ def lzp(request):
     sun_sign.append(name_func)
 
     kwargs = data_pool.supply(sun_sign[0], sun_sign[2])
+    kwargs = [1, 2]
+    print(kwargs)
     return kwargs
 
+
+@pytest.fixture(scope='function')
+def upload_excel():
+    # 上传文件
+    pass
 
 # 在crm后台登录，获取cookies
 @pytest.fixture(scope="session")

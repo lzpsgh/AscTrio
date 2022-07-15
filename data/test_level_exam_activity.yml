@@ -1,0 +1,51 @@
+---
+test_save:
+  -
+    activityName:      二次猫眼
+    startTime:         '2022-04-22 00:00:00'
+    endTime:           '2022-04-29 00:00:00'
+    enrollTopImg:      'https://res.miaocode.com/821c7f32-8fda-4170-9d6d-c6d6a366eb62.png'
+    backgroundColor:   '#09BCFE'
+    activityGuides:
+      -
+        label:         图文资源2（图文ID：2）
+        resourceImgId: 2
+        enImg:         'https://res.miaocode.com/8d8b8bed-a149-4b6a-b007-6bfe594719c5.png'
+      -
+        label:         图文资源2（图文ID：2）
+        resourceImgId: 2
+        enImg:         'https://res.miaocode.com/bf3050ab-4102-4d93-8886-8422da0d7e2d.png'
+    enrollReward:
+      label:             猫眼-5-满减5200（奖励ID：18）
+      enrollRewardId:    18
+      enrollRewardEnImg: 'https://res.miaocode.com/16bd7377-1c16-495a-abea-93ab0531e63c.png'
+    activityPrepareServices:
+      -
+        label:         图文资源2（图文ID：2）
+        resourceImgId: 2
+        enImg:         'https://res.miaocode.com/9f133944-bb9b-4ed3-92a5-7a44c55d8303.png'
+      -
+        label:         图文资源2（图文ID：2）
+        resourceImgId: 2
+        enImg:         'https://res.miaocode.com/50a9bd74-3720-42e4-9db4-e1b7c25611c0.png'
+    activityPassServices:
+      -
+        label:         图文资源2（图文ID：2）
+        resourceImgId: 2
+        enImg:         'https://res.miaocode.com/a8387793-3b0e-4cfb-96f2-e53cac8396b5.png'
+      -
+        label:         图文资源2（图文ID：2）
+        resourceImgId: 2
+        enImg:         'https://res.miaocode.com/65dda3c6-fc71-4a5e-8996-f898239809bf.png'
+    examPassReward:
+      label:               猫眼考过-6-半价直减2300（奖励ID：19）
+      examPassRewardId:    19
+      examPassRewardEnImg: 'https://res.miaocode.com/7b367a98-f33b-4c87-b5a8-d296f4cbff66.png'
+    teacherQrcode:
+      label:            test新（二维码ID：7）
+      teacherQrcodeId:  7
+      teacherQrcodeImg: 'https://res.miaocode.com/39332c84-6ab0-4fe9-8ff3-fd512f6bf42d.png'
+    #    importUserExcelId:  # 240487 280644
+    importUserExcelId: 34 # 240487
+#    importUserExcelId:  # 模版100
+#    importUserExcelId:  # 模版100有重复

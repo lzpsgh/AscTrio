@@ -5,7 +5,7 @@ bbc:
 crm:
   api_account_token: api_account_token_AE73B820F68F421D67B1905E48015213ECC913578E81D4056E1BCBEB60CF5D93
   gz_token:          api_token_CBA4A3006A8ABC706F98A2B6F8892CC2
-  jsessionid:        57B8AE28273317BF978422726F0148E8
+  jsessionid:        45AE14EFB40E36650BCEE2C55D801FD1
 gz:
   jsessionid: registertokence95b00a-3291-40c8-a30b-61a087f49811
   token: 111
@@ -14,4 +14,4 @@ mxc:
   mxc-token: fdcc950f-54f4-4144-b810-0ad02fc1d73b
 web:
   gz_token: test
-  jsessionid: 272E64A5F553F9EF02E624A11A555791
+  jsessionid: D0BC0A2FDB8EB02A6866C5C114CD0686

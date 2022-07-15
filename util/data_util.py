@@ -5,6 +5,7 @@ from configparser import ConfigParser
 import yaml
 
 from util import common_util
+from util.log_util import logger
 
 # BASE_PATH = common_util.env('PROJECT_ROOT')
 DATA_PATH = common_util.env('DATA_PATH')
@@ -40,13 +41,6 @@ class DataPool:
         # logger.debug(f"读取yml {tmp_data}")
         return tmp_data
 
-    def load_ymlist(self, file_path):
-        # logger.debug(f'加载文件 {file_path}')
-        with open(file_path, encoding='utf-8') as f:
-            tmp_data = yaml.safe_load(f)
-        # logger.debug(f'读取yml列表 {tmp_data}')
-        return tmp_data
-
     def save_cookie_yml(self, yml_data):
         file_path = common_util.env('COOKIE_YML')
         # logger.debug(f"打开文件: {file_path}")
@@ -72,13 +66,15 @@ class DataPool:
 
     def supply(self, yml_name, yml_key):
         yaml_file_path = f"{DATA_PATH}/{yml_name}"
+        # print(yml_name, yml_key)
+        # logger.info(yml_key)
         try:
             yaml_data = data_pool.load_yml(yaml_file_path)
             yaml_dict = yaml_data.get(yml_key)
             if yaml_dict is not None:
                 return yaml_dict
         except KeyError:
-            print(f'未在yml中找到字段：{yml_key}')
+            logger.info(f'未在yml中找到字段：{yml_key}')
 
     def supply_one(self, yml_name, yml_key):
         yaml_file_path = f"{DATA_PATH}/{yml_name}"

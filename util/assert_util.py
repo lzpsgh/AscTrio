@@ -56,10 +56,10 @@ def assertListIsDictContainEqual(expected, result):
     for index in range(len(expected)):
         for num in range(len(result)):
             if assertDictContainEqual(dict(expected[index]), dict(result[num])):
-                flag == True
+                flag = True
                 break
             else:
-                flag == False
+                flag = False
                 continue
     if flag:
         assert True

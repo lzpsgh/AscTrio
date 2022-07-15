@@ -6,6 +6,11 @@ test_hook_supply_dict:
   -
     name: 'zzz'
     age:  99
-test_single:
+test_11:
   - '111'
   - '222'
+submit_22:
+  - '111'
+  - '222'
+test_func_name:
+  - '123'
