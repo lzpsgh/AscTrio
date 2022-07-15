@@ -58,9 +58,13 @@ def modify_sub_amount(amount):
     res = mysqler.execute(tmp)
     return res
 
+def xxx(channel_code):
+    tmp = f"select channel_code from abs_organization.station_station_ext as sse where 1 and channel_code like '{channel_code}' order by create_time desc;"
+    res = mysqler.query(tmp)[0][0]
+    return res
 
 if __name__ == '__main__':
     # exam_id = '75'
     # sql_examid_to_uuid(exam_id)
-    res1 = modify_sub_amount('0.01')
+    res1 = xxx('GZ00200138T')
     print(res1)

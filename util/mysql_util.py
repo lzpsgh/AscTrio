@@ -60,34 +60,6 @@ if __name__ == '__main__':
     key = mysqler.query(
         f"SELECT pr.outTradeNo FROM payrecord pr INNER JOIN goodsorder go ON pr.goodsOrderId = go.id WHERE pr.id = '{pay_record_id}'; ")[
         0][0]
+
     # 数据库写操作
     mysqler.execute(f"UPDATE bbc_enter_name SET openid = 'o-12n0z07Zc6aLI9sAYouWkAojmA' WHERE id = 58 ")
-
-#
-# def exec_sql(sql):
-#     """执行指定sql，限于增/删/改类型"""
-#     logger.info('execute sql: %s' % sql)
-#     db_util.execute(sql)
-#
-#
-# def query_sql(sql):
-#     """执行指定sql(查询类)，获取返回结果"""
-#     # logger.info('query sql: %s' % sql)
-#     return db_util.query(sql)
-#
-#
-# def query_count_sql(sql):
-#     """执行指定sql(查询类)，获取返回count"""
-#     logger.info('query sql: %s' % sql)
-#     resp = db_util.query(sql)
-#
-#
-# def exec_file(file_path):
-#     """从文件读取sql执行"""
-#     logger.info('execute file: %s' % file_path)
-#     path = "%s/%s" % (cfg.WS_HOME, file_path)
-#     cmd = "mysql -h %s -P %s -u %s -p%s < %s" % (
-#         cfg.MYSQL_IP, cfg.MYSQL_PORT,
-#         cfg.MYSQL_USER, cfg.MYSQL_PASSWD, path)
-#     status, output = subprocess.getstatusoutput(cmd)
-#     assert status == 0, '导入 文件:%s 错误：%s' % (path, output)
