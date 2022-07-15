@@ -2,7 +2,7 @@
 # @Time      : 2021/5/1 下午9:23
 
 
-class BaseExcp(Exception):
+class BaseException(Exception):
     def __init__(self, msg=None):
         self.msg = msg
 
@@ -15,6 +15,6 @@ class BaseExcp(Exception):
 
 if __name__ == '__main__':
     try:
-        raise BaseExcp('基本异常')
-    except BaseExcp as e:
+        raise BaseException('基本异常')
+    except BaseException as e:
         print(e)

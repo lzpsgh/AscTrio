@@ -182,7 +182,6 @@ class TestBlueBridgeContest:
         assert res.status is True
         signin_id = res.sdata.get('id')
         logger.info(f"报名ID是{signin_id}")
-        # 将用户的openid设置为iphone12mini上的
         sql_util.sql_fix_openid(signin_id)
 
     @pytest.mark.usefixtures("crm_login_with_mm")
