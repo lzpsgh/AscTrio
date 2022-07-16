@@ -15,13 +15,13 @@ test_add_location:
     "attribute":                   "直营"
     "attributeCode":               "1"
     "flag":                        0
-add_project:
+test_add_project:
   -
-    "stationType":                   "Q"
-    "projectName":                   "新建站SDTQF"
-    "locationId":                    119
+    "stationType":                   "S"
+    "projectName":                   "新建站S"
+    "locationId":                    190
     "type":                          "1"
-    "civilBiddingEstimatedCost":     "2"
-    "highVoltageBuildEstimatedCost": "1"
-    "lowVoltageBuildEstimatedCost":  "3"
-    "plannedPowerCapacity":          "4"
+    "civilBiddingEstimatedCost":     "30000"
+    "highVoltageBuildEstimatedCost": "10000"
+    "lowVoltageBuildEstimatedCost":  "20000"
+    "plannedPowerCapacity":          "40000"

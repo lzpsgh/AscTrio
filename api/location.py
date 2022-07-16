@@ -24,7 +24,7 @@ class Location(BaseRequest):
         assert_util.result_check(result)
         return result
 
-    def add_project(self, **kwargs):
+    def add_project(self, kwargs):
         self.req_method = 'POST'
         self.req_url = '/location/api/v1.0/assetProjectManage/'
         self.req_body = kwargs

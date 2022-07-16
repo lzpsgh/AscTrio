@@ -28,7 +28,7 @@ def _auto_supply(file_name, key_name):
 
 # pytest hook函数
 def pytest_generate_tests(metafunc):
-    param_name = 'auto_kwargs'
+    param_name = 'xdata'
     cur_module = f"{str(metafunc.cls).split('.')[-2]}.yml"
     cur_func = str(metafunc.definition).split(' ')[1][:-1]
     harry = _auto_supply(cur_module, cur_func)
