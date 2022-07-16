@@ -1,16 +1,17 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2021/4/6
-# 模版文件，仅供参考，无法执行
-import assert_util
-import auth_util
+# @Time    : 2022/7/15 17:31
 from base.base_request import BaseRequest
+from util import assert_util
+from util import auth_util
 from util import common_util
+from util.data_util import data_pool
 
 
-class Other(BaseRequest):
+class Location(BaseRequest):
 
-    def __init__(self, api_root_url, **kwargs):
-        super(Other, self).__init__(api_root_url, **kwargs)
+    def __init__(self, root_url, **kwargs):
+        super(Location, self).__init__(root_url, **kwargs)
 
     def add_location(self, kwargs):
         self.req_method = 'POST'
@@ -35,7 +36,10 @@ class Other(BaseRequest):
         return result
 
 
-other = Other(common_util.env('DOMAIN_ASSET'))
+location = Location(common_util.env('DOMAIN_ASSET'))
 
 if __name__ == '__main__':
-    pass
+    kwargs = data_pool.supply('test_location.yml', 'add_location')[0]
+    kwargs['networkPlanningLocationCode'] = "asc07160001"
+    res1 = location.add_location(kwargs)
+    assert res1.status is True

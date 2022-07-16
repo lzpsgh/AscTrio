@@ -1,0 +1,27 @@
+---
+test_add_location:
+  -
+    "networkPlanningLocationCode": "asc07040002"
+    "locationName":                "asc07040002"
+    "cityName":                    "广州市"
+    "cityCode":                    "440100"
+    "areaName":                    "天河区"
+    "orgName":                     "北京怀兴旺出租汽车有限公司"
+    "orgId":                       "1"
+    "provinceName":                "广东省"
+    "address":                     "侨鑫国际(南门)"
+    "longitude":                   113.32205
+    "latitude":                    23.123275
+    "attribute":                   "直营"
+    "attributeCode":               "1"
+    "flag":                        0
+add_project:
+  -
+    "stationType":                   "Q"
+    "projectName":                   "新建站SDTQF"
+    "locationId":                    119
+    "type":                          "1"
+    "civilBiddingEstimatedCost":     "2"
+    "highVoltageBuildEstimatedCost": "1"
+    "lowVoltageBuildEstimatedCost":  "3"
+    "plannedPowerCapacity":          "4"

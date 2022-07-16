@@ -4,7 +4,6 @@
 
 import pytest
 
-import sample_serv
 from api.sample import sample
 from util import sql_util
 from util.data_util import data_pool

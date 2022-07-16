@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time    : 2021/8/16 下午1:50
-from api.blue_bridge_contest_signup import bbc_signUp
 from api.goods_order import goods_order
+
+from api.blue_bridge_contest_signup import bbc_signUp
 from util import sql_util
 from util.log_util import logger
 

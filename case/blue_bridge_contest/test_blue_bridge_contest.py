@@ -8,7 +8,6 @@ import pytest
 from api.blue_bridge_contest_match import bbc_match
 from api.blue_bridge_contest_signup import bbc_signUp
 from api.user import user
-from serv import bbc_serv
 from util import sql_util
 from util.data_util import data_pool
 from util.faker_util import fakerist

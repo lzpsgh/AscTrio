@@ -5,7 +5,6 @@ import yaml
 import common_util
 from api.account import account
 from api.user import user
-from data_util import data_pool
 from util.log_util import logger
 
 
@@ -30,42 +29,13 @@ def _auto_supply(file_name, key_name):
 # pytest hook函数
 def pytest_generate_tests(metafunc):
     param_name = 'auto_kwargs'
-    cur_func = str(metafunc.definition).split(' ')[1][:-1]
     cur_module = f"{str(metafunc.cls).split('.')[-2]}.yml"
+    cur_func = str(metafunc.definition).split(' ')[1][:-1]
     harry = _auto_supply(cur_module, cur_func)
 
     name_list = (make.name for make in metafunc.definition.own_markers)
     if param_name in name_list and 'parametrize' not in name_list:
         metafunc.parametrize(param_name, harry, scope="function")
-
-
-@pytest.fixture(scope="function")
-def lzp(request):
-    func_sign_1 = str(request.function).split(' ')
-    logger.info(func_sign_1)
-    sun_sign = []
-
-    name_module = func_sign_1[4].split('.')[-2]
-    name_module_tmp = 'sample_data'
-    name_module = name_module_tmp + '.yml'
-    logger.info('模块名：' + name_module)
-    sun_sign.append(name_module)
-
-    # name_cls = func_sign_1[2].split('.')[-2]
-    name_cls = 'TestZeusMongo'
-    logger.info('类名：' + name_cls)
-    sun_sign.append(name_cls)
-
-    # name_func = func_sign_1[2].split('.')[-1]
-    name_func = 'test_reset_pwd2'
-    logger.info('方法名：' + name_func)
-    sun_sign.append(name_func)
-
-    kwargs = data_pool.supply(sun_sign[0], sun_sign[2])
-    kwargs = [1, 2]
-    print(kwargs)
-    return kwargs
-
 
 @pytest.fixture(scope='function')
 def upload_excel():
