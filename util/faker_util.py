@@ -29,10 +29,16 @@ class BBCProvider(BaseProvider):
                '2011年3月2日', '2010年3月2日', '2007年10月1日']
         return tmp[randint(0, len(tmp) - 1)]
 
+class ZGJProvider(BaseProvider):
+
+    # 立项管理-站点类型
+    def station_type(self):
+        tmp = ['S', 'D', 'T', 'Q', 'F']
+        return tmp[randint(0, len(tmp) - 1)]
 
 fakerist = Faker(locale='zh_CN')
 fakerist.add_provider(ExtendProvider)
-fakerist.add_provider(BBCProvider)
+fakerist.add_provider(ZGJProvider)
 
 if __name__ == '__main__':
     # print(fakerist.name())
