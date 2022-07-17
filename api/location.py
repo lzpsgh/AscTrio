@@ -24,6 +24,7 @@ class Location(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 新增立项
     def add_project(self, kwargs):
         self.req_method = 'POST'
         self.req_url = '/location/api/v1.0/assetProjectManage/'
@@ -35,6 +36,17 @@ class Location(BaseRequest):
         assert_util.result_check(result)
         return result
 
+    # 删除立项
+    def rm_project(self, project_id):
+        self.req_method = 'DELETE'
+        self.req_url = '/location/api/v1.0/assetProjectManage/' + project_id
+        # self.req_body = kwargs
+        self.req_cookies = {
+            'token': auth_util.get_token('zgj', 'token'),
+        }
+        result = self.request(method=self.req_method, url=self.req_url, cookie=self.req_cookies)
+        assert_util.result_check(result)
+        return result
 
 location = Location(common_util.env('DOMAIN_ASSET'))
 

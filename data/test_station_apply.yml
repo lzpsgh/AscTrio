@@ -1,0 +1,70 @@
+---
+test_add_station_apply:
+  -
+    constructionRequest:
+      locationId:          190
+      projectId:           218
+      tenantId:            1
+      userId:              433
+      password:            b217d9031a2e2f03475706094c17f71a
+      type:                1
+      name:                陈志浩
+      email:               chenzhihao@aulton.com
+      phoneNum:            null
+      stationId:           null
+      serviceOperatorId:   1
+      serviceOperatorName: 北京怀兴旺出租汽车有限公司
+      accountStatus:       1
+      userName:            陈志浩
+      projectName:         新建站S
+      locationName:        asc0716
+      userEmail:           chenzhihao@aulton.com
+      companyId:           1
+      companyName:         北京怀兴旺出租汽车有限公司
+      createUserName:      陈志浩
+      createUserId:        434
+    stationRequest:
+      -
+        civilEngineeringEstimate: '3000'
+        lowVoltageBuildEstimate:  '2000'
+        planUseEquipmentId:       44
+        planUseEquipmentName:     T28A
+        stationType:              S站
+    landRequest:
+      leasedArea:                   '100' # 租赁面积
+      locationRent:                 '200' # 月租金
+      firstYearFixedRent:           '300' # 首年固定租金
+      signType:                     1     # 签约方式-直租
+      landNature:                   5     # 土地用途
+      directorId:                   456   # 负责人
+      directorName:                 孙津津
+      isPowerBuildSelf:             1     # 电力自建
+      planElectricCapacityIncrease: '4000' # 计划电增容
+      highVoltageEstimate:          '1000' # 高压估算
+    otherRequest:
+      planLeaseSignDate:               '2022-07-17' # 计划租赁签约日期
+      planCivilEngineeringBiddingDate: '2022-08-01' # 计划土建招标日期
+      planCivilEngineeringBuildDate:   '2022-08-02' # 计划土建施工日期
+      planCivilEngineeringFinishDate:  '2022-08-03' # 计划土建完工日期
+      planReportElectricityFinishDate: '2022-08-06' # 计划报电完成日期
+      planHighVoltageBiddingDate:      '2022-08-11' # 计划高压招标日期
+      planHighVoltageBuildDate:        '2022-08-12' # 计划高压施工日期
+      planHighVoltageFinishDate:       '2022-08-13' # 计划高压完工日期
+      planEquipmentOrderGoodsDate:     '2022-08-14' # 计划设备订货日期
+      planEquipmentInstallDate:        '2022-08-15' # 计划设备安装日期
+      planStartStationOperateDate:     '2022-08-31' # 计划开站运营日期
+      isSpecialApproval:               1
+      otherExplain:                    其他原因又是啥
+      fileInfo:
+        -
+          name:   覆盖率-框采审批后更新站点扩展表招标日期_20220716192419424.png
+          url:    https://apptest.aulton.com/asset/files/覆盖率-框采审批后更新站点扩展表招标日期_20220716192419424.png
+          uid:    1657970659586
+          status: success
+      specialApprovalReason:           特批原因是啥
+    fileRequest:
+      -
+        name:   覆盖率-框采审批后更新站点扩展表招标日期_20220716192419424.png
+        url:    https://apptest.aulton.com/asset/files/覆盖率-框采审批后更新站点扩展表招标日期_20220716192419424.png
+        uid:    1657970659586
+        status: success

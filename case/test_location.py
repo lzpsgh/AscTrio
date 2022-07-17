@@ -11,9 +11,11 @@ from util.log_util import logger
 
 class TestLocation:
 
+
     # @pytest.mark.skip
     @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.xdata
+    # TODO 需要开发返回场地相关信息
     def test_add_location(self, xdata):
         xdata['networkPlanningLocationCode'] = 'asc0716'
         xdata['locationName'] = 'asc0716'
@@ -26,6 +28,7 @@ class TestLocation:
     # @pytest.mark.repeat(1)
     @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.xdata
+    # TODO 需要开发返回立项相关信息
     def test_add_project(self, xdata):
         res2 = location.add_project(xdata)
         assert res2.status is True

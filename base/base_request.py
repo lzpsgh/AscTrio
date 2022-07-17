@@ -21,11 +21,10 @@ class BaseRequest:
             "Cache-Control": "no-cache",
             "Connection"   : "keep-alive",  # 在HTTP1.1规范中默认开启
             "Accept"       : "application/json, text/plain, */*",
-            # "userName": "%E9%99%88%E5%BF%97%E6%B5%A9",
+            "userName"     : "%E9%99%88%E5%BF%97%E6%B5%A9",
             "userId"       : '433',
-            # "email": 'chenzhihao@aulton.com',
-            "companyId"    : '1',
-            "token"        : "111"
+            "email"        : 'chenzhihao@aulton.com',
+            "companyId"    : '1'
         }
 
         # todo 请求失败重试3次
