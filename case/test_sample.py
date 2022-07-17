@@ -5,7 +5,6 @@
 import pytest
 
 from api.sample import sample
-from util import sql_util
 from util.data_util import data_pool
 from util.log_util import logger
 
@@ -31,13 +30,13 @@ class TestSample:
         assert prom == 4
 
         # case层也能直接调用serv层发起请求
-        kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order')[0]
-        kwargs3['payType'] = "WX"
-        sample_serv.save_match_enable(kwargs3)
-        res3 = sample.request(kwargs3)
-        pay_record_id = res3.sdata.get("payrecordId")
-        out_trade_no = sql_util.sql_payrecordid_to_outtradeno(pay_record_id)
-        assert result.status is True
+        # kwargs3 = data_pool.supply('bbc_signup_data.yml', 'create_order')[0]
+        # kwargs3['payType'] = "WX"
+        # serv_sample.save_match_enable(kwargs3)
+        # res3 = sample.request(kwargs3)
+        # pay_record_id = res3.sdata.get("payrecordId")
+        # out_trade_no = sql_util.sql_payrecordid_to_outtradeno(pay_record_id)
+        # assert result.status is True
         # logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(except_code, result.response.json().get("code")))
         # logger.info("*************** 结束执行用例 ***************")
 
