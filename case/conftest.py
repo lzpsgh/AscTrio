@@ -4,7 +4,6 @@ import yaml
 
 import common_util
 from api.account import account
-from api.user import user
 from util.log_util import logger
 
 
@@ -49,39 +48,12 @@ def crm_login_with_mm():
     # yield login_info.json()
 
 
-# 在h5后台登录，获取cookies
-@pytest.fixture(scope="session")
-def h5_login():
-    login_info = user.get_current_user_nocookie()
-    # yield login_info.json()
-
-
 @pytest.fixture(scope="function")
 def test_one_punch():
     print('ssss')
     list_a = [x ** 2 for x in range(101) if x % 10 == 0]
     return list_a
 
-
-# 注册1个leads
-def reg_leads(number):
-    user.phone_exist()
-    user.send_sms2()
-    user.register()
-
-
-# 注册1个正课用户
-def reg_student():
-    user.phone_exist()
-    user.send_sms2()
-    user.register()
-    user.modify_users_owner()
-
-
-# 已老用户身份登录并拿到cookie
-def get_user_cookie():
-    user.get_current_user()
-    user.login()
 
 
 # 获取1个leads

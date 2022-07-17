@@ -19,7 +19,7 @@ class TestSample:
     # @allure.title("标题：leadsapi获取token后提交入库")
     # @pytest.mark.single
     # @pytest.mark.repeat(3)
-    @pytest.mark.usefixtures("crm_login_with_mm", "h5_login")
+    @pytest.mark.usefixtures("crm_login_with_mm")
     @pytest.mark.parametrize(
         "kwargs", data_pool.supply('leads_api_data.yml', 'upload_info'))
     def test_sample_get(self, kwargs):

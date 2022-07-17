@@ -5,7 +5,6 @@ from base.base_request import BaseRequest
 from util import assert_util
 from util import auth_util
 from util import common_util
-from util.log_util import logger
 
 
 class Account(BaseRequest):
@@ -25,25 +24,17 @@ class Account(BaseRequest):
         auth_util.set_token('zgj', 'token', result.sdata)
         return result
 
-    def crm_login_with(self, account_name):
-        self.req_method = 'get'
-        self.req_url = '/core/account/login'
-        self.req_body = {
-            "accountName": account_name,
-            "accountPassword": "589678262728104112",
-            "captcha": 'qwe123EWQ#@!'
+    # 官网退出登录
+    def crm_logout(self):
+        self.req_method = 'POST'
+        self.req_url = '/user-center/api/v1.0/accountSign/out'
+        self.req_cookies = {
+            'token': auth_util.get_token('zgj', 'token'),
         }
         result = self.x_request()
         assert_util.result_check(result)
-        core_jsessionid = result.rsp.cookies["JSESSIONID"]
-        api_account_token = result.rsp.cookies["api_account_token"]
-        # auth_util.set_cookie('crm', core_jsessionid)
-        auth_util.set_token('crm', 'jsessionid', core_jsessionid)
-        auth_util.set_token('crm', 'api_account_token', api_account_token)
-
-        logger.debug(core_jsessionid)
+        auth_util.set_token('zgj', 'token', result.sdata)
         return result
-
 
 account = Account(common_util.env('DOMAIN_USER'))
 
